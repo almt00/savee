@@ -16,12 +16,14 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
+      <Button bg="danger" size="lg" disabled >Button</Button>
+
       <Button size="sm" bg="danger">Button</Button>
       <Button size="md" bg="danger">Button</Button>
-      <Button size="lg" bg="danger">Button</Button>
+      <Button size="lg" bg="transparent">Button</Button>
       <Button size="sm" bg="primary">Button</Button>
       <Button size="md" bg="solid">Button</Button>
-      <Button size="lg" bg="secondary">Button</Button>
+      <Button size="lg" bg="secondary" disabled>Button</Button>
       <main className={styles.main}>
         <div className={styles.description}>
           <p>
