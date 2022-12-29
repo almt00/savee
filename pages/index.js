@@ -1,9 +1,11 @@
-import Head from 'next/head'
-import Image from 'next/image'
-import { Inter } from '@next/font/google'
-import styles from '../styles/Home.module.css'
+import Head from "next/head";
+import Image from "next/image";
+import { Inter } from "@next/font/google";
+import styles from "../styles/Home.module.css";
+import Button from "../components/elements/Button";
+import { styled } from "../stitches.config";
 
-const inter = Inter({ subsets: ['latin'] })
+const inter = Inter({ subsets: ["latin"] });
 
 export default function Home() {
   return (
@@ -14,6 +16,27 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
+      <Button bg="danger" size="lg" disabled>
+        Button
+      </Button>
+      <Button size="sm" bg="danger">
+        Button
+      </Button>
+      <Button size="md" bg="transparent" disabled>
+        Button
+      </Button>
+      <Button size="lg" bg="transparent">
+        Button
+      </Button>
+      <Button size="sm" bg="primary" disabled>
+        Button
+      </Button>
+      <Button size="md" bg="solid" disabled>
+        Button
+      </Button>
+      <Button size="lg" bg="secondary" disabled>
+        Button
+      </Button>
       <main className={styles.main}>
         <div className={styles.description}>
           <p>
@@ -26,7 +49,7 @@ export default function Home() {
               target="_blank"
               rel="noopener noreferrer"
             >
-              By{' '}
+              By{" "}
               <Image
                 src="/vercel.svg"
                 alt="Vercel Logo"
@@ -119,5 +142,5 @@ export default function Home() {
         </div>
       </main>
     </>
-  )
+  );
 }
