@@ -2,6 +2,8 @@ import Head from 'next/head'
 import Image from 'next/image'
 import { Inter } from '@next/font/google'
 import styles from '../styles/Home.module.css'
+import Button from '../components/elements/Button'
+import { styled } from '../stitches.config';
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -14,6 +16,12 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
+      <Button size="sm" bg="danger">Button</Button>
+      <Button size="md" bg="danger">Button</Button>
+      <Button size="lg" bg="danger">Button</Button>
+      <Button size="sm" bg="primary">Button</Button>
+      <Button size="md" bg="solid">Button</Button>
+      <Button size="lg" bg="secondary">Button</Button>
       <main className={styles.main}>
         <div className={styles.description}>
           <p>
