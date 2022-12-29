@@ -53,7 +53,8 @@ const Button = styled("button", {
           backgroundColor: "$links",
         },
         "&:disabled": {
-          color: "#4C79EC50", // aqui queria usar a var mas não sei se dá apra usar com a opacidade
+          color: "$links",
+          opacity: 0.5,
           border: "1px solid $border",
         },
       },
@@ -75,10 +76,11 @@ const Button = styled("button", {
           backgroundColor: "#2A824E",
         },
         "&:disabled": {
-          backgroundColor: "#35A36150",
+          backgroundColor: "$success",
+          opacity: 0.5,
           color: "$white",
-          border: "none"
-        }
+          border: "none",
+        },
       },
       danger: {
         backgroundColor: "$danger",
@@ -88,10 +90,11 @@ const Button = styled("button", {
           backgroundColor: "#AB2A2A",
         },
         "&:disabled": {
-          backgroundColor: "#D6353550",
+          backgroundColor: "$danger",
+          opacity: 0.5,
           color: "$white",
-          border: "none"
-        }
+          border: "none",
+        },
       },
     },
   },
