@@ -1,0 +1,10 @@
+{
+  "Tasks": {
+    "ID": 0,
+    "Nome": "Aquecimento",
+    "Color": "#000000",
+    "Image": "heater.png",
+    "kW_hour": 1400,
+    "default_time": 60000
+  }
+}

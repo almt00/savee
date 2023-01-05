@@ -1,0 +1,34 @@
+{
+  "Grupo": {
+    "ID": 0,
+    "Nome": "2esq uwu",
+    "Data_fatura": "2022-12-23T00:00:00.000Z",
+    "Membros": [0, 1, 2, 3, 4]
+  },
+  "User": {
+    "Id": 0,
+    "Email": "pedro001@gmail.com",
+    "Password": "$2y$10$X3JmxLTV8lImnnTxtLmbp.E35W.jiHA2oRpkUM/o7wciNrtpsJ10q",
+    "Nome": "Pedro Silva",
+    "Avatar": "dog.png",
+    "Hist_uso": [
+      {
+        "ID": 0,
+        "Data": "2022-12-30T22:56:00.000Z",
+        "Nome": "banho_imersao",
+        "Tipo": "tarefa",
+        "Duracao": "2022-12-29T21:02:00.085Z",
+        "Dias": ["seg"],
+        "Altura_dia": "2022-12-29T21:02:00.085Z"
+      }
+    ]
+  },
+  "Hist_pagamento": [
+    {
+      "ID": 0,
+      "Data": "2022-12-29T21:02:00.085Z",
+      "Valor_total": 55,
+      "Percentagem": 0.25
+    }
+  ]
+}
