@@ -1,45 +1,45 @@
 {
-  "Tasks": [
+  "tasks": [
     {
-      "ID": 0,
-      "Name": "Aquecimento",
-      "Image": "../public/heating@2x.png",
-      "kW_hour": 1400,
+      "id": 0,
+      "name": "Aquecimento",
+      "image": "../public/heating@2x.png",
+      "kw_hour": 1400,
       "default_time": 60000
     },
     {
-      "ID": 1,
-      "Name": "Banho imersão",
-      "Image": "../public/bath@2x.png",
-      "kW_hour": 1400,
+      "id": 1,
+      "name": "Banho imersão",
+      "image": "../public/bath@2x.png",
+      "kw_hour": 1400,
       "default_time": 60000
     },
     {
-      "ID": 2,
-      "Name": "Duche",
-      "Image": "../public/shower@2x.png",
-      "kW_hour": 1400,
+      "id": 2,
+      "name": "Duche",
+      "image": "../public/shower@2x.png",
+      "kw_hour": 1400,
       "default_time": 60000
     },
     {
-      "ID": 3,
-      "Name": "Cozinhar",
-      "Image": "../public/cooking@2x.png",
-      "kW_hour": 1400,
+      "id": 3,
+      "name": "Cozinhar",
+      "image": "../public/cooking@2x.png",
+      "kw_hour": 1400,
       "default_time": 60000
     },
     {
-      "ID": 4,
-      "Name": "Secar cabelo",
-      "Image": "../public/hairdry@2x.png",
-      "kW_hour": 1400,
+      "id": 4,
+      "name": "Secar cabelo",
+      "image": "../public/hairdry@2x.png",
+      "kw_hour": 1400,
       "default_time": 60000
     },
     {
-      "ID": 5,
-      "Name": "Lavar roupa",
-      "Image": "../public/laundry@2x.png",
-      "kW_hour": 1400,
+      "id": 5,
+      "name": "Lavar roupa",
+      "image": "../public/laundry@2x.png",
+      "kw_hour": 1400,
       "default_time": 60000
     }
   ]
