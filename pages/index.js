@@ -37,7 +37,16 @@ export default function Home() {
         <Button size="lg" bg="secondary" disabled>
           Button
         </Button>
-        <Form name ="Pedro" type="string" />
+        <Form
+          name="Data da última fatura"
+          type="date"
+          id="input_data_fatura"
+        />
+        <Form
+          name="Nome"
+          type="text"
+          id="input_nome"
+        />
       </main>
     </>
   );
