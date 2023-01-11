@@ -37,7 +37,7 @@ export default function Home() {
         <Button size="lg" bg="secondary" disabled>
           Button
         </Button>
-        <Form />
+        <Form name ="Pedro" type="string" />
       </main>
     </>
   );

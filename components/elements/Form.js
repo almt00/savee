@@ -4,18 +4,18 @@ import { styled } from "@stitches/react";
 // to do form validation
 // to do error message
 
-const Form = () => (
+const Form = (props) => (
   // Pass props to label and default value
   // Pass props to type
   <Container>
     <LabelRoot as="form">Insert value</LabelRoot>
-    <Input type="text" id="firstName" placeholder="Pedro" />
+    <Input type={props.type} id={props.name} placeholder={props.name} />
   </Container>
 );
 
 const LabelRoot = styled(Label.Root, {
-  fontSize: 14,
-  fontWeight: 400,
+  fontSize: "$normal",
+  fontWeight: "$normal",
   color: "$black",
   marginBottom: "0.6rem",
 });
@@ -28,7 +28,7 @@ const Input = styled("input", {
   border: "1px solid $border",
   padding: "0 10px",
   height: 44,
-  fontSize: 14,
+  fontSize: "$normal",
   color: "$black",
   placeholderTextColor: "$muted",
   "&:focus": { border: "2px solid $links" },
