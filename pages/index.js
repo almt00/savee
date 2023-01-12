@@ -47,6 +47,11 @@ export default function Home() {
           type="text"
           id="input_nome"
         />
+        <Form
+          name="Password"
+          type="text"
+          id="input_password"
+        />
       </main>
     </>
   );

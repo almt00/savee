@@ -13,42 +13,51 @@ const Form = (props) => {
     {
       name: "Nome",
       message: "Insere o teu nome",
+      icon: "user.svg",
     },
     {
       name: "Potência",
       message: "Insere a potência",
+      icon: "user.svg",
     },
     {
       name: "Email",
       message: "Insere o teu email",
+      icon: "user.svg",
     },
     {
       name: "Password",
       message: "Insere a tua password",
+      icon: "key.svg",
     },
     {
       name: "Email colega",
       message: "Adiciona os emails dos teus colegas",
+      icon: "user.svg",
     },
     {
       name: "Data da última fatura",
       message: "Seleciona a data da última fatura",
+      icon: "calendar-days.svg",
     },
     {
       name: "Valor fatura",
       message: "Insere o total da fatura deste mês",
+      icon: "user.svg",
     },
   ];
 
   let placeholderValue = "";
+  let icon = "";
 
   messageList.forEach((element) => {
     if (element.name === props.name) {
-      return (placeholderValue = element.message);
+      placeholderValue = element.message;
+      icon = element.icon;
     }
   });
 
-  //dummy verify so pra testar umas coisas
+  //dummy verify so pra testar umas coisas, n esta a ser usado atm
   useEffect(() => {
     const verify = () => {
       if (document.getElementById(props.name)) {
@@ -67,10 +76,10 @@ const Form = (props) => {
     <Container>
       <LabelRoot as="form">{props.name}</LabelRoot>
       <Input
-        required
         type={props.type}
         id={props.id}
         placeholder={placeholderValue}
+        style={{ background: `url(/${icon}) no-repeat 98%` }}
       />
     </Container>
   );
@@ -86,7 +95,7 @@ const LabelRoot = styled(Label.Root, {
 const Input = styled("input", {
   all: "unset",
   //make width fill to parent
-  width: 300,
+  width: "18.75rem", // 300px
   borderRadius: 12,
   border: "1px solid $border",
   padding: "0 10px",
@@ -98,6 +107,7 @@ const Input = styled("input", {
   "&:disabled": { color: "$muted", opacity: 0.5, backgroundColor: "$border" },
   "&::-webkit-calendar-picker-indicator": {
     margin: "10px 0",
+    background: "none"
   },
   "&::-webkit-datetime-edit": {
     fontSize: "$normal",
