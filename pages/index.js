@@ -1,6 +1,7 @@
 import Head from "next/head";
 import { Inter } from "@next/font/google";
 import Button from "../components/elements/Button";
+import Form from "../components/elements/Form";
 import { styled } from "../stitches.config";
 
 const inter = Inter({ subsets: ["latin"] });
@@ -36,6 +37,21 @@ export default function Home() {
         <Button size="lg" bg="secondary" disabled>
           Button
         </Button>
+        <Form
+          name="Data da última fatura"
+          type="date"
+          id="input_data_fatura"
+        />
+        <Form
+          name="Nome"
+          type="text"
+          id="input_nome"
+        />
+        <Form
+          name="Password"
+          type="text"
+          id="input_password"
+        />
       </main>
     </>
   );
