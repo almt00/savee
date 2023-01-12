@@ -100,7 +100,7 @@ const LabelRoot = styled(Label.Root, {
 const Input = styled("input", {
   all: "unset",
   //make width fill to parent
-  width: "18.75rem", // 300px
+  width: "100%", 
   borderRadius: 12,
   border: "1px solid $border",
   padding: "0 10px",
