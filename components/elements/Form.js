@@ -81,6 +81,11 @@ const Form = (props) => {
         placeholder={placeholderValue}
         style={{ background: `url(/${icon}) no-repeat 98%` }}
       />
+      <div id={`${props.id}_error`}>
+        <img src="/x-circle.svg"></img>
+        <p>Isto é um erro
+      </p>
+      </div>
     </Container>
   );
 };
@@ -107,7 +112,7 @@ const Input = styled("input", {
   "&:disabled": { color: "$muted", opacity: 0.5, backgroundColor: "$border" },
   "&::-webkit-calendar-picker-indicator": {
     margin: "10px 0",
-    background: "none"
+    background: "none",
   },
   "&::-webkit-datetime-edit": {
     fontSize: "$normal",
@@ -118,6 +123,15 @@ const Input = styled("input", {
 
 const Container = styled("div", {
   display: "block",
+  p: {
+    fontSize: "small",
+    color: "$danger",
+    display: "inline",
+    marginLeft: 4
+  },
+  img: {
+    display: "inline"
+  }
 });
 
 export default Form;
