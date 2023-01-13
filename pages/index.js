@@ -3,6 +3,7 @@ import { Inter } from "@next/font/google";
 import Button from "../components/elements/Button";
 import Form from "../components/elements/Form";
 import { styled } from "../stitches.config";
+import Task from "../components/elements/Task";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -52,6 +53,7 @@ export default function Home() {
           type="text"
           id="input_password"
         />
+        <Task type="Aquecimento" img="heating@2x.png" />
       </main>
     </>
   );
