@@ -8,12 +8,12 @@ const fetcher = (url) =>
     .then((res) => JSON.parse(res));
 
 const Task = (props) => {
-  // fetch image and name from API
-  // to do map type to image e.g. aquecimento to heating.png
+
   let imagePath = "";
   let taskTitle = "";
-  //Set up SWR to run the fetcher function when calling "/api/staticdata"
-  const { data, error } = useSWR("/api/staticdata", fetcher);
+  
+  //Set up SWR to run the fetcher function when calling api
+  const { data, error } = useSWR("/api/tasks", fetcher);
 
   //Handle the error state
   if (error) return <div>Failed to load</div>;
