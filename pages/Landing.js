@@ -125,26 +125,12 @@ const FirstSection = styled("div", {
   backgroundPosition: "100% 90%",
   height: "100vh",
   padding: "2rem",
-  h2: {
-    fontSize: "$h2",
-    fontWeight: "800",
-  },
-  p: {
-    fontSize: "$normal",
-  },
 });
 
 const SecondSection = styled("div", {
   backgroundColor: "$orange",
   height: "100vh",
   padding: "1.5rem",
-  h2: {
-    fontSize: "$h2",
-    fontWeight: "800",
-  },
-  p: {
-    fontSize: "$normal",
-  },
 });
 
 const Carousel = styled("div", {
@@ -171,12 +157,9 @@ const Card = styled("div", {
   width: "70%",
   margin: "0.5rem",
   h3: {
-    fontSize: "$h3",
-    fontWeight: "800",
     whiteSpace: "initial",
   },
   p: {
-    fontSize: "$normal",
     whiteSpace: "initial",
   },
 });
