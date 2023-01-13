@@ -3,7 +3,7 @@ import { Inter } from "@next/font/google";
 import Button from "../components/elements/Button";
 import Form from "../components/elements/Form";
 import { styled } from "../stitches.config";
-import Task from "../components/elements/Task";
+import Landing from "./Landing";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -17,33 +17,7 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main>
-        <Button bg="danger" size="lg" disabled>
-          Button
-        </Button>
-        <Button size="sm" bg="danger">
-          Button
-        </Button>
-        <Button size="md" bg="transparent" disabled>
-          Button
-        </Button>
-        <Button size="lg" bg="transparent">
-          Button
-        </Button>
-        <Button size="sm" bg="primary" disabled>
-          Button
-        </Button>
-        <Button size="md" bg="solid" disabled>
-          Button
-        </Button>
-        <Button size="lg" bg="secondary" disabled>
-          Button
-        </Button>
-        <Form name="Data da última fatura" type="date" id="input_data_fatura" />
-        <Form name="Nome" type="text" id="input_nome" />
-        <Form name="Password" type="text" id="input_password" />
-        <Task type="Banho imersão" />
-        <Task type="Cozinhar" />
-        <Task type="Secar cabelo" />
+        <Landing/>
       </main>
     </>
   );
