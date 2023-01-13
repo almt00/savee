@@ -30,7 +30,7 @@ export default function Landing() {
             fill="none"
             viewBox="0 0 24 24"
             strokeWidth={1.5}
-            stroke="currentColor"
+            stroke="$black"
             className="w-7 h-7"
           >
             <path
