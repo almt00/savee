@@ -41,7 +41,7 @@ export default function Landing() {
           </svg>
         </div>
       </Navbar>
-      <FirstSection className="flex items-center">
+      <FirstSection className="flex items-center justify-center">
         <div className="flex flex-col items-center gap-6">
           <img src="/logo.svg"></img>
           <div>

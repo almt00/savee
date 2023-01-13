@@ -17,42 +17,6 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main>
-        {/* <Button bg="danger" size="lg" disabled>
-          Button
-        </Button>
-        <Button size="sm" bg="danger">
-          Button
-        </Button>
-        <Button size="md" bg="transparent" disabled>
-          Button
-        </Button>
-        <Button size="lg" bg="transparent">
-          Button
-        </Button>
-        <Button size="sm" bg="primary" disabled>
-          Button
-        </Button>
-        <Button size="md" bg="solid" disabled>
-          Button
-        </Button>
-        <Button size="lg" bg="secondary" disabled>
-          Button
-        </Button>
-        <Form
-          name="Data da última fatura"
-          type="date"
-          id="input_data_fatura"
-        />
-        <Form
-          name="Nome"
-          type="text"
-          id="input_nome"
-        />
-        <Form
-          name="Password"
-          type="text"
-          id="input_password"
-        /> */}
         <Landing/>
       </main>
     </>
