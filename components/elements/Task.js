@@ -1,9 +1,22 @@
 import { styled } from "@stitches/react";
+import useSWR from "swr";
+
+//Write a fetcher function to wrap the native fetch function and return the result of a call to url in json format
+const fetcher = (url) => fetch(url).then((res) => res.json());
 
 const Task = (props) => {
+  // fetch image and name from API
+  // to do map type to image e.g. aquecimento to heating.png
 
-// fetch image and name from API
-// to do map type to image e.g. aquecimento to heating.png
+  //Set up SWR to run the fetcher function when calling "/api/staticdata"
+  const { data, error } = useSWR("/api/staticdata", fetcher);
+
+  //Handle the error state
+  if (error) return <div>Failed to load</div>;
+  //Handle the loading state
+  if (!data) return <div>Loading...</div>;
+
+  console.log(data);
 
   return (
     <TaskContainer>
