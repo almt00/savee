@@ -38,22 +38,12 @@ export default function Home() {
         <Button size="lg" bg="secondary" disabled>
           Button
         </Button>
-        <Form
-          name="Data da última fatura"
-          type="date"
-          id="input_data_fatura"
-        />
-        <Form
-          name="Nome"
-          type="text"
-          id="input_nome"
-        />
-        <Form
-          name="Password"
-          type="text"
-          id="input_password"
-        />
-        <Task type="Aquecimento" img="heating@2x.png" />
+        <Form name="Data da última fatura" type="date" id="input_data_fatura" />
+        <Form name="Nome" type="text" id="input_nome" />
+        <Form name="Password" type="text" id="input_password" />
+        <Task type="Banho imersão" />
+        <Task type="Cozinhar" />
+        <Task type="Secar cabelo" />
       </main>
     </>
   );

@@ -2,12 +2,16 @@ import { styled } from "@stitches/react";
 import useSWR from "swr";
 
 //Write a fetcher function to wrap the native fetch function and return the result of a call to url in json format
-const fetcher = (url) => fetch(url).then((res) => res.json());
+const fetcher = (url) =>
+  fetch(url)
+    .then((res) => res.json())
+    .then((res) => JSON.parse(res));
 
 const Task = (props) => {
   // fetch image and name from API
   // to do map type to image e.g. aquecimento to heating.png
-
+  let imagePath = "";
+  let taskTitle = "";
   //Set up SWR to run the fetcher function when calling "/api/staticdata"
   const { data, error } = useSWR("/api/staticdata", fetcher);
 
@@ -16,12 +20,20 @@ const Task = (props) => {
   //Handle the loading state
   if (!data) return <div>Loading...</div>;
 
-  console.log(data);
-
+  if (data) {
+    console.log(typeof data.tasks);
+    console.log(data.tasks);
+    data.tasks.forEach((task) => {
+      if (task.name === props.type) {
+        imagePath = task.image;
+        taskTitle = task.name;
+      }
+    });
+  }
   return (
     <TaskContainer>
-      <TaskImage src={props.img} alt={props.type} />
-      <TaskTitle>{props.type}</TaskTitle>
+      <TaskImage src={imagePath} alt={taskTitle} />
+      <TaskTitle>{taskTitle}</TaskTitle>
     </TaskContainer>
   );
 };
