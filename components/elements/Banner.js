@@ -5,14 +5,13 @@ const Banner = () => {
 
   return (
     <Container>
-      {/* <Container class='flex justify-between'></Container> */}
-      <Text>Está na hora de pagar!</Text>
+      <BannerText>Está na hora de pagar!</BannerText>
       <Button size='md' bg='primary'>Inserir fatura</Button> 
     </Container>
   );
 };
 
-const Text = styled('p', {
+const BannerText = styled('p', {
   color: '$white',
   fontSize: '$normal',
   fontWeight: '$normal',
