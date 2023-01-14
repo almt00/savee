@@ -42,7 +42,7 @@ export default function Home() {
             Inserir Fatura
           </Button>
         </Banner> */}
-        <Banner></Banner>
+        <Banner />
       </main>
     </>
   );
