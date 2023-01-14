@@ -1,7 +1,5 @@
 import Head from "next/head";
 import { Inter } from "@next/font/google";
-import Button from "../components/elements/Button";
-import Form from "../components/elements/Form";
 import { styled } from "../stitches.config";
 import Landing from "./Landing";
 

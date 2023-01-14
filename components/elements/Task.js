@@ -44,7 +44,7 @@ const TaskContainer = styled("div", {
   alignItems: "center",
 });
 
-const TaskImage = styled("img", {
+const TaskImage = styled("image", {
   width: "64px",
 });
 
