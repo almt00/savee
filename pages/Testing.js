@@ -3,6 +3,7 @@ import { Inter } from "@next/font/google";
 import Header from "../components/elements/Header";
 import Card from "../components/elements/Card";
 import Form from "../components/elements/Form";
+import Chart from "../components/elements/Chart";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -19,8 +20,15 @@ export default function Home() {
       <Header page="Homepage" />
       <div className="z-0 h-96 rounded-b-3xl bg-mint"></div>
       <Card>
+        <Chart type="simple"/>
+      </Card>
+      <Card>
+        <Chart type="complex"/>
+      </Card>
+      <Card>
         <Form type="nome" />
         <Form type="date" />
+        <Chart type="simple"/>
       </Card>
       <Card type="stroke">
         <Form type="nome" />
