@@ -2,6 +2,7 @@ import { styled } from '@stitches/react';
 import Button from './Button';
 
 const Banner = () => {
+
   return (
     <Container>
       {/* <Container class='flex justify-between'></Container> */}
@@ -11,16 +12,19 @@ const Banner = () => {
   );
 };
 
-const Text = styled('span', {
+const Text = styled('p', {
   color: '$white',
   fontSize: '$normal',
   fontWeight: '$normal',
+  alignSelf: 'center'
 });
 
 const Container = styled('div', {
   backgroundColor: '$black',
   borderRadius: '12px',
-  padding: '1rem 1.5rem'
+  padding: '1rem 1.5rem', 
+  display: 'flex',
+  justifyContent: 'space-between'
 });
 
 export default Banner;
