@@ -7,8 +7,8 @@ const Card = (props) => {
 const Container = styled("div", {
   backgroundColor: "$white",
   borderRadius: "12px",
-  margin: "18px 24px",
-  padding: "24px 16px",
+  margin: "1.125rem 1.5rem",
+  padding: "1.5rem 1rem",
   width: "auto",
   boxShadow: "$card",
   variants: {

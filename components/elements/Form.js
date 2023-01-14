@@ -1,7 +1,7 @@
 import * as Label from "@radix-ui/react-label";
 import { styled } from "@stitches/react";
-import Button from "./Button";
 import { useEffect } from "react";
+import Image from "next/image";
 // to do form validation
 // to do error message
 
@@ -58,6 +58,7 @@ const Form = (props) => {
   });
 
   //dummy verify so pra testar umas coisas, n esta a ser usado atm
+  /*
   useEffect(() => {
     const verify = () => {
       if (document.getElementById(props.name)) {
@@ -71,6 +72,7 @@ const Form = (props) => {
       }
     };
   }, []);
+  */
 
   return (
     <Container>
@@ -82,9 +84,8 @@ const Form = (props) => {
         style={{ background: `url(/${icon}) no-repeat 98%` }}
       />
       <div id={`${props.id}_error`}>
-        <img src="/x-circle.svg"></img>
-        <p>Isto é um erro
-      </p>
+        <Image src="/img/x-circle.svg" alt="Erro" width="20" height="20" />
+        <p>Isto é um erro</p>
       </div>
     </Container>
   );
@@ -128,11 +129,11 @@ const Container = styled("div", {
     fontSize: "small",
     color: "$danger",
     display: "inline",
-    marginLeft: 4
+    marginLeft: 4,
   },
   img: {
-    display: "inline"
-  }
+    display: "inline",
+  },
 });
 
 export default Form;

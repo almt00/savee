@@ -3,6 +3,7 @@ import Button from "../components/elements/Button";
 import { styled } from "@stitches/react";
 import { useState } from "react";
 import { useSwipeable } from "react-swipeable";
+import Image from "next/image";
 
 export default function Landing() {
   const [activeIndex, setActiveIndex] = useState(0);
@@ -30,7 +31,7 @@ export default function Landing() {
             fill="none"
             viewBox="0 0 24 24"
             strokeWidth={1.5}
-            stroke="$black"
+            stroke="currentColor"
             className="w-7 h-7"
           >
             <path
@@ -43,7 +44,7 @@ export default function Landing() {
       </Navbar>
       <FirstSection className="flex items-center justify-center">
         <div className="flex flex-col items-center gap-6">
-          <img src="/logo.svg"></img>
+          <Image src="/img/logo.svg" width={150} height={150} alt="Savee Logo" />
           <div>
           <h2 className="text-center mb-2">
             A forma inteligente de partilhares a tua conta de eletricidade.
@@ -63,7 +64,7 @@ export default function Landing() {
             <SlideItem>
               <Card id="first-card" className="flex flex-col p-6 gap-4">
                 <CardNumber>#1</CardNumber>
-                <img src="/onboardingOne.svg" className="z-10"></img>
+                <img src="/img/onboardingOne.svg" className="z-10" alt="onboarding 1" />
                 <div>
                   <h3>Inscreve a tua casa</h3>
                   <p>
@@ -76,7 +77,7 @@ export default function Landing() {
             <SlideItem>
               <Card id="first-card" className="flex flex-col p-6 gap-4">
                 <CardNumber>#2</CardNumber>
-                <img src="/onboardingTwo.svg" className="z-10"></img>
+                <img src="/img/onboardingTwo.svg" className="z-10" alt="Onboarding 2"></img>
                 <div>
                   <h3>Cria as tuas rotinas</h3>
                   <p>
@@ -90,7 +91,7 @@ export default function Landing() {
             <SlideItem>
               <Card id="first-card" className="flex flex-col p-6 gap-4">
                 <CardNumber>#3</CardNumber>
-                <img src="/onboardingThree.svg" className="z-10"></img>
+                <img src="/img/onboardingThree.svg" className="z-10" alt="onboarding 3"></img>
                 <div>
                   <h3>Começa a poupar</h3>
                   <p>
@@ -106,7 +107,7 @@ export default function Landing() {
         <Button size="lg">Começar a Usar</Button>
       </SecondSection>
       <Footer className="flex text-center justify-between items-center">
-        <img src="/logo.svg" className="h-8"></img>
+        <Image src="/img/logo.svg" width={74} height={74} alt="Savee Logo" />
         <p>&copy; Copyright 2022 Savee</p>
       </Footer>
     </>
@@ -120,7 +121,7 @@ const Navbar = styled("div", {
 
 const FirstSection = styled("div", {
   backgroundColor: "$mint",
-  backgroundImage: "url(/eletrico.svg)",
+  backgroundImage: "url(/img/eletrico.svg)",
   backgroundRepeat: "no-repeat",
   backgroundPosition: "100% 90%",
   height: "100vh",
