@@ -1,8 +1,9 @@
-import Head from 'next/head';
-import { Inter } from '@next/font/google';
-import Button from '../components/elements/Button';
-import Banner from '../components/elements/Banner';
-import { styled } from '../stitches.config';
+import Head from "next/head";
+import { Inter } from "@next/font/google";
+import Button from "../components/elements/Button";
+import Form from "../components/elements/Form";
+import { styled } from "../stitches.config";
+import Landing from "./Landing";
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -16,33 +17,7 @@ export default function Home() {
         <link rel='icon' href='/favicon.ico' />
       </Head>
       <main>
-        <Button bg='danger' size='lg' disabled>
-          Button
-        </Button>
-        <Button size='sm' bg='danger'>
-          Button
-        </Button>
-        <Button size='md' bg='transparent' disabled>
-          Button
-        </Button>
-        <Button size='lg' bg='transparent'>
-          Button
-        </Button>
-        <Button size='sm' bg='primary' disabled>
-          Button
-        </Button>
-        <Button size='md' bg='solid' disabled>
-          Button
-        </Button>
-        <Button size='lg' bg='secondary' disabled>
-          Button
-        </Button>
-        {/* <Banner>Está na hora de pagar!
-          <Button size='md' bg='primary'>
-            Inserir Fatura
-          </Button>
-        </Banner> */}
-        <Banner />
+        <Landing/>
       </main>
     </>
   );

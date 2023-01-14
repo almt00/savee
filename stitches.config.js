@@ -45,6 +45,9 @@ export const {
       bolder: "700",
       normal: "400",
     },
+    shadows: {
+      card: "0px 1px 8px rgba(0, 0, 0, 0.08)",
+    },
   },
   media: {
     bp1: "(min-width: 480px)",
