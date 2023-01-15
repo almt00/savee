@@ -39,9 +39,8 @@ const Task = (props) => {
 };
 
 const TaskContainer = styled("div", {
-  display: "flex",
-  flexDirection: "column",
-  alignItems: "center",
+  flex: "0 0 auto",
+  textAlign: "center",
 });
 
 const TaskImage = styled("img", {

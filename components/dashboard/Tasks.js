@@ -18,11 +18,12 @@ const Tasks = () => {
 
 const TasksContainer = styled("div", {
     display: "flex",
-    flexDirection: "row",
-    alignItems: "center",
-    width: "100vh",
+    overflowX: "auto",
     margin: "1.125rem 1.5rem",
     gap: "1rem",
+    "&:-webkit-scrollbar": {
+        display: "none",
+    },
 });
 
 export default Tasks;
