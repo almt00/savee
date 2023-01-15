@@ -19,7 +19,7 @@ const TasksContainer = styled("div", {
     display: "flex",
     overflowX: "auto",
     margin: "1.125rem 1.5rem",
-    gap: "1rem",
+    gap: "2rem",
     "&::-webkit-scrollbar": {
         display: "none",
     },
