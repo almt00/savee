@@ -1,14 +1,41 @@
 import { styled } from "@stitches/react";
 
-const Background = (props) => {
-  return <Container>{props.children}</Container>;
-};
-
-const Container = styled("div", {
-  /* background:
-    "linear-gradient(180deg, $mint 0%, $mint 35%, $mintTransparent 35%, $white 100%);", */
-  zIndex: "-1",
-  borderRadius: "0 0 12px 12px",
+const Background = styled("div", {
+  position: "absolute",
+  zIndex: "-100",
+  width: "100vw",
+  height: "35%",
+  borderBottomRightRadius: "0.75rem",
+  borderBottomLeftRadius: "0.75rem",
+  backgroundColor: "$mint",
+  variants: {
+    color: {
+      mint: {
+        backgroundColor: "$mint",
+      },
+      skyblue: {
+        backgroundColor: "$skyblue",
+      },
+      yellow: {
+        backgroundColor: "$yellow",
+      },
+      purple: {
+        backgroundColor: "$purple",
+      },
+      cyan: {
+        backgroundColor: "$cyan",
+      },
+      salmon: {
+        backgroundColor: "$salmon",
+      },
+      orange: {
+        backgroundColor: "$orange",
+      },
+      deeppurple: {
+        backgroundColor: "$deeppurple",
+      },
+    },
+  },
 });
 
 export default Background;

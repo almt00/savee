@@ -19,41 +19,37 @@ export default function Login() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <div className="-z-10 h-2/6 w-screen rounded-b-xl bg-mint absolute"></div>
+      <Background color="mint"></Background>
 
-      <Background>
-        <div className="py-4 px-6">
-          <Image src="/img/logo.svg" alt="Logo" width={75} height={33} />
+      <div className="py-4 px-6">
+        <Image src="/img/logo.svg" alt="Logo" width={75} height={33} />
+      </div>
+
+      <div className="mx-6 mb-8">
+        <h1 className="black">Iniciar sessão</h1>
+        <p className="black">Inicia a tua sessão no Savee e começa a poupar.</p>
+      </div>
+
+      <Card>
+        <Form name="Email" />
+        <div className="mt-6">
+          <Form name="Password" />
         </div>
-
-        <div className="mx-6 mb-8">
-          <h1 className="black">Iniciar sessão</h1>
-          <p className="black">
-            Inicia a tua sessão no Savee e começa a poupar.
-          </p>
+        <div className="flex justify-center">
+          <Button className="mt-6" bg="solid" size="lg">
+            Iniciar sessão
+          </Button>
         </div>
+      </Card>
 
-        <Card>
-          <Form name="Email" />
-          <div className="mt-6">
-            <Form name="Password" />
-          </div>
-          <div className="flex justify-center">
-            <Button className="mt-6" bg="solid" size="lg">
-              Iniciar sessão
-            </Button>
-          </div>
-        </Card>
-
-        <div className="mx-6 mt-60 text-center">
-          <p>
-            Ainda não tens conta?{" "}
-            <Link href="/register" className="font-bold text-links">
-              Criar conta
-            </Link>
-          </p>
-        </div>
-      </Background>
+      <div className="mx-6 mt-60 text-center">
+        <p>
+          Ainda não tens conta?{" "}
+          <Link href="/register" className="font-bold text-links">
+            Criar conta
+          </Link>
+        </p>
+      </div>
     </>
   );
 }
