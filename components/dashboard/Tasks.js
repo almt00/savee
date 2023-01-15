@@ -1,16 +1,24 @@
 import { styled } from "@stitches/react";
 import Task from "../elements/Task";
 
-const Tasks = () => {
+const Tasks = (props) => {
+
+  const tasks = props.data;
+
   return (
     // todo map tasks
     <TasksContainer>
+      {tasks.map((task) => {
+        return <Task key={task.id} type={task.name} />
+      })}
+      {/*
       <Task type="Aquecimento" />
       <Task type="Banho imersão" />
       <Task type="Duche" />
       <Task type="Cozinhar" />
       <Task type="Secar cabelo" />
       <Task type="Lavar roupa" />
+      */}
     </TasksContainer>
   );
 };
