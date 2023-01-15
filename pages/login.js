@@ -22,7 +22,7 @@ export default function Login() {
         </Head>
 
         <div className="py-4 px-6">
-          <Image src="/img/Logo.svg" alt="Logo" width={75} height={33} />
+          <Image src="/img/logo.svg" alt="Logo" width={75} height={33} />
         </div>
 
         <div className="mx-6 mb-8">
