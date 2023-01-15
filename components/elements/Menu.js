@@ -61,7 +61,7 @@ export default function Menu() {
             </div>
           </li>
           <li className="h-8">
-            <img src="/img/icon-settings.svg" className="ml-6"></img>
+            <img src="/img/icon-settings.svg" className="ml-6" alt="Settings" />
             <h4>Definições</h4>
           </li>
           <li className="h-8">
