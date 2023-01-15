@@ -22,7 +22,7 @@ console.log(data.tasks);
 const showEntrylist = data.tasks.map((task)=>
 
 <EntryContainer key={task.id}>
-    <EntryImage src={`../public/${task.default_time}`}></EntryImage>
+    <EntryImage src={`../public/img/${task.image}`}></EntryImage>
     <EntryTitle>{task.name}</EntryTitle>
     <Minute>
         {Math.floor(task.default_time / 60000)}
