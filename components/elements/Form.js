@@ -81,7 +81,7 @@ const Form = (props) => {
         type={props.type}
         id={props.id}
         placeholder={placeholderValue}
-        style={{ background: `url(/${icon}) no-repeat 98%` }}
+        style={{ background: `url(/img/${icon}) no-repeat 98%` }}
       />
       <div id={`${props.id}_error`}>
         <Image src="/img/x-circle.svg" alt="Erro" width="20" height="20" />

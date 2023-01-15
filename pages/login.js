@@ -19,7 +19,7 @@ export default function Login() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <Background color="mint"></Background>
+      <Background color="mint"/>
 
       <div className="py-4 px-6">
         <Image src="/img/logo.svg" alt="Logo" width={75} height={33} />
