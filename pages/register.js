@@ -11,6 +11,7 @@ import Link from "next/link";
 const inter = Inter({ subsets: ["latin"] });
 
 export default function Register() {
+  
   //Grouping forms by section in a component
   const AuthFields = () => (
     <>
