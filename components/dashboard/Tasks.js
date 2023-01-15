@@ -1,42 +1,47 @@
 import { styled } from "@stitches/react";
+import Task from "../elements/Task";
 import useSWR from "swr";
 
-//Write a fetcher function to wrap the native fetch function and return the result of a call to url in json format
 const fetcher = (url) =>
   fetch(url)
     .then((res) => res.json())
     .then((res) => JSON.parse(res));
 
-const Task = (props) => {
-
-  let imagePath = "";
-  let taskTitle = "";
-  
-  //Set up SWR to run the fetcher function when calling api
+const Tasks = () => {
   const { data, error } = useSWR("/api/tasks", fetcher);
+
+  const tasks = data;
+  console.log(tasks);
 
   //Handle the error state
   if (error) return <div>Failed to load</div>;
   //Handle the loading state
   if (!data) return <div>Loading...</div>;
 
-  if (data) {
-    console.log(typeof data.tasks);
-    console.log(data.tasks);
-    data.tasks.forEach((task) => {
-      if (task.name === props.type) {
-        imagePath = task.image;
-        taskTitle = task.name;
-      }
-    });
-  }
   return (
-    <TaskContainer>
-      <TaskImage src={imagePath} alt={taskTitle} />
-      <TaskTitle>{taskTitle}</TaskTitle>
-    </TaskContainer>
+    // todo map tasks
+    <TasksContainer>
+      {data.tasks.map((task) => {
+        return (
+          <TaskContainer key={task.name}>
+            <TaskImage src={task.image} alt={task.name} />
+            <TaskTitle>{task.name}</TaskTitle>
+          </TaskContainer>
+        );
+      })}
+    </TasksContainer>
   );
 };
+
+const TasksContainer = styled("div", {
+  display: "flex",
+  overflowX: "auto",
+  margin: "1.125rem 1.5rem",
+  gap: "2rem",
+  "&::-webkit-scrollbar": {
+    display: "none",
+  },
+});
 
 const TaskContainer = styled("div", {
   flex: "0 0 auto",
@@ -54,7 +59,4 @@ const TaskTitle = styled("p", {
   color: "$black",
   marginTop: "0.5rem",
 });
-
-
-
-export default Task;
+export default Tasks;
