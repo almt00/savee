@@ -1,10 +1,9 @@
 import { styled } from "@stitches/react";
 import Task from "../elements/Task";
 
-// to do horizontal scroll
-
 const Tasks = () => {
   return (
+    // todo map tasks
     <TasksContainer>
       <Task type="Aquecimento" />
       <Task type="Banho imersão" />

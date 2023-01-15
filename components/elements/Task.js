@@ -45,6 +45,7 @@ const TaskContainer = styled("div", {
 
 const TaskImage = styled("img", {
   width: "64px",
+  margin: "0 auto",
 });
 
 const TaskTitle = styled("p", {
