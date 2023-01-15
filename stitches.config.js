@@ -23,6 +23,7 @@ export const {
       success: "#35A361",
       danger: "#D63535",
       mint: "#C4F4D4",
+      mintTransparent: "rgba(196,244,212,0)",
       skyblue: "#C5E1F2",
       yellow: "#FCF7B9",
       purple: "#E8C3F3",
