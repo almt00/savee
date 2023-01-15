@@ -38,7 +38,7 @@ export default function Menu() {
               <h2>Histórico uso</h2>
             </li>
             <li className="">
-              <img src="/img/check-circle-icon.svg" className="ml-6"></img>
+              <img src="/img/check-circle-icon.svg" className="ml-6" alt="Tarefas" />
               <h2>Tarefas</h2>
             </li>
             <li className="">
