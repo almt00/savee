@@ -30,7 +30,7 @@ export default function Menu() {
           </div>
           <MenuList>
             <li className="selected">
-              <img src="/img/home-icon.svg" className="ml-6"></img>
+              <img src="/img/home-icon.svg" className="ml-6" alt="Home" />
               <h2>Homepage</h2>
             </li>
             <li className="">
