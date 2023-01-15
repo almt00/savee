@@ -46,7 +46,7 @@ export default function Menu() {
               <h2>Rotinas</h2>
             </li>
             <li className="">
-              <img src="/img/currency-dollar-icon.svg" className="ml-6"></img>
+              <img src="/img/currency-dollar-icon.svg" className="ml-6" alt="Pagamentos" />
               <h2>Pagamentos</h2>
             </li>
           </MenuList>
