@@ -4,6 +4,8 @@ import Header from "../components/elements/Header";
 import Card from "../components/elements/Card";
 import Form from "../components/elements/Form";
 import Tasks from "../components/dashboard/Tasks";
+import DashboardCard from "../components/elements/DashboardCard";
+import Banner from "../components/elements/Banner";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -19,6 +21,10 @@ export default function Home() {
 
       <Header page="Homepage" />
       <div className="z-0 h-96 rounded-b-3xl bg-mint"></div>
+      <Banner/>
+      <Card>
+        <DashboardCard/>
+      </Card>
       <Card>
         <Form type="nome" />
         <Form type="date" />
