@@ -1,7 +1,7 @@
 import Head from "next/head";
 import { Inter } from "@next/font/google";
 import { styled } from "../stitches.config";
-import landing from "./landing";
+import Landing from "./landing";
 
 const inter = Inter({ subsets: ['latin'] });
 
