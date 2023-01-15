@@ -10,7 +10,7 @@ import Link from "next/link";
 
 const inter = Inter({ subsets: ["latin"] });
 
-export default function Login() {
+export default function Register() {
   return (
     <>
       <Head>
@@ -19,15 +19,15 @@ export default function Login() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <Background color="mint"/>
+      <Background color="mint" />
 
       <div className="py-4 px-6">
         <Link href="/"><Image src="/img/logo.svg" alt="Logo" width={75} height={33} /></Link>
       </div>
 
       <div className="mx-6 mb-8">
-        <h1 className="black">Iniciar sessão</h1>
-        <p className="black">Inicia a tua sessão no Savee e começa a poupar.</p>
+        <h1 className="black">Criar conta</h1>
+        <p className="black">Cria a tua conta no Savee e começa a poupar.</p>
       </div>
 
       <Card>
@@ -36,20 +36,12 @@ export default function Login() {
           <Form name="Password" />
         </div>
         <div className="flex justify-center">
+          {/*todo: disable when form validation is set up*/}
           <Button className="mt-6" bg="solid" size="lg">
-            Iniciar sessão
+            Registar
           </Button>
         </div>
       </Card>
-
-      <div className="mx-6 mt-60 text-center">
-        <p>
-          Ainda não tens conta?{" "}
-          <Link href="/register" className="font-bold text-links">
-            Criar conta
-          </Link>
-        </p>
-      </div>
     </>
   );
 }

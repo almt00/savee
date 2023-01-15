@@ -9,7 +9,7 @@ const Button = styled("button", {
   fontWeight: "$bold",
   padding: "0.4rem 0.75rem",
   border: "1px solid $black",
-  "&:focus:enabled": {
+  "&:focus-visible": {
     border: "2px solid $links",
   },
   "&:hover:enabled": {
@@ -44,7 +44,7 @@ const Button = styled("button", {
         backgroundColor: "transparent",
         border: "1px solid $border",
         color: "$links",
-        "&:focus:enabled": {
+        "&:focus-visible": {
           border: "2px solid $links",
           backgroundColor: "transparent",
         },
