@@ -11,6 +11,54 @@ import Link from "next/link";
 const inter = Inter({ subsets: ["latin"] });
 
 export default function Register() {
+  //Grouping forms by section in a component
+  const AuthFields = () => (
+    <>
+      <Form name="Email" />
+      <div className="mt-6">
+        <Form name="Password" />
+      </div>
+    </>
+  );
+
+  const UserFields = () => (
+    <>
+      <p>Vamos customizar a tua experiência. Como te chamas?</p>
+      <Form name="Nome" />
+    </>
+  );
+
+  const GroupFields = () => (
+    <>
+      <p>
+        Não temos nenhum grupo associado ao teu email. Queres criar um novo
+        grupo e convidar os teus colegas de casa?
+      </p>
+      <Form name="Nome" />
+      <hr />
+      <p>
+        O savee só funciona se todos colaborarem. Convida os teus colegas de
+        casa e começa a poupar.
+      </p>
+      <Form name="Email colega" />
+      <Button size="sm" bg="primary">
+        + Adicionar email
+      </Button>
+    </>
+  );
+
+  const InvoiceFields = () => (
+    <>
+      <Image src="/img/fatura.svg" alt="Fatura" width={200} height={200} />
+      <p>
+        Consulta a tua fatura de eletricidade e acrescenta os seguintes dados
+        para o Savee conseguir calcular quanto poupaste.
+      </p>
+      <Form name="Data da última fatura" />
+      <p className="text-link">Precisas de ajuda?</p>
+    </>
+  );
+
   return (
     <>
       <Head>
@@ -22,7 +70,9 @@ export default function Register() {
       <Background color="mint" />
 
       <div className="py-4 px-6">
-        <Link href="/"><Image src="/img/logo.svg" alt="Logo" width={75} height={33} /></Link>
+        <Link href="/">
+          <Image src="/img/logo.svg" alt="Logo" width={75} height={33} />
+        </Link>
       </div>
 
       <div className="mx-6 mb-8">
@@ -31,10 +81,7 @@ export default function Register() {
       </div>
 
       <Card>
-        <Form name="Email" />
-        <div className="mt-6">
-          <Form name="Password" />
-        </div>
+        <AuthFields />
         <div className="flex justify-center">
           {/*todo: disable when form validation is set up*/}
           <Button className="mt-6" bg="solid" size="lg">
