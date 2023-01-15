@@ -54,5 +54,8 @@ export const {
   },
   utils: {
     marginX: (value) => ({ marginLeft: value, marginRight: value }),
+    linearGradient: (value) => ({
+      backgroundImage: `linear-gradient(${value})`,
+    }),
   },
 });
