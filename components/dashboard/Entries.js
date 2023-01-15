@@ -7,7 +7,7 @@ const fetcher = (url) =>
     .then((res) => res.json())
     .then((res) => JSON.parse(res));
 
-const Entry = () => {
+const Entries = () => {
 
 //Set up SWR to run the fetcher function when calling api
 const { data, error } = useSWR("/api/tasks", fetcher);
@@ -26,7 +26,7 @@ const showEntrylist = data.tasks.map((task)=>
     <EntryTitle>{task.name}</EntryTitle>
     <Minute>
         {Math.floor(task.default_time / 60000)}
-         <p>min</p>
+         <p className="ml-1">min</p>
     </Minute>
    
 </EntryContainer>
@@ -40,16 +40,18 @@ const showEntrylist = data.tasks.map((task)=>
 
 const EntryContainer = styled("div", {
     display: "flex",
-    marginInline: "1rem",
+    padding: "0.5rem",
+    marginBottom: "0.25rem",
     flexdirection: "row",
     alignItems: "center",
     height: "56px",
-    width: "310px",
+    borderBottom: "1px solid $border",
   });
   const EntryImage = styled("img", {
     width: "40px",
     alignItems: "center",
-    justifyContent: "center"
+    justifyContent: "center",
+    marginRight: "0.5rem",
   });
   const EntryTitle = styled("h3", {
     fontSize: "$small",
@@ -60,14 +62,14 @@ const EntryContainer = styled("div", {
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
-    fontWeight: "$bold",
-    fontSize: "20px",
+    fontWeight: "$bolder",
+    fontSize: "1.25rem",
     color: "$black",
     marginLeft: "auto",
     p: {
-        fontSize: "$small",
+        fontSize: "$normal",
         fontWeight: "$bold",
     }
   })
 
-export default Entry;
+export default Entries;

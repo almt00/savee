@@ -1,8 +1,8 @@
-import Entry from "../components/Entry";
+import Entries from "../components/dashboard/Entries";
 
 const Teste = ()=>{
 return(
-    <Entry/>
+    <Entries/>
 )
 
 }
