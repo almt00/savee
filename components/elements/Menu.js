@@ -65,7 +65,7 @@ export default function Menu() {
             <h4>Definições</h4>
           </li>
           <li className="h-8">
-            <img src="/img/icon-help-circle.svg" className="ml-6"></img>
+            <img src="/img/icon-help-circle.svg" className="ml-6" alt="Ajuda" />
             <h4>Ajuda</h4>
           </li>
         </MenuList>
