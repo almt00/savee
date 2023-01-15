@@ -42,7 +42,7 @@ export default function Menu() {
               <h2>Tarefas</h2>
             </li>
             <li className="">
-              <img src="/img/sun-icon.svg" className="ml-6"></img>
+              <img src="/img/sun-icon.svg" className="ml-6" alt="Rotinas" />
               <h2>Rotinas</h2>
             </li>
             <li className="">
