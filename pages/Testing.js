@@ -20,15 +20,11 @@ export default function Home() {
       <Header page="Homepage" />
       <div className="z-0 h-96 rounded-b-3xl bg-mint"></div>
       <Card>
-        <Chart type="simple"/>
-      </Card>
-      <Card>
-        <Chart type="complex"/>
+        <Chart/>
       </Card>
       <Card>
         <Form type="nome" />
         <Form type="date" />
-        <Chart type="simple"/>
       </Card>
       <Card type="stroke">
         <Form type="nome" />
