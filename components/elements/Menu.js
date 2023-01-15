@@ -54,7 +54,7 @@ export default function Menu() {
 
         <MenuList size="sm" className="mb-6">
           <li className="h-8">
-            <img src="/img/user-bird.svg" className="ml-6"></img>
+            <img src="/img/user-bird.svg" className="ml-6" alt="Avatar" />
             <div>
               <h4>Pedro</h4>
               <p>Editar perfil</p>
