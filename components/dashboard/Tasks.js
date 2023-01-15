@@ -23,7 +23,7 @@ const Tasks = () => {
     <TasksContainer>
       {data.tasks.map((task) => {
         return (
-          <TaskContainer>
+          <TaskContainer key={task.name}>
             <TaskImage src={task.image} alt={task.name} />
             <TaskTitle>{task.name}</TaskTitle>
           </TaskContainer>
