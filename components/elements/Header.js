@@ -1,5 +1,6 @@
 import React from "react";
 import { styled } from "@stitches/react";
+import Menu from "./Menu";
 
 const HeaderSection = styled("div", {
   backgroundColor: "transparent",
@@ -8,6 +9,14 @@ const HeaderSection = styled("div", {
   width: "100vw",
 });
 
+const openMenu = function (e) {
+  let menu = document.getElementById("menu");
+  let overlay = document.getElementById("menu_overlay");
+  menu.style.transform = "translate(0%)";
+  menu.style.transition = "0.3s ease-in";
+  overlay.style.transform = "translate(0%)";
+};
+
 export default function Header(props) {
   return (
     <>
@@ -15,7 +24,7 @@ export default function Header(props) {
         id="header"
         className="flex items-center justify-between z-10"
       >
-        <div className="bg-white p-2 rounded-full">
+        <div className="bg-white p-2 rounded-full" onClick={openMenu}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
@@ -34,6 +43,7 @@ export default function Header(props) {
         <h4>{props.page}</h4>
         <div></div>
       </HeaderSection>
+      <Menu></Menu>
     </>
   );
 }
