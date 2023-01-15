@@ -27,7 +27,7 @@ export default function Home() {
         <Form type="nome" />
         <Form type="date" />
       </Card>
-      <Tasks className="overflow-x-auto" />
+      <Tasks />
     </>
   );
 }

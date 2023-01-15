@@ -21,7 +21,7 @@ const TasksContainer = styled("div", {
     overflowX: "auto",
     margin: "1.125rem 1.5rem",
     gap: "1rem",
-    "&:-webkit-scrollbar": {
+    "&::-webkit-scrollbar": {
         display: "none",
     },
 });
