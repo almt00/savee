@@ -26,7 +26,7 @@ export default function Menu() {
       >
         <div>
           <div className="">
-            <img src="/img/logo_alt.svg" className="mt-6 ml-6"></img>
+            <img src="/img/logo_alt.svg" className="mt-6 ml-6" alt="Savee logo" />
           </div>
           <MenuList>
             <li className="selected">
