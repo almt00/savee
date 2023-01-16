@@ -32,7 +32,7 @@ const Form = (props) => {
     },
     {
       name: "Emails colegas",
-      message: "Adiciona os emails separados por virgulas",
+      message: "Adiciona os emails dos teus colegas",
       icon: "user.svg",
     },
     {
