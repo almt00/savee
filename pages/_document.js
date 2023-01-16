@@ -6,7 +6,6 @@ export default function Document() {
     <Html lang="en">
       <Head>
       <style id="stitches" dangerouslySetInnerHTML={{ __html: getCssText() }} />
-      <link href="/dist/output.css" rel="stylesheet"></link>
       </Head>
       <body>
         <Main />

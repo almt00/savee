@@ -1,7 +1,11 @@
 import { styled } from "@stitches/react";
 
 const Card = (props) => {
-  return <Container type={props.type}>{props.children}</Container>;
+  return (
+    <Container type={props.type} className={props.classes}>
+      {props.children}
+    </Container>
+  );
 };
 
 const Container = styled("div", {
