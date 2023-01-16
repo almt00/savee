@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from "react";
 import Button from "./elements/Button";
+import Tip from "./elements/Tip";
 
-export default function Timer({ running, setRunning }) {
+export default function Timer() {
   const [time, setTime] = useState(0);
+  const [running, setRunning] = useState(false);
   const [color, setColor] = useState("text-muted");
 
   useEffect(() => {
@@ -72,6 +74,8 @@ export default function Timer({ running, setRunning }) {
           </svg>
         </Button>
       )}
+      {/* {running === false && <Tip />} */}
+      <Tip />
     </>
   );
 }

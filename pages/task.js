@@ -1,17 +1,12 @@
 import { React, useState } from "react";
 import Head from "next/head";
-import { styled } from "@stitches/react";
 import Background from "../components/elements/Background";
 import Card from "../components/elements/Card";
 import Header from "../components/elements/Header";
 import Task from "../components/elements/Task";
-import Button from "../components/elements/Button";
 import Timer from "../components/Timer";
-import Tip from "../components/elements/Tip";
 
 export default function task() {
-  const [running, setRunning] = useState(false);
-
   return (
     <>
       <Head>
@@ -40,9 +35,7 @@ export default function task() {
         </div>
         <Card classes="flex flex-col justify-center items-center">
           <Task type="Secar cabelo" size="lg"></Task>
-          <Timer running={running} setRunning={setRunning} />
-          {/* {running === false && <Tip />} */}
-          <Tip />
+          <Timer />
         </Card>
       </div>
     </>
