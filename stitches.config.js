@@ -43,7 +43,7 @@ export const {
     },
     fontWeights: {
       bold: "600",
-      bolder: "700",
+      bolder: "800",
       normal: "400",
     },
     shadows: {

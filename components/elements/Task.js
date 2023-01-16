@@ -8,10 +8,9 @@ const fetcher = (url) =>
     .then((res) => JSON.parse(res));
 
 const Task = (props) => {
-
   let imagePath = "";
   let taskTitle = "";
-  
+
   //Set up SWR to run the fetcher function when calling api
   const { data, error } = useSWR("/api/tasks", fetcher);
 
@@ -31,9 +30,9 @@ const Task = (props) => {
     });
   }
   return (
-    <TaskContainer>
-      <TaskImage src={imagePath} alt={taskTitle} />
-      <TaskTitle>{taskTitle}</TaskTitle>
+    <TaskContainer size={props.size}>
+      <TaskImage src={imagePath} alt={taskTitle} size={props.size} />
+      <TaskTitle size={props.size}>{taskTitle}</TaskTitle>
     </TaskContainer>
   );
 };
@@ -41,11 +40,30 @@ const Task = (props) => {
 const TaskContainer = styled("div", {
   flex: "0 0 auto",
   textAlign: "center",
+  variants: {
+    size: {
+      lg: {
+        display: "flex",
+        flexDirection: "row",
+        gap: "20px",
+        alignItems: "center",
+        padding: ".625rem",
+      },
+    },
+  },
 });
 
 const TaskImage = styled("img", {
-  width: "64px",
+  width: "4rem",
   margin: "0 auto",
+  variants: {
+    size: {
+      lg: {
+        width: "6.875rem",
+        margin: 0,
+      },
+    },
+  },
 });
 
 const TaskTitle = styled("p", {
@@ -53,8 +71,14 @@ const TaskTitle = styled("p", {
   fontWeight: "$bold",
   color: "$black",
   marginTop: "0.5rem",
+  variants: {
+    size: {
+      lg: {
+        fontSize: "$h3",
+        fontWeight: "$bolder",
+      },
+    },
+  },
 });
-
-
 
 export default Task;
