@@ -37,7 +37,7 @@ const Selector = () => {
     <div>
       {days.map((day) => (
         <Toggle.Root key={day.value}>
-          <Toggle.Button as={ToggleRoot}>{day.name}</Toggle.Button>
+          {day.name}
         </Toggle.Root>
       ))}
     </div>
