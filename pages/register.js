@@ -24,7 +24,9 @@ export default function Register() {
 
   const UserFields = () => (
     <>
-      <p className="black">Vamos customizar a tua experiência. Como te chamas?</p>
+      <p className="black">
+        Vamos customizar a tua experiência. Como te chamas?
+      </p>
       <div className="mt-6">
         <Form name="Nome" />
       </div>
@@ -78,7 +80,7 @@ export default function Register() {
             Criar conta
           </Button>
         )}
-        {step < fieldGroups.length - 1 && (
+        {step < 2 && (
           <Button
             className="mt-6"
             bg="solid"
@@ -89,6 +91,25 @@ export default function Register() {
           >
             Próximo
           </Button>
+        )}
+        {step === fieldGroups.length - 2 && (
+          <>
+            <Link href="/">
+              <Button className="mt-6 mr-4" bg="transparent" size="lg">
+                Mais tarde
+              </Button>
+            </Link>
+            <Button
+              className="mt-6"
+              bg="solid"
+              size="lg"
+              onClick={() => {
+                setStep(step + 1);
+              }}
+            >
+              Próximo
+            </Button>
+          </>
         )}
       </div>
     </>
