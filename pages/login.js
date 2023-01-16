@@ -19,10 +19,12 @@ export default function Login() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <Background color="mint"/>
+      <Background color="mint" />
 
       <div className="py-4 px-6">
-        <Link href="/"><Image src="/img/logo.svg" alt="Logo" width={75} height={33} /></Link>
+        <Link href="/">
+          <Image src="/img/logo.svg" alt="Logo" width={75} height={33} />
+        </Link>
       </div>
 
       <div className="mx-6 mb-8">
@@ -35,6 +37,11 @@ export default function Login() {
         <div className="mt-6">
           <Form name="Password" />
         </div>
+        <div>
+          <Link href="/" className="text-links text-sm">
+            Esqueci-me da password
+          </Link>
+        </div>
         <div className="flex justify-center">
           <Button className="mt-6" bg="solid" size="lg">
             Iniciar sessão
@@ -42,7 +49,7 @@ export default function Login() {
         </div>
       </Card>
 
-      <div className="mx-6 mt-60 text-center">
+      <div className="mx-6 mt-40 text-center">
         <p>
           Ainda não tens conta?{" "}
           <Link href="/register" className="font-bold text-links">

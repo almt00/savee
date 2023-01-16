@@ -31,8 +31,8 @@ const Form = (props) => {
       icon: "key.svg",
     },
     {
-      name: "Email colega",
-      message: "Adiciona os emails dos teus colegas",
+      name: "Emails colegas",
+      message: "Adiciona os emails separados por virgulas",
       icon: "user.svg",
     },
     {

@@ -7,11 +7,11 @@ import Form from "../components/elements/Form";
 import Button from "../components/elements/Button";
 import Background from "../components/elements/Background";
 import Link from "next/link";
+import { useState } from "react";
 
 const inter = Inter({ subsets: ["latin"] });
 
 export default function Register() {
-  
   //Grouping forms by section in a component
   const AuthFields = () => (
     <>
@@ -24,41 +24,86 @@ export default function Register() {
 
   const UserFields = () => (
     <>
-      <p>Vamos customizar a tua experiência. Como te chamas?</p>
-      <Form name="Nome" />
+      <p className="black">Vamos customizar a tua experiência. Como te chamas?</p>
+      <div className="mt-6">
+        <Form name="Nome" />
+      </div>
     </>
   );
 
   const GroupFields = () => (
     <>
-      <p>
+      <p className="black">
         Não temos nenhum grupo associado ao teu email. Queres criar um novo
         grupo e convidar os teus colegas de casa?
       </p>
-      <Form name="Nome" />
-      <hr />
-      <p>
+      <div className="mt-6">
+        <Form name="Nome" />
+      </div>
+      <hr className="my-6" />
+      <p className="black">
         O savee só funciona se todos colaborarem. Convida os teus colegas de
         casa e começa a poupar.
       </p>
-      <Form name="Email colega" />
-      <Button size="sm" bg="primary">
-        + Adicionar email
-      </Button>
+      <div className="mt-6">
+        <Form name="Emails colegas" />
+      </div>
     </>
   );
 
   const InvoiceFields = () => (
     <>
-      <Image src="/img/fatura.svg" alt="Fatura" width={200} height={200} />
-      <p>
+      <div className="flex justify-center">
+        <Image src="/img/fatura.svg" alt="Fatura" width={267} height={256} />
+      </div>
+      <p className="mt-6 black">
         Consulta a tua fatura de eletricidade e acrescenta os seguintes dados
         para o Savee conseguir calcular quanto poupaste.
       </p>
-      <Form name="Data da última fatura" />
-      <p className="text-link">Precisas de ajuda?</p>
+      <div className="mt-6">
+        <Form name="Data da última fatura" />
+      </div>
+      <Link href="/" className="text-links text-sm">
+        Precisas de ajuda?
+      </Link>
     </>
   );
+
+  // logic to navigate between steps
+  const Navigation = () => (
+    <>
+      <div className="flex justify-center">
+        {step === fieldGroups.length - 1 && (
+          <Button className="mt-6" bg="solid" size="lg">
+            Criar conta
+          </Button>
+        )}
+        {step < fieldGroups.length - 1 && (
+          <Button
+            className="mt-6"
+            bg="solid"
+            size="lg"
+            onClick={() => {
+              setStep(step + 1);
+            }}
+          >
+            Próximo
+          </Button>
+        )}
+      </div>
+    </>
+  );
+
+  // state to keep track of the current step
+  const [step, setStep] = useState(0);
+
+  // array of components to be rendered
+  const fieldGroups = [
+    <AuthFields key={""} />,
+    <UserFields key={""} />,
+    <GroupFields key={""} />,
+    <InvoiceFields key={""} />,
+  ];
 
   return (
     <>
@@ -82,13 +127,9 @@ export default function Register() {
       </div>
 
       <Card>
-        <AuthFields />
-        <div className="flex justify-center">
-          {/*todo: disable when form validation is set up*/}
-          <Button className="mt-6" bg="solid" size="lg">
-            Registar
-          </Button>
-        </div>
+        {fieldGroups[step]}
+        {/*todo: disable when form validation is set up*/}
+        <Navigation />
       </Card>
     </>
   );
