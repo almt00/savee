@@ -1,4 +1,5 @@
 import { styled } from '@stitches/react';
+import Chart from './Chart';
 
 //criar switch ou else if :
 //com tendência a subir em comparação com último mÊs _ seta up,
@@ -13,19 +14,23 @@ const DashboardCard = () => {
 
   return (
     <div>
-      <NumberKw>
-        {kwTotalUser} kW
-        <TrendIcon
-          src='/img/tendencia_up.svg'
-          className='ml-6'
-          alt='Pagamentos'
-        />
-      </NumberKw>
-      <SubTitle>
+      <Container>
+        <NumberKw>
+          {kwTotalUser} kW
+          <TrendIcon
+            src='/img/tendencia_up.svg'
+            className='ml-6'
+            alt='Pagamentos'
+          />
+          <SubTitle>
         de <span className='font-bold'>{kwTotalGroup} kW </span>consumidos este
         mês
       </SubTitle>
-      <Stats className='mt-5 mb-2'>
+        </NumberKw>
+        
+        <Chart></Chart>
+      </Container>
+      <Stats className='mb-2'>
         <span className='font-bold'>{numberDays} dias </span>até ao próximo
         pagamento
       </Stats>
@@ -36,6 +41,10 @@ const DashboardCard = () => {
     </div>
   );
 };
+
+const Container = styled('div', {
+  display: 'flex',
+});
 
 const Stats = styled('p', {
   color: '$black',
@@ -50,8 +59,8 @@ const NumberKw = styled('p', {
   color: '$black',
   fontSize: '$f0',
   fontWeight: '$bolder',
-  display: 'inline',
   lineHeight: '3rem',
+  flex: '1',
 });
 
 const TrendIcon = styled('img', {
