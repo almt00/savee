@@ -1,9 +1,9 @@
 import { styled } from "@stitches/react";
 import React from "react";
 
-export default function Tip({ running }) {
+export default function Tip(props) {
   return (
-    <TipContainer>
+    <TipContainer className={props.classes}>
       <svg
         xmlns="http://www.w3.org/2000/svg"
         fill="none"
