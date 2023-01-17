@@ -8,7 +8,7 @@ export default function Insight() {
     <>
       <Card size="sm" type="stroke">
         <div className="flex justify-between gap-2">
-          <Task type="Secar cabelo" size="sm" />
+          <Task type="Aquecimento" size="sm" />
           <div className="flex gap-1 items-center">
             <h4>11,3€</h4>
             <svg
