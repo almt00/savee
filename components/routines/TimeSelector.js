@@ -4,7 +4,9 @@ import React from "react";
 export default function TimeSelector() {
   return (
     <>
-      <form className={`flex gap-6 justify-center text-center p-3 mt-6`}>
+            <p>Quanto tempo demoras em média?</p>
+
+      <form className={`flex gap-6 justify-center text-center p-3 mt-4`}>
         <div className="border-b-2 border-purple">
           <p className="text-muted">hr</p>
           <Input
