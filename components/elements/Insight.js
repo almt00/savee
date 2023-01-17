@@ -28,8 +28,7 @@ export default function Insight() {
           </div>
         </div>
         <div className="text-xs">
-          Aqueceste o teu compartimento durante 36h este mês. Isto corresponde a
-          50% do teu valor a pagar.
+          Aqueceste o teu compartimento durante <b>36h</b> este mês. Isto corresponde a <b>50%</b> do teu valor a pagar.
         </div>
         <Tip classes="mt-2">
           Fechar as janelas e isolar as portas ajuda a manter a casa
