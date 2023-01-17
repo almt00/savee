@@ -46,7 +46,8 @@ export default function TimeSelector() {
 
 const Input = styled("input", {
   "-webkit-appearance": "none",
-  maxWidth: "3rem",
+  maxWidth: "4rem",
+  textAlign: "center",
   height: "3rem",
   fontSize: "$h1",
   fontWeight: "$bolder",
