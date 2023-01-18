@@ -33,9 +33,9 @@ const TaskImage = styled("img", {
   margin: 0,
 });
 
-const TaskTitle = styled("p", {
+const TaskTitle = styled("h6", {
   fontWeight: "$bolder",
   color: "$black",
-  fontSize: "$small",
+  fontSize: "$normal",
   marginTop: "0",
 });

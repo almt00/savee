@@ -12,6 +12,7 @@ import TaskList from "../components/routines/TaskList";
 import DaySelector from "../components/routines/DaySelector";
 import TimePeriodSelector from "../components/routines/TimePeriodSelector";
 import TimeSelector from "../components/routines/TimeSelector";
+import Summary from "../components/routines/Summary";
 import Link from "next/link";
 import { useState } from "react";
 
@@ -31,6 +32,9 @@ export default function Routine() {
 
   const DayFields = () => (
     <>
+      <div className="flex items-center justify-center mb-6">
+        <Summary />
+      </div>
       <p className="black">Escolhe os dias da semana</p>
       <DaySelector />
     </>
@@ -38,12 +42,22 @@ export default function Routine() {
 
   const PeriodFields = () => (
     <>
+      <div className="flex items-center justify-center mb-6">
+        <Summary />
+      </div>
       <p className="black">Escolhe a altura do dia</p>
       <TimePeriodSelector />
     </>
   );
 
-  const TimeFields = () => <TimeSelector />;
+  const TimeFields = () => (
+    <>
+      <div className="flex items-center justify-center mb-6">
+        <Summary />
+      </div>
+      <TimeSelector />
+    </>
+  );
 
   // array of components to be rendered
   const fieldGroups = [
