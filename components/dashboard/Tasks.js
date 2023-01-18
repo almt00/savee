@@ -19,7 +19,7 @@ const Tasks = () => {
   if (!data) return <div>Loading...</div>;
 
   return (
-    // todo map tasks
+    // todo map tasks 
     <TasksContainer>
       {data.tasks.map((task) => {
         return (
