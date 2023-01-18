@@ -1,9 +1,14 @@
-import Head from 'next/head';
-import { Inter } from '@next/font/google';
-import Header from '../components/elements/Header';
-import Card from '../components/elements/Card';
-import Form from '../components/elements/Form';
-import Tasks from '../components/dashboard/Tasks';
+import Head from "next/head";
+import { Inter } from "@next/font/google";
+import Header from "../components/elements/Header";
+import Card from "../components/elements/Card";
+import Form from "../components/elements/Form";
+import Tasks from "../components/dashboard/Tasks";
+import DaySelector from "../components/routines/DaySelector";
+import TimePeriodSelector from "../components/routines/TimePeriodSelector";
+import TimeSelector from "../components/routines/TimeSelector";
+import Insight from "../components/elements/Insight";
+import TaskList from "../components/routines/TaskList";
 import DashboardCard from '../components/elements/DashboardCard';
 import Banner from '../components/elements/Banner';
 
@@ -19,9 +24,10 @@ export default function Home() {
         <link rel='icon' href='/favicon.ico' />
       </Head>
 
-      {/* <Header page='Homepage' /> */}
-      <div className='z-0 h-96 rounded-b-3xl bg-mint'></div>
-      {/* <Banner /> */}
+      <Header page="Homepage" />
+      <div className="z-0 h-96 rounded-b-3xl bg-mint"></div>
+      <TaskList />
+
       <Card>
         <DashboardCard />
       </Card>
@@ -34,6 +40,10 @@ export default function Home() {
         <Form type='date' />
       </Card>
       <Tasks />
+      <DaySelector />
+      <TimePeriodSelector />
+      <TimeSelector/>
+      <Insight />
     </>
   );
 }

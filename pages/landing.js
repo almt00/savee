@@ -4,6 +4,7 @@ import { styled } from "@stitches/react";
 import { useState } from "react";
 import { useSwipeable } from "react-swipeable";
 import Image from "next/image";
+import Link from "next/link";
 
 export default function Landing() {
   const [activeIndex, setActiveIndex] = useState(0);
@@ -24,7 +25,7 @@ export default function Landing() {
   return (
     <>
       <Navbar className="flex justify-end items-center gap-4 p-4">
-        <Button size="lg">Iniciar Sessão</Button>
+        <Link href="/login"><Button size="lg">Iniciar Sessão</Button></Link>
         <div id="menu">
           <svg
             xmlns="http://www.w3.org/2000/svg"
