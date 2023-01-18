@@ -37,7 +37,6 @@ const TasksContainer = styled("div", {
   display: "flex",
   flexDirection: "column",
   margin: "1.125rem 1.5rem",
-  gap: "2rem",
   "&::-webkit-scrollbar": {
     display: "none",
   },
@@ -52,7 +51,7 @@ const TaskContainer = styled("div", {
 });
 
 const TaskImage = styled("img", {
-  width: "40px",
+  width: "2.5rem",
 });
 
 const TaskTitle = styled("p", {

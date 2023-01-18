@@ -18,6 +18,9 @@ import { useState } from "react";
 const inter = Inter({ subsets: ["latin"] });
 
 export default function Routine() {
+  // state to keep track of the current step
+  const [step, setStep] = useState(0);
+
   // Grouping forms by section in a component
   const TaskFields = () => (
     <>
@@ -42,6 +45,14 @@ export default function Routine() {
 
   const TimeFields = () => <TimeSelector />;
 
+  // array of components to be rendered
+  const fieldGroups = [
+    <TaskFields key={""} />,
+    <DayFields key={""} />,
+    <PeriodFields key={""} />,
+    <TimeFields key={""} />,
+  ];
+
   // logic to navigate between steps
   const Navigation = () => (
     <>
@@ -63,56 +74,40 @@ export default function Routine() {
             </Button>
           </>
         )}
-        {step < 1 && (
-          <Button
-            className="mt-6"
-            bg="solid"
-            size="lg"
-            onClick={() => {
-              setStep(step + 1);
-            }}
-          >
-            Próximo
-          </Button>
-        )}
-        {step < fieldGroups.length - 1 && (
-          <>
-            <Button
-              className="mt-6 mr-4"
-              bg="transparent"
-              size="lg"
-              onClick={() => {
-                setStep(step - 1);
-              }}
-            >
-              Anterior
-            </Button>
-            <Button
-              className="mt-6"
-              bg="solid"
-              size="lg"
-              onClick={() => {
-                setStep(step + 1);
-              }}
-            >
-              Próximo
-            </Button>
-          </>
-        )}
+        {step < fieldGroups.length - 1 &&
+          step >= 0 && ( // mudar este condicional depois de termos os estados a funcionar
+            <>
+              {step < fieldGroups.length - 1 &&
+                step > 0 && ( // tirar este condicional depois de termos os estados a funcionar
+                  <Button
+                    className="mt-6 mr-4"
+                    bg="transparent"
+                    size="lg"
+                    onClick={() => {
+                      if (step > 0) {
+                        setStep(step - 1);
+                      }
+                    }}
+                  >
+                    Anterior
+                  </Button>
+                )}
+
+              <Button
+                className="mt-6"
+                bg="solid"
+                size="lg"
+                onClick={() => {
+                  setStep(step + 1);
+                }}
+              >
+                Próximo
+              </Button>
+            </>
+          )}
       </div>
     </>
   );
-
-  // state to keep track of the current step
-  const [step, setStep] = useState(0);
-
-  // array of components to be rendered
-  const fieldGroups = [
-    <TaskFields key={""} />,
-    <DayFields key={""} />,
-    <PeriodFields key={""} />,
-    <TimeFields key={""} />,
-  ];
 
   return (
     <>
