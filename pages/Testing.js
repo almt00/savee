@@ -9,6 +9,7 @@ import TimePeriodSelector from "../components/routines/TimePeriodSelector";
 import TimeSelector from "../components/routines/TimeSelector";
 import Insight from "../components/elements/Insight";
 
+
 const inter = Inter({ subsets: ["latin"] });
 
 export default function Home() {
