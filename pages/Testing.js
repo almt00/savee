@@ -8,7 +8,7 @@ import DaySelector from "../components/routines/DaySelector";
 import TimePeriodSelector from "../components/routines/TimePeriodSelector";
 import TimeSelector from "../components/routines/TimeSelector";
 import Insight from "../components/elements/Insight";
-
+import TaskList from "../components/routines/TaskList";
 
 const inter = Inter({ subsets: ["latin"] });
 
