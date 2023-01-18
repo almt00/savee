@@ -6,7 +6,7 @@ const fetcher = (url) =>
     .then((res) => res.json())
     .then((res) => JSON.parse(res));
 
-const Tasks = () => {
+const Tasks = (props) => {
   const { data, error } = useSWR("/api/tasks", fetcher);
 
   const tasks = data;
@@ -18,15 +18,21 @@ const Tasks = () => {
   if (!data) return <div>Loading...</div>;
 
   return (
-    // todo map tasks
     <TasksContainer>
       {data.tasks.map((task) => {
         return (
-          // todo, add wrapper to track state
-          <TaskContainer key={task.name}>
-            <TaskImage src={task.image} alt={task.name} />
-            <TaskTitle>{task.name}</TaskTitle>
-          </TaskContainer>
+          <TaskButton
+            key={task.name}
+            // how to pass this function to parent component?
+            onClick={() => {
+              setStep(step + 1);
+            }}
+          >
+            <TaskContainer>
+              <TaskImage src={task.image} alt={task.name} />
+              <TaskTitle>{task.name}</TaskTitle>
+            </TaskContainer>
+          </TaskButton>
         );
       })}
     </TasksContainer>
@@ -50,6 +56,16 @@ const TaskContainer = styled("div", {
   borderBottom: "1px solid $border",
 });
 
+const TaskButton = styled("button", {
+  "&:hover": {
+    boxShadow: "$card",
+    borderRadius: "12px",
+  },
+  "&:focus-visible": {
+    border: "1px solid $links",
+  },
+});
+
 const TaskImage = styled("img", {
   width: "2.5rem",
 });
@@ -60,4 +76,5 @@ const TaskTitle = styled("p", {
   color: "$black",
   marginLeft: "0.5rem",
 });
+
 export default Tasks;

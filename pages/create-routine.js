@@ -23,7 +23,7 @@ export default function Routine() {
   const [step, setStep] = useState(0);
 
   // Grouping forms by section in a component
-  const TaskFields = () => (
+  const TaskFields = (props) => (
     <>
       <p className="black ml-6">Escolhe a tarefa para criares uma rotina:</p>
       <TaskList />
