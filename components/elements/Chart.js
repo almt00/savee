@@ -5,11 +5,6 @@ import { styled } from '@stitches/react';
 import ChartDataLabels from 'chartjs-plugin-datalabels';
 import useSWR from 'swr';
 
-//Write a fetcher function to wrap the native fetch function and return the result of a call to url in json format
-const fetcher = url =>
-  fetch(url)
-    .then(res => res.json())
-    .then(res => JSON.parse(res));
 
 const data = {
   labels: ['User1', 'User2'],
@@ -35,39 +30,33 @@ const options = {
   },
 };
 
+//Write a fetcher function to wrap the native fetch function and return the result of a call to url in json format
+const fetcher = (url) =>
+  fetch(url)
+    .then((res) => res.json())
+    .then((res) => JSON.parse(res));
+
 const DoughnutChart = () => {
-  // let imagePath = "";
-  // let taskTitle = "";
+  // const { data_fetch, error } = useSWR('/api/tasks', fetcher);
 
-  //Set up SWR to run the fetcher function when calling api
-  const { data1, error } = useSWR('/api/user_1', fetcher);
+  // //Handle the error state
+  // if (error) return <div>Failed to load</div>;
+  // //Handle the loading state
+  // if (!data_fetch) return <div>Loading...</div>;
 
-  //Handle the error state
-  if (error) return <div>Failed to load</div>;
-  //Handle the loading state
-  if (!data1) return <div>Loading...</div>;
+  // if (data_fetch) {
+  //   console.log(data_fetch.hist_payment);
+  // }
 
-  if (data1) {
-    console.log(typeof data.hist_payment);
-    console.log(data1.hist_payment);
-    // data.tasks.forEach((task) => {
-    //   if (task.name === props.type) {
-    //     imagePath = task.image;
-    //     taskTitle = task.name;
-    //   }
-    // });
-  }
   return (
-    
-      <Container>
-        <Doughnut data={data} options={options} plugins={[ChartDataLabels]} />
-      </Container>
-    
+    <Container>
+      <Doughnut data={data} options={options} plugins={[ChartDataLabels]} />
+    </Container>
   );
 };
-
-export default DoughnutChart;
 
 const Container = styled('div', {
   width: '30%',
 });
+
+export default DoughnutChart;

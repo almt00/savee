@@ -55,7 +55,7 @@ const SubTitle = styled('p', {
   fontSize: '$small',
 });
 
-const NumberKw = styled('p', {
+const NumberKw = styled('div', {
   color: '$black',
   fontSize: '$f0',
   fontWeight: '$bolder',

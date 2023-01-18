@@ -56,5 +56,4 @@ const TaskTitle = styled("p", {
 });
 
 
-
 export default Task;

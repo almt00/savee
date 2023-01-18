@@ -6,6 +6,8 @@ import Form from "../components/elements/Form";
 import Tasks from "../components/dashboard/Tasks";
 import DashboardCard from "../components/elements/DashboardCard";
 import Banner from "../components/elements/Banner";
+import Test from "../components/elements/Chart copy";
+
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -34,6 +36,7 @@ export default function Home() {
         <Form type="date" />
       </Card>
       <Tasks />
+      <Test />
     </>
   );
 }
