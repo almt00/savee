@@ -42,6 +42,14 @@ const TaskContainer = styled("div", {
   textAlign: "center",
   variants: {
     size: {
+      sm: {
+        display: "flex",
+        flexDirection: "row",
+        gap: "20px",
+        alignItems: "center",
+        padding: "0",
+        marginBottom: ".5rem"
+      },
       lg: {
         display: "flex",
         flexDirection: "row",
@@ -63,6 +71,10 @@ const TaskImage = styled("img", {
   margin: "0 auto",
   variants: {
     size: {
+      sm: {
+        width: "2.5rem",
+        margin: 0,
+      },
       lg: {
         width: "6.875rem",
         margin: 0,
@@ -78,9 +90,15 @@ const TaskTitle = styled("p", {
   marginTop: "0.5rem",
   variants: {
     size: {
+      sm: {
+        fontSize: "$small",
+        fontWeight: "$bold",
+        marginTop: "0",
+      },
       lg: {
         fontSize: "$h3",
         fontWeight: "$bolder",
+        marginTop: "0",
       },
     },
   },

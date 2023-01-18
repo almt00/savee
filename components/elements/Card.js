@@ -2,7 +2,7 @@ import { styled } from "@stitches/react";
 
 const Card = (props) => {
   return (
-    <Container type={props.type} className={props.classes}>
+    <Container type={props.type} size={props.size} className={props.classes}>
       {props.children}
     </Container>
   );
@@ -24,6 +24,11 @@ const Container = styled("div", {
         boxShadow: "none",
         border: "1.5px solid $border",
       },
+    },
+    size: {
+      sm: {
+        padding: ".75rem 1rem",
+      }
     },
   },
 });

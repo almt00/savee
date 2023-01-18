@@ -5,9 +5,9 @@ import Card from "../components/elements/Card";
 import Form from "../components/elements/Form";
 import Tasks from "../components/dashboard/Tasks";
 import DaySelector from "../components/routines/DaySelector";
-import Timer from "../components/Timer";
 import TimePeriodSelector from "../components/routines/TimePeriodSelector";
 import TimeSelector from "../components/routines/TimeSelector";
+import Insight from "../components/elements/Insight";
 import TaskList from "../components/routines/TaskList";
 
 const inter = Inter({ subsets: ["latin"] });
@@ -36,8 +36,8 @@ export default function Home() {
       <Tasks />
       <DaySelector />
       <TimePeriodSelector />
-      <Timer />
       <TimeSelector/>
+      <Insight />
     </>
   );
 }
