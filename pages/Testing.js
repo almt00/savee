@@ -23,6 +23,7 @@ export default function Home() {
 
       <Header page="Homepage" />
       <div className="z-0 h-96 rounded-b-3xl bg-mint"></div>
+      <TaskList />
       <Card>
         <Form type="nome" />
         <Form type="date" />

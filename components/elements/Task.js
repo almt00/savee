@@ -58,6 +58,11 @@ const TaskContainer = styled("div", {
         padding: ".625rem",
       },
     },
+    orientation: {
+      horizontal: {
+        flexDirection: "row",
+      },
+    }
   },
 });
 
