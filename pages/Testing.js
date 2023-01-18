@@ -9,6 +9,7 @@ import TimePeriodSelector from "../components/routines/TimePeriodSelector";
 import TimeSelector from "../components/routines/TimeSelector";
 import Insight from "../components/elements/Insight";
 import TaskList from "../components/routines/TaskList";
+import Summary from "../components/routines/Summary";
 import DashboardCard from '../components/elements/DashboardCard';
 import Banner from '../components/elements/Banner';
 
@@ -43,6 +44,7 @@ export default function Home() {
       <DaySelector />
       <TimePeriodSelector />
       <TimeSelector/>
+      <Summary/>
       <Insight />
     </>
   );
