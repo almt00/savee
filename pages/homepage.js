@@ -24,7 +24,7 @@ export default function homepage() {
       </Head>
       <Background color="mint" />
       <Header page="Homepage" />
-      <div className="relative pt-20 px-6 flex flex-col gap-3">
+      <div className="relative pt-20 px-6 flex flex-col gap-3 pb-6">
         <h2>Olá Pedro!</h2>
         <Banner />
         <Card>
