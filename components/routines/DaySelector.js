@@ -3,6 +3,9 @@ import { styled } from "@stitches/react";
 import { useState } from "react";
 
 const DaySelector = () => {
+  // state to keep track of clicked day
+  const [dayName, setDayName] = useState([]);
+
   const days = [
     {
       name: "Segunda",
@@ -33,13 +36,19 @@ const DaySelector = () => {
       value: "sunday",
     },
   ];
-
-  // state to keep track of clicked day
-  const [dayName, setDayName] = useState("");
-
   // action to record the clicked day
   const handleDayName = (e) => {
-    setDayName(e.target.innerText);
+    if (dayName.includes(e.target.value) === false && dayName !== []) {
+      setDayName((current) => [...current, e.target.value]);
+    } else {
+      let array = [...dayName]; // make a separate copy of the array
+      let index = array.indexOf(e.target.value);
+      console.log(index, array);
+      if (index !== -1) {
+        array.splice(index, 1);
+        setDayName([...array]);
+      }
+    }
   };
 
   // debugging state
@@ -48,7 +57,7 @@ const DaySelector = () => {
   return (
     <div>
       {days.map((day) => (
-        <ToggleRoot key={day.value} onClick={handleDayName}>
+        <ToggleRoot key={day.value} value={day.value} onClick={handleDayName}>
           {day.name}
         </ToggleRoot>
       ))}
