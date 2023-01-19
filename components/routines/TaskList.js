@@ -1,5 +1,6 @@
 import { styled } from "@stitches/react";
 import useSWR from "swr";
+import { useState } from "react";
 
 const fetcher = (url) =>
   fetch(url)
@@ -7,10 +8,21 @@ const fetcher = (url) =>
     .then((res) => JSON.parse(res));
 
 const Tasks = (props) => {
+
+  // state to keep track of clicked task
+  const [taskName, setTaskName] = useState("");
+
+  // action to record the clicked task name
+  const handleTaskName = (e) => {
+    setTaskName(e.target.innerText);
+  };
+
+  // debugging state
+  console.log(taskName);
+
   const { data, error } = useSWR("/api/tasks", fetcher);
 
   const tasks = data;
-  console.log(tasks);
 
   //Handle the error state
   if (error) return <div>Failed to load</div>;
@@ -23,10 +35,8 @@ const Tasks = (props) => {
         return (
           <TaskButton
             key={task.name}
-            // how to pass this function to parent component?
-            onClick={() => {
-              setStep(step + 1);
-            }}
+            // how to go to next step?
+            onClick={handleTaskName}
           >
             <TaskContainer>
               <TaskImage src={task.image} alt={task.name} />
