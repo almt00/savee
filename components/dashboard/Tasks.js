@@ -1,6 +1,8 @@
 import { styled } from "@stitches/react";
 import Task from "../elements/Task";
 import useSWR from "swr";
+import Link from 'next/link'
+
 
 const fetcher = (url) =>
   fetch(url)
@@ -20,24 +22,29 @@ const Tasks = () => {
 
   return (
     // todo map tasks 
+    <div className="mt-6">
+      <h3>Tarefas</h3>
     <TasksContainer>
       {data.tasks.map((task) => {
         return (
           <TaskContainer key={task.name}>
+            <Link href="/task">
             <TaskImage src={task.image} alt={task.name} />
             <TaskTitle>{task.name}</TaskTitle>
+            </Link>
           </TaskContainer>
         );
       })}
     </TasksContainer>
+    </div>
   );
 };
 
 const TasksContainer = styled("div", {
   display: "flex",
   overflowX: "auto",
-  margin: "1.125rem 1.5rem",
-  gap: "2rem",
+  margin: "1.125rem 0",
+  gap: "1.7rem",
   "&::-webkit-scrollbar": {
     display: "none",
   },

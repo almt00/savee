@@ -7,37 +7,43 @@ import { ChevronDownIcon } from "@radix-ui/react-icons";
 import Entries from "./Entries";
 
 const RoutinesList = (props) => (
-  <AccordionRoot type="single" defaultValue="item-1" collapsible>
-    <AccordionItem value="item-1" className="border-border border-2 rounded-md mt-4 ">
-      <AccordionTrigger className="font-extrabold text-sm ml-0 h-9">
-        Manhã
-      </AccordionTrigger>
-      <AccordionContent>
-        <Entries />
-      </AccordionContent>
-    </AccordionItem>
+    <AccordionRoot type="single" defaultValue="item-1" collapsible>
+      <AccordionItem
+        value="item-1"
+        className="border-border border-2 rounded-md mb-4 "
+      >
+        <AccordionTrigger className="font-extrabold text-sm ml-0 h-9">
+          Manhã
+        </AccordionTrigger>
+        <AccordionContent>
+          <Entries />
+        </AccordionContent>
+      </AccordionItem>
 
-    <AccordionItem value="item-2" className="border-border border-2 rounded-md mt-4 ">
-      <AccordionTrigger className="font-extrabold text-sm ml-0 h-9">
-        Tarde
-      </AccordionTrigger>
-      <AccordionContent>
-        <Entries />
-      </AccordionContent>
-    </AccordionItem>
+      <AccordionItem
+        value="item-2"
+        className="border-border border-2 rounded-md mt-4 "
+      >
+        <AccordionTrigger className="font-extrabold text-sm ml-0 h-9">
+          Tarde
+        </AccordionTrigger>
+        <AccordionContent>
+          <Entries />
+        </AccordionContent>
+      </AccordionItem>
 
-    <AccordionItem
-      value="item-3"
-      className="border-border border-2 rounded-md mt-4 "
-    >
-      <AccordionTrigger className="font-extrabold text-sm ml-0 h-9">
-        Noite
-      </AccordionTrigger>
-      <Accordion.Content>
-        <Entries />
-      </Accordion.Content>
-    </AccordionItem>
-  </AccordionRoot>
+      <AccordionItem
+        value="item-3"
+        className="border-border border-2 rounded-md mt-4 "
+      >
+        <AccordionTrigger className="font-extrabold text-sm ml-0 h-9">
+          Noite
+        </AccordionTrigger>
+        <Accordion.Content>
+          <Entries />
+        </Accordion.Content>
+      </AccordionItem>
+    </AccordionRoot>
 );
 
 const AccordionTrigger = React.forwardRef(
@@ -49,8 +55,7 @@ const AccordionTrigger = React.forwardRef(
         ref={forwardedRef}
       >
         {children}
-{/*         <AccordionChevron className="AccordionChevron" aria-hidden />
- */}        <svg
+        <svg
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 20 20"
           fill="currentColor"
@@ -82,10 +87,8 @@ const AccordionContent = React.forwardRef(
 AccordionContent.displayName = "AccordionContent";
 
 const AccordionRoot = styled(Accordion.Root, {
-  padding: "10px",
-  width: "342px",
+  width: "100%",
   borderradius: "7px",
-  padding: "5px 16px 5px 16px",
   display: "inline",
 });
 const AccordionItem = styled(Accordion.Item, {
@@ -109,10 +112,7 @@ const Trigger = styled(Accordion.Trigger, {
     transform: "rotate(180deg)",
   },
 });
-const AccordionChevron = styled(ChevronDownIcon, {
-  fontWeight: "bold",
-  transition: "transform 300ms",
-});
+
 const slideDown = keyframes({
   from: { height: "0" },
   to: { height: "var(--radix-accordion-content-height)" },
