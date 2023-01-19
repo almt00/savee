@@ -9,6 +9,11 @@ import Tasks from "../components/dashboard/Tasks";
 import RoutinesList from "../components/dashboard/RoutinesList";
 
 export default function homepage() {
+  const date = new Date().toLocaleDateString("pt-PT", {
+    month: "long",
+    day: "numeric",
+  });
+
   return (
     <>
       <Head>
@@ -25,12 +30,12 @@ export default function homepage() {
         <Card>
           <DashboardCard />
         </Card>
-        
+
         <Tasks />
         <div>
           <div className="flex justify-between items-center">
             <h3>Hoje</h3>
-            <p className="text-muted">22 de Dezembro</p>
+            <p className="text-muted">{date}</p>
           </div>
         </div>
         <RoutinesList />
