@@ -16,7 +16,7 @@ const Entries = () => {
   if (error) return <div>Failed to load</div>;
   //Handle the loading state
   if (!data) return <div>Loading...</div>;
-  console.log(data.tasks);
+  //console.log(data.tasks);
 
 
   const showEntrylist = data.tasks.map((task) =>

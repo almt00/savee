@@ -1,11 +1,10 @@
 import Entries from "../components/dashboard/Entries";
-//import AccordionDemo from "../components/dashboard/TasksList";
-import TasksList from "../components/dashboard/TasksList";
+import TaskList from "../components/dashboard/TaskList";
 
 const Teste = ()=>{
 return(
     <div>
-        <TasksList/>
+        <TaskList/>
     </div>
     
 
