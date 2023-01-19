@@ -12,6 +12,7 @@ import TaskList from "../components/routines/TaskList";
 import Summary from "../components/routines/Summary";
 import DashboardCard from '../components/elements/DashboardCard';
 import Banner from '../components/elements/Banner';
+import RoutinesList from "../components/dashboard/RoutinesList";
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -27,7 +28,7 @@ export default function Home() {
 
       <Header page="Homepage" />
       <div className="z-0 h-96 rounded-b-3xl bg-mint"></div>
-      <TaskList />
+      <RoutinesList/>
 
       <Card>
         <DashboardCard />
@@ -41,6 +42,7 @@ export default function Home() {
         <Form type='date' />
       </Card>
       <Tasks />
+      <TaskList/>
       <DaySelector />
       <TimePeriodSelector />
       <TimeSelector/>

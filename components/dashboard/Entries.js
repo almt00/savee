@@ -8,7 +8,6 @@ const fetcher = (url) =>
     .then((res) => JSON.parse(res));
 
 const Entries = () => {
-
   //Set up SWR to run the fetcher function when calling api
   const { data, error } = useSWR("/api/tasks", fetcher);
 
@@ -16,34 +15,40 @@ const Entries = () => {
   if (error) return <div>Failed to load</div>;
   //Handle the loading state
   if (!data) return <div>Loading...</div>;
-  console.log(data.tasks);
+  //console.log(data.tasks);
 
+  const showEntrylist = data.tasks.map((task, index) => {
+    if (index === data.tasks.length-1) {
+      return (
+        <EntryContainer key={task.id} className="border-b-0 mb-0">
+          <EntryImage src={`${task.image}`}></EntryImage>
+          <EntryTitle>{task.name}</EntryTitle>
+          <Minute>
+            <h3>{Math.floor(task.default_time / 60000)}</h3>
+            <p className="ml-1">min</p>
+          </Minute>
+        </EntryContainer>
+      );
+    } else {
+      return (
+        <EntryContainer key={task.id}>
+          <EntryImage src={`${task.image}`}></EntryImage>
+          <EntryTitle>{task.name}</EntryTitle>
+          <Minute>
+            <h3>{Math.floor(task.default_time / 60000)}</h3>
+            <p className="ml-1">min</p>
+          </Minute>
+        </EntryContainer>
+      );
+    }
+  });
 
-  const showEntrylist = data.tasks.map((task) =>
-
-    <EntryContainer key={task.id}>
-      <EntryImage src={`${task.image}`}></EntryImage>
-      <EntryTitle>{task.name}</EntryTitle>
-      <Minute>
-        <h3>
-          {Math.floor(task.default_time / 60000)}
-        </h3>
-        <p className="ml-1">min</p>
-      </Minute>
-    </EntryContainer>
-  )
-  
-  return (
-    <div>
-      {showEntrylist}
-    </div>
-  )
-}
+  return <div>{showEntrylist}</div>;
+};
 
 const EntryContainer = styled("div", {
   display: "flex",
-  padding: "0.5rem",
-  marginBottom: "0.25rem",
+  margin: "0 1rem 0.25rem 1rem",
   flexdirection: "row",
   alignItems: "center",
   height: "3.5rem",
@@ -58,7 +63,7 @@ const EntryImage = styled("img", {
 const EntryTitle = styled("h3", {
   fontSize: "$small",
   fontWeight: "$bold",
-  color: "$black"
+  color: "$black",
 });
 const Minute = styled("div", {
   display: "flex",
@@ -68,7 +73,7 @@ const Minute = styled("div", {
   p: {
     fontSize: "$normal",
     fontWeight: "$bold",
-  }
-})
+  },
+});
 
 export default Entries;
