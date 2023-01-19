@@ -1,6 +1,8 @@
 import { styled } from "@stitches/react";
 import Task from "../elements/Task";
 import useSWR from "swr";
+import Link from 'next/link'
+
 
 const fetcher = (url) =>
   fetch(url)
@@ -26,8 +28,10 @@ const Tasks = () => {
       {data.tasks.map((task) => {
         return (
           <TaskContainer key={task.name}>
+            <Link href="/task">
             <TaskImage src={task.image} alt={task.name} />
             <TaskTitle>{task.name}</TaskTitle>
+            </Link>
           </TaskContainer>
         );
       })}
