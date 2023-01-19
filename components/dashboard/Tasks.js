@@ -20,6 +20,8 @@ const Tasks = () => {
 
   return (
     // todo map tasks 
+    <div className="mt-6">
+      <h3>Tarefas</h3>
     <TasksContainer>
       {data.tasks.map((task) => {
         return (
@@ -30,14 +32,15 @@ const Tasks = () => {
         );
       })}
     </TasksContainer>
+    </div>
   );
 };
 
 const TasksContainer = styled("div", {
   display: "flex",
   overflowX: "auto",
-  margin: "1.125rem 1.5rem",
-  gap: "2rem",
+  margin: "1.125rem 0",
+  gap: "1.7rem",
   "&::-webkit-scrollbar": {
     display: "none",
   },
