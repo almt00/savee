@@ -8,8 +8,8 @@ import Entries from "./Entries";
 
 const RoutinesList = (props) => (
   <AccordionRoot type="single" defaultValue="item-1" collapsible>
-    <AccordionItem value="item-1">
-      <AccordionTrigger className="font-extrabold text-sm ml-0">
+    <AccordionItem value="item-1" className="border-border border-2 rounded-md mt-4 ">
+      <AccordionTrigger className="font-extrabold text-sm ml-0 h-9">
         Manhã
       </AccordionTrigger>
       <AccordionContent>
@@ -17,8 +17,8 @@ const RoutinesList = (props) => (
       </AccordionContent>
     </AccordionItem>
 
-    <AccordionItem value="item-2">
-      <AccordionTrigger className="font-extrabold text-sm ml-0">
+    <AccordionItem value="item-2" className="border-border border-2 rounded-md mt-4 ">
+      <AccordionTrigger className="font-extrabold text-sm ml-0 h-9">
         Tarde
       </AccordionTrigger>
       <AccordionContent>
@@ -26,8 +26,11 @@ const RoutinesList = (props) => (
       </AccordionContent>
     </AccordionItem>
 
-    <AccordionItem value="item-3">
-      <AccordionTrigger className="font-extrabold text-sm ml-0">
+    <AccordionItem
+      value="item-3"
+      className="border-border border-2 rounded-md mt-4 "
+    >
+      <AccordionTrigger className="font-extrabold text-sm ml-0 h-9">
         Noite
       </AccordionTrigger>
       <Accordion.Content>
@@ -46,7 +49,20 @@ const AccordionTrigger = React.forwardRef(
         ref={forwardedRef}
       >
         {children}
-        <AccordionChevron className="AccordionChevron" aria-hidden />
+{/*         <AccordionChevron className="AccordionChevron" aria-hidden />
+ */}        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 20 20"
+          fill="currentColor"
+          className="AccordionChevron w-5 h-5 transition-transform duration-300"
+          aria-hidden
+        >
+          <path
+            fillRule="evenodd"
+            d="M14.77 12.79a.75.75 0 01-1.06-.02L10 8.832 6.29 12.77a.75.75 0 11-1.08-1.04l4.25-4.5a.75.75 0 011.08 0l4.25 4.5a.75.75 0 01-.02 1.06z"
+            clipRule="evenodd"
+          />
+        </svg>
       </Trigger>
     </AccordionHeader>
   )
@@ -88,11 +104,13 @@ const Trigger = styled(Accordion.Trigger, {
   flex: 1,
   alignItems: "center",
   justifyContent: "space-between",
+  padding: "1rem",
   "&[data-state='open']  > .AccordionChevron": {
     transform: "rotate(180deg)",
   },
 });
 const AccordionChevron = styled(ChevronDownIcon, {
+  fontWeight: "bold",
   transition: "transform 300ms",
 });
 const slideDown = keyframes({

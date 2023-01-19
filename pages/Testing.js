@@ -12,7 +12,7 @@ import TaskList from "../components/routines/TaskList";
 import Summary from "../components/routines/Summary";
 import DashboardCard from '../components/elements/DashboardCard';
 import Banner from '../components/elements/Banner';
-import RoutinesList from "../components/dashboard/TaskList";
+import RoutinesList from "../components/dashboard/RoutinesList";
 
 const inter = Inter({ subsets: ['latin'] });
 
