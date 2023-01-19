@@ -26,7 +26,11 @@ export default function Menu() {
       >
         <div>
           <div className="">
-            <img src="/img/logo_alt.svg" className="mt-6 ml-6" alt="Savee logo" />
+            <img
+              src="/img/logo_alt.svg"
+              className="mt-6 ml-6"
+              alt="Savee logo"
+            />
           </div>
           <MenuList>
             <li className="selected">
@@ -34,19 +38,27 @@ export default function Menu() {
               <h2>Homepage</h2>
             </li>
             <li className="">
-              <img src="/img/chart-pie-icon.svg" className="ml-6" alt="Histórico uso" />
+              <img
+                src="/img/chart-pie-icon.svg"
+                className="ml-6"
+                alt="Histórico uso"
+              />
               <h2>Histórico uso</h2>
             </li>
-            <li className="">
+            {/*<li className="">
               <img src="/img/check-circle-icon.svg" className="ml-6" alt="Tarefas" />
               <h2>Tarefas</h2>
-            </li>
+  </li>*/}
             <li className="">
               <img src="/img/sun-icon.svg" className="ml-6" alt="Rotinas" />
               <h2>Rotinas</h2>
             </li>
             <li className="">
-              <img src="/img/currency-dollar-icon.svg" className="ml-6" alt="Pagamentos" />
+              <img
+                src="/img/currency-dollar-icon.svg"
+                className="ml-6"
+                alt="Pagamentos"
+              />
               <h2>Pagamentos</h2>
             </li>
           </MenuList>

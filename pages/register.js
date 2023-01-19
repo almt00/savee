@@ -76,9 +76,11 @@ export default function Register() {
     <>
       <div className="flex justify-center">
         {step === fieldGroups.length - 1 && (
+          <Link href="/homepage">
           <Button className="mt-6" bg="solid" size="lg">
             Criar conta
           </Button>
+          </Link>
         )}
         {step < 2 && (
           <Button
@@ -94,7 +96,7 @@ export default function Register() {
         )}
         {step === fieldGroups.length - 2 && (
           <>
-            <Link href="/">
+            <Link href="/homepage">
               <Button className="mt-6 mr-4" bg="transparent" size="lg">
                 Mais tarde
               </Button>

@@ -43,9 +43,11 @@ export default function Login() {
           </Link>
         </div>
         <div className="flex justify-center">
-          <Button className="mt-6" bg="solid" size="lg">
-            Iniciar sessão
-          </Button>
+          <Link href="/homepage">
+            <Button className="mt-6" bg="solid" size="lg">
+              Iniciar sessão
+            </Button>
+          </Link>
         </div>
       </Card>
 

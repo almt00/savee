@@ -87,7 +87,7 @@ const AccordionContent = React.forwardRef(
 AccordionContent.displayName = "AccordionContent";
 
 const AccordionRoot = styled(Accordion.Root, {
-  width: "342px",
+  width: "100%",
   borderradius: "7px",
   display: "inline",
 });
