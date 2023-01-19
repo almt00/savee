@@ -1,6 +1,7 @@
 import * as Toggle from "@radix-ui/react-toggle";
 import { styled } from "@stitches/react";
 import Image from "next/image";
+import { useState } from "react";
 
 const TimePeriodSelector = () => {
   const periods = [
@@ -21,10 +22,21 @@ const TimePeriodSelector = () => {
     },
   ];
 
+  // state to keep track of clicked period
+  const [periodName, setPeriodName] = useState("");
+
+  // action to record the clicked period
+  const handlePeriodName = (e) => {
+    setPeriodName(e.target.innerText);
+  };
+
+  // debugging state
+  console.log(periodName);
+
   return (
     <div className="flex flex-row items-center justify-center">
       {periods.map((period) => (
-        <ToggleRoot key={period.value} className="mx-2">
+        <ToggleRoot key={period.value} className="mx-2" onClick={handlePeriodName}>
           <Image src={period.img} width={84} height={93} alt={period.name} />
           <p className="mt-2">{period.name}</p>
         </ToggleRoot>
