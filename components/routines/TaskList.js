@@ -1,5 +1,4 @@
 import { styled } from "@stitches/react";
-import Task from "../elements/Task";
 import useSWR from "swr";
 
 const fetcher = (url) =>
@@ -19,10 +18,11 @@ const Tasks = () => {
   if (!data) return <div>Loading...</div>;
 
   return (
-    // todo map tasks 
+    // todo map tasks
     <TasksContainer>
       {data.tasks.map((task) => {
         return (
+          // todo, add wrapper to track state
           <TaskContainer key={task.name}>
             <TaskImage src={task.image} alt={task.name} />
             <TaskTitle>{task.name}</TaskTitle>
@@ -35,28 +35,29 @@ const Tasks = () => {
 
 const TasksContainer = styled("div", {
   display: "flex",
-  overflowX: "auto",
+  flexDirection: "column",
   margin: "1.125rem 1.5rem",
-  gap: "2rem",
   "&::-webkit-scrollbar": {
     display: "none",
   },
 });
 
 const TaskContainer = styled("div", {
-  flex: "0 0 auto",
-  textAlign: "center",
+  display: "flex",
+  flexDirection: "row",
+  alignItems: "center",
+  padding: ".5rem",
+  borderBottom: "1px solid $border",
 });
 
 const TaskImage = styled("img", {
-  width: "64px",
-  margin: "0 auto",
+  width: "2.5rem",
 });
 
 const TaskTitle = styled("p", {
   fontSize: "$small",
   fontWeight: "$bold",
   color: "$black",
-  marginTop: "0.5rem",
+  marginLeft: "0.5rem",
 });
 export default Tasks;
