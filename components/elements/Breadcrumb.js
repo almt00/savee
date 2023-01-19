@@ -1,4 +1,5 @@
 import React from "react";
+import Link from "next/link";
 
 export default function Breadcrumb() {
   return (
@@ -15,7 +16,9 @@ export default function Breadcrumb() {
           clipRule="evenodd"
         />
       </svg>
-      <h2>Homepage</h2>
+      <Link href="/homepage">
+        <h2>Homepage</h2>
+      </Link>
     </div>
   );
 }
