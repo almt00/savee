@@ -6,7 +6,7 @@ import classNames from "classnames";
 import { ChevronDownIcon } from "@radix-ui/react-icons";
 import Entries from "./Entries";
 
-const TaskList = (props) => (
+const RoutinesList = (props) => (
   <AccordionRoot type="single" defaultValue="item-1" collapsible>
     <AccordionItem value="item-1">
       <AccordionTrigger className="font-extrabold text-sm ml-0">
@@ -113,4 +113,4 @@ const Content = styled(Accordion.Content, {
   },
 });
 
-export default TaskList;
+export default RoutinesList;
