@@ -8,7 +8,6 @@ const fetcher = (url) =>
     .then((res) => JSON.parse(res));
 
 const Tasks = (props) => {
-
   // state to keep track of clicked task
   const [taskName, setTaskName] = useState("");
 
