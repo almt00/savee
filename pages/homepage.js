@@ -7,26 +7,9 @@ import DashboardCard from "../components/elements/DashboardCard";
 import Card from "../components/elements/Card";
 import Tasks from "../components/dashboard/Tasks";
 import RoutinesList from "../components/dashboard/RoutinesList";
-import useSWR from "swr";
-import { fetchAsyncUser, getUser } from "../features/UserSlice";
-import { useDispatch, useSelector } from "react-redux";
-import { useEffect } from "react";
-
-const id = 1; // variavel de sessao ou algo assim no login
-let name;
+import DisplayName from "../components/dashboard/DisplayName";
 
 export default function homepage() {
-  const dispatch = useDispatch();
-  const userData = useSelector(getUser);
-
-  useEffect(() => {
-    dispatch(fetchAsyncUser(id)); // fazer o fetch com redux
-  }, []);
-
-  if (userData.status === 200) {
-    name = userData.user.name.split(" ")[0];
-  }
-
   const date = new Date().toLocaleDateString("pt-PT", {
     month: "long",
     day: "numeric",
@@ -43,7 +26,7 @@ export default function homepage() {
       <Background color="mint" />
       <Header page="Homepage" />
       <div className="relative pt-20 px-6 flex flex-col gap-3 pb-6">
-        <h2>Olá {name}!</h2>
+        <DisplayName />
         <Banner />
         <Card>
           <DashboardCard />
