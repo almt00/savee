@@ -1,5 +1,6 @@
 import { styled } from "@stitches/react";
 import React from "react";
+import Link from "next/link";
 
 // falta fazer a logica de selecionar a area da app no menu
 const collapseMenu = function (e) {
@@ -33,10 +34,12 @@ export default function Menu() {
             />
           </div>
           <MenuList>
-            <li className="selected">
-              <img src="/img/home-icon.svg" className="ml-6" alt="Home" />
-              <h2>Homepage</h2>
-            </li>
+            <Link href="/homepage">
+              <li className="selected">
+                <img src="/img/home-icon.svg" className="ml-6" alt="Home" />
+                <h2>Homepage</h2>
+              </li>
+            </Link>
             <li className="">
               <img
                 src="/img/chart-pie-icon.svg"
@@ -49,18 +52,22 @@ export default function Menu() {
               <img src="/img/check-circle-icon.svg" className="ml-6" alt="Tarefas" />
               <h2>Tarefas</h2>
   </li>*/}
-            <li className="">
-              <img src="/img/sun-icon.svg" className="ml-6" alt="Rotinas" />
-              <h2>Rotinas</h2>
-            </li>
-            <li className="">
-              <img
-                src="/img/currency-dollar-icon.svg"
-                className="ml-6"
-                alt="Pagamentos"
-              />
-              <h2>Pagamentos</h2>
-            </li>
+            <Link href="/create-routine">
+              <li className="">
+                <img src="/img/sun-icon.svg" className="ml-6" alt="Rotinas" />
+                <h2>Rotinas</h2>
+              </li>
+            </Link>
+            <Link href="/all-payments">
+              <li className="">
+                <img
+                  src="/img/currency-dollar-icon.svg"
+                  className="ml-6"
+                  alt="Pagamentos"
+                />
+                <h2>Pagamentos</h2>
+              </li>
+            </Link>
           </MenuList>
         </div>
 
