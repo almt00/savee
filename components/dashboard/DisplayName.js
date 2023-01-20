@@ -1,5 +1,5 @@
 import React from "react";
-import { fetchAsyncUser, getUser } from "../../features/UserSlice";
+import { fetchAsyncUser, getUser } from "../../store/UserSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 
