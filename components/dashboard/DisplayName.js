@@ -12,7 +12,7 @@ export default function DisplayName() {
 
   useEffect(() => {
     dispatch(fetchAsyncUser(id)); // fazer o fetch com redux
-  }, []);
+  }, [dispatch]);
 
   if (userData.status === 200) {
     name = userData.user.name.split(" ")[0];
