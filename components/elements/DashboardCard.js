@@ -23,12 +23,13 @@ const DashboardCard = () => {
             alt='Pagamentos'
           />
           <SubTitle>
-        de <span className='font-bold'>{kwTotalGroup} kW </span>consumidos este
-        mês
-      </SubTitle>
+            de <span className='font-bold'>{kwTotalGroup} kW </span>consumidos
+            este mês
+          </SubTitle>
         </NumberKw>
-        
-        <Chart></Chart>
+        <div className='w-24'>
+          <Chart></Chart>
+        </div>
       </Container>
       <Stats className='mb-2'>
         <span className='font-bold'>{numberDays} dias </span>até ao próximo

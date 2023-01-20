@@ -13,7 +13,6 @@ module.exports = {
         muted: "#B0B0B0",
         success: "#35A361",
         danger: "#D63535",
-        mint: "#C4F4D4",
         skyblue: "#C5E1F2",
         yellow: "#FCF7B9",
         purple: "#E8C3F3",
