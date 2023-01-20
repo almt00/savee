@@ -18,7 +18,6 @@ const AllPayments = () => {
   //Set up SWR to run the fetcher function when calling api
   const { data, error } = useSWR("/api/user_1", fetcher);
 
-  //help não consigo store os valores da api nestas vars
   let value = "";
   let totalValue = "";
   let date = "";
@@ -30,22 +29,21 @@ const AllPayments = () => {
   //Handle the loading state
   if (!data) return <div>Loading...</div>;
 
-  const dateString = '2020-05-14T04:00:00Z';
+  const dateString = "2020-05-14T04:00:00Z";
 
   const formatDate = (dateString) => {
-    const options = { year: "numeric", month: "long", day: "numeric" }
-    return new Date(dateString).toLocaleDateString(undefined, options)
-  }
+    const options = { month: "short", day: "numeric" };
+    return new Date(dateString).toLocaleDateString("pt-PT", options);
+  };
 
-  console.log(formatDate(dateString))
+  console.log(formatDate(dateString));
 
   const PayHisto = data.hist_payment.map((payment, index) => {
-
     value = payment.percentage;
     totalValue = payment.total_value;
     date = payment.date;
-    const options = { year: "numeric", month: "long", day: "numeric" };
-    cleanDate = new Date(date).toLocaleDateString(undefined, options);
+    const options = { month: "short", day: "numeric" };
+    cleanDate = new Date(date).toLocaleDateString("pt-PT", options);
     percetoeuro = ((totalValue / 100) * value).toFixed(2);
 
     console.log(payment.id);
@@ -54,12 +52,18 @@ const AllPayments = () => {
     console.log(date);
     console.log(percetoeuro);
     return (
-      <PaymentInfo key={index}>
-        <h4>{percetoeuro}€</h4>
-        <p className="mt-1">de {totalValue}€ totais</p>
-        <p>{cleanDate}</p>
-      </PaymentInfo>
-    )
+      <>
+        <Card type="stroke">
+          <CardItem className="flex justify-between items-center">
+            <PaymentInfo key={index}>
+              <h4>{percetoeuro}€</h4>
+              <p className="mt-1">de {totalValue}€ totais</p>
+            </PaymentInfo>
+            <p className="text-muted">{cleanDate}</p>
+          </CardItem>
+        </Card>
+      </>
+    );
   });
 
   return (
@@ -81,16 +85,7 @@ const AllPayments = () => {
 
         <h3>Histórico de pagamento</h3>
 
-        <Card type="stroke">
-          <CardItem>
-            <PaymentInfo>
-              <h4>22€</h4>
-              <p className="mt-1">de 55€ totais</p>
-            </PaymentInfo>
-            <p className="text-muted">21/11</p>
-            {PayHisto}
-          </CardItem>
-        </Card>
+        {PayHisto}
       </div>
     </>
   );
@@ -111,8 +106,9 @@ const PaymentInfo = styled("div", {
 });
 
 const CardItem = styled("div", {
-  display: "flex",
-  flexDirection: "column",
-})
+  p: {
+    fontSize: "$small",
+  },
+});
 
 export default AllPayments;
