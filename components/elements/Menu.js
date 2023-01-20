@@ -62,8 +62,7 @@ export default function Menu() {
             </Link>
             <Link href="/all-payments">
               <li className="">
-                <img
-                  src="/img/currency-dollar-icon.svg"
+                <img src="/img/currency-dollar-icon.svg"
                   className="ml-6"
                   alt="Pagamentos"
                 />

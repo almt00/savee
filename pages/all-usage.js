@@ -18,6 +18,7 @@ const AllUsage = () => {
   //Set up SWR to run the fetcher function when calling api
   const { data, error } = useSWR("/api/user_1", fetcher);
 
+  let obj = "";
   let value = "";
   let usage = "";
   let date = "";
@@ -27,17 +28,11 @@ const AllUsage = () => {
   if (error) return <div>Failed to load</div>;
   //Handle the loading state
   if (!data) return <div>Loading...</div>;
+  console.log("success",data);
 
-  const dateString = "2020-05-14T04:00:00Z";
-
-  const formatDate = (dateString) => {
-    const options = { month: "short", day: "numeric" };
-    return new Date(dateString).toLocaleDateString("pt-PT", options);
-  };
-
-  console.log(formatDate(dateString));
-
-  const UseHisto = data.hist_use.map((use, index) => {
+  obj=data.user.hist_use;
+  console.log(obj)
+  const UseHisto = obj.map((use, index) => {
     value = use.duration;
     usage = use.type;
     date = use.date;
@@ -62,7 +57,6 @@ const AllUsage = () => {
       </>
     );
   });
-
   return (
     <>
       <Head>
@@ -95,7 +89,6 @@ const ThisMonth = styled("div", {
   lineHeight: "3rem",
   flex: "1",
 });
-
 const UsageInfo = styled("div", {
   p: {
     fontSize: "$small",
@@ -107,5 +100,4 @@ const CardItem = styled("div", {
     fontSize: "$small",
   },
 });
-
 export default AllUsage;
