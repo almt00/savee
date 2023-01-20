@@ -29,15 +29,6 @@ const AllPayments = () => {
   //Handle the loading state
   if (!data) return <div>Loading...</div>;
 
-  const dateString = "2020-05-14T04:00:00Z";
-
-  const formatDate = (dateString) => {
-    const options = { month: "short", day: "numeric" };
-    return new Date(dateString).toLocaleDateString("pt-PT", options);
-  };
-
-  console.log(formatDate(dateString));
-
   const PayHisto = data.hist_payment.map((payment, index) => {
     value = payment.percentage;
     totalValue = payment.total_value;
