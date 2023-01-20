@@ -7,6 +7,7 @@ import DashboardCard from "../components/elements/DashboardCard";
 import Card from "../components/elements/Card";
 import Tasks from "../components/dashboard/Tasks";
 import RoutinesList from "../components/dashboard/RoutinesList";
+import DisplayName from "../components/dashboard/DisplayName";
 
 export default function homepage() {
   const date = new Date().toLocaleDateString("pt-PT", {
@@ -25,7 +26,7 @@ export default function homepage() {
       <Background color="mint" />
       <Header page="Homepage" />
       <div className="relative pt-20 px-6 flex flex-col gap-3 pb-6">
-        <h2>Olá Pedro!</h2>
+        <DisplayName />
         <Banner />
         <Card>
           <DashboardCard />
