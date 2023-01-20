@@ -43,9 +43,6 @@ const DashboardCard = () => {
         lastMonthCons += consumption;
       }
     });
-    console.log("sum ", sumConsumption);
-    console.log("last sum ", lastMonthCons);
-
     consDif = (Math.round(lastMonthCons - sumConsumption) / 100).toFixed(1);
     console.log("cons dif ", consDif);
   }
@@ -60,11 +57,19 @@ const DashboardCard = () => {
       <Container>
         <NumberKw>
           {kwTotalUser} kW
-          <TrendIcon
-            src="/img/tendencia_up.svg"
-            className="ml-4"
-            alt="Pagamentos"
-          />
+          {consDif >= 0 ? (
+            <TrendIcon
+              src="/img/tendencia_down.svg"
+              className="ml-4"
+              alt="Pagamentos"
+            />
+          ) : (
+            <TrendIcon
+              src="/img/tendencia_up.svg"
+              className="ml-4"
+              alt="Pagamentos"
+            />
+          )}
           <SubTitle>
             de <span className="font-bold">{kwTotalGroup} kW </span>consumidos
             este mês
