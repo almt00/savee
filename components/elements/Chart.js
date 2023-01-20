@@ -7,17 +7,21 @@ import ChartDataLabels from 'chartjs-plugin-datalabels';
 const DoughnutChart = props => {
   let border = '';
   let background = '';
+  let cutoutPercentage = '';
   if (props.environment === 'payment') {
     background = ['#FFFFFF', '#FFFFFF', '#C5E1F2'];
     border = '#081B33';
+    cutoutPercentage = 80;
   } else {
     background = ['#B0B0B050', '#B0B0B050', '#081B33'];
     border = '#FFFFFF';
+    cutoutPercentage = 30;
   }
 
   let totalValue = 55; //não consegui colocar o 55 na linha inferior
   let ourUserValue = 22.5;
   let message = ourUserValue + '€';
+
   const data = {
     labels: ['User3', 'User2', 'User1'],
     datasets: [
@@ -31,6 +35,7 @@ const DoughnutChart = props => {
   };
 
   const options = {
+    cutout: cutoutPercentage,
     plugins: {
       legend: {
         display: false,
@@ -51,8 +56,8 @@ const DoughnutChart = props => {
           height = chart.height,
           ctx = chart.ctx;
         ctx.restore();
-        let fontSize = (height / 160).toFixed(2);
-        ctx.font = fontSize + 'em sans-serif';
+        let fontSize = (height / 120).toFixed(2);
+        ctx.font = fontSize + 'em Verdana, sans-serif';
         ctx.textBaseline = 'middle';
         let text = message,
           textX = Math.round((width - ctx.measureText(text).width) / 2),

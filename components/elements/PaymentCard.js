@@ -1,23 +1,24 @@
 import { styled } from '@stitches/react';
 import Chart from './Chart';
 import Button from './Button';
+import Card from './Card';
 
 const PaymentCard = () => {
   let percentageOurUser = 55;
   let percentageColleagueA = 25;
   let percentageColleagueB = 20;
- 
+
   return (
-    <div>
+    <Card>
       <Text className='mb-5'>
         Com base nos teus comportamentos deste mês, este é o valor aproximado a
         pagares:
       </Text>
       <div className='w-56 m-auto'>
-      <Chart className='mt-5' environment='payment'></Chart>
+        <Chart className='mt-5' environment='payment'></Chart>
       </div>
       <div className='text-center my-4'>
-        <Link href="">Como calculamos este valor?</Link>
+        <Link href=''>Como calculamos este valor?</Link>
       </div>
       <UsersContainer>
         <User>
@@ -41,7 +42,7 @@ const PaymentCard = () => {
           Confirmar
         </Button>
       </div>
-    </div>
+    </Card>
   );
 };
 
@@ -75,7 +76,8 @@ const Text = styled('p', {
 const SubTitle = styled('p', {
   color: '$black',
   fontSize: '$small',
-  fontSize: '$bold',
+  fontWeight: '$bold',
+  marginTop: '0.2rem',
 });
 
 const Percentage = styled('p', {
