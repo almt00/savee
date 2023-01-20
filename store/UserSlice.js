@@ -10,16 +10,7 @@ export const fetchAsyncUser = createAsyncThunk(
     return actualDataObject;
   }
 );
-export const fetchAsyncTasks = createAsyncThunk(
-  "user/fetchAsyncTasks",
-  async () => {
-    let tasks_url = `../api/tasks`;
-    const response = await fetch(tasks_url);
-    let actualData = await response.json();
-    let actualDataObject = await JSON.parse(actualData);
-    return actualDataObject;
-  }
-);
+
 const initialState = {
   user: {},
 };

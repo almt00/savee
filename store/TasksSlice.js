@@ -1,7 +1,7 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
 export const fetchAsyncTasks = createAsyncThunk(
-  "user/fetchAsyncTasks",
+  "tasks/fetchAsyncTasks",
   async () => {
     let tasks_url = `../api/tasks`;
     const response = await fetch(tasks_url);

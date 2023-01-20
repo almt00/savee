@@ -3,6 +3,8 @@ import Chart from "./Chart";
 import { fetchAsyncTasks, getTasks } from "../../store/TasksSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchAsyncUser, getUser } from "../../store/UserSlice";
+import { fetchAsyncGroup, getGroup } from "../../store/GroupSlice";
+
 import { useEffect } from "react";
 
 //criar switch ou else if :
@@ -11,8 +13,18 @@ import { useEffect } from "react";
 //igual ao do mês passado ou empty state sem seta
 
 const DashboardCard = () => {
+  const dispatch = useDispatch();
   const userData = useSelector(getUser);
   const tasksData = useSelector(getTasks);
+  const groupData = useSelector(getGroup);
+  const groupId = 1; // ver grupo do user
+
+  useEffect(() => {
+    dispatch(fetchAsyncGroup(groupId)); // fazer o fetch com redux do grupo
+    console.log(groupData);
+  }, [dispatch]);
+
+
   let sumConsumption = 0;
   let lastMonthCons = 0;
   let consDif = 0;
