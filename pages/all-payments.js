@@ -75,7 +75,7 @@ const AllPayments = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <Background color="skyblue" />
+      <Background color="skyblue" size="small" />
       <Header page="Pagamentos" />
       <div className="relative pt-20 px-6 flex flex-col gap-3 pb-6">
         <Card>
@@ -83,7 +83,7 @@ const AllPayments = () => {
           <p className="mt-2">Pagos a 24 de dezembro</p>
         </Card>
 
-        <h3>Histórico de pagamento</h3>
+        <h3 className="mt-6">Histórico de pagamento</h3>
 
         {PayHisto}
       </div>
