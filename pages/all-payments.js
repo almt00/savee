@@ -29,6 +29,7 @@ const AllPayments = () => {
   //Handle the loading state
   if (!data) return <div>Loading...</div>;
 
+  //Map to manipulate objet coming from fetch
   const PayHisto = data.hist_payment.map((payment, index) => {
     value = payment.percentage;
     totalValue = payment.total_value;
@@ -37,11 +38,6 @@ const AllPayments = () => {
     cleanDate = new Date(date).toLocaleDateString("pt-PT", options);
     percetoeuro = ((totalValue / 100) * value).toFixed(2);
 
-    console.log(payment.id);
-    console.log(value);
-    console.log(totalValue);
-    console.log(date);
-    console.log(percetoeuro);
     return (
       <>
         <Card type="stroke">
@@ -73,9 +69,7 @@ const AllPayments = () => {
           <ThisMonth>55€</ThisMonth>
           <p className="mt-2">Pagos a 24 de dezembro</p>
         </Card>
-
         <h3 className="mt-6">Histórico de pagamento</h3>
-
         {PayHisto}
       </div>
     </>
