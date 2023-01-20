@@ -35,6 +35,11 @@ const Background = styled("div", {
         backgroundColor: "$deeppurple",
       },
     },
+    size: {
+      small: {
+        height: "20%",
+      },
+    }
   },
 });
 

@@ -1,6 +1,7 @@
-import { styled } from '@stitches/react';
-import React from 'react';
-import Link from 'next/link';
+import { styled } from "@stitches/react";
+import React from "react";
+import Link from "next/link";
+
 
 // falta fazer a logica de selecionar a area da app no menu
 const collapseMenu = function (e) {

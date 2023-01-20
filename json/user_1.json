@@ -23,7 +23,19 @@
       "id": 0,
       "date": "2022-12-29T21:02:00.085Z",
       "total_value": 55,
-      "percentage": 0.25
+      "percentage": 25
+    },
+    {
+      "id": 1,
+      "date": "2022-11-28T21:02:00.085Z",
+      "total_value": 65,
+      "percentage": 35
+    },
+    {
+      "id": 2,
+      "date": "2022-10-27T21:02:00.085Z",
+      "total_value": 80,
+      "percentage": 50
     }
   ]
 }
