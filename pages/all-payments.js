@@ -4,10 +4,39 @@ import { styled } from "../stitches.config";
 import Card from "../components/elements/Card";
 import Header from "../components/elements/Header";
 import Background from "../components/elements/Background";
+import useSWR from "swr";
+
+//Write a fetcher function to wrap the native fetch function and return the result of a call to url in json format
+const fetcher = (url) =>
+  fetch(url)
+    .then((res) => res.json())
+    .then((res) => JSON.parse(res));
 
 const inter = Inter({ subsets: ["latin"] });
 
-export default function AllPayments() {
+const AllPayments = () => {
+  //Set up SWR to run the fetcher function when calling api
+  const { data, error } = useSWR("/api/user_1", fetcher);
+
+  //help não consigo store os valores da api nestas vars
+  let value = "";
+  let totalValue = "";
+  let date = "";
+
+  //Handle the error state
+  if (error) return <div>Failed to load</div>;
+  //Handle the loading state
+  if (!data) return <div>Loading...</div>;
+
+  if (data) {
+    console.log(data.hist_payment);
+    data.hist_payment.forEach((payment) => {
+      value = payment.percentage;
+      totalValue = payment.total_value;
+      date = payment.date;
+    });
+  }
+
   return (
     <>
       <Head>
@@ -39,7 +68,7 @@ export default function AllPayments() {
       </div>
     </>
   );
-}
+};
 
 const ThisMonth = styled("div", {
   color: "$black",
@@ -54,3 +83,5 @@ const PaymentInfo = styled("div", {
     fontSize: "$small",
   },
 });
+
+export default AllPayments;
