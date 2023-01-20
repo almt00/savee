@@ -7,8 +7,30 @@ import DashboardCard from "../components/elements/DashboardCard";
 import Card from "../components/elements/Card";
 import Tasks from "../components/dashboard/Tasks";
 import RoutinesList from "../components/dashboard/RoutinesList";
+import useSWR from "swr";
+
+const id = 1; // variavel de sessao ou algo assim no login
+let name;
+let user_url = `/api/user_${id}`;
 
 export default function homepage() {
+  const fetcher = (url) =>
+    fetch(url)
+      .then((res) => res.json())
+      .then((res) => JSON.parse(res));
+
+  //Set up SWR to run the fetcher function when calling api
+  const { data, error } = useSWR(user_url, fetcher);
+
+  //Handle the error state
+  if (error) return <div>Failed to load</div>;
+  //Handle the loading state
+  if (!data) return <div>Loading...</div>;
+
+  if (data) {
+    name = data.user.name.split(' ')[0];
+  }
+
   const date = new Date().toLocaleDateString("pt-PT", {
     month: "long",
     day: "numeric",
@@ -25,7 +47,7 @@ export default function homepage() {
       <Background color="mint" />
       <Header page="Homepage" />
       <div className="relative pt-20 px-6 flex flex-col gap-3 pb-6">
-        <h2>Olá Pedro!</h2>
+        <h2>Olá {name}!</h2>
         <Banner />
         <Card>
           <DashboardCard />

@@ -1,9 +1,9 @@
 {
   "user": {
-    "id": 1,
+    "id": 2,
     "email": "pedro001@gmail.com",
     "password": "$2y$10$X3JmxLTV8lImnnTxtLmbp.E35W.jiHA2oRpkUM/o7wciNrtpsJ10q",
-    "name": "Pedro Silva",
+    "name": "João Silva",
     "avatar": "/img/dog.png",
     "hist_use": [
       {
