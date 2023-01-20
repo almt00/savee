@@ -1,4 +1,5 @@
 {
+  "status": 200,
   "user": {
     "id": 0,
     "email": "pedro001@gmail.com",
@@ -24,6 +25,5 @@
       "total_value": 55,
       "percentage": 0.25
     }
-  ],
-  "status": 200
+  ]
 }
