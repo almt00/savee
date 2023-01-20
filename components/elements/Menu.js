@@ -40,7 +40,6 @@ export default function Menu() {
                 <h2>Homepage</h2>
               </li>
             </Link>
-
             <li className="">
               <img
                 src="/img/chart-pie-icon.svg"
