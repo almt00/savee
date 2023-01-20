@@ -22,31 +22,45 @@ const AllPayments = () => {
   let value = "";
   let totalValue = "";
   let date = "";
+  let cleanDate = "";
+  let percetoeuro = "";
 
   //Handle the error state
   if (error) return <div>Failed to load</div>;
   //Handle the loading state
   if (!data) return <div>Loading...</div>;
 
-  if (data) {
-   
+  const dateString = '2020-05-14T04:00:00Z';
+
+  const formatDate = (dateString) => {
+    const options = { year: "numeric", month: "long", day: "numeric" }
+    return new Date(dateString).toLocaleDateString(undefined, options)
   }
-  const PayHisto = data.hist_payment.map((payment, index)=>{
-        value = payment.percentage;
-        totalValue = payment.total_value;
-        date = payment.date;
-        console.log(payment.id);
-        console.log(value);
-        console.log(totalValue);
-        console.log(date); 
-        return(
-            <PaymentInfo key={index}>
-              <h4>{value}</h4>
-              <p className="mt-1">de {totalValue}€ totais</p>
-              <p>{date}</p>
-            </PaymentInfo>
+
+  console.log(formatDate(dateString))
+
+  const PayHisto = data.hist_payment.map((payment, index) => {
+
+    value = payment.percentage;
+    totalValue = payment.total_value;
+    date = payment.date;
+    const options = { year: "numeric", month: "long", day: "numeric" };
+    cleanDate = new Date(date).toLocaleDateString(undefined, options);
+    percetoeuro = ((totalValue / 100) * value).toFixed(2);
+
+    console.log(payment.id);
+    console.log(value);
+    console.log(totalValue);
+    console.log(date);
+    console.log(percetoeuro);
+    return (
+      <PaymentInfo key={index}>
+        <h4>{percetoeuro}€</h4>
+        <p className="mt-1">de {totalValue}€ totais</p>
+        <p>{cleanDate}</p>
+      </PaymentInfo>
     )
-    });
+  });
 
   return (
     <>
@@ -73,8 +87,8 @@ const AllPayments = () => {
               <h4>22€</h4>
               <p className="mt-1">de 55€ totais</p>
             </PaymentInfo>
-            {PayHisto}
             <p className="text-muted">21/11</p>
+            {PayHisto}
           </CardItem>
         </Card>
       </div>
@@ -97,9 +111,8 @@ const PaymentInfo = styled("div", {
 });
 
 const CardItem = styled("div", {
-    display: "flex",
-    flexDirection: "column",
-    alignItems: "center",
+  display: "flex",
+  flexDirection: "column",
 })
 
 export default AllPayments;
