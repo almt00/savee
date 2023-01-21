@@ -5,17 +5,12 @@ import { fetchAsyncTasks, getTasks } from "../../store/TasksSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 
-/* const fetcher = (url) =>
-  fetch(url)
-    .then((res) => res.json())
-    .then((res) => JSON.parse(res));
- */
 const Tasks = () => {
   const dispatch = useDispatch();
   const tasksData = useSelector(getTasks);
 
   useEffect(() => {
-    dispatch(fetchAsyncTasks()); // fazer o fetch com redux~
+    dispatch(fetchAsyncTasks()); // fazer o fetch com redux
     console.log(tasksData);
   }, [dispatch]);
 
@@ -24,7 +19,7 @@ const Tasks = () => {
       return tasksData.tasks.map((task) => {
         return (
           <TaskContainer key={task.name}>
-            <Link href="/task">
+            <Link href={`/task?id=${task.id}`}>
               <TaskImage src={task.image} alt={task.name} />
               <TaskTitle>{task.name}</TaskTitle>
             </Link>
