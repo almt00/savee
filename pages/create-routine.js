@@ -64,7 +64,7 @@ export default function Routine() {
               Anterior
             </Button>
             <Link href='/homepage'>
-              <Button className='mt-6' bg='solid' size='lg'>
+              <Button type='submit' className='mt-6' bg='solid' size='lg'>
                 Feito
               </Button>
             </Link>
