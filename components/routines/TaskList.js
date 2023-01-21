@@ -6,7 +6,7 @@ const fetcher = (url) =>
     .then((res) => res.json())
     .then((res) => JSON.parse(res));
 
-const Tasks = () => {
+const Tasks = ({ onClickEvent }) => {
   const { data, error } = useSWR("/api/tasks", fetcher);
 
   const tasks = data;
@@ -22,8 +22,7 @@ const Tasks = () => {
     <TasksContainer>
       {data.tasks.map((task) => {
         return (
-          // todo, add wrapper to track state
-          <TaskContainer key={task.name}>
+          <TaskContainer key={task.name} onClick={onClickEvent}>
             <TaskImage src={task.image} alt={task.name} />
             <TaskTitle>{task.name}</TaskTitle>
           </TaskContainer>
@@ -42,7 +41,7 @@ const TasksContainer = styled("div", {
   },
 });
 
-const TaskContainer = styled("div", {
+const TaskContainer = styled("button", {
   display: "flex",
   flexDirection: "row",
   alignItems: "center",
