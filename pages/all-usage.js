@@ -1,23 +1,17 @@
 import Head from "next/head";
-import { Inter } from "@next/font/google";
 import { styled } from "../stitches.config";
 import Card from "../components/elements/Card";
 import Header from "../components/elements/Header";
 import Background from "../components/elements/Background";
-import useSWR from "swr";
-
-//Write a fetcher function to wrap the native fetch function and return the result of a call to url in json format
-const fetcher = (url) =>
-  fetch(url)
-    .then((res) => res.json())
-    .then((res) => JSON.parse(res));
-
-const inter = Inter({ subsets: ["latin"] });
+import { useDispatch, useSelector } from "react-redux";
+import { fetchAsyncUser, getUser } from "../store/UserSlice";
+import { useEffect } from "react";
 
 const AllUsage = () => {
-  //Set up SWR to run the fetcher function when calling api
-  const { data, error } = useSWR("/api/user_1", fetcher);
-
+  const dispatch = useDispatch();
+  const userData = useSelector(getUser);
+  const userId = 1;
+  let UseHisto = "";
   let obj = "";
   let taskName = "";
   let taskInit = "";
@@ -28,51 +22,49 @@ const AllUsage = () => {
   let cleantaskDuration = "";
   let today = new Date();
   let cleanToday = "";
-  let todaySum = "";
+  let todaySum = 0;
 
-  //Handle the error state
-  if (error) return <div>Failed to load</div>;
-  //Handle the loading state
-  if (!data) return <div>Loading...</div>;
-  console.log("success", data);
-
-  obj = data.user.hist_use;
-  console.log(obj);
-  const UseHisto = obj.map((use, index) => {
-    taskName = use.name;
-    taskInit = new Date(use.start_date);
-    taskEnd = new Date(use.end_date);
-    taskDuration = new Date(taskEnd - taskInit);
-    date = use.time;
-    const options = { month: "short", day: "numeric" };
-    cleanToday = new Date(today).toLocaleDateString("pt-PT", options);
-    cleanDate = new Date(date).toLocaleDateString("pt-PT", options);
-
-    cleantaskDuration = Math.floor(taskDuration / 1000 / 60);
-
-    if (
-      today.getFullYear() === taskInit.getFullYear() &&
-      today.getMonth() === taskInit.getMonth() &&
-      today.getDate() === taskInit.getDate()
-    ) {
-      todaySum += cleantaskDuration;
+  useEffect(() => {
+    if (userData.status !== 200) {
+      dispatch(fetchAsyncUser(userId)); // fazer o fetch com redux caso ainda n esteja o estado (ex.: reloads de pagina)
     }
+  }, [dispatch]);
 
-    console.log(today);
-    return (
-      <>
-        <Card type="stroke">
-          <CardItem className="flex justify-between items-center">
-            <UsageInfo key={index}>
-              <h4>{cleantaskDuration} min</h4>
-              <p> {taskName}</p>
-            </UsageInfo>
-            <p className="text-muted">{cleanDate}</p>
-          </CardItem>
-        </Card>
-      </>
-    );
-  });
+  if (userData.status === 200) {
+    obj = userData.user.hist_use;
+    UseHisto = obj.map((use, index) => {
+      taskName = use.name;
+      taskInit = new Date(use.start_date);
+      taskEnd = new Date(use.end_date);
+      taskDuration = new Date(taskEnd - taskInit);
+      date = use.start_date;
+      const options = { month: "short", day: "numeric" };
+      cleanToday = new Date(today).toLocaleDateString("pt-PT", options);
+      cleanDate = new Date(date).toLocaleDateString("pt-PT", options);
+      cleantaskDuration = Math.floor(taskDuration / 1000 / 60);
+      if (
+        today.getFullYear() === taskInit.getFullYear() &&
+        today.getMonth() === taskInit.getMonth() &&
+        today.getDate() === taskInit.getDate()
+      ) {
+        todaySum += cleantaskDuration;
+      }
+      return (
+        <>
+          <Card type="stroke">
+            <CardItem className="flex justify-between items-center">
+              <UsageInfo key={index}>
+                <h4>{cleantaskDuration} min</h4>
+                <p> {taskName}</p>
+              </UsageInfo>
+              <p className="text-muted">{cleanDate}</p>
+            </CardItem>
+          </Card>
+        </>
+      );
+    });
+  }
+
   return (
     <>
       <Head>
@@ -86,13 +78,11 @@ const AllUsage = () => {
       <Header page="Histórico uso" />
       <div className="relative pt-20 px-6 flex flex-col gap-3 pb-6">
         <Card>
-          <ThisMonth>{todaySum}</ThisMonth>
+          <ThisMonth>{todaySum} min</ThisMonth>
           <p className="mt-2">Hoje</p>
         </Card>
-
         <h3 className="mt-6">Histórico de uso</h3>
-
-        {UseHisto}
+        <div className="flex flex-col-reverse gap-3">{UseHisto}</div>
       </div>
     </>
   );
@@ -103,7 +93,6 @@ const ThisMonth = styled("div", {
   fontSize: "$f0",
   fontWeight: "$bolder",
   lineHeight: "3rem",
-  flex: "1",
 });
 const UsageInfo = styled("div", {
   p: {
