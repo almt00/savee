@@ -1,41 +1,44 @@
 import { styled } from "@stitches/react";
 import Task from "../elements/Task";
-import useSWR from "swr";
-import Link from 'next/link'
+import Link from "next/link";
+import { fetchAsyncTasks, getTasks } from "../../store/TasksSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from "react";
 
-
-const fetcher = (url) =>
+/* const fetcher = (url) =>
   fetch(url)
     .then((res) => res.json())
     .then((res) => JSON.parse(res));
-
+ */
 const Tasks = () => {
-  const { data, error } = useSWR("/api/tasks", fetcher);
+  const dispatch = useDispatch();
+  const tasksData = useSelector(getTasks);
 
-  const tasks = data;
-  console.log(tasks);
+  useEffect(() => {
+    dispatch(fetchAsyncTasks()); // fazer o fetch com redux~
+    console.log(tasksData);
+  }, [dispatch]);
 
-  //Handle the error state
-  if (error) return <div>Failed to load</div>;
-  //Handle the loading state
-  if (!data) return <div>Loading...</div>;
-
-  return (
-    // todo map tasks 
-    <div className="mt-6">
-      <h3>Tarefas</h3>
-    <TasksContainer>
-      {data.tasks.map((task) => {
+  const renderTasks = () => {
+    if (tasksData.status === 200) {
+      return tasksData.tasks.map((task) => {
         return (
           <TaskContainer key={task.name}>
             <Link href="/task">
-            <TaskImage src={task.image} alt={task.name} />
-            <TaskTitle>{task.name}</TaskTitle>
+              <TaskImage src={task.image} alt={task.name} />
+              <TaskTitle>{task.name}</TaskTitle>
             </Link>
           </TaskContainer>
         );
-      })}
-    </TasksContainer>
+      });
+    }
+  };
+
+  return (
+    // todo map tasks
+    <div className="mt-6">
+      <h3>Tarefas</h3>
+      <TasksContainer>{renderTasks()}</TasksContainer>
     </div>
   );
 };

@@ -9,22 +9,42 @@
     "hist_use": [
       {
         "id": 0,
-        "start_date": "Fri Jan 18 2023 22:13:24",
-        "name": "banho_imersao",
-        "task_id": 1,
+        "start_date": "Fri Dec 19 2022 08:35:31",
+        "name": "Duche",
+        "task_id": 2,
         "type": "task",
-        "end_date": "Fri Jan 18 2023 22:21:49",
-        "weekdays": ["fri"],
+        "end_date": "Fri Dec 19 2022 10:20:08",
+        "weekdays": ["mon"],
         "time": "2022-12-29T21:02:00.085Z"
       },
       {
         "id": 1,
-        "start_date": "Fri Jan 18 2023 06:10:24",
+        "start_date": "Fri Jan 12 2023 20:25:28",
+        "name": "Banho imersão",
+        "task_id": 1,
+        "type": "task",
+        "end_date": "Fri Jan 12 2023 20:42:10",
+        "weekdays": ["mon"],
+        "time": "2022-12-29T21:02:00.085Z"
+      },
+      {
+        "id": 2,
+        "start_date": "Fri Jan 17 2023 16:42:37",
+        "name": "Secar cabelo",
+        "task_id": 4,
+        "type": "task",
+        "end_date": "Fri Jan 17 2023 16:55:04",
+        "weekdays": ["mon"],
+        "time": "2022-12-29T21:02:00.085Z"
+      },
+      {
+        "id": 3,
+        "start_date": "Fri Jan 18 2023 22:13:24",
         "name": "Duche",
         "task_id": 2,
         "type": "task",
-        "end_date": "Fri Jan 18 2023 06:15:49",
-        "weekdays": ["fri"],
+        "end_date": "Fri Jan 18 2023 22:21:49",
+        "weekdays": ["mon"],
         "time": "2022-12-29T21:02:00.085Z"
       }
     ]
@@ -32,7 +52,7 @@
   "hist_payment": [
     {
       "id": 0,
-      "date": "2022-12-29T21:02:00.085Z",
+      "date": "Tue Dec 27 2022 14:35:22",
       "total_value": 55,
       "percentage": 25
     },
