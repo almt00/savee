@@ -42,6 +42,7 @@ export default function Menu() {
                 <h2>Homepage</h2>
               </li>
             </Link>
+            <Link href="/all-usage">
             <li className=''>
               <img
                 src='/img/chart-pie-icon.svg'
@@ -50,15 +51,6 @@ export default function Menu() {
               />
               <h2>Histórico uso</h2>
             </li>
-            <Link href='/all-usage'>
-              <li className=''>
-                <img
-                  src='/img/chart-pie-icon.svg'
-                  className='ml-6'
-                  alt='Histórico uso'
-                />
-                <h2>Histórico uso</h2>
-              </li>
             </Link>
             {/*<li className="">
               <img src="/img/check-circle-icon.svg" className="ml-6" alt="Tarefas" />
