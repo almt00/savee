@@ -33,7 +33,7 @@ const Invoice = () => {
             <Form name='Valor fatura' type='number'/>
           </div>
           <div className='text-center'>
-            <Link href='/payment' className=''>
+            <Link href='/payment'>
               <Button className='mt-6' bg='solid' size='lg'>
                 Inserir dados da fatura
               </Button>
