@@ -6,7 +6,7 @@ const Banner = () => {
   return (
     <Container>
       <BannerText>Está na hora de pagar!</BannerText>
-      <Link href='/payment'>
+      <Link href='/invoice'>
         <Button size='md' bg='primary'>
           Inserir fatura
         </Button>
