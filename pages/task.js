@@ -18,7 +18,7 @@ export default function task() {
       </Head>
       <Background color="yellow" />
       <Header page="Tarefa" />
-      <div className="flex absolute top-20 flex-col">
+      <div className="relative pt-20 px-6 flex flex-col gap-3 pb-6">
         <Breadcrumb/>
         <Card classes="flex flex-col justify-center items-center">
           <Task type="Secar cabelo" size="lg"></Task>
