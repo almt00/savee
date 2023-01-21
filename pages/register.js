@@ -65,7 +65,7 @@ export default function Register() {
       <div className="mt-6">
         <Form name="Data da última fatura" />
       </div>
-      <Link href="/" className="text-links text-sm">
+      <Link href="" className="text-links text-sm">
         Precisas de ajuda?
       </Link>
     </>

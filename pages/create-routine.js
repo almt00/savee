@@ -113,10 +113,9 @@ export default function Routine() {
         <meta name='viewport' content='width=device-width, initial-scale=1' />
         <link rel='icon' href='/favicon.ico' />
       </Head>
-
-      <Background color='purple' />
-      <Header page='Rotinas' />
-      <div className='relative pt-20'>
+      <Background color="purple" />
+      <Header page="Rotinas" />
+      <div className="relative pt-20 px-6 flex flex-col gap-3 pb-6">
         <Breadcrumb />
         <Card>
           {fieldGroups[step]}
