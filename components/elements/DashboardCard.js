@@ -1,10 +1,13 @@
 import { styled } from "@stitches/react";
 import Chart from "./Chart";
-import { fetchAsyncTasks, getTasks } from "../../store/TasksSlice";
 import { useDispatch, useSelector } from "react-redux";
+import { fetchAsyncTasks, getTasks } from "../../store/TasksSlice";
 import { fetchAsyncUser, getUser } from "../../store/UserSlice";
 import { fetchAsyncGroup, getGroup } from "../../store/GroupSlice";
-
+import {
+  fetchAsyncGroupDetails,
+  getgroupDetails,
+} from "../../store/GroupDetailsSlice";
 import { useEffect } from "react";
 
 //criar switch ou else if :
@@ -20,16 +23,28 @@ const DashboardCard = () => {
   const groupId = 1; // ver grupo do user
 
   useEffect(() => {
-    dispatch(fetchAsyncGroup(groupId)); // fazer o fetch com redux do grupo
+    dispatch(fetchAsyncGroup(groupId)) // fazer o fetch com redux do grupo
+      .then((res) => {
+        console.log("res",res)
+        
+          members = res.payload.group.members;
+          console.log(members);
+          members.forEach((element) => {
+            console.log("users id", element);
+            //dispatch(fetchAsyncGroupDetails(element)); // fazer o fetch com redux do grupo
+          });
+        
+      });
+    //dispatch(fetchAsyncGroupDetails(1)); // fazer o fetch com redux do grupo
     console.log(groupData);
   }, [dispatch]);
-
 
   let sumConsumption = 0;
   let lastMonthCons = 0;
   let consDif = 0;
   let lastMonth = new Date();
   lastMonth.setMonth(lastMonth.getMonth() - 1); // data de há um mes atras, ver data fatura
+  let members;
 
   /* useEffect(() => {
     if (userData === null || userData === undefined || userData === "") {
