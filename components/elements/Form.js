@@ -43,7 +43,7 @@ const Form = (props) => {
     {
       name: "Valor fatura",
       message: "Insere o total da fatura deste mês",
-      icon: "user.svg",
+      icon: "currency-euro.svg",
     },
   ];
 
