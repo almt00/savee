@@ -43,7 +43,7 @@ const ToggleRoot = styled(Toggle.Root, {
   borderRadius: 12,
   img: { filter: "saturate(0%)" },
   p: { fontSize: "$small", fontWeight: "$bolder", color: "$black" },
-  "&:hover": { boxShadow: "$card", img: { filter: "saturate(100%)" } },
+  "&:hover": { img: { filter: "saturate(100%)" } },
   "&[data-state=on]": {
     border: "2px solid $purple",
     img: { filter: "saturate(100%)" },
