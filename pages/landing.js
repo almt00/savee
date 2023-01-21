@@ -43,7 +43,7 @@ export default function Landing() {
           </svg>
         </div>
       </Navbar>
-      <FirstSection className="flex items-center justify-center">
+      <FirstSection className="flex items-center justify-cente">
         <div className="flex flex-col items-center gap-6">
           <Image src="/img/logo.svg" width={150} height={150} alt="Savee Logo" />
           <div>
@@ -55,10 +55,10 @@ export default function Landing() {
             teus consumos, o teu preço!
           </p>
           </div>
-          <Button size="lg">Saber Mais</Button>
+          <Link href="#about" scroll={false}><Button size="lg">Saber Mais</Button></Link>
         </div>
       </FirstSection>
-      <SecondSection className="flex flex-col items-center justify-center gap-12">
+      <SecondSection className="flex flex-col items-center justify-center gap-12" id="about">
         <h2>Como funciona?</h2>
         <Carousel {...handlers}>
           <Slides style={{ transform: `translateX(-${activeIndex * 100}%)` }}>
