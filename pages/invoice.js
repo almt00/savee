@@ -30,7 +30,7 @@ const Invoice = () => {
             os vossos consumos.
           </p>
           <div className='mt-6'>
-            <Form name='Valor fatura' />
+            <Form name='Valor fatura' type='number'/>
           </div>
           <div className='text-center'>
             <Link href='/payment' className=''>
