@@ -1,15 +1,23 @@
 import { styled } from '@stitches/react';
 import Button from './Button';
-import { Cross1Icon } from '@radix-ui/react-icons';
+import { useState } from 'react';
 
-const Toaster = () => {
+export default function Toaster (){
+  const [isShown, setIsShown] = useState(true);
 
-  return (
-    <Container>
-      <BannerText>Valor confirmado com sucesso</BannerText>
-      <Cross>X</Cross>
-    </Container>
-  );
+  const hideToaster = event => {
+    // 👇️ set it to true
+    setIsShown(false);
+  };
+
+  if (isShown == true) {
+    return (
+      <Container>
+        <BannerText>Valor confirmado com sucesso</BannerText>
+        <Cross onClick={hideToaster}>X</Cross>
+      </Container>
+    );
+  }
 };
 
 const BannerText = styled('p', {
@@ -35,4 +43,3 @@ const Cross = styled(Button,{
       },
 }) 
 
-export default Toaster;
