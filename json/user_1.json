@@ -9,11 +9,22 @@
     "hist_use": [
       {
         "id": 0,
-        "date": "2022-12-30T22:56:00.000Z",
+        "start_date": "Fri Jan 18 2023 22:13:24",
         "name": "banho_imersao",
+        "task_id": 1,
         "type": "task",
-        "duration": "2022-12-29T21:02:00.085Z",
-        "weekdays": ["mon"],
+        "end_date": "Fri Jan 18 2023 22:21:49",
+        "weekdays": ["fri"],
+        "time": "2022-12-29T21:02:00.085Z"
+      },
+      {
+        "id": 1,
+        "start_date": "Fri Jan 18 2023 06:10:24",
+        "name": "Duche",
+        "task_id": 2,
+        "type": "task",
+        "end_date": "Fri Jan 18 2023 06:15:49",
+        "weekdays": ["fri"],
         "time": "2022-12-29T21:02:00.085Z"
       }
     ]
