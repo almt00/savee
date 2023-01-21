@@ -83,7 +83,7 @@ const Form = (props) => {
         placeholder={placeholderValue}
         style={{ background: `url(/img/${icon}) no-repeat 98%` }}
       />
-      <div id={`${props.id}_error`}>
+      <div id={`${props.id}_error`} className="hidden">
         <Image src="/img/x-circle.svg" alt="Erro" width="20" height="20" />
         <p>Isto é um erro</p>
       </div>
@@ -125,6 +125,7 @@ const Input = styled("input", {
 
 const Container = styled("div", {
   display: "block",
+  marginBottom: "4px",
   p: {
     fontSize: "small",
     color: "$danger",
