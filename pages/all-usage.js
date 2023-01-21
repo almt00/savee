@@ -24,6 +24,8 @@ const AllUsage = () => {
   let taskEnd = "";
   let date = "";
   let cleanDate = "";
+  let cleantaskInit="";
+  let cleantaskEnd="";
 
   //Handle the error state
   if (error) return <div>Failed to load</div>;
@@ -41,19 +43,25 @@ const AllUsage = () => {
     const options = { month: "short", day: "numeric" };
     cleanDate = new Date(date).toLocaleDateString("pt-PT", options);
 
+    const timeOptions = {hour: "numeric", minute: "numeric", second:"numeric"}
+    cleantaskInit = new Date(taskInit).toTimeString("pt-PT", timeOptions);
+    cleantaskEnd = new Date(taskEnd).toTimeString("pt-PT", timeOptions);
+
+
     console.log(use.id);
     console.log(taskInit);
     console.log(taskEnd);
     console.log(date);
+    console.log(cleantaskInit);
     return (
       <>
         <Card type="stroke">
           <CardItem className="flex justify-between items-center">
             <UsageInfo key={index}>
               <h4>Started at:</h4>
-              <p> {taskInit}</p>
+              <p> {cleantaskInit}</p>
               <h4>Finished at:</h4>
-              <p> {taskEnd}</p>
+              <p> {cleantaskEnd}</p>
             </UsageInfo>
             <p className="text-muted">{cleanDate}</p>
           </CardItem>
