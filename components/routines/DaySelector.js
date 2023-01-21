@@ -55,7 +55,7 @@ const ToggleRoot = styled(Toggle.Root, {
   fontSize: "$normal",
   alignItems: "center",
   justifyContent: "center",
-  '&:hover': { color: "$black", boxShadow: "$card" },
+  '&:hover': { color: "$black" },
   "&[data-state=on]": { color: "$black", backgroundColor: "$purple" },
   '&:focus-visible': { border: "2px solid $links", },
 });
