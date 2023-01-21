@@ -9,6 +9,7 @@ import {
   getgroupDetails,
 } from "../../store/GroupDetailsSlice";
 import { useEffect } from "react";
+import Card from './Card';
 
 //criar switch ou else if :
 //com tendência a subir em comparação com último mÊs _ seta up,
@@ -80,7 +81,7 @@ const DashboardCard = () => {
   let percentage = consDif.toString().replace(/-/g, "");
 
   return (
-    <div>
+    <Card>
       <Container>
         <NumberKw>
           {kwTotalUser} kW
@@ -121,7 +122,7 @@ const DashboardCard = () => {
           passado
         </Stats>
       )}
-    </div>
+    </Card>
   );
 };
 
