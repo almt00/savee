@@ -1,7 +1,6 @@
-import { styled } from "@stitches/react";
-import React from "react";
-import Link from "next/link";
-
+import { styled } from '@stitches/react';
+import React from 'react';
+import Link from 'next/link';
 
 // falta fazer a logica de selecionar a area da app no menu
 const collapseMenu = function (e) {
@@ -11,6 +10,8 @@ const collapseMenu = function (e) {
   menu.style.transform = 'translate(-100%)';
   menu.style.transition = '0.3s ease-out';
   overlay.style.transform = 'translate(-100%)';
+  document.documentElement.style.overflow = "initial";
+
 };
 
 export default function Menu() {
@@ -62,7 +63,7 @@ export default function Menu() {
                 <h2>Rotinas</h2>
               </li>
             </Link>
-            <Link href='/payment'>
+            <Link href='/all-payments'>
               <li className=''>
                 <img
                   src='/img/currency-dollar-icon.svg'

@@ -65,7 +65,7 @@ export default function Register() {
       <div className="mt-6">
         <Form name="Data da última fatura" />
       </div>
-      <Link href="/" className="text-links text-sm">
+      <Link href="" className="text-links text-sm">
         Precisas de ajuda?
       </Link>
     </>
@@ -77,9 +77,9 @@ export default function Register() {
       <div className="flex justify-center">
         {step === fieldGroups.length - 1 && (
           <Link href="/homepage">
-          <Button className="mt-6" bg="solid" size="lg">
-            Criar conta
-          </Button>
+            <Button className="mt-6" bg="solid" size="lg">
+              Criar conta
+            </Button>
           </Link>
         )}
         {step < 2 && (
@@ -148,12 +148,13 @@ export default function Register() {
         <h1 className="black">Criar conta</h1>
         <p className="black">Cria a tua conta no Savee e começa a poupar.</p>
       </div>
-
-      <Card>
-        {fieldGroups[step]}
-        {/*todo: disable when form validation is set up*/}
-        <Navigation />
-      </Card>
+      <div className="relative px-6 flex flex-col gap-3 pb-6">
+        <Card>
+          {fieldGroups[step]}
+          {/*todo: disable when form validation is set up*/}
+          <Navigation />
+        </Card>
+      </div>
     </>
   );
 }
