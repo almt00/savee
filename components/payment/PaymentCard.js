@@ -1,7 +1,7 @@
 import { styled } from '@stitches/react';
-import Chart from './Chart';
-import Button from './Button';
-import Card from './Card';
+import Chart from '../elements/Chart';
+import Button from '../elements/Button';
+import Card from '../elements/Card';
 
 const PaymentCard = () => {
   let percentageOurUser = 55;

@@ -3,7 +3,7 @@ import Head from 'next/head';
 import Header from '../components/elements/Header';
 import Background from '../components/elements/Background';
 import Banner from '../components/elements/Banner';
-import DashboardCard from '../components/elements/DashboardCard';
+import DashboardCard from '../components/dashboard/DashboardCard';
 import Tasks from '../components/dashboard/Tasks';
 import RoutinesList from '../components/dashboard/RoutinesList';
 import DisplayName from '../components/dashboard/DisplayName';

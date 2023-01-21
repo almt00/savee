@@ -1,6 +1,6 @@
 import Head from 'next/head';
 import Background from '../components/elements/Background';
-import PaymentCard from '../components/elements/PaymentCard';
+import PaymentCard from '../components/payment/PaymentCard';
 import Header from '../components/elements/Header';
 import Breadcrumb from '../components/elements/Breadcrumb';
 import Insight from '../components/elements/Insight';

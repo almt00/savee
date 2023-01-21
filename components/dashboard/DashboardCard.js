@@ -1,6 +1,6 @@
 import { styled } from '@stitches/react';
-import Chart from './Chart';
-import Card from './Card';
+import Chart from '../elements/Chart';
+import Card from '../elements/Card';
 
 //criar switch ou else if :
 //com tendência a subir em comparação com último mÊs _ seta up,
