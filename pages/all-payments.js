@@ -39,14 +39,9 @@ const AllPayments = () => {
     cleanDate = new Date(date).toLocaleDateString('pt-PT', options);
     percetoeuro = ((totalValue / 100) * value).toFixed(2);
 
-    //right link 
-    let path = '';
-    if(date === 'Tue Dec 27 2022 14:35:22'){
-      path = '/payment'}
-
     return (
       <>
-        <Link href={path}>
+        <Link href='/payment'>
           <Card type='stroke'>
             <CardItem className='flex justify-between items-center'>
               <PaymentInfo key={index}>
