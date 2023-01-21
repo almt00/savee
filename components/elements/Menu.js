@@ -1,7 +1,6 @@
-import { styled } from "@stitches/react";
-import React from "react";
-import Link from "next/link";
-
+import { styled } from '@stitches/react';
+import React from 'react';
+import Link from 'next/link';
 
 // falta fazer a logica de selecionar a area da app no menu
 const collapseMenu = function (e) {
@@ -49,12 +48,12 @@ export default function Menu() {
               />
               <h2>Histórico uso</h2>
             </li>
-            <Link href="/all-usage">
-              <li className="">
+            <Link href='/all-usage'>
+              <li className=''>
                 <img
-                  src="/img/chart-pie-icon.svg"
-                  className="ml-6"
-                  alt="Histórico uso"
+                  src='/img/chart-pie-icon.svg'
+                  className='ml-6'
+                  alt='Histórico uso'
                 />
                 <h2>Histórico uso</h2>
               </li>
@@ -70,7 +69,7 @@ export default function Menu() {
                 <h2>Rotinas</h2>
               </li>
             </Link>
-            <Link href='/payment'>
+            <Link href='/all-payments'>
               <li className=''>
                 <img
                   src='/img/currency-dollar-icon.svg'
