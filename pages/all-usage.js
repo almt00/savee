@@ -27,6 +27,7 @@ const AllUsage = () => {
   let cleanDate = "";
   let cleantaskDuration = "";
   let today = new Date();
+  let cleanToday = "";
   let todaySum = "";
 
   //Handle the error state
@@ -44,15 +45,20 @@ const AllUsage = () => {
     taskDuration = new Date(taskEnd - taskInit);
     date = use.time;
     const options = { month: "short", day: "numeric" };
+    cleanToday = new Date(today).toLocaleDateString("pt-PT", options);
     cleanDate = new Date(date).toLocaleDateString("pt-PT", options);
 
     cleantaskDuration = Math.floor(taskDuration / 1000 / 60);
 
-    if (today.toDateString() === date) {
-      todaySum = cleantaskDuration;
+    if (
+      today.getFullYear() === taskInit.getFullYear() &&
+      today.getMonth() === taskInit.getMonth() &&
+      today.getDate() === taskInit.getDate()
+    ) {
+      todaySum += cleantaskDuration;
     }
 
-    console.log(todaySum);
+    console.log(today);
     return (
       <>
         <Card type="stroke">
