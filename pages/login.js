@@ -38,7 +38,7 @@ export default function Login() {
           <Form name="Password" />
         </div>
         <div>
-          <Link href="/" className="text-links text-sm">
+          <Link href="" className="text-links text-sm">
             Esqueci-me da password
           </Link>
         </div>
@@ -53,7 +53,7 @@ export default function Login() {
 
       <div className="mx-6 mt-40 text-center">
         <p>
-          Ainda não tens conta?{" "}
+          Ainda não tens conta?
           <Link href="/register" className="font-bold text-links">
             Criar conta
           </Link>
