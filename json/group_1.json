@@ -1,0 +1,9 @@
+{
+    "status": 200,
+    "group": {
+      "id": 0,
+      "name": "2esq uwu",
+      "invoice_date": "2022-12-23T00:00:00.000Z",
+      "members": [1, 2]
+    }
+  }

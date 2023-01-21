@@ -1,0 +1,29 @@
+{
+  "status": 200,
+  "user": {
+    "id": 2,
+    "email": "pedro001@gmail.com",
+    "password": "$2y$10$X3JmxLTV8lImnnTxtLmbp.E35W.jiHA2oRpkUM/o7wciNrtpsJ10q",
+    "name": "João Silva",
+    "avatar": "/img/dog.png",
+    "hist_use": [
+      {
+        "id": 0,
+        "date": "2022-12-30T22:56:00.000Z",
+        "name": "banho_imersao",
+        "type": "task",
+        "duration": "2022-12-29T21:02:00.085Z",
+        "weekdays": ["mon"],
+        "time": "2022-12-29T21:02:00.085Z"
+      }
+    ]
+  },
+  "hist_payment": [
+    {
+      "id": 0,
+      "date": "2022-12-29T21:02:00.085Z",
+      "total_value": 55,
+      "percentage": 0.25
+    }
+  ]
+}
