@@ -22,44 +22,44 @@ const AllUsage = () => {
   let taskName = "";
   let taskInit = "";
   let taskEnd = "";
+  let taskDuration = "";
   let date = "";
   let cleanDate = "";
-  let cleantaskInit="";
-  let cleantaskEnd="";
+  let cleantaskDuration = "";
+  let today = new Date();
+  let todaySum = "";
 
   //Handle the error state
   if (error) return <div>Failed to load</div>;
   //Handle the loading state
   if (!data) return <div>Loading...</div>;
-  console.log("success",data);
+  console.log("success", data);
 
-  obj=data.user.hist_use;
-  console.log(obj)
+  obj = data.user.hist_use;
+  console.log(obj);
   const UseHisto = obj.map((use, index) => {
     taskName = use.name;
     taskInit = new Date(use.start_date);
     taskEnd = new Date(use.end_date);
+    taskDuration = new Date(taskEnd - taskInit);
     date = use.time;
     const options = { month: "short", day: "numeric" };
     cleanDate = new Date(date).toLocaleDateString("pt-PT", options);
 
-    cleantaskInit = taskInit.getHours() + ':' + taskInit.getMinutes() + ':' + taskInit.getSeconds(); 
-    cleantaskEnd = taskEnd.getHours() + ':' + taskEnd.getMinutes() + ':' + taskEnd.getSeconds();
+    cleantaskDuration = Math.floor(taskDuration / 1000 / 60);
 
-    console.log(use.id);
-    console.log(taskInit);
-    console.log(taskEnd);
-    console.log(date);
-    console.log(cleantaskInit);
+    if (today.toDateString() === date) {
+      todaySum = cleantaskDuration;
+    }
+
+    console.log(todaySum);
     return (
       <>
         <Card type="stroke">
           <CardItem className="flex justify-between items-center">
             <UsageInfo key={index}>
-              <h4>Started at:</h4>
-              <p> {cleantaskInit}</p>
-              <h4>Finished at:</h4>
-              <p> {cleantaskEnd}</p>
+              <h4>{cleantaskDuration} min</h4>
+              <p> {taskName}</p>
             </UsageInfo>
             <p className="text-muted">{cleanDate}</p>
           </CardItem>
@@ -80,7 +80,7 @@ const AllUsage = () => {
       <Header page="Histórico uso" />
       <div className="relative pt-20 px-6 flex flex-col gap-3 pb-6">
         <Card>
-          <ThisMonth>120 min</ThisMonth>
+          <ThisMonth>{todaySum}</ThisMonth>
           <p className="mt-2">Hoje</p>
         </Card>
 
