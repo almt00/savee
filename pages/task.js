@@ -6,12 +6,8 @@ import Header from "../components/elements/Header";
 import Task from "../components/elements/Task";
 import Timer from "../components/Timer";
 import Breadcrumb from "../components/elements/Breadcrumb";
-import { useRouter } from "next/router";
 
 export default function task() {
-  const router = useRouter();
-  const query = router.query; // ir buscar query string ao URL
-  const taskId = parseInt(query.id); // passar para inteiro para comparar com id da API
   return (
     <>
       <Head>
@@ -25,7 +21,7 @@ export default function task() {
       <div className="relative pt-20 px-6 flex flex-col gap-3 pb-6">
         <Breadcrumb/>
         <Card classes="flex flex-col justify-center items-center">
-          <Task type={taskId} size="lg"></Task>
+          <Task size="lg"></Task>
           <Timer />
         </Card>
       </div>
