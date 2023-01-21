@@ -120,7 +120,7 @@ export default function Routine() {
 
       <Background color="purple" />
       <Header page="Rotinas" />
-      <div className="relative pt-20">
+      <div className="relative pt-20 px-6 flex flex-col gap-3 pb-6">
         <Breadcrumb />
         <Card>
           {fieldGroups[step]}
