@@ -1,4 +1,5 @@
 import React, { use } from "react";
+import Layout from "../components/elements/Layout";
 import Button from "../components/elements/Button";
 import { styled } from "@stitches/react";
 import { useState } from "react";
@@ -23,7 +24,7 @@ export default function Landing() {
   });
 
   return (
-    <>
+    <Layout title="Savee" description="Savee">
       <Navbar className="flex justify-end items-center gap-4 p-4">
         <Link href="/login"><Button size="lg">Iniciar Sessão</Button></Link>
         <div id="menu">
@@ -111,7 +112,7 @@ export default function Landing() {
         <Image src="/img/logo.svg" width={74} height={74} alt="Savee Logo" />
         <p>&copy; Copyright 2022 Savee</p>
       </Footer>
-    </>
+    </Layout>
   );
 }
 
