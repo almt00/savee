@@ -19,8 +19,9 @@ const AllUsage = () => {
   const { data, error } = useSWR("/api/user_1", fetcher);
 
   let obj = "";
-  let value = "";
-  let usage = "";
+  let taskName = "";
+  let taskInit = "";
+  let taskEnd = "";
   let date = "";
   let cleanDate = "";
 
@@ -33,23 +34,26 @@ const AllUsage = () => {
   obj=data.user.hist_use;
   console.log(obj)
   const UseHisto = obj.map((use, index) => {
-    value = use.duration;
-    usage = use.type;
-    date = use.date;
+    taskName = use.name;
+    taskInit = use.start_date;
+    taskEnd = use.end_date;
+    date = use.time;
     const options = { month: "short", day: "numeric" };
     cleanDate = new Date(date).toLocaleDateString("pt-PT", options);
 
     console.log(use.id);
-    console.log(value);
-    console.log(usage);
+    console.log(taskInit);
+    console.log(taskEnd);
     console.log(date);
     return (
       <>
         <Card type="stroke">
           <CardItem className="flex justify-between items-center">
             <UsageInfo key={index}>
-              <h4>{value}€</h4>
-              <p className="mt-1">{usage}</p>
+              <h4>Started at:</h4>
+              <p> {taskInit}</p>
+              <h4>Finished at:</h4>
+              <p> {taskEnd}</p>
             </UsageInfo>
             <p className="text-muted">{cleanDate}</p>
           </CardItem>
