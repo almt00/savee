@@ -1,5 +1,6 @@
 import { styled } from '@stitches/react';
 import Chart from './Chart';
+import Card from './Card';
 
 //criar switch ou else if :
 //com tendência a subir em comparação com último mÊs _ seta up,
@@ -13,7 +14,7 @@ const DashboardCard = () => {
   let percentage = 1.5;
 
   return (
-    <div>
+    <Card>
       <Container>
         <NumberKw>
           {kwTotalUser} kW
@@ -39,7 +40,7 @@ const DashboardCard = () => {
         <span className='font-bold'>{percentage}% </span>melhor que o mês
         passado
       </Stats>
-    </div>
+    </Card>
   );
 };
 
