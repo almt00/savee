@@ -37,16 +37,14 @@ const AllUsage = () => {
   console.log(obj)
   const UseHisto = obj.map((use, index) => {
     taskName = use.name;
-    taskInit = use.start_date;
-    taskEnd = use.end_date;
+    taskInit = new Date(use.start_date);
+    taskEnd = new Date(use.end_date);
     date = use.time;
     const options = { month: "short", day: "numeric" };
     cleanDate = new Date(date).toLocaleDateString("pt-PT", options);
 
-    const timeOptions = {hour: "numeric", minute: "numeric", second:"numeric"}
-    cleantaskInit = new Date(taskInit).toTimeString("pt-PT", timeOptions);
-    cleantaskEnd = new Date(taskEnd).toTimeString("pt-PT", timeOptions);
-
+    cleantaskInit = taskInit.getHours() + ':' + taskInit.getMinutes() + ':' + taskInit.getSeconds(); 
+    cleantaskEnd = taskEnd.getHours() + ':' + taskEnd.getMinutes() + ':' + taskEnd.getSeconds();
 
     console.log(use.id);
     console.log(taskInit);
