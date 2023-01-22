@@ -6,7 +6,7 @@ import classNames from "classnames";
 import { ChevronDownIcon } from "@radix-ui/react-icons";
 import Entries from "./Entries";
 
-const RoutinesList = (props) => (
+const RoutinesList = () => (
     <AccordionRoot type="single" defaultValue="item-1" collapsible>
       <AccordionItem
         value="item-1"
@@ -16,7 +16,7 @@ const RoutinesList = (props) => (
           Manhã
         </AccordionTrigger>
         <AccordionContent>
-          <Entries />
+          <Entries time="morning"/>
         </AccordionContent>
       </AccordionItem>
 
@@ -28,7 +28,7 @@ const RoutinesList = (props) => (
           Tarde
         </AccordionTrigger>
         <AccordionContent>
-          <Entries />
+          <Entries time="afternoon"/>
         </AccordionContent>
       </AccordionItem>
 
@@ -40,7 +40,7 @@ const RoutinesList = (props) => (
           Noite
         </AccordionTrigger>
         <Accordion.Content>
-          <Entries />
+          <Entries time="night"/>
         </Accordion.Content>
       </AccordionItem>
     </AccordionRoot>
