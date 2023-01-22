@@ -6,9 +6,15 @@ import { useRouter } from "next/router";
 
 //Write a fetcher function to wrap the native fetch function and return the result of a call to url in json format
 const Task = (props) => {
+  let taskId;
   const router = useRouter();
   const query = router.query; // ir buscar query string ao URL
-  const taskId = parseInt(query.id); // passar para inteiro para comparar com id da API
+  if (query === {} || query.id === undefined) { // ver se esta task vem com info de props ou da query string
+     taskId = props.taskId; // passar para inteiro para comparar com id da API
+  } else {
+     taskId = parseInt(query.id); // passar para inteiro para comparar com id da API
+
+  }
   const dispatch = useDispatch();
   const tasksData = useSelector(getTasks);
   let imagePath = "";
@@ -23,7 +29,7 @@ const Task = (props) => {
 
   if (tasksData.status === 200) {
     tasksData.tasks.forEach((task) => {
-      if (task.name === props.type) {
+      if (task.id === taskId) {
         imagePath = task.image;
         taskTitle = task.name;
       }

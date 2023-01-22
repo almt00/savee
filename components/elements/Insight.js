@@ -44,7 +44,7 @@ const Insight = (props) => {
     <>
       <Card size="sm" type="stroke">
         <div className="flex justify-between gap-2">
-          <Task type={props.type} size="sm" />
+          <Task taskId={props.taskId} size="sm" />
           <div className="flex gap-1 items-center">
             <h4>{props.value}</h4>
             <svg
