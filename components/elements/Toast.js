@@ -1,17 +1,22 @@
 import { styled } from '@stitches/react';
 import { useState } from 'react';
 
-export default function Toast() {
+export default function Toast(props) {
   const [isShown, setIsShown] = useState(true);
+  const [timeOut, setTimeOut] = useState(null);
+
+  setTimeout(() => {
+    setTimeOut(1);
+  }, 5000);
 
   const hideToaster = event => {
     // 👇️ set it to true
     setIsShown(false);
   };
 
-  if (isShown == true) {
+  if (isShown == true && timeOut !== 1) {
     return (
-      <Container>
+      <Container className={`toast ${props.className}`}>
         <BannerText>Valor confirmado com sucesso</BannerText>
         <Cross onClick={hideToaster}>
           <svg
@@ -40,6 +45,12 @@ const Container = styled('div', {
   padding: '1rem 1.5rem',
   display: 'flex',
   justifyContent: 'space-between',
+  position: 'fixed',
+  bottom: '0',
+  left: '0',
+  right: '0',
+  margin: '1rem 1.5rem',
+  zIndex: '1',
 });
 
 const BannerText = styled('p', {

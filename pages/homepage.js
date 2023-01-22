@@ -9,7 +9,7 @@ import DisplayName from '../components/dashboard/DisplayName';
 import Toast from '../components/elements/Toast';
 import { useRouter } from 'next/router';
 
-export default function Homepage(props) {
+export default function Homepage() {
   const router = useRouter();
   const query = router.query; // ir buscar query string ao URL
   const toastStatus = query.toast; // capturar toast status
@@ -36,7 +36,7 @@ export default function Homepage(props) {
           </div>
         </div>
         <RoutinesList />
-        <Toast />
+        {toastStatus === 'success' ? <Toast className = 'show' /> : ''}
       </div>
     </Layout>
   );
