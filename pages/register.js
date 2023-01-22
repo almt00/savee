@@ -36,7 +36,7 @@ export default function Register() {
       >
         <Form name="Email" type="email" required />
         <div className="mt-6">
-          <Form name="Password" type="password" required />
+          <Form name="Password" type="password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one  number and one uppercase and lowercase letter, and at least 8 or more characters" required />
         </div>
         <div className="flex justify-center">
           <Button type="submit" className="mt-6" bg="solid" size="lg">
@@ -81,7 +81,7 @@ export default function Register() {
         }}
       >
         <div className="mt-6">
-          <Form name="Nome" type="text" />
+          <Form name="Nome grupo" type="text" />
         </div>
         <hr className="my-6" />
         <p className="black">
