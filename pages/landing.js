@@ -1,4 +1,5 @@
 import React, { use } from "react";
+import Layout from "../components/elements/Layout";
 import Button from "../components/elements/Button";
 import { styled } from "@stitches/react";
 import { useState } from "react";
@@ -23,27 +24,11 @@ export default function Landing() {
   });
 
   return (
-    <>
-      <Navbar className="flex justify-end items-center gap-4 p-4">
+    <Layout title="Savee" description="Savee">
+      <Navbar className="flex justify-end items-center gap-4 p-4"> 
         <Link href="/login"><Button size="lg">Iniciar Sessão</Button></Link>
-        <div id="menu">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-            strokeWidth={1.5}
-            stroke="currentColor"
-            className="w-7 h-7"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"
-            />
-          </svg>
-        </div>
       </Navbar>
-      <FirstSection className="flex items-center justify-center">
+      <FirstSection className="flex items-center justify-cente">
         <div className="flex flex-col items-center gap-6">
           <Image src="/img/logo.svg" width={150} height={150} alt="Savee Logo" />
           <div>
@@ -55,10 +40,10 @@ export default function Landing() {
             teus consumos, o teu preço!
           </p>
           </div>
-          <Button size="lg">Saber Mais</Button>
+          <Link href="#about" scroll={false}><Button size="lg">Saber Mais</Button></Link>
         </div>
       </FirstSection>
-      <SecondSection className="flex flex-col items-center justify-center gap-12">
+      <SecondSection className="flex flex-col items-center justify-center gap-12" id="about">
         <h2>Como funciona?</h2>
         <Carousel {...handlers}>
           <Slides style={{ transform: `translateX(-${activeIndex * 100}%)` }}>
@@ -105,13 +90,13 @@ export default function Landing() {
             </SlideItem>
           </Slides>
         </Carousel>
-        <Button size="lg">Começar a Usar</Button>
+        <Link href="/register"><Button size="lg">Começar a Usar</Button></Link>
       </SecondSection>
       <Footer className="flex text-center justify-between items-center">
         <Image src="/img/logo.svg" width={74} height={74} alt="Savee Logo" />
         <p>&copy; Copyright 2022 Savee</p>
       </Footer>
-    </>
+    </Layout>
   );
 }
 

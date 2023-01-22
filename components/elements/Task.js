@@ -1,29 +1,29 @@
 import { styled } from "@stitches/react";
-import useSWR from "swr";
+import { useEffect } from "react";
+import { useSelector,useDispatch } from "react-redux";
+import { fetchAsyncTasks,getTasks } from "../../store/TasksSlice";
+import { useRouter } from "next/router";
 
 //Write a fetcher function to wrap the native fetch function and return the result of a call to url in json format
-const fetcher = (url) =>
-  fetch(url)
-    .then((res) => res.json())
-    .then((res) => JSON.parse(res));
-
 const Task = (props) => {
+  const router = useRouter();
+  const query = router.query; // ir buscar query string ao URL
+  const taskId = parseInt(query.id); // passar para inteiro para comparar com id da API
+  const dispatch = useDispatch();
+  const tasksData = useSelector(getTasks);
   let imagePath = "";
   let taskTitle = "";
 
-  //Set up SWR to run the fetcher function when calling api
-  const { data, error } = useSWR("/api/tasks", fetcher);
+  useEffect(() => {
+    if (tasksData.status !== 200) {
+      dispatch(fetchAsyncTasks()); // fazer o fetch com redux caso ainda n esteja o estado (ex.: reloads de pagina)
+    }
+  }, [dispatch]);
 
-  //Handle the error state
-  if (error) return <div>Failed to load</div>;
-  //Handle the loading state
-  if (!data) return <div>Loading...</div>;
 
-  if (data) {
-    console.log(typeof data.tasks);
-    console.log(data.tasks);
-    data.tasks.forEach((task) => {
-      if (task.name === props.type) {
+  if (tasksData.status === 200) {
+    tasksData.tasks.forEach((task) => {
+      if (task.id === taskId) {
         imagePath = task.image;
         taskTitle = task.name;
       }
@@ -48,7 +48,7 @@ const TaskContainer = styled("div", {
         gap: "20px",
         alignItems: "center",
         padding: "0",
-        marginBottom: ".5rem"
+        marginBottom: ".5rem",
       },
       lg: {
         display: "flex",
@@ -62,7 +62,7 @@ const TaskContainer = styled("div", {
       horizontal: {
         flexDirection: "row",
       },
-    }
+    },
   },
 });
 

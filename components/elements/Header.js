@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { styled } from "@stitches/react";
 import Menu from "./Menu";
 
@@ -9,15 +9,16 @@ const HeaderSection = styled("div", {
   width: "100vw",
 });
 
-const openMenu = function (e) {
-  let menu = document.getElementById("menu");
-  let overlay = document.getElementById("menu_overlay");
-  menu.style.transform = "translate(0%)";
-  menu.style.transition = "0.3s ease-in";
-  overlay.style.transform = "translate(0%)";
-};
 
 export default function Header(props) {
+  const openMenu = function (e) {
+    let menu = document.getElementById("menu");
+    let overlay = document.getElementById("menu_overlay");
+    menu.style.transform = "translate(0%)";
+    menu.style.transition = "0.3s ease-in";
+    overlay.style.transform = "translate(0%)";
+    document.documentElement.style.overflow = "hidden";
+  };
   return (
     <>
       <HeaderSection
