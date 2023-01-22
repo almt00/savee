@@ -5,50 +5,77 @@
     "email": "pedro001@gmail.com",
     "password": "$2y$10$X3JmxLTV8lImnnTxtLmbp.E35W.jiHA2oRpkUM/o7wciNrtpsJ10q",
     "name": "Pedro Silva",
-    "avatar": "/img/dog.png",
+    "avatar": "/img/pedro.png",
     "hist_use": [
       {
         "id": 0,
-        "start_date": "Fri Dec 19 2022 08:35:31",
+        "start_date": "Mon Dec 20 2022 08:35:31",
         "name": "Duche",
         "task_id": 2,
         "type": "task",
-        "end_date": "Fri Dec 19 2022 10:20:08",
+        "end_date": "Fri Dec 20 2022 08:50:08",
         "weekdays": ["mon"]
       },
       {
         "id": 1,
-        "start_date": "Fri Jan 12 2023 20:25:28",
+        "start_date": "Fri Jan 1 2023 20:25:28",
         "name": "Banho imersão",
         "task_id": 1,
         "type": "task",
-        "end_date": "Fri Jan 12 2023 20:42:10",
-        "weekdays": ["mon"]
+        "end_date": "Fri Jan 1 2023 21:00:10",
+        "weekdays": ["fri"]
       },
       {
         "id": 2,
-        "start_date": "Fri Jan 17 2023 16:42:37",
+        "start_date": "Fri Jan 1 2023 21:05:37",
         "name": "Secar cabelo",
         "task_id": 4,
         "type": "task",
-        "end_date": "Fri Jan 17 2023 16:55:04",
-        "weekdays": ["mon"]
+        "end_date": "Fri Jan 1 2023 21:11:04",
+        "weekdays": ["fri"]
       },
       {
         "id": 3,
-        "start_date": "Fri Jan 21 2023 22:13:24",
+        "start_date": "Tue Jan 22 2023 21:13:24",
+        "name": "Aquecimento",
+        "task_id": 0,
+        "type": "task",
+        "end_date": "Fri Jan 22 2023 23:25:49",
+        "weekdays": ["tue"]
+      },
+      {
+        "id": 4,
+        "start_date": "Wed Jan 24 2023 12:30:13",
+        "name": "Cozinhar",
+        "task_id": 3,
+        "type": "task",
+        "end_date": "Fri Jan 24 2023 13:05:49",
+        "weekdays": ["wed"]
+      },
+      {
+        "id": 5,
+        "start_date": "Mon Jan 24 2023 20:00:24",
+        "name": "Lavar roupa",
+        "task_id": 5,
+        "type": "task",
+        "end_date": "Fri Jan 24 2023 21:12:49",
+        "weekdays": ["mon"]
+      },
+      {
+        "id": 6,
+        "start_date": "Tue Jan 21 2023 08:25:24",
         "name": "Duche",
         "task_id": 2,
         "type": "task",
-        "end_date": "Fri Jan 21 2023 22:21:49",
-        "weekdays": ["mon"]
+        "end_date": "Tue Jan 21 2023 08:37:30",
+        "weekdays": ["tue"]
       }
     ]
   },
   "hist_payment": [
     {
       "id": 0,
-      "date": "Tue Dec 27 2022 14:35:22",
+      "date": "2022-12-26T21:02:00.085Z",
       "total_value": 55,
       "percentage": 25
     },
