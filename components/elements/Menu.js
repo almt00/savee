@@ -1,6 +1,9 @@
 import { styled } from "@stitches/react";
-import React from "react";
+import React, { useEffect } from "react";
 import Link from "next/link";
+import { useRouter } from "next/router";
+import { useSelector } from "react-redux";
+import { getPage } from "../../store/PageSlice";
 
 // falta fazer a logica de selecionar a area da app no menu
 const collapseMenu = function (e) {
@@ -14,6 +17,21 @@ const collapseMenu = function (e) {
 };
 
 export default function Menu() {
+  let page = useSelector(getPage);
+  useEffect(() => {
+    if (document.getElementById(page) !== null) {
+      document.getElementById(page).className = "selected";
+      document.getElementById(page).style.backgroundColor = "$yellow";
+
+    }
+  }, [page]);
+
+  const router = useRouter();
+  const { asPath } = useRouter();
+  const handleClick = (event, path) => {
+    event.preventDefault();
+    router.push(path);
+  };
   return (
     <>
       <div
@@ -28,7 +46,7 @@ export default function Menu() {
         onClick={collapseMenu}
       >
         <div>
-          <Link href='/homepage'>
+          <Link href="" onClick={(e) => handleClick(e, "/homepage")}>
             <img
               src="/img/logo_alt.svg"
               className="mt-6 ml-6"
@@ -36,14 +54,17 @@ export default function Menu() {
             />
           </Link>
           <MenuList>
-            <Link href='/homepage'>
-              <li className='selected'>
-                <img src='/img/home-icon.svg' className='ml-6' alt='Home' />
+            <Link href="/homepage" onClick={(e) => handleClick(e, "/homepage")}>
+              <li className="" id="homepage">
+                <img src="/img/home-icon.svg" className="ml-6" alt="Home" />
                 <h2>Homepage</h2>
               </li>
             </Link>
-            <Link href="/all-usage">
-              <li className="">
+            <Link
+              href="/all-usage"
+              onClick={(e) => handleClick(e, "/all-usage")}
+            >
+              <li className="" id="usage">
                 <img
                   src="/img/chart-pie-icon.svg"
                   className="ml-6"
@@ -52,19 +73,20 @@ export default function Menu() {
                 <h2>Histórico uso</h2>
               </li>
             </Link>
-            {/*<li className="">
-              <img src="/img/check-circle-icon.svg" className="ml-6" alt="Tarefas" />
-              <h2>Tarefas</h2>
-  </li>*/}
-
-            <Link href="/create-routine">
-              <li className="">
+            <Link
+              href="/create-routine"
+              onClick={(e) => handleClick(e, "/create-routine")}
+            >
+              <li className="" id="routines">
                 <img src="/img/sun-icon.svg" className="ml-6" alt="Rotinas" />
                 <h2>Rotinas</h2>
               </li>
             </Link>
-            <Link href='/all-payments'>
-              <li className=''>
+            <Link
+              href="/all-payments"
+              onClick={(e) => handleClick(e, "/all-payments")}
+            >
+              <li className="" id="payments">
                 <img
                   src="/img/currency-dollar-icon.svg"
                   className="ml-6"
@@ -109,27 +131,22 @@ const MenuList = styled("ul", {
     width: "90%",
     transition: "background-color 0.3s ease",
   },
-  "li:nth-child(1)": {
+  "#homepage": {
     "&:hover, &.selected": {
       backgroundColor: "$mint",
     },
   },
-  "li:nth-child(2)": {
+  "#usage": {
     "&:hover, &.selected": {
       backgroundColor: "$orange",
     },
   },
-  "li:nth-child(3)": {
-    "&:hover, &.selected": {
-      backgroundColor: "$yellow",
-    },
-  },
-  "li:nth-child(4)": {
+  "#routines": {
     "&:hover, &.selected": {
       backgroundColor: "$purple",
     },
   },
-  "li:nth-child(5)": {
+  "#payments": {
     "&:hover, &.selected": {
       backgroundColor: "$skyblue",
     },
