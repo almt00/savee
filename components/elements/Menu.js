@@ -27,15 +27,15 @@ export default function Menu() {
         className='h-screen w-3/4 absolute z-50 bg-white pt-1 -translate-x-full flex flex-col justify-between'
       >
         <div>
-          <div className=''>
+          <Link href='/homepage'>
             <img
               src='/img/logo_alt.svg'
               className='mt-6 ml-6'
               alt='Savee logo'
             />
-          </div>
+          </Link>
           <MenuList>
-            <Link href='/homepage' onClick={collapseMenu}>
+            <Link href='/homepage'>
               <li className='selected'>
                 <img src='/img/home-icon.svg' className='ml-6' alt='Home' />
                 <h2>Homepage</h2>
