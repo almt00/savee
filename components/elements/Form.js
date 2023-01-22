@@ -90,6 +90,8 @@ const Form = (props) => {
         pattern={props.pattern}
         title={props.title}
         required={props.required}
+        min={props.min}
+        max={props.max}
       />
       <div id={`${props.id}_error`} className="hidden">
         <Image src="/img/x-circle.svg" alt="Erro" width="20" height="20" />

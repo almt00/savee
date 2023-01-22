@@ -16,6 +16,8 @@ export default function Register() {
   const [hasMounted, setHasMounted] = useState(false);
   // state to keep track of the current step
   const [step, setStep] = useState(0);
+  // var to keep track of the current date
+  const maxDate = new Date().toISOString().split("T")[0];
 
   // useEffect to fix hydration issue
   useEffect(() => {
@@ -121,7 +123,7 @@ export default function Register() {
       </p>
       <form action="/homepage">
         <div className="mt-6">
-          <Form name="Data da última fatura" type="date" required />
+          <Form name="Data da última fatura" type="date" min="2022-01-01" max={maxDate} required />
         </div>
         <Link href="" className="text-links text-sm">
           Precisas de ajuda?
