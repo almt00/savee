@@ -15,10 +15,21 @@ export default function Register() {
   //Grouping forms by section in a component
   const AuthFields = () => (
     <>
-      <Form name="Email" type="email" required />
-      <div className="mt-6">
-        <Form name="Password" type="password" required />
-      </div>
+      <form
+        action={() => {
+          setStep(step + 1);
+        }}
+      >
+        <Form name="Email" type="email" required />
+        <div className="mt-6">
+          <Form name="Password" type="password" required />
+        </div>
+        <div className="flex justify-center">
+          <Button type="submit" className="mt-6" bg="solid" size="lg">
+            Próximo
+          </Button>
+        </div>
+      </form>
     </>
   );
 
@@ -98,7 +109,12 @@ export default function Register() {
         {step === fieldGroups.length - 2 && (
           <>
             <Link href="/homepage">
-              <Button type="submit" className="mt-6 mr-4" bg="transparent" size="lg">
+              <Button
+                type="submit"
+                className="mt-6 mr-4"
+                bg="transparent"
+                size="lg"
+              >
                 Mais tarde
               </Button>
             </Link>
@@ -146,11 +162,9 @@ export default function Register() {
       </div>
       <div className="relative px-6 flex flex-col gap-3 pb-6">
         <Card>
-          <form action="">
           {fieldGroups[step]}
           {/*todo: disable when form validation is set up*/}
           <Navigation />
-          </form>
         </Card>
       </div>
     </Layout>
