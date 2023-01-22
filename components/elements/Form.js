@@ -82,6 +82,7 @@ const Form = (props) => {
         id={props.id}
         placeholder={placeholderValue}
         style={{ background: `url(/img/${icon}) no-repeat 98%` }}
+        required={props.required}
       />
       <div id={`${props.id}_error`} className="hidden">
         <Image src="/img/x-circle.svg" alt="Erro" width="20" height="20" />

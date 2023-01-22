@@ -15,9 +15,9 @@ export default function Register() {
   //Grouping forms by section in a component
   const AuthFields = () => (
     <>
-      <Form name="Email" />
+      <Form name="Email" type="email" required />
       <div className="mt-6">
-        <Form name="Password" />
+        <Form name="Password" type="password" required />
       </div>
     </>
   );
@@ -28,7 +28,7 @@ export default function Register() {
         Vamos customizar a tua experiência. Como te chamas?
       </p>
       <div className="mt-6">
-        <Form name="Nome" />
+        <Form name="Nome" type="text" required />
       </div>
     </>
   );
@@ -40,7 +40,7 @@ export default function Register() {
         grupo e convidar os teus colegas de casa?
       </p>
       <div className="mt-6">
-        <Form name="Nome" />
+        <Form name="Nome" type="text" />
       </div>
       <hr className="my-6" />
       <p className="black">
@@ -48,7 +48,7 @@ export default function Register() {
         casa e começa a poupar.
       </p>
       <div className="mt-6">
-        <Form name="Emails colegas" />
+        <Form name="Emails colegas" type="email" />
       </div>
     </>
   );
@@ -63,7 +63,7 @@ export default function Register() {
         para o Savee conseguir calcular quanto poupaste.
       </p>
       <div className="mt-6">
-        <Form name="Data da última fatura" />
+        <Form name="Data da última fatura" type="date" />
       </div>
       <Link href="" className="text-links text-sm">
         Precisas de ajuda?
@@ -77,13 +77,14 @@ export default function Register() {
       <div className="flex justify-center">
         {step === fieldGroups.length - 1 && (
           <Link href="/homepage">
-            <Button className="mt-6" bg="solid" size="lg">
+            <Button type="submit" className="mt-6" bg="solid" size="lg">
               Criar conta
             </Button>
           </Link>
         )}
         {step < 2 && (
           <Button
+            type="submit"
             className="mt-6"
             bg="solid"
             size="lg"
@@ -97,11 +98,12 @@ export default function Register() {
         {step === fieldGroups.length - 2 && (
           <>
             <Link href="/homepage">
-              <Button className="mt-6 mr-4" bg="transparent" size="lg">
+              <Button type="submit" className="mt-6 mr-4" bg="transparent" size="lg">
                 Mais tarde
               </Button>
             </Link>
             <Button
+              type="submit"
               className="mt-6"
               bg="solid"
               size="lg"
@@ -144,9 +146,11 @@ export default function Register() {
       </div>
       <div className="relative px-6 flex flex-col gap-3 pb-6">
         <Card>
+          <form action="">
           {fieldGroups[step]}
           {/*todo: disable when form validation is set up*/}
           <Navigation />
+          </form>
         </Card>
       </div>
     </Layout>
