@@ -8,8 +8,15 @@ import Tasks from '../components/dashboard/Tasks';
 import RoutinesList from '../components/dashboard/RoutinesList';
 import DisplayName from '../components/dashboard/DisplayName';
 import Toast from '../components/elements/Toast';
+import { useRouter } from 'next/router';
 
-export default function Homepage() {
+export default function Homepage(props) {
+  const router = useRouter();
+  const query = router.query; // ir buscar query string ao URL
+  const toastStatus = query.toast; // capturar toast status
+
+  console.log(toastStatus);
+
   const date = new Date().toLocaleDateString('pt-PT', {
     month: 'long',
     day: 'numeric',

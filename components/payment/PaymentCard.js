@@ -2,7 +2,6 @@ import { styled } from '@stitches/react';
 import Chart from '../elements/Chart';
 import Button from '../elements/Button';
 import Card from '../elements/Card';
-import { useRouter } from "next/router";
 
 const PaymentCard = (props) => {
   let percentageOurUser = 55;
@@ -40,7 +39,7 @@ const PaymentCard = (props) => {
           </User>
         </UsersContainer>
         <div className='text-center'>
-          <Link href='/homepage'>
+          <Link href={`/homepage?toast=success`}>
             <Button className='mt-6' bg='solid' size='lg'>
               Confirmar
             </Button>
