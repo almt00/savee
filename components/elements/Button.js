@@ -72,6 +72,11 @@ const Button = styled("button", {
         backgroundColor: "$success",
         border: "0px",
         color: "$white",
+        "&[type=submit]": {
+          backgroundColor: "$success",
+          border: "0px",
+          color: "$white",
+        },
         "&:hover:enabled": {
           backgroundColor: "#2A824E",
         },

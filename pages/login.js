@@ -27,22 +27,22 @@ export default function Login() {
       </div>
       <div className="relative px-6 flex flex-col gap-3 pb-6">
         <Card>
-          <Form name="Email" />
-          <div className="mt-6">
-            <Form name="Password" />
-          </div>
-          <div>
-            <Link href="" className="text-links text-sm">
-              Esqueci-me da password
-            </Link>
-          </div>
-          <div className="flex justify-center">
-            <Link href="/homepage">
-              <Button className="mt-6" bg="solid" size="lg">
+          <form action="/homepage">
+            <Form name="Email" type="email" required />
+            <div className="mt-6">
+              <Form name="Password" type="password" required />
+            </div>
+            <div>
+              <Link href="" className="text-links text-sm">
+                Esqueci-me da password
+              </Link>
+            </div>
+            <div className="flex justify-center">
+              <Button type="submit" className="mt-6" bg="solid" size="lg">
                 Iniciar sessão
               </Button>
-            </Link>
-          </div>
+            </div>
+          </form>
         </Card>
       </div>
 

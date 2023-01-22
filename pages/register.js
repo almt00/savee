@@ -7,29 +7,67 @@ import Form from "../components/elements/Form";
 import Button from "../components/elements/Button";
 import Background from "../components/elements/Background";
 import Link from "next/link";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 const inter = Inter({ subsets: ["latin"] });
 
 export default function Register() {
+  // state to fix hydration issue
+  const [hasMounted, setHasMounted] = useState(false);
+  // state to keep track of the current step
+  const [step, setStep] = useState(0);
+  // var to keep track of the current date
+  const maxDate = new Date().toISOString().split("T")[0];
+
+  // useEffect to fix hydration issue
+  useEffect(() => {
+    setHasMounted(true);
+  }, []);
+
+  if (!hasMounted) {
+    return null;
+  }
+
   //Grouping forms by section in a component
   const AuthFields = () => (
     <>
-      <Form name="Email" />
-      <div className="mt-6">
-        <Form name="Password" />
-      </div>
+      <form
+        onSubmit={() => {
+          setStep(step + 1);
+        }}
+      >
+        <Form name="Email" type="email" required />
+        <div className="mt-6">
+          <Form name="Password" type="password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Deve conter pelo menos um número, uma maiúscula e uma minúscula, e conter pelo menos 8 caracteres." required />
+        </div>
+        <div className="flex justify-center">
+          <Button type="submit" className="mt-6" bg="solid" size="lg">
+            Próximo
+          </Button>
+        </div>
+      </form>
     </>
   );
 
   const UserFields = () => (
     <>
-      <p className="black">
-        Vamos customizar a tua experiência. Como te chamas?
-      </p>
-      <div className="mt-6">
-        <Form name="Nome" />
-      </div>
+      <form
+        onSubmit={() => {
+          setStep(step + 1);
+        }}
+      >
+        <p className="black">
+          Vamos customizar a tua experiência. Como te chamas?
+        </p>
+        <div className="mt-6">
+          <Form name="Nome" type="text" required />
+          <div className="flex justify-center">
+            <Button type="submit" className="mt-6" bg="solid" size="lg">
+              Próximo
+            </Button>
+          </div>
+        </div>
+      </form>
     </>
   );
 
@@ -39,17 +77,38 @@ export default function Register() {
         Não temos nenhum grupo associado ao teu email. Queres criar um novo
         grupo e convidar os teus colegas de casa?
       </p>
-      <div className="mt-6">
-        <Form name="Nome" />
-      </div>
-      <hr className="my-6" />
-      <p className="black">
-        O savee só funciona se todos colaborarem. Convida os teus colegas de
-        casa e começa a poupar.
-      </p>
-      <div className="mt-6">
-        <Form name="Emails colegas" />
-      </div>
+      <form
+        onSubmit={() => {
+          setStep(step + 1);
+        }}
+      >
+        <div className="mt-6">
+          <Form name="Nome grupo" type="text" />
+        </div>
+        <hr className="my-6" />
+        <p className="black">
+          O savee só funciona se todos colaborarem. Convida os teus colegas de
+          casa e começa a poupar.
+        </p>
+        <div className="mt-6">
+          <Form name="Emails colegas" type="email" />
+        </div>
+        <div className="flex justify-center">
+          <Link href="/homepage">
+            <Button
+              type="submit"
+              className="mt-6 mr-4"
+              bg="transparent"
+              size="lg"
+            >
+              Mais tarde
+            </Button>
+          </Link>
+          <Button type="submit" className="mt-6" bg="solid" size="lg">
+            Próximo
+          </Button>
+        </div>
+      </form>
     </>
   );
 
@@ -62,63 +121,21 @@ export default function Register() {
         Consulta a tua fatura de eletricidade e acrescenta os seguintes dados
         para o Savee conseguir calcular quanto poupaste.
       </p>
-      <div className="mt-6">
-        <Form name="Data da última fatura" />
-      </div>
-      <Link href="" className="text-links text-sm">
-        Precisas de ajuda?
-      </Link>
-    </>
-  );
-
-  // logic to navigate between steps
-  const Navigation = () => (
-    <>
-      <div className="flex justify-center">
-        {step === fieldGroups.length - 1 && (
-          <Link href="/homepage">
-            <Button className="mt-6" bg="solid" size="lg">
-              Criar conta
-            </Button>
-          </Link>
-        )}
-        {step < 2 && (
-          <Button
-            className="mt-6"
-            bg="solid"
-            size="lg"
-            onClick={() => {
-              setStep(step + 1);
-            }}
-          >
-            Próximo
+      <form action="/homepage">
+        <div className="mt-6">
+          <Form name="Data da última fatura" type="date" min="2022-01-01" max={maxDate} required />
+        </div>
+        <Link href="" className="text-links text-sm">
+          Precisas de ajuda?
+        </Link>
+        <div className="flex justify-center">
+          <Button type="submit" className="mt-6" bg="solid" size="lg">
+            Criar conta
           </Button>
-        )}
-        {step === fieldGroups.length - 2 && (
-          <>
-            <Link href="/homepage">
-              <Button className="mt-6 mr-4" bg="transparent" size="lg">
-                Mais tarde
-              </Button>
-            </Link>
-            <Button
-              className="mt-6"
-              bg="solid"
-              size="lg"
-              onClick={() => {
-                setStep(step + 1);
-              }}
-            >
-              Próximo
-            </Button>
-          </>
-        )}
-      </div>
+        </div>
+      </form>
     </>
   );
-
-  // state to keep track of the current step
-  const [step, setStep] = useState(0);
 
   // array of components to be rendered
   const fieldGroups = [
@@ -145,8 +162,6 @@ export default function Register() {
       <div className="relative px-6 flex flex-col gap-3 pb-6">
         <Card>
           {fieldGroups[step]}
-          {/*todo: disable when form validation is set up*/}
-          <Navigation />
         </Card>
       </div>
     </Layout>

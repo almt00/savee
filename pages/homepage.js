@@ -1,4 +1,3 @@
-import React from 'react';
 import Layout from '../components/elements/Layout';
 import Header from '../components/elements/Header';
 import Background from '../components/elements/Background';
@@ -21,7 +20,6 @@ export default function Homepage(props) {
     month: 'long',
     day: 'numeric',
   });
-
   return (
     <Layout title='Dashboard' description='Homepage for Savee'>
       <Background color='mint' />

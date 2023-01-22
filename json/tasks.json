@@ -5,43 +5,61 @@
       "id": 0,
       "name": "Aquecimento",
       "image": "/img/heating@2x.png",
-      "kw_hour": 2000,
-      "default_time": 60000
+      "kw_hour": 252,
+      "default_time": 3600000,
+      "tips": [
+        "Fechar as janelas e isolar as portas ajuda a manter a casa termicamente mais confortável."
+      ]
     },
     {
       "id": 1,
       "name": "Banho imersão",
       "image": "/img/bath@2x.png",
-      "kw_hour": 1200,
-      "default_time": 60000
+      "kw_hour": 520,
+      "default_time": 1800000,
+      "tips": [
+        "Considera a temperatura da água. Quanto mais quente, mais energia é consumida.",
+        "Troca um banho de imersão por um duche rápido."
+      ]
     },
     {
       "id": 2,
       "name": "Duche",
       "image": "/img/shower@2x.png",
-      "kw_hour": 1400,
-      "default_time": 60000
+      "kw_hour": 360,
+      "default_time": 943800,
+      "tips": [
+        "Considera a temperatura da água. Quanto mais quente, mais energia é consumida."
+      ]
     },
     {
       "id": 3,
       "name": "Cozinhar",
       "image": "/img/cooking@2x.png",
-      "kw_hour": 500,
-      "default_time": 60000
+      "kw_hour": 132,
+      "default_time": 1200000,
+      "tips": [
+        "Evita abrir a porta do forno pois cada vez que esta é aberta 20% do calor é perdido",
+        "Evita deixar a porta do frigorífico aberta."
+      ]
     },
     {
       "id": 4,
       "name": "Secar cabelo",
       "image": "/img/hairdry@2x.png",
-      "kw_hour": 1600,
-      "default_time": 60000
+      "kw_hour": 12,
+      "default_time": 600000
     },
     {
       "id": 5,
       "name": "Lavar roupa",
       "image": "/img/laundry@2x.png",
-      "kw_hour": 1400,
-      "default_time": 60000
+      "kw_hour": 640,
+      "default_time": 3600000,
+      "tips": [
+        "Considera usar a máquina de lavar a roupa apenas quando estiver cheia.",
+        "Utiliza preferencialmente programas de baixa de temperatura."
+      ]
     }
   ]
 }
