@@ -1,6 +1,4 @@
-import React from 'react';
 import Layout from '../components/elements/Layout';
-import Head from 'next/head';
 import Header from '../components/elements/Header';
 import Background from '../components/elements/Background';
 import Banner from '../components/elements/Banner';
@@ -14,10 +12,8 @@ export default function Homepage() {
     month: 'long',
     day: 'numeric',
   });
-
-
   return (
-    <Layout title="Dashboard" description="Homepage for Savee">
+    <Layout title='Dashboard' description='Homepage for Savee'>
       <Background color='mint' />
       <Header page='Homepage' />
       <div className='relative pt-20 px-6 flex flex-col gap-3 pb-6'>
