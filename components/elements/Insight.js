@@ -4,6 +4,7 @@ import Task from "./Task";
 import Tip from "./Tip";
 
 export default function Insight() {
+
   return (
     <>
       <Card size="sm" type="stroke">
