@@ -29,66 +29,59 @@
     "hist_use": [
       {
         "id": 0,
-        "start_date": "Mon Dec 20 2022 08:35:31",
+        "start_date": "Dec 20 2022 08:35:31",
         "name": "Duche",
         "task_id": 2,
         "type": "task",
-        "end_date": "Fri Dec 20 2022 08:50:08",
-        "weekdays": ["mon"]
+        "end_date": "Dec 20 2022 08:50:08"
       },
       {
         "id": 1,
-        "start_date": "Fri Jan 1 2023 20:25:28",
+        "start_date": "Jan 1 2023 20:25:28",
         "name": "Banho imersão",
         "task_id": 1,
         "type": "task",
-        "end_date": "Fri Jan 1 2023 21:00:10",
-        "weekdays": ["fri"]
+        "end_date": "Jan 1 2023 21:00:10"
       },
       {
         "id": 2,
-        "start_date": "Fri Jan 1 2023 21:05:37",
+        "start_date": "Jan 1 2023 21:05:37",
         "name": "Secar cabelo",
         "task_id": 4,
         "type": "task",
-        "end_date": "Fri Jan 1 2023 21:11:04",
-        "weekdays": ["fri"]
+        "end_date": "Jan 1 2023 21:11:04"
       },
       {
         "id": 3,
-        "start_date": "Tue Jan 22 2023 21:13:24",
+        "start_date": "Jan 22 2023 21:13:24",
         "name": "Aquecimento",
         "task_id": 0,
         "type": "task",
-        "end_date": "Fri Jan 22 2023 23:25:49",
-        "weekdays": ["tue"]
+        "end_date": "Jan 22 2023 23:25:49"
       },
       {
         "id": 4,
-        "start_date": "Wed Jan 24 2023 12:30:13",
+        "start_date": "Jan 24 2023 12:30:13",
         "name": "Cozinhar",
         "task_id": 3,
         "type": "task",
-        "end_date": "Fri Jan 24 2023 13:05:49",
-        "weekdays": ["wed"]
+        "end_date": "Jan 24 2023 13:05:49"
       },
       {
         "id": 5,
-        "start_date": "Mon Jan 24 2023 20:00:24",
+        "start_date": "Jan 24 2023 20:00:24",
         "name": "Lavar roupa",
         "task_id": 5,
         "type": "task",
-        "end_date": "Fri Jan 24 2023 21:12:49",
-        "weekdays": ["mon"]
+        "end_date": "Jan 24 2023 21:12:49"
       },
       {
         "id": 6,
-        "start_date": "Tue Jan 21 2023 08:25:24",
+        "start_date": "Jan 21 2023 08:25:24",
         "name": "Duche",
         "task_id": 2,
         "type": "task",
-        "end_date": "Tue Jan 21 2023 08:37:30",
-        "weekdays": ["tue"]
+        "end_date": "Jan 21 2023 08:37:30"
       }
     ]
   },
