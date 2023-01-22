@@ -23,7 +23,7 @@ const Task = (props) => {
 
   if (tasksData.status === 200) {
     tasksData.tasks.forEach((task) => {
-      if (task.id === taskId) {
+      if (task.name === props.type) {
         imagePath = task.image;
         taskTitle = task.name;
       }

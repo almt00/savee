@@ -19,8 +19,7 @@ export default function Tip(props) {
         />
       </svg>
       <p>
-        Da última vez demoraste 5 min e 32 segundos. Se demorares menos 30
-        segundos podes poupar o equivalente ao preço de um café.
+        {props.content}
       </p>
     </TipContainer>
   );

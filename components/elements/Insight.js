@@ -2,16 +2,58 @@ import React from "react";
 import Card from "./Card";
 import Task from "./Task";
 import Tip from "./Tip";
+import { useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { fetchAsyncTasks, getTasks } from "../../store/TasksSlice";
 
-export default function Insight() {
+const Insight = (props) => {
+  const dispatch = useDispatch();
+  const tasksData = useSelector(getTasks);
+
+  useEffect(() => {
+    if (tasksData.status !== 200) {
+      dispatch(fetchAsyncTasks()); // fazer o fetch com redux caso ainda n esteja o estado (ex.: reloads de pagina)
+    }
+  }, [dispatch]);
+
+  const heatingMessage =
+    "Aqueceste o teu compartimento durante 35h este mês. Isto corresponde a 50% do teu valor a pagar.";
+  const showerMessage =
+    "Tomaste duche durante 36h este mês. Isto corresponde a 50% do teu valor a pagar.";
+  const cookingMessage =
+    "Cozinhas-te durante 36h este mês. Isto corresponde a 50% do teu valor a pagar.";
+  const bathMessage =
+    "Tomaste banho de imersão durante 36h este mês. Isto corresponde a 50% do teu valor a pagar.";
+  const laundryMessage =
+    "Lavaste roupa durante 36h este mês. Isto corresponde a 50% do teu valor a pagar.";
+  const hairdryerMessage =
+    "Secaste o cabelo durante 36h este mês. Isto corresponde a 50% do teu valor a pagar.";
+
+  let usageMessage = "";
+  let tips = tasksData.tasks.filter((task) => task.name === props.type)[0]
+    .tips[0];
+
+  if (props.type === "Aquecimento") {
+    usageMessage = heatingMessage;
+  } else if (props.type === "Duche") {
+    usageMessage = showerMessage;
+  } else if (props.type === "Cozinhar") {
+    usageMessage = cookingMessage;
+  } else if (props.type === "Banho imersão") {
+    usageMessage = bathMessage;
+  } else if (props.type === "Lavar roupa") {
+    usageMessage = laundryMessage;
+  } else if (props.type === "Secar cabelo") {
+    usageMessage = hairdryerMessage;
+  }
 
   return (
     <>
       <Card size="sm" type="stroke">
         <div className="flex justify-between gap-2">
-          <Task type="Aquecimento" size="sm" />
+          <Task type={props.type} size="sm" />
           <div className="flex gap-1 items-center">
-            <h4>11,3€</h4>
+            <h4>{props.value}</h4>
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
@@ -29,13 +71,12 @@ export default function Insight() {
           </div>
         </div>
         <div className="text-xs">
-          Aqueceste o teu compartimento durante <b>36h</b> este mês. Isto corresponde a <b>50%</b> do teu valor a pagar.
+          <p className="text-xs">{usageMessage}</p>
         </div>
-        <Tip classes="mt-2">
-          Fechar as janelas e isolar as portas ajuda a manter a casa
-          termicamente mais confortável.
-        </Tip>
+        <Tip classes="mt-2" content={tips}></Tip>
       </Card>
     </>
   );
-}
+};
+
+export default Insight;
