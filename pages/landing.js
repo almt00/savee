@@ -27,22 +27,6 @@ export default function Landing() {
     <Layout title="Savee" description="Savee">
       <Navbar className="flex justify-end items-center gap-4 p-4">
         <Link href="/login"><Button size="lg">Iniciar Sessão</Button></Link>
-        <div id="menu">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-            strokeWidth={1.5}
-            stroke="currentColor"
-            className="w-7 h-7"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"
-            />
-          </svg>
-        </div>
       </Navbar>
       <FirstSection className="flex items-center justify-cente">
         <div className="flex flex-col items-center gap-6">
