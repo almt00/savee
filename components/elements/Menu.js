@@ -28,18 +28,17 @@ export default function Menu() {
         onClick={collapseMenu}
       >
         <div>
-          <div>
-
+          <Link href='/homepage'>
             <img
               src="/img/logo_alt.svg"
               className="mt-6 ml-6"
               alt="Savee logo"
             />
-          </div>
+          </Link>
           <MenuList>
-            <Link href="">
-              <li className="selected">
-                <img src="/img/home-icon.svg" className="ml-6" alt="Home" />
+            <Link href='/homepage'>
+              <li className='selected'>
+                <img src='/img/home-icon.svg' className='ml-6' alt='Home' />
                 <h2>Homepage</h2>
               </li>
             </Link>
@@ -64,8 +63,8 @@ export default function Menu() {
                 <h2>Rotinas</h2>
               </li>
             </Link>
-            <Link href="/all-payments">
-              <li className="">
+            <Link href='/all-payments'>
+              <li className=''>
                 <img
                   src="/img/currency-dollar-icon.svg"
                   className="ml-6"
