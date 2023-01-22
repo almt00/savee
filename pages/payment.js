@@ -14,9 +14,9 @@ const Payment = () => {
         <Breadcrumb />
         <PaymentCard />
         <h3 className='mt-6'>Resumos do mês</h3>
-        <Insight />
-        <Insight />
-        <Insight />
+        <Insight taskId={0} type="Aquecimento" value="11,3€" />
+        <Insight taskId={2} type="Duche" value="20,4€" />
+        <Insight taskId={3} type="Cozinhar" value="13,1€" />
       </div>
     </Layout>
   );
