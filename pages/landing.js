@@ -25,24 +25,8 @@ export default function Landing() {
 
   return (
     <Layout title="Savee" description="Savee">
-      <Navbar className="flex justify-end items-center gap-4 p-4">
+      <Navbar className="flex justify-end items-center gap-4 p-4"> 
         <Link href="/login"><Button size="lg">Iniciar Sessão</Button></Link>
-        <div id="menu">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-            strokeWidth={1.5}
-            stroke="currentColor"
-            className="w-7 h-7"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"
-            />
-          </svg>
-        </div>
       </Navbar>
       <FirstSection className="flex items-center justify-cente">
         <div className="flex flex-col items-center gap-6">
@@ -106,7 +90,7 @@ export default function Landing() {
             </SlideItem>
           </Slides>
         </Carousel>
-        <Button size="lg">Começar a Usar</Button>
+        <Link href="/register"><Button size="lg">Começar a Usar</Button></Link>
       </SecondSection>
       <Footer className="flex text-center justify-between items-center">
         <Image src="/img/logo.svg" width={74} height={74} alt="Savee Logo" />

@@ -7,7 +7,7 @@ import DashboardCard from '../components/elements/DashboardCard';
 import Tasks from '../components/dashboard/Tasks';
 import RoutinesList from '../components/dashboard/RoutinesList';
 import DisplayName from '../components/dashboard/DisplayName';
-
+import Toast from '../components/elements/Toast';
 
 export default function Homepage() {
   const date = new Date().toLocaleDateString('pt-PT', {
@@ -15,9 +15,8 @@ export default function Homepage() {
     day: 'numeric',
   });
 
-
   return (
-    <Layout title="Dashboard" description="Homepage for Savee">
+    <Layout title='Dashboard' description='Homepage for Savee'>
       <Background color='mint' />
       <Header page='Homepage' />
       <div className='relative pt-20 px-6 flex flex-col gap-3 pb-6'>
@@ -32,6 +31,7 @@ export default function Homepage() {
           </div>
         </div>
         <RoutinesList />
+        <Toast />
       </div>
     </Layout>
   );

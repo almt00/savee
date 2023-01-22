@@ -1,5 +1,4 @@
 import { styled } from '@stitches/react';
-import Button from './Button';
 import { useState } from 'react';
 
 export default function Toast() {
@@ -21,7 +20,7 @@ export default function Toast() {
             viewBox='0 0 24 24'
             stroke-width='1.5'
             stroke='currentColor'
-            class='w-6 h-6'
+            class='w-5 h-5'
           >
             <path
               stroke-linecap='round'
@@ -50,7 +49,7 @@ const BannerText = styled('p', {
   alignSelf: 'center',
 });
 
-const Cross = styled(Button, {
+const Cross = styled('button', {
   backgroundColor: '$black',
   color: '$white',
   '&:active': {

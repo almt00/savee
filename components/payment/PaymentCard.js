@@ -2,8 +2,9 @@ import { styled } from '@stitches/react';
 import Chart from '../elements/Chart';
 import Button from '../elements/Button';
 import Card from '../elements/Card';
+import { useRouter } from "next/router";
 
-const PaymentCard = () => {
+const PaymentCard = (props) => {
   let percentageOurUser = 55;
   let percentageColleagueA = 25;
   let percentageColleagueB = 20;
