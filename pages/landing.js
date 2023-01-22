@@ -25,7 +25,7 @@ export default function Landing() {
 
   return (
     <Layout title="Savee" description="Savee">
-      <Navbar className="flex justify-end items-center gap-4 p-4">
+      <Navbar className="flex justify-end items-center gap-4 p-4"> 
         <Link href="/login"><Button size="lg">Iniciar Sessão</Button></Link>
         <div id="menu">
           <svg
@@ -106,7 +106,7 @@ export default function Landing() {
             </SlideItem>
           </Slides>
         </Carousel>
-        <Button size="lg">Começar a Usar</Button>
+        <Link href="/register"><Button size="lg">Começar a Usar</Button></Link>
       </SecondSection>
       <Footer className="flex text-center justify-between items-center">
         <Image src="/img/logo.svg" width={74} height={74} alt="Savee Logo" />
