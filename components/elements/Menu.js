@@ -28,7 +28,7 @@ export default function Menu() {
         className='h-screen w-3/4 absolute z-50 bg-white pt-1 -translate-x-full flex flex-col justify-between'
       >
         <div>
-          <div className=''>
+          <div>
             <img
               src='/img/logo_alt.svg'
               className='mt-6 ml-6'
