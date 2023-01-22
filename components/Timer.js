@@ -6,7 +6,6 @@ export default function Timer() {
   const [time, setTime] = useState(0);
   const [running, setRunning] = useState(false);
   const [color, setColor] = useState('text-muted');
-  let visibility = '';
 
   useEffect(() => {
     let interval;
