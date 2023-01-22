@@ -28,7 +28,8 @@ export default function Menu() {
         onClick={collapseMenu}
       >
         <div>
-          <div className="">
+          <div>
+
             <img
               src="/img/logo_alt.svg"
               className="mt-6 ml-6"
