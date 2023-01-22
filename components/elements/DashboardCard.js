@@ -26,18 +26,13 @@ const DashboardCard = () => {
   useEffect(() => {
     dispatch(fetchAsyncGroup(groupId)) // fazer o fetch com redux do grupo
       .then((res) => {
-        console.log("res",res)
-        
           members = res.payload.group.members;
-          console.log(members);
           members.forEach((element) => {
-            console.log("users id", element);
             //dispatch(fetchAsyncGroupDetails(element)); // fazer o fetch com redux do grupo
           });
         
       });
     //dispatch(fetchAsyncGroupDetails(1)); // fazer o fetch com redux do grupo
-    console.log(groupData);
   }, [dispatch]);
 
   let sumConsumption = 0;
@@ -72,7 +67,6 @@ const DashboardCard = () => {
       }
     });
     consDif = (Math.round(lastMonthCons - sumConsumption) / 100).toFixed(1);
-    console.log("cons dif ", consDif);
   }
 
   let kwTotalGroup = 22;
