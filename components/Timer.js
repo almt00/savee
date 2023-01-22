@@ -77,7 +77,7 @@ export default function Timer() {
           </Button>
         </>
       )}
-      {running === false && time > 0 ? <Tip></Tip> : ''}
+      {running === false && time > 0 ? <Tip content="Foste super rápido! 21% das pessoas demoram mais tempo que tu."></Tip> : ''}
     </>
   );
 }
