@@ -31,6 +31,11 @@ const Form = (props) => {
       icon: "key.svg",
     },
     {
+      name: "Nome grupo",
+      message: "Insere um nome para o grupo",
+      icon: "user.svg",
+    },
+    {
       name: "Emails colegas",
       message: "Adiciona os emails dos teus colegas",
       icon: "user.svg",
@@ -43,7 +48,7 @@ const Form = (props) => {
     {
       name: "Valor fatura",
       message: "Insere o total da fatura deste mês",
-      icon: "user.svg",
+      icon: "currency-euro.svg",
     },
   ];
 
@@ -82,8 +87,13 @@ const Form = (props) => {
         id={props.id}
         placeholder={placeholderValue}
         style={{ background: `url(/img/${icon}) no-repeat 98%` }}
+        pattern={props.pattern}
+        title={props.title}
+        required={props.required}
+        min={props.min}
+        max={props.max}
       />
-      <div id={`${props.id}_error`}>
+      <div id={`${props.id}_error`} className="hidden">
         <Image src="/img/x-circle.svg" alt="Erro" width="20" height="20" />
         <p>Isto é um erro</p>
       </div>
@@ -125,6 +135,7 @@ const Input = styled("input", {
 
 const Container = styled("div", {
   display: "block",
+  marginBottom: "4px",
   p: {
     fontSize: "small",
     color: "$danger",
