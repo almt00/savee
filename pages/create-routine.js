@@ -10,8 +10,12 @@ import TimePeriodSelector from "../components/routines/TimePeriodSelector";
 import TimeSelector from "../components/routines/TimeSelector";
 import Link from "next/link";
 import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { setPage } from "../store/PageSlice";
 
 export default function Routine() {
+  const dispatch = useDispatch();
+  dispatch(setPage("routines"));
   // state to keep track of the current step
   const [step, setStep] = useState(0);
 

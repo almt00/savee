@@ -6,6 +6,8 @@ import Header from '../components/elements/Header';
 import Background from '../components/elements/Background';
 import Link from 'next/link';
 import useSWR from 'swr';
+import { useDispatch } from "react-redux";
+import { setPage } from "../store/PageSlice";
 
 //Write a fetcher function to wrap the native fetch function and return the result of a call to url in json format
 const fetcher = url =>
@@ -16,6 +18,8 @@ const fetcher = url =>
 const inter = Inter({ subsets: ['latin'] });
 
 const AllPayments = () => {
+  const dispatch = useDispatch();
+  dispatch(setPage("payments"));
   //Set up SWR to run the fetcher function when calling api
   const { data, error } = useSWR('/api/user_1', fetcher);
 
