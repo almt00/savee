@@ -20,9 +20,9 @@ export default function Menu() {
   let page = useSelector(getPage);
   useEffect(() => {
     if (document.getElementById(page) !== null) {
+      document.getElementById(page).className = "";
       document.getElementById(page).className = "selected";
       document.getElementById(page).style.backgroundColor = "$yellow";
-
     }
   }, [page]);
 
