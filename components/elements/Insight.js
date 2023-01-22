@@ -16,22 +16,15 @@ const Insight = (props) => {
     }
   }, [dispatch]);
 
-  const heatingMessage =
-    "Aqueceste o teu compartimento durante 35h este mês. Isto corresponde a 50% do teu valor a pagar.";
-  const showerMessage =
-    "Tomaste duche durante 36h este mês. Isto corresponde a 50% do teu valor a pagar.";
-  const cookingMessage =
-    "Cozinhas-te durante 36h este mês. Isto corresponde a 50% do teu valor a pagar.";
-  const bathMessage =
-    "Tomaste banho de imersão durante 36h este mês. Isto corresponde a 50% do teu valor a pagar.";
-  const laundryMessage =
-    "Lavaste roupa durante 36h este mês. Isto corresponde a 50% do teu valor a pagar.";
-  const hairdryerMessage =
-    "Secaste o cabelo durante 36h este mês. Isto corresponde a 50% do teu valor a pagar.";
+  const heatingMessage = "Aqueceste o teu compartimento durante 35h este mês. Isto corresponde a 50% do teu valor a pagar.";
+  const showerMessage = "Tomaste duche durante 36h este mês. Isto corresponde a 50% do teu valor a pagar.";
+  const cookingMessage = "Cozinhas-te durante 36h este mês. Isto corresponde a 50% do teu valor a pagar.";
+  const bathMessage = "Tomaste banho de imersão durante 36h este mês. Isto corresponde a 50% do teu valor a pagar.";
+  const laundryMessage = "Lavaste roupa durante 36h este mês. Isto corresponde a 50% do teu valor a pagar.";
+  const hairdryerMessage = "Secaste o cabelo durante 36h este mês. Isto corresponde a 50% do teu valor a pagar.";
 
   let usageMessage = "";
-  let tips = tasksData.tasks.filter((task) => task.name === props.type)[0]
-    .tips[0];
+  let tips = tasksData.tasks?.filter((task) => task.name === props.type)[0].tips[0];
 
   if (props.type === "Aquecimento") {
     usageMessage = heatingMessage;
