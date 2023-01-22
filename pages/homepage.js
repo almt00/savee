@@ -6,7 +6,7 @@ import DashboardCard from '../components/elements/DashboardCard';
 import Tasks from '../components/dashboard/Tasks';
 import RoutinesList from '../components/dashboard/RoutinesList';
 import DisplayName from '../components/dashboard/DisplayName';
-import Toast from '../components/elements/Toast';
+import Toaster from '../components/elements/Toaster';
 import { useRouter } from 'next/router';
 
 export default function Homepage() {
@@ -36,7 +36,7 @@ export default function Homepage() {
           </div>
         </div>
         <RoutinesList />
-        {toastStatus === 'success' ? <Toast className = 'show' /> : ''}
+        {toastStatus === 'success' ? <Toaster className = 'show' /> : ''}
       </div>
     </Layout>
   );

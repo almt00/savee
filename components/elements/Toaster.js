@@ -1,7 +1,7 @@
 import { styled } from '@stitches/react';
 import { useState } from 'react';
 
-export default function Toast(props) {
+export default function Toaster(props) {
   const [isShown, setIsShown] = useState(true);
   const [timeOut, setTimeOut] = useState(null);
 
