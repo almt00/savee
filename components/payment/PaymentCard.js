@@ -9,42 +9,44 @@ const PaymentCard = () => {
   let percentageColleagueB = 20;
 
   return (
-    <Card>
-      <Text className='mb-5'>
-        Com base nos teus comportamentos deste mês, este é o valor aproximado a
-        pagares:
-      </Text>
-      <div className='w-56 m-auto'>
-        <Chart className='mt-5' environment='payment'></Chart>
-      </div>
-      <div className='text-center my-4'>
-        <Link href=''>Como calculamos este valor?</Link>
-      </div>
-      <UsersContainer>
-        <User>
-          <Img src='/img/user_bird_profile_icon.svg' alt='Avatar' />
-          <SubTitle>Pedro</SubTitle>
-          <Percentage>{percentageOurUser}%</Percentage>
-        </User>
-        <User>
-          <Img src='/img/dog_profile_icon.svg' alt='Avatar' />
-          <SubTitle>Asdrúbal</SubTitle>
-          <Percentage>{percentageColleagueA}%</Percentage>
-        </User>
-        <User>
-          <Img src='/img/bird_profile_icon.svg' alt='Avatar' />
-          <SubTitle>Fernando</SubTitle>
-          <Percentage>{percentageColleagueB}%</Percentage>
-        </User>
-      </UsersContainer>
-      <div className='text-center'>
-        <Link href='/homepage'>
-          <Button className='mt-6' bg='solid' size='lg'>
-            Confirmar
-          </Button>
-        </Link>
-      </div>
-    </Card>
+    <>
+      <Card>
+        <Text className='mb-5'>
+          Com base nos teus comportamentos deste mês, este é o valor aproximado
+          a pagares:
+        </Text>
+        <div className='w-56 m-auto'>
+          <Chart className='mt-5' environment='payment'></Chart>
+        </div>
+        <div className='text-center my-4'>
+          <Link href=''>Como calculamos este valor?</Link>
+        </div>
+        <UsersContainer>
+          <User>
+            <Img src='/img/user_bird_profile_icon.svg' alt='Avatar' />
+            <SubTitle>Pedro</SubTitle>
+            <Percentage>{percentageOurUser}%</Percentage>
+          </User>
+          <User>
+            <Img src='/img/dog_profile_icon.svg' alt='Avatar' />
+            <SubTitle>Asdrúbal</SubTitle>
+            <Percentage>{percentageColleagueA}%</Percentage>
+          </User>
+          <User>
+            <Img src='/img/bird_profile_icon.svg' alt='Avatar' />
+            <SubTitle>Fernando</SubTitle>
+            <Percentage>{percentageColleagueB}%</Percentage>
+          </User>
+        </UsersContainer>
+        <div className='text-center'>
+          <Link href='/homepage'>
+            <Button className='mt-6' bg='solid' size='lg'>
+              Confirmar
+            </Button>
+          </Link>
+        </div>
+      </Card>
+    </>
   );
 };
 

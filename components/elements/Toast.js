@@ -2,7 +2,7 @@ import { styled } from '@stitches/react';
 import Button from './Button';
 import { useState } from 'react';
 
-export default function Toaster (){
+export default function Toast (){
   const [isShown, setIsShown] = useState(true);
 
   const hideToaster = event => {
@@ -21,6 +21,15 @@ export default function Toaster (){
   }
 };
 
+const Container = styled('div', {
+  backgroundColor: '$black',
+  borderRadius: '12px',
+  padding: '1rem 1.5rem',
+  display: 'flex',
+  justifyContent: 'space-between',
+});
+
+
 const BannerText = styled('p', {
   color: '$white',
   fontSize: '$normal',
@@ -28,13 +37,7 @@ const BannerText = styled('p', {
   alignSelf: 'center'
 });
 
-const Container = styled('div', {
-  backgroundColor: '$black',
-  borderRadius: '12px',
-  padding: '1rem 1.5rem', 
-  display: 'flex',
-  justifyContent: 'space-between'
-});
+
 const Cross = styled(Button,{
     backgroundColor: "$black",
     color: "$white",
