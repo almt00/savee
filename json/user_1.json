@@ -6,6 +6,26 @@
     "password": "$2y$10$X3JmxLTV8lImnnTxtLmbp.E35W.jiHA2oRpkUM/o7wciNrtpsJ10q",
     "name": "Pedro Silva",
     "avatar": "/img/pedro.png",
+    "routines": [
+      {
+        "id": 0,
+        "name": "Duche",
+        "task_id": 2,
+        "type": "routine",
+        "weekdays": ["mon", "tue", "wed", "thu", "fri", "sat", "sun"],
+        "time_period": "morning",
+        "duration": 720000
+      },
+      {
+        "id": 1,
+        "name": "Cozinhar",
+        "task_id": 3,
+        "type": "routine",
+        "weekdays": ["mon", "tue", "wed", "thu", "sun"],
+        "time_period": "night",
+        "duration": 2700000
+      }
+    ],
     "hist_use": [
       {
         "id": 0,
