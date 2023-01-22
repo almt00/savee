@@ -30,7 +30,7 @@ export default function Register() {
   const AuthFields = () => (
     <>
       <form
-        action={() => {
+        onSubmit={() => {
           setStep(step + 1);
         }}
       >
@@ -49,12 +49,23 @@ export default function Register() {
 
   const UserFields = () => (
     <>
-      <p className="black">
-        Vamos customizar a tua experiência. Como te chamas?
-      </p>
-      <div className="mt-6">
-        <Form name="Nome" type="text" required />
-      </div>
+      <form
+        onSubmit={() => {
+          setStep(step + 1);
+        }}
+      >
+        <p className="black">
+          Vamos customizar a tua experiência. Como te chamas?
+        </p>
+        <div className="mt-6">
+          <Form name="Nome" type="text" required />
+          <div className="flex justify-center">
+            <Button type="submit" className="mt-6" bg="solid" size="lg">
+              Próximo
+            </Button>
+          </div>
+        </div>
+      </form>
     </>
   );
 
@@ -64,17 +75,38 @@ export default function Register() {
         Não temos nenhum grupo associado ao teu email. Queres criar um novo
         grupo e convidar os teus colegas de casa?
       </p>
-      <div className="mt-6">
-        <Form name="Nome" type="text" />
-      </div>
-      <hr className="my-6" />
-      <p className="black">
-        O savee só funciona se todos colaborarem. Convida os teus colegas de
-        casa e começa a poupar.
-      </p>
-      <div className="mt-6">
-        <Form name="Emails colegas" type="email" />
-      </div>
+      <form
+        onSubmit={() => {
+          setStep(step + 1);
+        }}
+      >
+        <div className="mt-6">
+          <Form name="Nome" type="text" />
+        </div>
+        <hr className="my-6" />
+        <p className="black">
+          O savee só funciona se todos colaborarem. Convida os teus colegas de
+          casa e começa a poupar.
+        </p>
+        <div className="mt-6">
+          <Form name="Emails colegas" type="email" />
+        </div>
+        <div className="flex justify-center">
+          <Link href="/homepage">
+            <Button
+              type="submit"
+              className="mt-6 mr-4"
+              bg="transparent"
+              size="lg"
+            >
+              Mais tarde
+            </Button>
+          </Link>
+          <Button type="submit" className="mt-6" bg="solid" size="lg">
+            Próximo
+          </Button>
+        </div>
+      </form>
     </>
   );
 
@@ -87,65 +119,19 @@ export default function Register() {
         Consulta a tua fatura de eletricidade e acrescenta os seguintes dados
         para o Savee conseguir calcular quanto poupaste.
       </p>
-      <div className="mt-6">
-        <Form name="Data da última fatura" type="date" />
-      </div>
-      <Link href="" className="text-links text-sm">
-        Precisas de ajuda?
-      </Link>
-    </>
-  );
-
-  // logic to navigate between steps
-  const Navigation = () => (
-    <>
-      <div className="flex justify-center">
-        {step === fieldGroups.length - 1 && (
-          <Link href="/homepage">
-            <Button type="submit" className="mt-6" bg="solid" size="lg">
-              Criar conta
-            </Button>
-          </Link>
-        )}
-        {step < 2 && (
-          <Button
-            type="submit"
-            className="mt-6"
-            bg="solid"
-            size="lg"
-            onClick={() => {
-              setStep(step + 1);
-            }}
-          >
-            Próximo
+      <form action="/homepage">
+        <div className="mt-6">
+          <Form name="Data da última fatura" type="date" required />
+        </div>
+        <Link href="" className="text-links text-sm">
+          Precisas de ajuda?
+        </Link>
+        <div className="flex justify-center">
+          <Button type="submit" className="mt-6" bg="solid" size="lg">
+            Criar conta
           </Button>
-        )}
-        {step === fieldGroups.length - 2 && (
-          <>
-            <Link href="/homepage">
-              <Button
-                type="submit"
-                className="mt-6 mr-4"
-                bg="transparent"
-                size="lg"
-              >
-                Mais tarde
-              </Button>
-            </Link>
-            <Button
-              type="submit"
-              className="mt-6"
-              bg="solid"
-              size="lg"
-              onClick={() => {
-                setStep(step + 1);
-              }}
-            >
-              Próximo
-            </Button>
-          </>
-        )}
-      </div>
+        </div>
+      </form>
     </>
   );
 
@@ -174,8 +160,6 @@ export default function Register() {
       <div className="relative px-6 flex flex-col gap-3 pb-6">
         <Card>
           {fieldGroups[step]}
-          {/*todo: disable when form validation is set up*/}
-          <Navigation />
         </Card>
       </div>
     </Layout>
