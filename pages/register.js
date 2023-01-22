@@ -7,11 +7,25 @@ import Form from "../components/elements/Form";
 import Button from "../components/elements/Button";
 import Background from "../components/elements/Background";
 import Link from "next/link";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 const inter = Inter({ subsets: ["latin"] });
 
 export default function Register() {
+  // state to fix hydration issue
+  const [hasMounted, setHasMounted] = useState(false);
+  // state to keep track of the current step
+  const [step, setStep] = useState(0);
+
+  // useEffect to fix hydration issue
+  useEffect(() => {
+    setHasMounted(true);
+  }, []);
+
+  if (!hasMounted) {
+    return null;
+  }
+
   //Grouping forms by section in a component
   const AuthFields = () => (
     <>
@@ -134,9 +148,6 @@ export default function Register() {
       </div>
     </>
   );
-
-  // state to keep track of the current step
-  const [step, setStep] = useState(0);
 
   // array of components to be rendered
   const fieldGroups = [
