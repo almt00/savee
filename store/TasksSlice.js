@@ -22,7 +22,7 @@ const tasksSlice = createSlice({
       console.log("pending...");
     },
     [fetchAsyncTasks.fulfilled]: (state, { payload }) => {
-      console.log("fetched successfully!", payload);
+      console.log("fetched successfully!");
       return { ...state, tasks: payload };
     },
     [fetchAsyncTasks.rejected]: () => {

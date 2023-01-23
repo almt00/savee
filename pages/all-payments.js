@@ -43,8 +43,8 @@ const AllPayments = () => {
       return (
         <>
           <Link href="/payment">
-            <Card type="stroke">
-              <CardItem className="flex justify-between items-center">
+            <Card type="stroke" key={index}>
+              <CardItem className="flex justify-between items-center" key={index}>
                 <PaymentInfo key={index}>
                   <h4>{percetoeuro}€</h4>
                   <p className="mt-1">de {totalValue}€ totais</p>

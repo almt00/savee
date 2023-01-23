@@ -22,7 +22,7 @@ const groupSlice = createSlice({
       console.log("pending...");
     },
     [fetchAsyncGroup.fulfilled]: (state, { payload }) => {
-      console.log("fetched successfully!", payload);
+      console.log("fetched successfully!");
       return { ...state, group: payload };
     },
     [fetchAsyncGroup.rejected]: () => {
