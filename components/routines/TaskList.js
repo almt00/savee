@@ -1,26 +1,24 @@
 import { styled } from "@stitches/react";
-import useSWR from "swr";
-
-const fetcher = (url) =>
-  fetch(url)
-    .then((res) => res.json())
-    .then((res) => JSON.parse(res));
+import { useEffect } from "react";
+import { useSelector,useDispatch } from "react-redux";
+import { fetchAsyncTasks,getTasks } from "../../store/TasksSlice";
 
 const Tasks = ({ onClickEvent }) => {
-  const { data, error } = useSWR("/api/tasks", fetcher);
 
-  const tasks = data;
-  console.log(tasks);
+  const dispatch = useDispatch();
+  const tasksData = useSelector(getTasks);
+  
+  useEffect(() => {
+    if (tasksData.status !== 200) {
+      dispatch(fetchAsyncTasks()); // fazer o fetch com redux caso ainda n esteja o estado (ex.: reloads de pagina)
+    }
+  }, [dispatch]);
 
-  //Handle the error state
-  if (error) return <div>Failed to load</div>;
-  //Handle the loading state
-  if (!data) return <div>Loading...</div>;
-
-  return (
+  if(tasksData.status === 200){
+    return (
     // todo map tasks
     <TasksContainer>
-      {data.tasks.map((task) => {
+      {tasksData.tasks.map((task) => {
         return (
           <TaskContainer key={task.name} onClick={onClickEvent}>
             <TaskImage src={task.image} alt={task.name} />
@@ -29,7 +27,9 @@ const Tasks = ({ onClickEvent }) => {
         );
       })}
     </TasksContainer>
-  );
+  ); 
+  }
+  
 };
 
 const TasksContainer = styled("div", {
