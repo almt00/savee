@@ -25,9 +25,9 @@ const PaymentCard = (props) => {
         <UsersContainer>
           <User>
           <Image 
-            src="/img/user-bird.svg" 
+            src="/img/user_bird_profile_icon.svg" 
             alt="Avatar" 
-            className="ml-6"
+            className="ml-6 "
             width="38" 
             height="38" 
             />
@@ -47,7 +47,7 @@ const PaymentCard = (props) => {
           </User>
           <User>
           <Image 
-            src="/img/user-bird.svg" 
+            src="/img/bird_profile_icon.svg" 
             alt="Avatar" 
             className="ml-6"
             width="38" 
