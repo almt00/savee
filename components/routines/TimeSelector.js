@@ -14,8 +14,7 @@ export default function TimeSelector() {
             placeholder="00"
             maxLength="2"
             min={0}
-            max={24}
-            removeClippedSubviews={false}
+            max={24}keyboardDismissMode='none'
           />
         </div>
         <div className="border-b-2 border-purple">
@@ -26,8 +25,7 @@ export default function TimeSelector() {
             maxLength="2"
             min={0}
             max={60}
-            required
-            removeClippedSubviews={false}
+            requiredkeyboardDismissMode='none'
           />
         </div>
         <div className="border-b-2 border-purple">
@@ -38,8 +36,7 @@ export default function TimeSelector() {
             maxLength="2"
             min={0}
             max={60}
-            required
-            removeClippedSubviews={false}
+            requiredkeyboardDismissMode='none'
           />
         </div>
       </form>
