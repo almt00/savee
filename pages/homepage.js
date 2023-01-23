@@ -24,15 +24,17 @@ export default function Homepage() {
   const date = new Date().toLocaleDateString('pt-PT', {
     month: 'long',
     day: 'numeric',
-
   });
+  const toDay = Number(date.split(" ")[0]);
+  console.log("testing",toDay)
+
   return (
     <Layout title="Dashboard" description="Homepage for Savee">
       <Background color="mint" />
       <Header page="Homepage" />
       <div className="relative pt-20 px-6 flex flex-col gap-3 pb-6">
         <DisplayName />
-        <Banner />
+        <Banner toDay={toDay}/>
         <DashboardCard />
         <Tasks />
         <div>
