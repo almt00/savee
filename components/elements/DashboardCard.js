@@ -11,11 +11,6 @@ import {
 import { useEffect } from "react";
 import Card from "./Card";
 
-//criar switch ou else if :
-//com tendência a subir em comparação com último mÊs _ seta up,
-//tendencia a descer  _seta down,
-//igual ao do mês passado ou empty state sem seta
-
 const DashboardCard = () => {
   const dispatch = useDispatch();
   const userData = useSelector(getUser);
@@ -23,11 +18,18 @@ const DashboardCard = () => {
   const groupData = useSelector(getGroup);
   const groupId = 1; // ver grupo do user
   const userId = 1;
+  let sumConsumption = 0;
+  let lastMonthCons = 0;
+  let consDif = 0;
+  let lastMonth = new Date();
+  lastMonth.setMonth(lastMonth.getMonth() - 1); // data de há um mes atras, ver data fatura
+  let members;
+  let dayDif;
 
   useEffect(() => {
     if (groupData.status !== 200) {
-      dispatch(fetchAsyncGroup(groupId)) // fazer o fetch com redux do grupo
-        /* .then((res) => {
+      dispatch(fetchAsyncGroup(groupId)); // fazer o fetch com redux do grupo
+      /* .then((res) => {
           members = res.payload.group.members;
           members.forEach((element) => {
             dispatch(fetchAsyncGroupDetails(element)); // fazer o fetch com redux do grupo
@@ -43,22 +45,6 @@ const DashboardCard = () => {
       dispatch(fetchAsyncTasks()); // fazer o fetch com redux~
     }
   }, [dispatch]);
-
-  let sumConsumption = 0;
-  let lastMonthCons = 0;
-  let consDif = 0;
-  let lastMonth = new Date();
-  lastMonth.setMonth(lastMonth.getMonth() - 1); // data de há um mes atras, ver data fatura
-  let members;
-
-  /* useEffect(() => {
-    if (userData === null || userData === undefined || userData === "") {
-      dispatch(fetchAsyncUser(id)); // fazer o fetch com redux
-    }
-    if (tasksData === null || tasksData === undefined || tasksData === "") {
-      dispatch(fetchAsyncTasks()); // fazer o fetch com redux~
-    }
-  }, []); */
 
   if (userData.status === 200 && tasksData.status === 200) {
     let userConsumeHist = userData.user.hist_use;
@@ -78,9 +64,18 @@ const DashboardCard = () => {
     consDif = (Math.round(lastMonthCons - sumConsumption) / 100).toFixed(1);
   }
 
+  if (groupData.status === 200) {
+    let invoice = groupData.group.invoice_date; //Guarda o dia do invoice do grupo
+    const groupFullDate = new Date(invoice);
+    let payDate = new Date(
+      groupFullDate.setMonth(groupFullDate.getMonth() + 1)
+    );
+    let today = new Date();
+    dayDif = new Date(payDate - today).getDate();
+  }
   let kwTotalGroup = 3210;
   let kwTotalUser = Math.round(sumConsumption);
-  let numberDays = 22;
+  let numberDays = dayDif;
   let percentage = consDif.toString().replace(/-/g, "");
 
   return (
@@ -110,10 +105,18 @@ const DashboardCard = () => {
           <Chart></Chart>
         </div>
       </Container>
-      <Stats className="mb-2">
-        <span className="font-bold">{numberDays} dias </span>até ao próximo
-        pagamento
-      </Stats>
+      {dayDif != 0 ? (
+        <Stats className="mb-2">
+          <span className="font-bold">{numberDays} dias </span>até ao próximo
+          pagamento
+        </Stats>
+      ) : (
+        <Stats className="mb-2">
+          <span className="font-bold text-danger">{numberDays} dias </span>até
+          ao próximo pagamento
+        </Stats>
+      )}
+
       {consDif >= 0 ? (
         <Stats>
           <span className="font-bold">{percentage}% </span>melhor que o mês
