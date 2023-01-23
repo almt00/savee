@@ -32,14 +32,7 @@ const Entries = (props) => {
     intMax = 24;
   }
 
-  useEffect(() => {
-    if (tasksData.status !== 200) {
-      dispatch(fetchAsyncTasks()); // fazer o fetch com redux caso ainda n esteja o estado (ex.: reloads de pagina)
-    }
-    if (userData.status !== 200) {
-      dispatch(fetchAsyncUser(userId)); // fazer o fetch com redux caso ainda n esteja o estado (ex.: reloads de pagina)
-    }
-  }, [dispatch]);
+
 
   if (userData.status === 200 && tasksData.status === 200) {
     let userConsumeHist = userData.user.hist_use;

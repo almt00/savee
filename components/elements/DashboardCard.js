@@ -9,7 +9,7 @@ import {
   getgroupDetails,
 } from "../../store/GroupDetailsSlice";
 import { useEffect } from "react";
-import Card from './Card';
+import Card from "./Card";
 
 //criar switch ou else if :
 //com tendência a subir em comparação com último mÊs _ seta up,
@@ -22,17 +22,26 @@ const DashboardCard = () => {
   const tasksData = useSelector(getTasks);
   const groupData = useSelector(getGroup);
   const groupId = 1; // ver grupo do user
+  const userId = 1;
 
   useEffect(() => {
-    dispatch(fetchAsyncGroup(groupId)) // fazer o fetch com redux do grupo
-      .then((res) => {
+    if (groupData.status !== 200) {
+      dispatch(fetchAsyncGroup(groupId)) // fazer o fetch com redux do grupo
+        /* .then((res) => {
           members = res.payload.group.members;
           members.forEach((element) => {
-            //dispatch(fetchAsyncGroupDetails(element)); // fazer o fetch com redux do grupo
+            dispatch(fetchAsyncGroupDetails(element)); // fazer o fetch com redux do grupo
           });
-        
-      });
-    //dispatch(fetchAsyncGroupDetails(1)); // fazer o fetch com redux do grupo
+        }); */
+      //dispatch(fetchAsyncGroupDetails(1)); // fazer o fetch com redux do grupo
+    }
+
+    if (userData.status !== 200) {
+      dispatch(fetchAsyncUser(userId)); // fazer o fetch com redux
+    }
+    if (tasksData.status !== 200) {
+      dispatch(fetchAsyncTasks()); // fazer o fetch com redux~
+    }
   }, [dispatch]);
 
   let sumConsumption = 0;
