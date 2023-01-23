@@ -1,4 +1,3 @@
-import Head from "next/head";
 import Layout from "../components/elements/Layout";
 import { styled } from "../stitches.config";
 import Card from "../components/elements/Card";
