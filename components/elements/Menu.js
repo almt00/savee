@@ -103,8 +103,8 @@ export default function Menu() {
 // let heightValue;
 
 if (typeof window !== 'undefined') {
-  let barHeightVh = window.outerHeight;
-  console.log(barHeightVh)
+  let barHeightPx = window.outerHeight;
+  console.log(barHeightPx)
 }
 
 const Container = styled('div', {
