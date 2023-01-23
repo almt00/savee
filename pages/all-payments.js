@@ -31,7 +31,7 @@ const AllPayments = () => {
   }, [dispatch]);
 
   if (userData.status === 200) {
-    obj = userData.user.hist_payment;
+    obj = userData.hist_payment;
     PayHisto = obj?.map((payment, index) => {
       value = payment.percentage;
       totalValue = payment.total_value;
