@@ -36,7 +36,7 @@ export default function Banner(props) {
     checkDate = payDate - 2;
 
     if (toDay >= checkDate && isShown === false) {
-      setIsShown(true); //não me permite alterar a variável de estado, "react limita o número de renders para evitar loops"
+      setIsShown(true); 
     } else if (toDay < checkDate && isShown === true) {
       setIsShown(false);
     }
