@@ -50,7 +50,7 @@ export default function Landing() {
             <SlideItem>
               <Card id="first-card" className="flex flex-col p-6 gap-4">
                 <CardNumber>#1</CardNumber>
-                <img src="/img/onboardingOne.svg" className="z-10" alt="onboarding 1" />
+                <Image src="/img/onboardingOne.svg" className="z-10" alt="onboarding 1 "width="276" height="190"/>
                 <div>
                   <h3>Inscreve a tua casa</h3>
                   <p>
@@ -63,7 +63,7 @@ export default function Landing() {
             <SlideItem>
               <Card id="first-card" className="flex flex-col p-6 gap-4">
                 <CardNumber>#2</CardNumber>
-                <img src="/img/onboardingTwo.svg" className="z-10" alt="Onboarding 2"></img>
+                <Image src="/img/onboardingTwo.svg" className="z-10" alt="Onboarding 2" width="260" height="190"></Image>
                 <div>
                   <h3>Cria as tuas rotinas</h3>
                   <p>
@@ -77,7 +77,7 @@ export default function Landing() {
             <SlideItem>
               <Card id="first-card" className="flex flex-col p-6 gap-4">
                 <CardNumber>#3</CardNumber>
-                <img src="/img/onboardingThree.svg" className="z-10" alt="onboarding 3"></img>
+                <Image src="/img/onboardingThree.svg" className="z-10" alt="onboarding 3" width="266" height="190"></Image>
                 <div>
                   <h3>Começa a poupar</h3>
                   <p>

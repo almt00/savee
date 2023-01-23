@@ -3,6 +3,7 @@ import { Inter } from '@next/font/google';
 import { Provider } from 'react-redux';
 import { store } from '../store/store';
 import React, { useEffect, useState } from 'react';
+import Image from 'next/image';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -43,7 +44,7 @@ export default function App({ Component, pageProps }) {
       <main className={inter.className}>
         {width > 450 ? (
           <div className='h-screen bg-gray-50 flex items-center justify-center p-5'>
-            <img src='/img/logo.svg' className='mr-5' alt='Savee logo' />
+            <Image src='/img/logo.svg' className='mr-5' alt='Savee logo'width="77" height="34" />
             <h3 className=''>Esta plataforma só está preparada para mobile.</h3>
           </div>
         ) : (
