@@ -5,13 +5,19 @@ import Link from "next/link";
 import React from "react";
 import { fetchAsyncGroup, getGroup } from '../../store/GroupSlice';
 import { useDispatch, useSelector } from "react-redux";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 
-const Banner = (props) => {//via props é enviado o dia de hoje
+export default function Banner(props) {//via props é enviado o dia de hoje
 
- let toDay=props.toDay;//recolhe do props o valor do dia atual para depois comparar
-  console.log(toDay)
+
+  const [isShown, setIsShown] = useState(true);
+
+  function ShownFalse() {
+    setIsShown(false)
+  }
+
+  let toDay = props.toDay;//recolhe do props o valor do dia atual para depois comparar
 
   const id = 1;//Id para identificar o grupo a ir buscar dados
   let invoice = "";//para guardar data do grupo
@@ -20,30 +26,36 @@ const Banner = (props) => {//via props é enviado o dia de hoje
   const groupData = useSelector(getGroup);
 
   useEffect(() => {
-      dispatch(fetchAsyncGroup(id)); // fazer o fetch com redux
+    dispatch(fetchAsyncGroup(id)); // fazer o fetch com redux
   }, [dispatch]);
 
   if (groupData.status === 200) {
-      invoice = groupData.group.invoice_date;//Guarda o dia do invoice do grupo
-      console.log(invoice)
-}
-      const groupFullDate = new Date(invoice);
-      const payDate = groupFullDate.getDate().toString();
-      console.log(payDate);
+    invoice = groupData.group.invoice_date;//Guarda o dia do invoice do grupo
+    console.log(invoice)
+  }
+  const groupFullDate = new Date(invoice);
+  const payDate = groupFullDate.getDate();
+  console.log(payDate);
 
-if(payDate==toDay){//Se os dois valores forem iguais o banner é apresentado
-console.log("sucess")
-  return (
-    <Container>
-      <BannerText>Está na hora de pagar!</BannerText>
-      <Link href='/invoice'>
-        <Button size='md' bg='primary'>
-          Inserir fatura
-        </Button>
-      </Link>
-    </Container>
-  );
-}
+  const checkDate = toDay + 4;
+  if (payDate <= checkDate) {
+    console.log("inside if")
+    //setIsShown(true) não me permite alterar a variável de estado, "react limita o número de renders para evitar loops"
+  }
+  //Se os dois valores forem iguais o banner é apresentado
+  if ((payDate <= checkDate) & (isShown == true)) {
+    console.log("sucess")
+    return (
+      <Container>
+        <BannerText>Está na hora de pagar!</BannerText>
+        <Link href='/invoice'>
+          <Button size='md' bg='primary' onClick={ShownFalse}>
+            Inserir fatura
+          </Button>
+        </Link>
+      </Container>
+    );
+  }
 };
 
 const BannerText = styled('p', {
@@ -61,4 +73,3 @@ const Container = styled('div', {
   justifyContent: 'space-between',
 });
 
-export default Banner;

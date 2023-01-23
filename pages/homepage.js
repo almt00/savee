@@ -14,7 +14,7 @@ export default function Homepage() {
     month: 'long',
     day: 'numeric',
   });
-  const toDay = date.split(" ")[0];
+  const toDay = Number(date.split(" ")[0]);
   console.log("testing",toDay)
 
   return (
