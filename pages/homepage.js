@@ -14,7 +14,8 @@ export default function Homepage() {
     month: 'long',
     day: 'numeric',
   });
-
+  const toDay = date.split(" ")[0];
+  console.log("testing",toDay)
 
   return (
     <Layout title="Dashboard" description="Homepage for Savee">
@@ -22,7 +23,7 @@ export default function Homepage() {
       <Header page='Homepage' />
       <div className='relative pt-20 px-6 flex flex-col gap-3 pb-6'>
         <DisplayName />
-        <Banner />
+        <Banner toDay={toDay}/>
         <DashboardCard />
         <Tasks />
         <div>

@@ -27,7 +27,8 @@ export default function Teste() {
         const groupFullDate = new Date(invoice);
         const payDate = groupFullDate.getDate().toString();
         console.log(payDate);
-        if (invoice === payDate) {
+       
+} if (invoice === payDate) {
             return (
                 <div>
                     <Banner />
@@ -35,4 +36,3 @@ export default function Teste() {
             )
         }
     }
-}
