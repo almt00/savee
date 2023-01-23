@@ -69,7 +69,7 @@ const DashboardCard = () => {
     consDif = (Math.round(lastMonthCons - sumConsumption) / 100).toFixed(1);
   }
 
-  let kwTotalGroup = 22;
+  let kwTotalGroup = 3210;
   let kwTotalUser = Math.round(sumConsumption);
   let numberDays = 22;
   let percentage = consDif.toString().replace(/-/g, "");
