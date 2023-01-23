@@ -23,7 +23,7 @@ const pageSlice = createSlice({
       console.log("pending...");
     },
     [setPage.fulfilled]: (state, { payload }) => {
-      console.log("fetched successfully!", payload);
+      console.log("fetched successfully!");
       return { ...state, page: payload };
     },
     [setPage.rejected]: () => {

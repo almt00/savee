@@ -19,14 +19,12 @@ export default function Homepage() {
   const query = router.query; // ir buscar query string ao URL
   const toastStatus = query.toast; // capturar toast status
 
-  console.log(toastStatus);
 
   const date = new Date().toLocaleDateString('pt-PT', {
     month: 'long',
     day: 'numeric',
   });
   const toDay = Number(date.split(" ")[0]);
-  console.log("testing",toDay)
 
   return (
     <Layout title="Dashboard" description="Homepage for Savee">

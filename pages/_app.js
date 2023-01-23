@@ -37,7 +37,6 @@ function useWindowSize() {
 export default function App({ Component, pageProps }) {
   const size = useWindowSize();
   const width = size.width;
-  console.log(size.width);
 
   return (
     <Provider Provider store={store}>

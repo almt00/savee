@@ -53,8 +53,8 @@ const AllUsage = () => {
       }
       return (
         <>
-          <Card type="stroke">
-            <CardItem className="flex justify-between items-center">
+          <Card type="stroke" key={index}>
+            <CardItem className="flex justify-between items-center" key={index}>
               <UsageInfo key={index}>
                 <h4>{cleantaskDuration} min</h4>
                 <p> {taskName}</p>
