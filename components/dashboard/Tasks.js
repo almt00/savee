@@ -8,10 +8,7 @@ const Tasks = () => {
   const dispatch = useDispatch();
   const tasksData = useSelector(getTasks);
 
-  useEffect(() => {
-    dispatch(fetchAsyncTasks()); // fazer o fetch com redux
-    console.log(tasksData);
-  }, [dispatch]);
+
 
   const renderTasks = () => {
     if (tasksData.status === 200) {

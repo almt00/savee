@@ -10,8 +10,11 @@ export default function DisplayName() {
   const dispatch = useDispatch();
   const userData = useSelector(getUser);
 
+  
   useEffect(() => {
-    dispatch(fetchAsyncUser(id)); // fazer o fetch com redux
+    if (userData.status !== 200) {
+      dispatch(fetchAsyncUser(id)); // fazer o fetch com redux
+    }
   }, [dispatch]);
 
   if (userData.status === 200) {
