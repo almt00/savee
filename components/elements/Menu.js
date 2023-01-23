@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import { useSelector } from "react-redux";
 import { getPage } from "../../store/PageSlice";
+import Image from "next/image";
 
 // falta fazer a logica de selecionar a area da app no menu
 const collapseMenu = function (e) {
@@ -47,16 +48,23 @@ export default function Menu() {
       >
         <div>
           <Link href="" onClick={(e) => handleClick(e, "/homepage")}>
-            <img
+            <Image
               src="/img/logo_alt.svg"
               className="mt-6 ml-6"
               alt="Savee logo"
+              width="80"
+              height="35"
             />
           </Link>
           <MenuList>
             <Link href="/homepage" onClick={(e) => handleClick(e, "/homepage")}>
               <li className="" id="homepage">
-                <img src="/img/home-icon.svg" className="ml-6" alt="Home" />
+                <Image 
+                src="/img/home-icon.svg" 
+                className="ml-6" 
+                alt="Home" 
+                width="38" 
+                height="38"/>
                 <h2>Homepage</h2>
               </li>
             </Link>
@@ -65,10 +73,12 @@ export default function Menu() {
               onClick={(e) => handleClick(e, "/all-usage")}
             >
               <li className="" id="usage">
-                <img
+                <Image
                   src="/img/chart-pie-icon.svg"
                   className="ml-6"
                   alt="Histórico uso"
+                  width="38" 
+                  height="38"
                 />
                 <h2>Histórico uso</h2>
               </li>
@@ -78,7 +88,12 @@ export default function Menu() {
               onClick={(e) => handleClick(e, "/create-routine")}
             >
               <li className="" id="routines">
-                <img src="/img/sun-icon.svg" className="ml-6" alt="Rotinas" />
+                <Image 
+                src="/img/sun-icon.svg" 
+                className="ml-6" 
+                alt="Rotinas" 
+                width="38" 
+                height="38"/>
                 <h2>Rotinas</h2>
               </li>
             </Link>
@@ -87,10 +102,12 @@ export default function Menu() {
               onClick={(e) => handleClick(e, "/all-payments")}
             >
               <li className="" id="payments">
-                <img
+                <Image
                   src="/img/currency-dollar-icon.svg"
                   className="ml-6"
                   alt="Pagamentos"
+                  width="38" 
+                  height="38"
                 />
                 <h2>Pagamentos</h2>
               </li>
@@ -100,18 +117,36 @@ export default function Menu() {
 
         <MenuList size="sm" className="mb-6">
           <li className="h-8">
-            <img src="/img/user-bird.svg" className="ml-6" alt="Avatar" />
+            <Image 
+            src="/img/user-bird.svg" 
+            className="ml-6" 
+            alt="Avatar"
+            width="38" 
+            height="38" 
+            />
             <div>
               <h4>Pedro</h4>
               <p>Editar perfil</p>
             </div>
           </li>
           <li className="h-8">
-            <img src="/img/icon-settings.svg" className="ml-6" alt="Settings" />
+            <Image 
+            src="/img/icon-settings.svg" 
+            className="ml-6" 
+            alt="Settings"
+            width="38" 
+            height="38" 
+            />
             <h4>Definições</h4>
           </li>
           <li className="h-8">
-            <img src="/img/icon-help-circle.svg" className="ml-6" alt="Ajuda" />
+            <Image 
+            src="/img/icon-help-circle.svg" 
+            className="ml-6" 
+            alt="Ajuda" 
+            width="38" 
+            height="38"
+            />
             <h4>Ajuda</h4>
           </li>
         </MenuList>

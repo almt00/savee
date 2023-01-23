@@ -2,6 +2,7 @@ import { styled } from '@stitches/react';
 import Chart from '../elements/Chart';
 import Button from '../elements/Button';
 import Card from '../elements/Card';
+import Image from 'next/image';
 
 const PaymentCard = (props) => {
   let percentageOurUser = 55;
@@ -23,17 +24,35 @@ const PaymentCard = (props) => {
         </div>
         <UsersContainer>
           <User>
-            <Img src='/img/user_bird_profile_icon.svg' alt='Avatar' />
+          <Image 
+            src="/img/user-bird.svg" 
+            alt="Avatar" 
+            className="ml-6"
+            width="38" 
+            height="38" 
+            />
             <SubTitle>Pedro</SubTitle>
             <Percentage>{percentageOurUser}%</Percentage>
           </User>
           <User>
-            <Img src='/img/dog_profile_icon.svg' alt='Avatar' />
+          <Image 
+            src="/img/dog_profile_icon.svg" 
+            alt="Avatar" 
+            className="ml-6"
+            width="38" 
+            height="38" 
+            />
             <SubTitle>Asdrúbal</SubTitle>
             <Percentage>{percentageColleagueA}%</Percentage>
           </User>
           <User>
-            <Img src='/img/bird_profile_icon.svg' alt='Avatar' />
+          <Image 
+            src="/img/user-bird.svg" 
+            alt="Avatar" 
+            className="ml-6"
+            width="38" 
+            height="38" 
+            />
             <SubTitle>Fernando</SubTitle>
             <Percentage>{percentageColleagueB}%</Percentage>
           </User>
