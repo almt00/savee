@@ -15,6 +15,7 @@ export default function TimeSelector() {
             maxLength="2"
             min={0}
             max={24}
+            removeClippedSubviews={false}
           />
         </div>
         <div className="border-b-2 border-purple">
@@ -26,6 +27,7 @@ export default function TimeSelector() {
             min={0}
             max={60}
             required
+            removeClippedSubviews={false}
           />
         </div>
         <div className="border-b-2 border-purple">
@@ -37,6 +39,7 @@ export default function TimeSelector() {
             min={0}
             max={60}
             required
+            removeClippedSubviews={false}
           />
         </div>
       </form>
