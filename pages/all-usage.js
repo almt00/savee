@@ -1,4 +1,3 @@
-import Head from "next/head";
 import Layout from "../components/elements/Layout";
 import { styled } from "../stitches.config";
 import Card from "../components/elements/Card";
@@ -7,10 +6,12 @@ import Background from "../components/elements/Background";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchAsyncUser, getUser } from "../store/UserSlice";
 import { useEffect } from "react";
+import { setPage } from "../store/PageSlice";
 
 const AllUsage = () => {
   const dispatch = useDispatch();
   const userData = useSelector(getUser);
+  dispatch(setPage("usage"));
   const userId = 1;
   let UseHisto = "";
   let obj = "";

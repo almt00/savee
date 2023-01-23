@@ -20,7 +20,7 @@
     font-weight: 800;
   }
   h5 {
-    font-size: .875rem;
+    font-size: 0.875rem;
     font-weight: 800;
   }
   p {
@@ -44,4 +44,18 @@ body {
 
 a {
   text-decoration: none;
+}
+
+.show {
+  animation: slide_in 0.5s;
+}
+
+@keyframes slide_in {
+  from {
+    bottom: -100px;
+  }
+
+  to {
+    bottom: 0px;
+  }
 }

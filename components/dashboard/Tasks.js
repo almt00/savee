@@ -1,5 +1,4 @@
 import { styled } from "@stitches/react";
-import Task from "../elements/Task";
 import Link from "next/link";
 import { fetchAsyncTasks, getTasks } from "../../store/TasksSlice";
 import { useDispatch, useSelector } from "react-redux";

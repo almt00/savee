@@ -1,74 +1,113 @@
-import { styled } from '@stitches/react';
-import React from 'react';
-import Link from 'next/link';
+import { styled } from "@stitches/react";
+import React, { useEffect } from "react";
+import Link from "next/link";
+import { useRouter } from "next/router";
+import { useSelector } from "react-redux";
+import { getPage } from "../../store/PageSlice";
+import Image from "next/image";
 
 // falta fazer a logica de selecionar a area da app no menu
 const collapseMenu = function (e) {
   e.preventDefault();
-  let menu = document.getElementById('menu');
-  let overlay = document.getElementById('menu_overlay');
-  menu.style.transform = 'translate(-100%)';
-  menu.style.transition = '0.3s ease-out';
-  overlay.style.transform = 'translate(-100%)';
+  let menu = document.getElementById("menu");
+  let overlay = document.getElementById("menu_overlay");
+  menu.style.transform = "translate(-100%)";
+  menu.style.transition = "0.3s ease-out";
+  overlay.style.transform = "translate(-100%)";
   document.documentElement.style.overflow = "initial";
-
 };
 
 export default function Menu() {
+  let page = useSelector(getPage);
+  useEffect(() => {
+    if (document.getElementById(page) !== null) {
+      document.getElementById(page).className = "";
+      document.getElementById(page).className = "selected";
+      document.getElementById(page).style.backgroundColor = "$yellow";
+    }
+  }, [page]);
+
+  const router = useRouter();
+  const { asPath } = useRouter();
+  const handleClick = (event, path) => {
+    event.preventDefault();
+    router.push(path);
+  };
   return (
     <>
       <div
-        id='menu_overlay'
+        id="menu_overlay"
         onClick={collapseMenu}
-        className='h-screen w-screen absolute z-40 bg-muted opacity-50 backdrop-blur-md -translate-x-full'
+        className="h-screen w-screen absolute z-40 bg-muted opacity-50 backdrop-blur-md -translate-x-full"
       ></div>
 
       <div
-        id='menu'
-        className='h-screen w-3/4 absolute z-50 bg-white pt-1 -translate-x-full flex flex-col justify-between'
+        id="menu"
+        className="h-screen w-3/4 absolute z-50 bg-white pt-1 -translate-x-full flex flex-col justify-between"
+        onClick={collapseMenu}
       >
         <div>
-          <div className=''>
-            <img
-              src='/img/logo_alt.svg'
-              className='mt-6 ml-6'
-              alt='Savee logo'
+          <Link href="" onClick={(e) => handleClick(e, "/homepage")}>
+            <Image
+              src="/img/logo_alt.svg"
+              className="mt-6 ml-6"
+              alt="Savee logo"
+              width="80"
+              height="35"
             />
-          </div>
+          </Link>
           <MenuList>
-            <Link href='' onClick={collapseMenu}>
-              <li className='selected'>
-                <img src='/img/home-icon.svg' className='ml-6' alt='Home' />
+            <Link href="/homepage" onClick={(e) => handleClick(e, "/homepage")}>
+              <li className="" id="homepage">
+                <Image 
+                src="/img/home-icon.svg" 
+                className="ml-6" 
+                alt="Home" 
+                width="38" 
+                height="38"/>
                 <h2>Homepage</h2>
               </li>
             </Link>
-            <Link href="/all-usage">
-            <li className=''>
-              <img
-                src='/img/chart-pie-icon.svg'
-                className='ml-6'
-                alt='Histórico uso'
-              />
-              <h2>Histórico uso</h2>
-            </li>
+            <Link
+              href="/all-usage"
+              onClick={(e) => handleClick(e, "/all-usage")}
+            >
+              <li className="" id="usage">
+                <Image
+                  src="/img/chart-pie-icon.svg"
+                  className="ml-6"
+                  alt="Histórico uso"
+                  width="38" 
+                  height="38"
+                />
+                <h2>Histórico uso</h2>
+              </li>
             </Link>
-            {/*<li className="">
-              <img src="/img/check-circle-icon.svg" className="ml-6" alt="Tarefas" />
-              <h2>Tarefas</h2>
-  </li>*/}
-
-            <Link href='/create-routine'>
-              <li className=''>
-                <img src='/img/sun-icon.svg' className='ml-6' alt='Rotinas' />
+            <Link
+              href="/create-routine"
+              onClick={(e) => handleClick(e, "/create-routine")}
+            >
+              <li className="" id="routines">
+                <Image 
+                src="/img/sun-icon.svg" 
+                className="ml-6" 
+                alt="Rotinas" 
+                width="38" 
+                height="38"/>
                 <h2>Rotinas</h2>
               </li>
             </Link>
-            <Link href='/all-payments'>
-              <li className=''>
-                <img
-                  src='/img/currency-dollar-icon.svg'
-                  className='ml-6'
-                  alt='Pagamentos'
+            <Link
+              href="/all-payments"
+              onClick={(e) => handleClick(e, "/all-payments")}
+            >
+              <li className="" id="payments">
+                <Image
+                  src="/img/currency-dollar-icon.svg"
+                  className="ml-6"
+                  alt="Pagamentos"
+                  width="38" 
+                  height="38"
                 />
                 <h2>Pagamentos</h2>
               </li>
@@ -76,20 +115,38 @@ export default function Menu() {
           </MenuList>
         </div>
 
-        <MenuList size='sm' className='mb-6'>
-          <li className='h-8'>
-            <img src='/img/user-bird.svg' className='ml-6' alt='Avatar' />
+        <MenuList size="sm" className="mb-6">
+          <li className="h-8">
+            <Image 
+            src="/img/user-bird.svg" 
+            className="ml-6" 
+            alt="Avatar"
+            width="38" 
+            height="38" 
+            />
             <div>
               <h4>Pedro</h4>
               <p>Editar perfil</p>
             </div>
           </li>
-          <li className='h-8'>
-            <img src='/img/icon-settings.svg' className='ml-6' alt='Settings' />
+          <li className="h-8">
+            <Image 
+            src="/img/icon-settings.svg" 
+            className="ml-6" 
+            alt="Settings"
+            width="38" 
+            height="38" 
+            />
             <h4>Definições</h4>
           </li>
-          <li className='h-8'>
-            <img src='/img/icon-help-circle.svg' className='ml-6' alt='Ajuda' />
+          <li className="h-8">
+            <Image 
+            src="/img/icon-help-circle.svg" 
+            className="ml-6" 
+            alt="Ajuda" 
+            width="38" 
+            height="38"
+            />
             <h4>Ajuda</h4>
           </li>
         </MenuList>
@@ -98,57 +155,52 @@ export default function Menu() {
   );
 }
 
-const MenuList = styled('ul', {
-  marginTop: '1.5rem',
+const MenuList = styled("ul", {
+  marginTop: "1.5rem",
   li: {
-    display: 'flex',
-    gap: '1.5rem',
-    height: '4rem',
-    alignItems: 'center',
-    borderRadius: '0px 8px 8px 0px',
-    width: '90%',
-    transition: 'background-color 0.3s ease',
+    display: "flex",
+    gap: "1.5rem",
+    height: "4rem",
+    alignItems: "center",
+    borderRadius: "0px 8px 8px 0px",
+    width: "90%",
+    transition: "background-color 0.3s ease",
   },
-  'li:nth-child(1)': {
-    '&:hover, &.selected': {
-      backgroundColor: '$mint',
+  "#homepage": {
+    "&:hover, &.selected": {
+      backgroundColor: "$mint",
     },
   },
-  'li:nth-child(2)': {
-    '&:hover, &.selected': {
-      backgroundColor: '$orange',
+  "#usage": {
+    "&:hover, &.selected": {
+      backgroundColor: "$orange",
     },
   },
-  'li:nth-child(3)': {
-    '&:hover, &.selected': {
-      backgroundColor: '$yellow',
+  "#routines": {
+    "&:hover, &.selected": {
+      backgroundColor: "$purple",
     },
   },
-  'li:nth-child(4)': {
-    '&:hover, &.selected': {
-      backgroundColor: '$purple',
-    },
-  },
-  'li:nth-child(5)': {
-    '&:hover, &.selected': {
-      backgroundColor: '$skyblue',
+  "#payments": {
+    "&:hover, &.selected": {
+      backgroundColor: "$skyblue",
     },
   },
   variants: {
     size: {
       sm: {
         li: {
-          display: 'flex',
-          gap: '1.5rem',
-          height: '3.5rem',
-          alignItems: 'center',
-          borderRadius: '0px 8px 8px 0px',
-          width: '90%',
-          backgroundColor: 'transparent',
+          display: "flex",
+          gap: "1.5rem",
+          height: "3.5rem",
+          alignItems: "center",
+          borderRadius: "0px 8px 8px 0px",
+          width: "90%",
+          backgroundColor: "transparent",
         },
-        'li:nth-child(n)': {
-          '&:hover, &.selected': {
-            backgroundColor: 'transparent',
+        "li:nth-child(n)": {
+          "&:hover, &.selected": {
+            backgroundColor: "transparent",
           },
         },
       },

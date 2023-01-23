@@ -6,7 +6,6 @@ export default function Timer() {
   const [time, setTime] = useState(0);
   const [running, setRunning] = useState(false);
   const [color, setColor] = useState('text-muted');
-  let visibility = '';
 
   useEffect(() => {
     let interval;
@@ -77,7 +76,7 @@ export default function Timer() {
           </Button>
         </>
       )}
-      {running === false && time > 0 ? <Tip></Tip> : ''}
+      {running === false && time > 0 ? <Tip content="Foste super rápido! 21% das pessoas demoram mais tempo que tu."></Tip> : ''}
     </>
   );
 }
