@@ -36,6 +36,29 @@ const AllRoutines = () => {
       weekdays = routine.weekdays;
       duration = routine.duration;
 
+      weekdays = weekdays.map((day) => {
+        switch (day) {
+          case 0:
+            return "Dom";
+          case 1:
+            return "Seg";
+          case 2:
+            return "Ter";
+          case 3:
+            return "Qua";
+          case 4:
+            return "Qui";
+          case 5:
+            return "Sex";
+          case 6:
+            return "Sab";
+          default:
+            return "";
+        }
+      });
+
+      weekdays = weekdays.join(", ");
+
       return (
         <>
           <Link href="">
