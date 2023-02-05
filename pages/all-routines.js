@@ -8,12 +8,14 @@ import Link from "next/link";
 import Button from "../components/elements/Button";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchAsyncUser, getUser } from "../store/UserSlice";
+import { fetchAsyncTasks, getTasks } from "../store/TasksSlice";
 import { useEffect } from "react";
 import { setPage } from "../store/PageSlice";
 
 const AllRoutines = () => {
   const dispatch = useDispatch();
   const userData = useSelector(getUser);
+  const tasksData = useSelector(getTasks);
   dispatch(setPage("routines"));
 
   const userId = 1;
@@ -22,19 +24,23 @@ const AllRoutines = () => {
   let type = "";
   let weekdays = "";
   let duration = "";
+  let name = "";
 
   useEffect(() => {
-    if (userData.status !== 200) {
+    if (userData.status !== 200 && tasksData.status !== 200) {
       dispatch(fetchAsyncUser(userId)); // fazer o fetch com redux caso ainda n esteja o estado (ex.: reloads de pagina)
+      dispatch(fetchAsyncTasks());
     }
   }, [dispatch]);
 
-  if (userData.status === 200) {
+  if (userData.status === 200 && tasksData.status === 200) {
     obj = userData.user.routines;
     Routines = obj?.map((routine, index) => {
       type = routine.task_id;
       weekdays = routine.weekdays;
       duration = routine.duration;
+
+      name = tasksData.tasks?.find((task) => task.id === type).name;
 
       weekdays = weekdays.map((day) => {
         switch (day) {
@@ -68,7 +74,7 @@ const AllRoutines = () => {
                 key={index}
               >
                 <RoutineInfo key={index}>
-                  <h4>{type}</h4>
+                  <h4>{name}</h4>
                   <p className="mt-1">{weekdays}</p>
                 </RoutineInfo>
                 <p className="text-muted">{duration} min</p>
