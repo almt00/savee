@@ -59,12 +59,13 @@ export default function Menu() {
           <MenuList>
             <Link href="/homepage" onClick={(e) => handleClick(e, "/homepage")}>
               <li className="" id="homepage">
-                <Image 
-                src="/img/home-icon.svg" 
-                className="ml-6" 
-                alt="Home" 
-                width="38" 
-                height="38"/>
+                <Image
+                  src="/img/home-icon.svg"
+                  className="ml-6"
+                  alt="Home"
+                  width="38"
+                  height="38"
+                />
                 <h2>Homepage</h2>
               </li>
             </Link>
@@ -77,23 +78,24 @@ export default function Menu() {
                   src="/img/chart-pie-icon.svg"
                   className="ml-6"
                   alt="Histórico uso"
-                  width="38" 
+                  width="38"
                   height="38"
                 />
                 <h2>Histórico uso</h2>
               </li>
             </Link>
             <Link
-              href="/create-routine"
-              onClick={(e) => handleClick(e, "/create-routine")}
+              href="/all-routines"
+              onClick={(e) => handleClick(e, "/all-routines")}
             >
               <li className="" id="routines">
-                <Image 
-                src="/img/sun-icon.svg" 
-                className="ml-6" 
-                alt="Rotinas" 
-                width="38" 
-                height="38"/>
+                <Image
+                  src="/img/sun-icon.svg"
+                  className="ml-6"
+                  alt="Rotinas"
+                  width="38"
+                  height="38"
+                />
                 <h2>Rotinas</h2>
               </li>
             </Link>
@@ -106,7 +108,7 @@ export default function Menu() {
                   src="/img/currency-dollar-icon.svg"
                   className="ml-6"
                   alt="Pagamentos"
-                  width="38" 
+                  width="38"
                   height="38"
                 />
                 <h2>Pagamentos</h2>
@@ -117,12 +119,12 @@ export default function Menu() {
 
         <MenuList size="sm" className="mb-6">
           <li className="h-8">
-            <Image 
-            src="/img/user-bird.svg" 
-            className="ml-6" 
-            alt="Avatar"
-            width="38" 
-            height="38" 
+            <Image
+              src="/img/user-bird.svg"
+              className="ml-6"
+              alt="Avatar"
+              width="38"
+              height="38"
             />
             <div>
               <h4>Pedro</h4>
@@ -130,22 +132,22 @@ export default function Menu() {
             </div>
           </li>
           <li className="h-8">
-            <Image 
-            src="/img/icon-settings.svg" 
-            className="ml-6" 
-            alt="Settings"
-            width="38" 
-            height="38" 
+            <Image
+              src="/img/icon-settings.svg"
+              className="ml-6"
+              alt="Settings"
+              width="38"
+              height="38"
             />
             <h4>Definições</h4>
           </li>
           <li className="h-8">
-            <Image 
-            src="/img/icon-help-circle.svg" 
-            className="ml-6" 
-            alt="Ajuda" 
-            width="38" 
-            height="38"
+            <Image
+              src="/img/icon-help-circle.svg"
+              className="ml-6"
+              alt="Ajuda"
+              width="38"
+              height="38"
             />
             <h4>Ajuda</h4>
           </li>
