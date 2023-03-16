@@ -79,6 +79,10 @@ const Form = (props) => {
   }, []);
   */
 
+  const clickedInput = (e) => {
+  e.preventDefault();
+  }
+
   return (
     <Container>
       <LabelRoot as="form">{props.name}</LabelRoot>
@@ -92,6 +96,7 @@ const Form = (props) => {
         required={props.required}
         min={props.min}
         max={props.max}
+        onClick={clickedInput}
       />
       <div id={`${props.id}_error`} className="hidden">
         <Image src="/img/x-circle.svg" alt="Erro" width="20" height="20" />
