@@ -36,7 +36,7 @@ export default function Register() {
           setStep(step + 1);
         }}
       >
-        <Form name="Email" type="email" required />
+        <input name="Email" type="email" required />
         <div className="mt-6">
           <Form name="Password" type="password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Deve conter pelo menos um número, uma maiúscula e uma minúscula, e conter pelo menos 8 caracteres." required />
         </div>
