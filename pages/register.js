@@ -24,23 +24,28 @@ export default function Register() {
     setHasMounted(true);
   }, []); */
 
- /*  if (!hasMounted) {
+  /*  if (!hasMounted) {
     return null;
   } */
 
   //Grouping forms by section in a component
   const AuthFields = () => (
     <>
-      
-        <input placeholder="Email" type="email" required ></input>
-        <div className="mt-6">
-          <Form name="Password" type="password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Deve conter pelo menos um número, uma maiúscula e uma minúscula, e conter pelo menos 8 caracteres." required />
-        </div>
-        <div className="flex justify-center">
-          <Button type="submit" className="mt-6" bg="solid" size="lg">
-            Próximo
-          </Button>
-        </div>
+      <input placeholder="Email" type="email" required></input>
+      <div className="mt-6">
+        <Form
+          name="Password"
+          type="password"
+          pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
+          title="Deve conter pelo menos um número, uma maiúscula e uma minúscula, e conter pelo menos 8 caracteres."
+          required
+        />
+      </div>
+      <div className="flex justify-center">
+        <Button type="submit" className="mt-6" bg="solid" size="lg">
+          Próximo
+        </Button>
+      </div>
     </>
   );
 
@@ -118,7 +123,13 @@ export default function Register() {
       </p>
       <form action="/homepage">
         <div className="mt-6">
-          <Form name="Data da última fatura" type="date" min="2022-01-01" max={maxDate} required />
+          <Form
+            name="Data da última fatura"
+            type="date"
+            min="2022-01-01"
+            max={maxDate}
+            required
+          />
         </div>
         <Link href="" className="text-links text-sm">
           Precisas de ajuda?
@@ -156,7 +167,21 @@ export default function Register() {
       </div>
       <div className="relative px-6 flex flex-col gap-3 pb-6">
         <Card>
-          <AuthFields/>
+          <input placeholder="Email" type="email" required></input>
+          <div className="mt-6">
+            <Form
+              name="Password"
+              type="password"
+              pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
+              title="Deve conter pelo menos um número, uma maiúscula e uma minúscula, e conter pelo menos 8 caracteres."
+              required
+            />
+          </div>
+          <div className="flex justify-center">
+            <Button type="submit" className="mt-6" bg="solid" size="lg">
+              Próximo
+            </Button>
+          </div>
         </Card>
       </div>
     </Layout>
