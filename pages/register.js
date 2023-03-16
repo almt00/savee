@@ -29,25 +29,27 @@ export default function Register() {
   } */
 
   //Grouping forms by section in a component
-  const AuthFields = () => (
-    <>
-      <input placeholder="Email" type="email" required></input>
-      <div className="mt-6">
-        <Form
-          name="Password"
-          type="password"
-          pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
-          title="Deve conter pelo menos um número, uma maiúscula e uma minúscula, e conter pelo menos 8 caracteres."
-          required
-        />
-      </div>
-      <div className="flex justify-center">
-        <Button type="submit" className="mt-6" bg="solid" size="lg">
-          Próximo
-        </Button>
-      </div>
-    </>
-  );
+  function AuthFields() {
+    return (
+      <>
+        <input placeholder="Email" type="email" required></input>
+        <div className="mt-6">
+          <Form
+            name="Password"
+            type="password"
+            pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
+            title="Deve conter pelo menos um número, uma maiúscula e uma minúscula, e conter pelo menos 8 caracteres."
+            required
+          />
+        </div>
+        <div className="flex justify-center">
+          <Button type="submit" className="mt-6" bg="solid" size="lg">
+            Próximo
+          </Button>
+        </div>
+      </>
+    );
+  }
 
   const UserFields = () => (
     <>
@@ -167,21 +169,7 @@ export default function Register() {
       </div>
       <div className="relative px-6 flex flex-col gap-3 pb-6">
         <Card>
-          <input placeholder="Email" type="email" required></input>
-          <div className="mt-6">
-            <Form
-              name="Password"
-              type="password"
-              pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
-              title="Deve conter pelo menos um número, uma maiúscula e uma minúscula, e conter pelo menos 8 caracteres."
-              required
-            />
-          </div>
-          <div className="flex justify-center">
-            <Button type="submit" className="mt-6" bg="solid" size="lg">
-              Próximo
-            </Button>
-          </div>
+          <AuthFields />
         </Card>
       </div>
     </Layout>
