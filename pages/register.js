@@ -156,7 +156,7 @@ export default function Register() {
       </div>
       <div className="relative px-6 flex flex-col gap-3 pb-6">
         <Card>
-          {fieldGroups[0]}
+          <AuthFields/>
         </Card>
       </div>
     </Layout>
