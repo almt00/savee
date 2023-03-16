@@ -151,10 +151,10 @@ export default function Register() {
 
   // array of components to be rendered
   const fieldGroups = [
-  {authFields} ,
-  {userFields} ,
-  {groupFields} ,
-  {invoiceFields} ,
+  authFields() ,
+userFields() ,
+  groupFields() ,
+  invoiceFields() ,
   ];
 
   return (
