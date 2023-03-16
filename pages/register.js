@@ -31,12 +31,8 @@ export default function Register() {
   //Grouping forms by section in a component
   const AuthFields = () => (
     <>
-      <form
-        onSubmit={() => {
-          setStep(step + 1);
-        }}
-      >
-        <input name="Email" type="email" required />
+      
+        <input placeholder="Email" type="email" required ></input>
         <div className="mt-6">
           <Form name="Password" type="password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Deve conter pelo menos um número, uma maiúscula e uma minúscula, e conter pelo menos 8 caracteres." required />
         </div>
@@ -45,7 +41,6 @@ export default function Register() {
             Próximo
           </Button>
         </div>
-      </form>
     </>
   );
 
