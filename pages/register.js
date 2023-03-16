@@ -29,7 +29,7 @@ export default function Register() {
   } */
 
   //Grouping forms by section in a component
-  function AuthFields() {
+  function authFields() {
     return (
       <>
         <input placeholder="Email" type="email" required></input>
@@ -146,12 +146,12 @@ export default function Register() {
   );
 
   // array of components to be rendered
-  const fieldGroups = [
+ /*  const fieldGroups = [
     <AuthFields key={""} />,
     <UserFields key={""} />,
     <GroupFields key={""} />,
     <InvoiceFields key={""} />,
-  ];
+  ]; */
 
   return (
     <Layout title="Criar conta" description="Criar conta">
@@ -169,7 +169,7 @@ export default function Register() {
       </div>
       <div className="relative px-6 flex flex-col gap-3 pb-6">
         <Card>
-          <AuthFields />
+          {authFields()}
         </Card>
       </div>
     </Layout>
