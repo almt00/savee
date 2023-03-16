@@ -20,13 +20,13 @@ export default function Register() {
   const maxDate = new Date().toISOString().split("T")[0];
 
   // useEffect to fix hydration issue
-  useEffect(() => {
+  /* useEffect(() => {
     setHasMounted(true);
-  }, []);
+  }, []); */
 
-  if (!hasMounted) {
+ /*  if (!hasMounted) {
     return null;
-  }
+  } */
 
   //Grouping forms by section in a component
   const AuthFields = () => (
