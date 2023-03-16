@@ -20,19 +20,23 @@ export default function Register() {
   const maxDate = new Date().toISOString().split("T")[0];
 
   // useEffect to fix hydration issue
-  /* useEffect(() => {
+  useEffect(() => {
     setHasMounted(true);
-  }, []); */
+  }, []);
 
-  /*  if (!hasMounted) {
+  if (!hasMounted) {
     return null;
-  } */
+  }
 
   //Grouping forms by section in a component
-  function authFields() {
-    return (
-      <>
-        <input placeholder="Email" type="email" required></input>
+  const authFields = () => (
+    <>
+      <form
+        onSubmit={() => {
+          setStep(step + 1);
+        }}
+      >
+        <Form name="Email" type="email" required />
         <div className="mt-6">
           <Form
             name="Password"
@@ -47,11 +51,11 @@ export default function Register() {
             Próximo
           </Button>
         </div>
-      </>
-    );
-  }
+      </form>
+    </>
+  );
 
-  const UserFields = () => (
+  const userFields = () => (
     <>
       <form
         onSubmit={() => {
@@ -73,7 +77,7 @@ export default function Register() {
     </>
   );
 
-  const GroupFields = () => (
+  const groupFields = () => (
     <>
       <p className="black">
         Não temos nenhum grupo associado ao teu email. Queres criar um novo
@@ -114,7 +118,7 @@ export default function Register() {
     </>
   );
 
-  const InvoiceFields = () => (
+  const invoiceFields = () => (
     <>
       <div className="flex justify-center">
         <Image src="/img/fatura.svg" alt="Fatura" width={267} height={256} />
@@ -146,12 +150,12 @@ export default function Register() {
   );
 
   // array of components to be rendered
- /*  const fieldGroups = [
-    <AuthFields key={""} />,
-    <UserFields key={""} />,
-    <GroupFields key={""} />,
-    <InvoiceFields key={""} />,
-  ]; */
+  const fieldGroups = [
+    <authFields key={""} />,
+    <userFields key={""} />,
+    <groupFields key={""} />,
+    <invoiceFields key={""} />,
+  ];
 
   return (
     <Layout title="Criar conta" description="Criar conta">
@@ -168,9 +172,7 @@ export default function Register() {
         <p className="black">Cria a tua conta no Savee e começa a poupar.</p>
       </div>
       <div className="relative px-6 flex flex-col gap-3 pb-6">
-        <Card>
-          {authFields()}
-        </Card>
+        <Card>{fieldGroups[step]}</Card>
       </div>
     </Layout>
   );
