@@ -81,6 +81,7 @@ const Form = (props) => {
 
   const clickedInput = (e) => {
   e.preventDefault();
+  window.removeEventListener('resize');
   }
 
   return (

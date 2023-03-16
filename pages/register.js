@@ -32,9 +32,9 @@ export default function Register() {
   const AuthFields = () => (
     <>
       <form
-       /*  onSubmit={() => {
+        onSubmit={() => {
           setStep(step + 1);
-        }} */
+        }}
       >
         <Form name="Email" type="email" required />
         <div className="mt-6">
@@ -52,9 +52,9 @@ export default function Register() {
   const UserFields = () => (
     <>
       <form
-        /* onSubmit={() => {
+        onSubmit={() => {
           setStep(step + 1);
-        }} */
+        }}
       >
         <p className="black">
           Vamos customizar a tua experiência. Como te chamas?
