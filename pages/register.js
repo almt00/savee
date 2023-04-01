@@ -19,61 +19,79 @@ export default function Register() {
   // var to keep track of the current date
   const maxDate = new Date().toISOString().split("T")[0];
 
+  const updateStep = () => {
+    setStep(step + 1);
+  };
   // useEffect to fix hydration issue
-  useEffect(() => {
+  /* useEffect(() => {
     setHasMounted(true);
   }, []);
 
   if (!hasMounted) {
     return null;
-  }
+  } */
 
   //Grouping forms by section in a component
   const authFields = () => (
     <>
-      <form
+      {/* <form
         onSubmit={() => {
           setStep(step + 1);
+          console.log(step);
         }}
-      >
+      > */}
+      <div>
         <Form name="Email" type="email" required />
-        <div className="mt-6">
-          <Form
-            name="Password"
-            type="password"
-            pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
-            title="Deve conter pelo menos um número, uma maiúscula e uma minúscula, e conter pelo menos 8 caracteres."
-            required
-          />
-        </div>
-        <div className="flex justify-center">
-          <Button type="submit" className="mt-6" bg="solid" size="lg">
-            Próximo
-          </Button>
-        </div>
-      </form>
+      </div>
+      <div className="mt-6">
+        <Form
+          name="Password"
+          type="password"
+          pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
+          title="Deve conter pelo menos um número, uma maiúscula e uma minúscula, e conter pelo menos 8 caracteres."
+          required
+        />
+      </div>
+      <div className="flex justify-center">
+        <Button
+          type="submit"
+          className="mt-6"
+          bg="solid"
+          size="lg"
+          onClick={updateStep}
+        >
+          Próximo
+        </Button>
+      </div>
+      {/* </form> */}
     </>
   );
 
   const userFields = () => (
     <>
-      <form
+      {/* <form
         onSubmit={() => {
           setStep(step + 1);
         }}
-      >
-        <p className="black">
-          Vamos customizar a tua experiência. Como te chamas?
-        </p>
-        <div className="mt-6">
-          <Form name="Nome" type="text" required />
-          <div className="flex justify-center">
-            <Button type="submit" className="mt-6" bg="solid" size="lg">
-              Próximo
-            </Button>
-          </div>
+      > */}
+      <p className="black">
+        Vamos customizar a tua experiência. Como te chamas?
+      </p>
+      <div className="mt-6">
+        <Form name="Nome" type="text" required />
+        <div className="flex justify-center">
+          <Button
+            type="submit"
+            className="mt-6"
+            bg="solid"
+            size="lg"
+            onClick={updateStep}
+          >
+            Próximo
+          </Button>
         </div>
-      </form>
+      </div>
+      {/* </form> */}
     </>
   );
 
@@ -83,38 +101,44 @@ export default function Register() {
         Não temos nenhum grupo associado ao teu email. Queres criar um novo
         grupo e convidar os teus colegas de casa?
       </p>
-      <form
+      {/* <form
         onSubmit={() => {
           setStep(step + 1);
         }}
-      >
-        <div className="mt-6">
-          <Form name="Nome grupo" type="text" />
-        </div>
-        <hr className="my-6" />
-        <p className="black">
-          O savee só funciona se todos colaborarem. Convida os teus colegas de
-          casa e começa a poupar.
-        </p>
-        <div className="mt-6">
-          <Form name="Emails colegas" type="email" />
-        </div>
-        <div className="flex justify-center">
-          <Link href="/homepage">
-            <Button
-              type="submit"
-              className="mt-6 mr-4"
-              bg="transparent"
-              size="lg"
-            >
-              Mais tarde
-            </Button>
-          </Link>
-          <Button type="submit" className="mt-6" bg="solid" size="lg">
-            Próximo
+      > */}
+      <div className="mt-6">
+        <Form name="Nome grupo" type="text" />
+      </div>
+      <hr className="my-6" />
+      <p className="black">
+        O savee só funciona se todos colaborarem. Convida os teus colegas de
+        casa e começa a poupar.
+      </p>
+      <div className="mt-6">
+        <Form name="Emails colegas" type="email" />
+      </div>
+      <div className="flex justify-center">
+        <Link href="/homepage">
+          <Button
+            type="submit"
+            className="mt-6 mr-4"
+            bg="transparent"
+            size="lg"
+          >
+            Mais tarde
           </Button>
-        </div>
-      </form>
+        </Link>
+        <Button
+          type="submit"
+          className="mt-6"
+          bg="solid"
+          size="lg"
+          onClick={updateStep}
+        >
+          Próximo
+        </Button>
+      </div>
+      {/* </form> */}
     </>
   );
 
@@ -127,53 +151,80 @@ export default function Register() {
         Consulta a tua fatura de eletricidade e acrescenta os seguintes dados
         para o Savee conseguir calcular quanto poupaste.
       </p>
-      <form action="/homepage">
-        <div className="mt-6">
-          <Form
-            name="Data da última fatura"
-            type="date"
-            min="2022-01-01"
-            max={maxDate}
-            required
-          />
-        </div>
-        <Link href="" className="text-links text-sm">
-          Precisas de ajuda?
-        </Link>
-        <div className="flex justify-center">
-          <Button type="submit" className="mt-6" bg="solid" size="lg">
+      {/* <form action="/homepage"> */}
+      <div className="mt-6">
+        <Form
+          name="Data da última fatura"
+          type="date"
+          min="2022-01-01"
+          max={maxDate}
+          required
+        />
+      </div>
+      <Link href="" className="text-links text-sm">
+        Precisas de ajuda?
+      </Link>
+      <div className="flex justify-center">
+        <Link href={"/homepage"}>
+          <Button
+            type="submit"
+            className="mt-6"
+            bg="solid"
+            size="lg"
+            onClick={updateStep}
+          >
             Criar conta
           </Button>
-        </div>
-      </form>
+        </Link>
+      </div>
+      {/* </form> */}
     </>
   );
-
+  const loadContent = () => {
+    console.log(step);
+    if (step === 0) {
+      return authFields();
+    } else if (step === 1) {
+      return userFields();
+    } else if (step === 2) {
+      return groupFields();
+    } else if (step === 3) {
+      return invoiceFields();
+    } else {
+      return <></>;
+    }
+  };
   // array of components to be rendered
-  const fieldGroups = [
+  /*   const fieldGroups = [
     authFields(),
     userFields(),
     groupFields(),
     invoiceFields(),
-  ];
+  ]; */
 
   return (
-    <Layout title="Criar conta" description="Criar conta">
-      <Background color="mint" />
+    <>
+      {step <= 3 && (
+        <Layout title="Criar conta" description="Criar conta">
+          <Background color="mint" />
 
-      <div className="py-4 px-6">
-        <Link href="/">
-          <Image src="/img/logo.svg" alt="Logo" width={75} height={33} />
-        </Link>
-      </div>
+          <div className="py-4 px-6">
+            <Link href="/">
+              <Image src="/img/logo.svg" alt="Logo" width={75} height={33} />
+            </Link>
+          </div>
 
-      <div className="mx-6 mb-8">
-        <h1 className="black">Criar conta</h1>
-        <p className="black">Cria a tua conta no Savee e começa a poupar.</p>
-      </div>
-      <div className="relative px-6 flex flex-col gap-3 pb-6">
-        <Card>{fieldGroups[step]}</Card>
-      </div>
-    </Layout>
+          <div className="mx-6 mb-8">
+            <h1 className="black">Criar conta</h1>
+            <p className="black">
+              Cria a tua conta no Savee e começa a poupar.
+            </p>
+          </div>
+          <div className="relative px-6 flex flex-col gap-3 pb-6">
+            <Card><form>{loadContent()}</form></Card>
+          </div>
+        </Layout>
+      )}
+    </>
   );
 }
