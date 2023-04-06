@@ -3,7 +3,7 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 export const fetchAsyncUser = createAsyncThunk(
   "user/fetchAsyncUser",
   async (id) => {
-    let user_url = "https://savee-api.vercel.app/user/`${id}`";
+    let user_url = `https://savee-api.vercel.app/user/${id}`;
     const response = await fetch(user_url);
     let actualData = await response.json();
     let actualDataObject = await JSON.parse(actualData);
