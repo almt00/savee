@@ -1,4 +1,5 @@
 import { styled } from "@stitches/react";
+import PropTypes from "prop-types"
 
 const Button = styled("button", {
   // default: medium primary
@@ -104,5 +105,12 @@ const Button = styled("button", {
     },
   },
 });
+
+Button.propTypes = {
+  label: PropTypes.string,
+  backgroundColor: PropTypes.string,
+  handleClick: PropTypes.func
+}
+
 
 export default Button;
