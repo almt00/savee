@@ -3,7 +3,7 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 export const fetchAsyncGroup = createAsyncThunk(
   "group/fetchAsyncGroup",
   async (id) => {
-    let group_url = `../api/group_${id}`;
+    let group_url = `https://savee-api.vercel.app/house/${id}`;
     const response = await fetch(group_url);
     let actualData = await response.json();
     let actualDataObject = await JSON.parse(actualData);
