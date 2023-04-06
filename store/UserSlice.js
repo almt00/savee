@@ -34,7 +34,7 @@ const userSlice = createSlice({
 
 
 
-export const getUser = (state) => state.user; // nome da slice (user) e nome da propriedade (user)
+export const getUser = (state) => state.user.user; // nome da slice (user) e nome da propriedade (user)
 
 
 export default userSlice.reducer;
