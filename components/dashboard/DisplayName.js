@@ -18,7 +18,7 @@ export default function DisplayName() {
   }, [dispatch]);
 
   if (userData.status === 200) {
-    name = userData.user.name;
+    name = userData.first_name;
     console.log(name);
   }
   return <h2>Olá {name}!</h2>;
