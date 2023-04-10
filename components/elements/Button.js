@@ -1,7 +1,7 @@
 import { styled } from "@stitches/react";
 import PropTypes from "prop-types"
 
-const Button = styled("button", {
+export const Button = styled("button", {
   // default: medium primary
   borderRadius: "12px",
   backgroundColor: "$white",
@@ -106,11 +106,54 @@ const Button = styled("button", {
   },
 });
 
+export const PrimaryButton = styled(Button, {
+  backgroundColor: '$white',
+  border: '1px solid $black',
+  color: '$black',
+});
+
+export const SecondaryButton = styled(Button, {
+  backgroundColor: 'transparent',
+  border: '1px solid $border',
+  color: '$links',
+});
+
+export const SuccessButton = styled(Button, {
+  backgroundColor: '$success',
+  border: '0px',
+  color: '$white',
+});
+
+export const LargeButton = styled(Button, {
+  backgroundColor: 'purple',
+  fontSize: '24px',
+});
+
 Button.propTypes = {
+  label: PropTypes.string,
+  backgroundColor: PropTypes.string,
+  handleClick: PropTypes.func
+}
+PrimaryButton.propTypes = {
+  label: PropTypes.string,
+  backgroundColor: PropTypes.string,
+  handleClick: PropTypes.func
+}
+SecondaryButton.propTypes = {
+  label: PropTypes.string,
+  backgroundColor: PropTypes.string,
+  handleClick: PropTypes.func
+}
+SuccessButton.propTypes = {
+  label: PropTypes.string,
+  backgroundColor: PropTypes.string,
+  handleClick: PropTypes.func
+}
+LargeButton.propTypes = {
   label: PropTypes.string,
   backgroundColor: PropTypes.string,
   handleClick: PropTypes.func
 }
 
 
-export default Button;
+//export default Button;
