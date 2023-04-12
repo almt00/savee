@@ -62,7 +62,6 @@ export default function Menu() {
                 <Image
                   src="/img/home-icon.svg"
                   className="ml-6"
-                  alt="Home"
                   width="38"
                   height="38"
                 />
@@ -77,7 +76,6 @@ export default function Menu() {
                 <Image
                   src="/img/chart-pie-icon.svg"
                   className="ml-6"
-                  alt="Histórico uso"
                   width="38"
                   height="38"
                 />
@@ -92,7 +90,6 @@ export default function Menu() {
                 <Image
                   src="/img/sun-icon.svg"
                   className="ml-6"
-                  alt="Rotinas"
                   width="38"
                   height="38"
                 />
@@ -107,7 +104,6 @@ export default function Menu() {
                 <Image
                   src="/img/currency-dollar-icon.svg"
                   className="ml-6"
-                  alt="Pagamentos"
                   width="38"
                   height="38"
                 />
