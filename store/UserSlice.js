@@ -24,7 +24,7 @@ const userSlice = createSlice({
     },
     [fetchAsyncUser.fulfilled]: (state, { payload }) => {
       console.log("fetched successfully!");
-      return { ...state, user: payload };
+      return { ...state, status: 200, user: payload };
     },
     [fetchAsyncUser.rejected]: () => {
       console.log("rejected :( ");
@@ -32,9 +32,8 @@ const userSlice = createSlice({
   },
 });
 
-export const getUser = (state) => state.user
+export const getUser = (state) => state.user;
 
- // nome da slice (user) e nome da propriedade (user)
-
+// nome da slice (user) e nome da propriedade (user)
 
 export default userSlice.reducer;
