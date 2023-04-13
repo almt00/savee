@@ -12,7 +12,7 @@ const Tasks = ({ onClickEvent }) => {
     if (tasksData.status !== 200) {
       dispatch(fetchAsyncTasks()); // fazer o fetch com redux caso ainda n esteja o estado (ex.: reloads de pagina)
     }
-  }, [dispatch]);
+  }, [dispatch, tasksData.status]);
 
   if(tasksData.status === 200){
     return (
