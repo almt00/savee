@@ -14,7 +14,7 @@ export default function DisplayName() {
     if (userData.status !== 200) {
       dispatch(fetchAsyncUser(id)); // fazer o fetch com redux
     }
-  }, [dispatch]);
+  }, [dispatch, userData.status]);
 
   if (userData.status === 200 && userData.user) {
     name = userData.user.first_name;

@@ -14,7 +14,7 @@ const Insight = (props) => {
     if (tasksData.status !== 200) {
       dispatch(fetchAsyncTasks()); // fazer o fetch com redux caso ainda n esteja o estado (ex.: reloads de pagina)
     }
-  }, [dispatch]);
+  }, [dispatch, tasksData.status]);
 
   const heatingMessage = "Aqueceste o teu compartimento durante 35h este mês. Isto corresponde a 50% do teu valor a pagar.";
   const showerMessage = "Tomaste duche durante 36h este mês. Isto corresponde a 50% do teu valor a pagar.";

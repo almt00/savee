@@ -44,7 +44,7 @@ const DashboardCard = () => {
     if (tasksData.status !== 200) {
       dispatch(fetchAsyncTasks()); // fazer o fetch com redux~
     }
-  }, [dispatch]);
+  }, [dispatch, groupData.status, tasksData.status, userData.status]);
 
   if (userData.status === 200 && tasksData.status === 200) {
     let userConsumeHist = userData.user.hist_use;

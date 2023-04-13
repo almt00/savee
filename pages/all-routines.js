@@ -31,7 +31,7 @@ const AllRoutines = () => {
       dispatch(fetchAsyncUser(userId)); // fazer o fetch com redux caso ainda n esteja o estado (ex.: reloads de pagina)
       dispatch(fetchAsyncTasks());
     }
-  }, [dispatch]);
+  }, [dispatch, tasksData.status, userData.status]);
 
   if (userData.status === 200 && tasksData.status === 200) {
     obj = userData.user.routines;

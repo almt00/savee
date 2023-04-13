@@ -28,7 +28,7 @@ const AllPayments = () => {
     if (userData.status !== 200) {
       dispatch(fetchAsyncUser(userId)); // fazer o fetch com redux caso ainda n esteja o estado (ex.: reloads de pagina)
     }
-  }, [dispatch]);
+  }, [dispatch, userData.status]);
 
   if (userData.status === 200) {
     obj = userData.hist_payment;

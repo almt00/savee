@@ -17,7 +17,7 @@ export default function Banner(props) {
     if (groupData.status !== 200) {
       dispatch(fetchAsyncGroup(id)); // fazer o fetch com redux
     }
-  }, [dispatch]);
+  }, [dispatch, groupData.status]);
 
   function ShownFalse() {
     setIsShown(false);
