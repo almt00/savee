@@ -6,7 +6,7 @@ export const fetchAsyncGroupDetails = createAsyncThunk(
     let user_url = `https://savee-api.vercel.app/consumption/house/${id}`;
     const response = await fetch(user_url);
     let actualData = await response.json();
-    let actualDataObject = await JSON.parse(actualData);
+    let actualDataObject = await actualData.data;
     return actualDataObject;
   }
 );
@@ -34,7 +34,7 @@ const groupDetailsSlice = createSlice({
 
 
 
-export const getgroupDetails = (state) => state.groupDetails.groupDetails; // nome da slice (user) e nome da propriedade (user)
+export const getgroupDetails = (state) => state.groupDetails; // nome da slice (user) e nome da propriedade (user)
 
 
 export default groupDetailsSlice.reducer;
