@@ -6,7 +6,7 @@ export const fetchAsyncGroupDetails = createAsyncThunk(
     let user_url = `https://savee-api.vercel.app/consumption/house/${id}`;
     const response = await fetch(user_url);
     let actualData = await response.json();
-    let actualDataObject = await actualData.data;
+    let actualDataObject = await actualData;
     return actualDataObject;
   }
 );
