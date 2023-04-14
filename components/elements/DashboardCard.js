@@ -2,27 +2,20 @@ import { styled } from "@stitches/react";
 import Chart from "./Chart";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchAsyncTasks, getTasks } from "../../store/TasksSlice";
-import { fetchAsyncUser, getUser } from "../../store/UserSlice";
 import { fetchAsyncGroup, getGroup } from "../../store/GroupSlice";
 import {
   fetchAsyncConsumption,
   getConsumption,
 } from "../../store/ConsumptionSlice";
-import {
-  fetchAsyncGroupDetails,
-  getgroupDetails,
-} from "../../store/GroupDetailsSlice";
 import { useEffect } from "react";
 import Card from "./Card";
 
 const DashboardCard = () => {
   const dispatch = useDispatch();
-  const userData = useSelector(getUser);
   const tasksData = useSelector(getTasks);
   const groupData = useSelector(getGroup);
   const consumptionData = useSelector(getConsumption);
   const groupId = 1; // ver grupo do user
-  const userId = 1;
   let sumConsumption = 0;
   let lastMonthCons = 0;
   let consDif = 0;
@@ -43,18 +36,13 @@ const DashboardCard = () => {
       //dispatch(fetchAsyncGroupDetails(1)); // fazer o fetch com redux do grupo
     }
 
-    if (userData.status !== 200) {
-      dispatch(fetchAsyncUser(userId)); // fazer o fetch com redux
-    }
     if (tasksData.status !== 200) {
       dispatch(fetchAsyncTasks()); // fazer o fetch com redux~
     }
   }, [dispatch]);
 
   if (consumptionData.status === 200 && tasksData.status === 200) {
-    let userConsumeHist = consumptionData.consumption.filter(
-      (element) => element.user_id === userId
-    );
+    let userConsumeHist = consumptionData.consumption;
     userConsumeHist.forEach((element) => {
       let taskId = element.task_id;
       let startTime = new Date(element.start_date);

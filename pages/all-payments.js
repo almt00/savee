@@ -1,18 +1,15 @@
 import Layout from "../components/elements/Layout";
-import { Inter } from "@next/font/google";
 import { styled } from "../stitches.config";
 import Card from "../components/elements/Card";
 import Header from "../components/elements/Header";
 import Background from "../components/elements/Background";
 import Link from "next/link";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchAsyncUser, getUser } from "../store/UserSlice";
 import { useEffect } from "react";
 import { setPage } from "../store/PageSlice";
 
 const AllPayments = () => {
   const dispatch = useDispatch();
-  const userData = useSelector(getUser);
   dispatch(setPage("payments"));
 
   const userId = 1;
