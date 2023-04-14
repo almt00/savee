@@ -5,7 +5,6 @@ import Header from "../components/elements/Header";
 import Background from "../components/elements/Background";
 import Link from "next/link";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchAsyncUser, getUser } from "../store/UserSlice";
 import { useEffect } from "react";
 import { setPage } from "../store/PageSlice";
 import { fetchAsyncPaymentSlice, getPayment } from "../store/PaymentSlice";
