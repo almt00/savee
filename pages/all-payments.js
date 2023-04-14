@@ -46,7 +46,7 @@ const AllPayments = () => {
       cleanDate = new Date(date).toLocaleDateString("pt-PT", options);
       userValue = payment.value_payment;
 
-      // accumulate the total value of all the group.value_payment corresponding to the same payment.id
+      // accumulate the total value of all the group.value_payment corresponding to the same payment
       const totalValue = objGroup.reduce((acc, group) => {
         if (group.payment_id === payment.id) {
           return acc + group.value_payment;
