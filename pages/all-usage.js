@@ -4,13 +4,13 @@ import Card from "../components/elements/Card";
 import Header from "../components/elements/Header";
 import Background from "../components/elements/Background";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchAsyncUser, getUser } from "../store/UserSlice";
+import { fetchAsyncConsumptionSlice, getConsumption } from "../store/ConsumptionSlice";
 import { useEffect } from "react";
 import { setPage } from "../store/PageSlice";
 
 const AllUsage = () => {
   const dispatch = useDispatch();
-  const userData = useSelector(getUser);
+  const consumptionData = useSelector(getConsumption);
   dispatch(setPage("usage"));
   const userId = 1;
   let UseHisto = "";
@@ -27,13 +27,13 @@ const AllUsage = () => {
   let todaySum = 0;
 
   useEffect(() => {
-    if (userData.status !== 200) {
-      dispatch(fetchAsyncUser(userId)); // fazer o fetch com redux caso ainda n esteja o estado (ex.: reloads de pagina)
+    if (consumptionData.status !== 200) {
+      dispatch(fetchAsyncConsumptionSlice(userId)); // fazer o fetch com redux caso ainda n esteja o estado (ex.: reloads de pagina)
     }
   }, [dispatch]);
 
-  if (userData.status === 200) {
-    obj = userData.user.hist_use;
+  if (consumptionData.status === 200) {
+    obj = consumptionData.consumption;
     UseHisto = obj.map((use, index) => {
       taskName = use.name;
       taskInit = new Date(use.start_date);
