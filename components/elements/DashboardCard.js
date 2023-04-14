@@ -5,6 +5,10 @@ import { fetchAsyncTasks, getTasks } from "../../store/TasksSlice";
 import { fetchAsyncUser, getUser } from "../../store/UserSlice";
 import { fetchAsyncGroup, getGroup } from "../../store/GroupSlice";
 import {
+  fetchAsyncConsumption,
+  getConsumption,
+} from "../../store/ConsumptionSlice";
+import {
   fetchAsyncGroupDetails,
   getgroupDetails,
 } from "../../store/GroupDetailsSlice";
@@ -16,6 +20,7 @@ const DashboardCard = () => {
   const userData = useSelector(getUser);
   const tasksData = useSelector(getTasks);
   const groupData = useSelector(getGroup);
+  const consumptionData = useSelector(getConsumption);
   const groupId = 1; // ver grupo do user
   const userId = 1;
   let sumConsumption = 0;
@@ -46,8 +51,10 @@ const DashboardCard = () => {
     }
   }, [dispatch]);
 
-  if (userData.status === 200 && tasksData.status === 200) {
-    let userConsumeHist = userData.user.hist_use;
+  if (consumptionData.status === 200 && tasksData.status === 200) {
+    let userConsumeHist = consumptionData.consumption.filter(
+      (element) => element.user_id === userId
+    );
     userConsumeHist.forEach((element) => {
       let taskId = element.task_id;
       let startTime = new Date(element.start_date);

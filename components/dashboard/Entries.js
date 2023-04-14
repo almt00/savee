@@ -3,11 +3,13 @@ import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { fetchAsyncUser, getUser } from "../../store/UserSlice";
 import { fetchAsyncTasks, getTasks } from "../../store/TasksSlice";
+import { fetchAsyncConsumptionSlice, getConsumption } from "../../store/ConsumptionSlice";
 
 const Entries = (props) => {
   const dispatch = useDispatch();
   const userData = useSelector(getUser);
   const tasksData = useSelector(getTasks);
+  const consumptionData = useSelector(getConsumption);
 
   let userId = 1;
   let showEntrylist;
@@ -32,18 +34,20 @@ const Entries = (props) => {
     intMax = 24;
   }
 
-
-
-  if (userData.status === 200 && tasksData.status === 200) {
-    let userConsumeHist = userData.user.hist_use;
-    let userRoutines = userData.user.routines;
+  if (consumptionData.status === 200 && tasksData.status === 200) {
+    let userConsumeHist = consumptionData.consumption.filter(
+      (element) => element.user_id === userId
+    );
+    let userRoutines = consumptionData.consumption.filter(
+      (element) => element.user_id === userId
+    );
     let userTasks = [...userConsumeHist, ...userRoutines]; // juntar dados rotinas com tasks
     let today = new Date();
 
     showEntrylist = userTasks.map((element, index) => {
       let startTime = new Date(element.start_date);
       let endTime = new Date(element.end_date);
-      
+
       if (element.type === "routine") {
         // verificar se é rotina ou task
         verifyDay = false;

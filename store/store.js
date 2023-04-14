@@ -4,6 +4,7 @@ import tasksReducer from "./TasksSlice";
 import GroupSlice from "./GroupSlice";
 import groupDetailsSlice from "./GroupDetailsSlice";
 import pageSlice from "./PageSlice";
+import ConsumptionSlice from "./ConsumptionSlice";
 
 export const store = configureStore({
   reducer: {
@@ -12,5 +13,6 @@ export const store = configureStore({
     group: GroupSlice,
     groupDetails: groupDetailsSlice,
     page: pageSlice,
+    consumption: ConsumptionSlice,
   },
 });
