@@ -8,51 +8,66 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { setPage } from "../store/PageSlice";
 import { fetchAsyncPaymentSlice, getPayment } from "../store/PaymentSlice";
+import {
+  fetchAsyncPaymentGroupSlice,
+  getPaymentGroup,
+} from "../store/PaymentGroupSlice";
 
 const AllPayments = () => {
   const dispatch = useDispatch();
   const paymentData = useSelector(getPayment);
+  const paymentGroupData = useSelector(getPaymentGroup);
   dispatch(setPage("payments"));
 
   const userId = 1;
-  let value = "";
-  let totalValue = "";
+  const houseId = 1;
+  let totalValue = [];
   let date = "";
   let cleanDate = "";
-  let percetoeuro = "";
+  let userValue = "";
   let obj = "";
+  let objGroup = "";
   let PayHisto = "";
 
   useEffect(() => {
-    if (paymentData.status !== 200) {
+    if (paymentData.status !== 200 && paymentGroupData.status !== 200) {
       dispatch(fetchAsyncPaymentSlice(userId)); // fazer o fetch com redux caso ainda n esteja o estado (ex.: reloads de pagina)
+      dispatch(fetchAsyncPaymentGroupSlice(houseId));
     }
   }, [dispatch]);
 
-  if (paymentData.status === 200) {
+  if (paymentData.status === 200 && paymentGroupData.status === 200) {
     obj = paymentData.payment;
+    objGroup = paymentGroupData.paymentGroup;
+
     PayHisto = obj?.map((payment, index) => {
-      value = payment.percentage;
-      totalValue = payment.total_value;
-      date = payment.date;
+      date = payment.date_payment;
       const options = { month: "short", day: "numeric" };
       cleanDate = new Date(date).toLocaleDateString("pt-PT", options);
-      percetoeuro = ((totalValue / 100) * value).toFixed(2);
+      userValue = payment.value_payment;
+
+      // accumulate the total value of all the group.value_payment corresponding to the same payment.id
+      const totalValue = objGroup.reduce((acc, group) => {
+        if (group.payment_id === payment.id) {
+          return acc + group.value_payment;
+        }
+        return acc;
+      }, 0);
 
       return (
-        <>
-          <Link href="/payment">
-            <Card type="stroke" key={index}>
-              <CardItem className="flex justify-between items-center" key={index}>
-                <PaymentInfo key={index}>
-                  <h4>{percetoeuro}€</h4>
+        <Link href="/payment" key={index}>
+          <Card type="stroke">
+            <CardItem className="flex justify-between items-center">
+              <PaymentInfo>
+                <h4>{userValue}€</h4>
+                {totalValue > 0 && (
                   <p className="mt-1">de {totalValue}€ totais</p>
-                </PaymentInfo>
-                <p className="text-muted">{cleanDate}</p>
-              </CardItem>
-            </Card>
-          </Link>
-        </>
+                )}
+              </PaymentInfo>
+              <p className="text-muted">{cleanDate}</p>
+            </CardItem>
+          </Card>
+        </Link>
       );
     });
   }

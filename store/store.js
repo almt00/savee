@@ -6,6 +6,7 @@ import groupDetailsSlice from "./GroupDetailsSlice";
 import pageSlice from "./PageSlice";
 import ConsumptionSlice from "./ConsumptionSlice";
 import PaymentSlice from "./PaymentSlice";
+import PaymentGroupSlice from "./PaymentGroupSlice";
 import RoutineSlice from "./RoutineSlice";
 
 export const store = configureStore({
@@ -18,5 +19,6 @@ export const store = configureStore({
     consumption: ConsumptionSlice,
     payment: PaymentSlice,
     routine: RoutineSlice,
+    paymentGroup: PaymentGroupSlice,
   },
 });
