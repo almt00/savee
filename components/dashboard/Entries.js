@@ -1,17 +1,18 @@
 import { styled } from "@stitches/react";
 import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { fetchAsyncUser, getUser } from "../../store/UserSlice";
 import { fetchAsyncTasks, getTasks } from "../../store/TasksSlice";
-import { fetchAsyncConsumptionSlice, getConsumption } from "../../store/ConsumptionSlice";
+import {
+  fetchAsyncConsumptionSlice,
+  getConsumption,
+} from "../../store/ConsumptionSlice";
 
 const Entries = (props) => {
   const dispatch = useDispatch();
-  const userData = useSelector(getUser);
   const tasksData = useSelector(getTasks);
   const consumptionData = useSelector(getConsumption);
 
-  let userId = 1;
+  const id = 1; // variavel de sessao ou algo assim no login
   let showEntrylist;
   let timeUnit = "min";
   let duration = 0;
@@ -34,13 +35,15 @@ const Entries = (props) => {
     intMax = 24;
   }
 
+  useEffect(() => {
+    if (consumptionData.status !== 200 && tasksData.status === 200) {
+      dispatch(fetchAsyncConsumptionSlice(id)); // fazer o fetch com redux
+    }
+  }, [dispatch]);
+
   if (consumptionData.status === 200 && tasksData.status === 200) {
-    let userConsumeHist = consumptionData.consumption.filter(
-      (element) => element.user_id === userId
-    );
-    let userRoutines = consumptionData.consumption.filter(
-      (element) => element.user_id === userId
-    );
+    let userConsumeHist = consumptionData.consumption;
+    let userRoutines = consumptionData.consumption;
     let userTasks = [...userConsumeHist, ...userRoutines]; // juntar dados rotinas com tasks
     let today = new Date();
 

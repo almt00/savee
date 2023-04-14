@@ -1,18 +1,17 @@
 import Layout from "../components/elements/Layout";
-import { Inter } from "@next/font/google";
 import { styled } from "../stitches.config";
 import Card from "../components/elements/Card";
 import Header from "../components/elements/Header";
 import Background from "../components/elements/Background";
 import Link from "next/link";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchAsyncUser, getUser } from "../store/UserSlice";
 import { useEffect } from "react";
 import { setPage } from "../store/PageSlice";
+import { fetchAsyncPaymentSlice, getPayment } from "../store/PaymentSlice";
 
 const AllPayments = () => {
   const dispatch = useDispatch();
-  const userData = useSelector(getUser);
+  const paymentData = useSelector(getPayment);
   dispatch(setPage("payments"));
 
   const userId = 1;
@@ -25,13 +24,13 @@ const AllPayments = () => {
   let PayHisto = "";
 
   useEffect(() => {
-    if (userData.status !== 200) {
-      dispatch(fetchAsyncUser(userId)); // fazer o fetch com redux caso ainda n esteja o estado (ex.: reloads de pagina)
+    if (paymentData.status !== 200) {
+      dispatch(fetchAsyncPaymentSlice(userId)); // fazer o fetch com redux caso ainda n esteja o estado (ex.: reloads de pagina)
     }
   }, [dispatch]);
 
-  if (userData.status === 200) {
-    obj = userData.hist_payment;
+  if (paymentData.status === 200) {
+    obj = paymentData.payment;
     PayHisto = obj?.map((payment, index) => {
       value = payment.percentage;
       totalValue = payment.total_value;
