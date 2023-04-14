@@ -62,10 +62,11 @@ export default function Menu() {
                 <Image
                   src="/img/home-icon.svg"
                   className="ml-6"
+                  alt="Home"
                   width="38"
                   height="38"
                 />
-                <h2>Homepage</h2>
+                <h2 aria-hidden="true">Homepage</h2>
               </li>
             </Link>
             <Link
@@ -76,10 +77,11 @@ export default function Menu() {
                 <Image
                   src="/img/chart-pie-icon.svg"
                   className="ml-6"
+                  alt="Histórico uso"
                   width="38"
                   height="38"
                 />
-                <h2>Histórico uso</h2>
+                <h2 aria-hidden="true">Histórico uso</h2>
               </li>
             </Link>
             <Link
@@ -90,10 +92,11 @@ export default function Menu() {
                 <Image
                   src="/img/sun-icon.svg"
                   className="ml-6"
+                  alt="Rotinas"
                   width="38"
                   height="38"
                 />
-                <h2>Rotinas</h2>
+                <h2 aria-hidden="true">Rotinas</h2>
               </li>
             </Link>
             <Link
@@ -104,10 +107,11 @@ export default function Menu() {
                 <Image
                   src="/img/currency-dollar-icon.svg"
                   className="ml-6"
+                  alt="Pagamentos"
                   width="38"
                   height="38"
                 />
-                <h2>Pagamentos</h2>
+                <h2 aria-hidden="true">Pagamentos</h2>
               </li>
             </Link>
           </MenuList>
