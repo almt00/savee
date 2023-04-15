@@ -85,7 +85,7 @@ const Form = (props) => {
 
   return (
     <Container>
-      <LabelRoot as="form">{props.name}</LabelRoot>
+      <LabelRoot>{props.name}</LabelRoot>
       <Input
         type={props.type}
         id={props.id}
@@ -121,6 +121,7 @@ const Input = styled("input", {
   borderRadius: 12,
   border: "1px solid $border",
   padding: "0 10px",
+  marginTop: "0.6rem",
   height: 44,
   fontSize: "$normal",
   color: "$black",
