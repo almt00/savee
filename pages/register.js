@@ -41,7 +41,7 @@ export default function Register() {
         }}
       > */}
       <div>
-        <Form name="Email" type="email" required />
+        <Form name="Email" type="email" required="required"/>
       </div>
       <div className="mt-6">
         <Form
@@ -49,7 +49,7 @@ export default function Register() {
           type="password"
           pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
           title="Deve conter pelo menos um número, uma maiúscula e uma minúscula, e conter pelo menos 8 caracteres."
-          required
+          required="required"
         />
       </div>
       <div className="flex justify-center">
@@ -221,7 +221,9 @@ export default function Register() {
             </p>
           </div>
           <div className="relative px-6 flex flex-col gap-3 pb-6">
-            <Card><form>{loadContent()}</form></Card>
+            <Card>
+              <form>{loadContent()}</form>
+            </Card>
           </div>
         </Layout>
       )}

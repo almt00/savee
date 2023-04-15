@@ -96,7 +96,7 @@ const Form = (props) => {
         required={props.required}
         min={props.min}
         max={props.max}
-        onClick={clickedInput}
+        //onClick={clickedInput}
       />
       <div id={`${props.id}_error`} className="hidden">
         <Image src="/img/x-circle.svg" alt="Erro" width="20" height="20" />
@@ -114,7 +114,7 @@ const LabelRoot = styled(Label.Root, {
 });
 
 const Input = styled("input", {
-  all: "unset",
+  all: "inherit",
   //make width fill to parent
   boxSizing: "border-box",
   width: "100%",
