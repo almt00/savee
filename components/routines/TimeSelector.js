@@ -4,7 +4,7 @@ import React from "react";
 export default function TimeSelector() {
   return (
     <>
-            <p>Quanto tempo demoras em média?</p>
+      <p>Quanto tempo demoras em média?</p>
 
       <form className={`flex gap-6 justify-center text-center p-3 mt-4`}>
         <div className="border-b-2 border-purple">
@@ -14,7 +14,7 @@ export default function TimeSelector() {
             placeholder="00"
             maxLength="2"
             min={0}
-            max={24}keyboardDismissMode='none'
+            max={24}
           />
         </div>
         <div className="border-b-2 border-purple">
@@ -25,7 +25,6 @@ export default function TimeSelector() {
             maxLength="2"
             min={0}
             max={60}
-            requiredkeyboardDismissMode='none'
           />
         </div>
         <div className="border-b-2 border-purple">
@@ -36,7 +35,6 @@ export default function TimeSelector() {
             maxLength="2"
             min={0}
             max={60}
-            requiredkeyboardDismissMode='none'
           />
         </div>
       </form>
