@@ -82,6 +82,7 @@ const Form = (props) => {
   return (
     <Container>
       <LabelRoot as="form">{props.name}</LabelRoot>
+      <label></label>
       <Input
         type={props.type}
         id={props.id}
