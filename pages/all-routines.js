@@ -39,8 +39,8 @@ const AllRoutines = () => {
       weekdays = routine.weekdays;
       duration = routine.duration_routine;
 
-      // convert duration from seconds to minutes
-      duration = Math.floor(duration / 60);
+      // convert duration from seconds to minutes and round it
+      duration = Math.round(duration / 60);
 
       name = tasksData.tasks?.find((task) => task.id === type)?.name || "";
 
