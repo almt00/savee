@@ -35,11 +35,14 @@ const AllRoutines = () => {
   if (routineData.status === 200 && tasksData.status === 200) {
     obj = routineData.routine;
     Routines = obj?.map((routine, index) => {
-      type = routine.task_id;
+      type = routine.task;
       weekdays = routine.weekdays;
-      duration = routine.duration;
+      duration = routine.duration_routine;
 
-      name = tasksData.tasks?.find((task) => task.id === type).name;
+      // convert duration from seconds to minutes and round it
+      duration = Math.round(duration / 60);
+
+      name = tasksData.tasks?.find((task) => task.id === type)?.name || "";
 
       weekdays = weekdays.map((day) => {
         switch (day) {
