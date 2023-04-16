@@ -1,10 +1,10 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
 export const fetchAsyncGroupDetails = createAsyncThunk(
-  "user/fetchAsyncGroupDetails",
+  "groupDetails/fetchAsyncGroupDetails",
   async (id) => {
-    let user_url = `https://savee-api.vercel.app/consumption/house/${id}`;
-    const response = await fetch(user_url);
+    let groupDetails_url = `https://savee-api.vercel.app/consumption/house/${id}`;
+    const response = await fetch(groupDetails_url);
     let actualData = await response.json();
     let actualDataObject = await actualData;
     return actualDataObject;
@@ -24,7 +24,11 @@ const groupDetailsSlice = createSlice({
     },
     [fetchAsyncGroupDetails.fulfilled]: (state, { payload }) => {
       console.log("fetched successfully!");
-      return { ...state, status: 200, groupDetails: [state.groupDetails, payload] };
+      return {
+        ...state,
+        status: 200,
+        groupDetails: [state.groupDetails, payload],
+      };
     },
     [fetchAsyncGroupDetails.rejected]: () => {
       console.log("rejected :( ");
@@ -32,9 +36,6 @@ const groupDetailsSlice = createSlice({
   },
 });
 
-
-
-export const getgroupDetails = (state) => state.groupDetails; // nome da slice (user) e nome da propriedade (user)
-
+export const getGroupDetails = (state) => state.groupDetails; // nome da slice (user) e nome da propriedade (user)
 
 export default groupDetailsSlice.reducer;

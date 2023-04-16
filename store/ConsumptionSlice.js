@@ -1,10 +1,10 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
-export const fetchAsyncConsumptionSlice = createAsyncThunk(
-  "user/fetchAsyncConsumption",
+export const fetchAsyncConsumption = createAsyncThunk(
+  "consumption/fetchAsyncConsumption",
   async (id) => {
-    let user_url = `https://savee-api.vercel.app/consumption/user/${id}`;
-    const response = await fetch(user_url);
+    let consumption_url = `https://savee-api.vercel.app/consumption/user/${id}`;
+    const response = await fetch(consumption_url);
     let actualData = await response.json();
     let actualDataObject = await actualData;
     return actualDataObject;
@@ -19,14 +19,14 @@ const consumptionSlice = createSlice({
   name: "consumption",
   initialState,
   extraReducers: {
-    [fetchAsyncConsumptionSlice.pending]: () => {
+    [fetchAsyncConsumption.pending]: () => {
       console.log("pending...");
     },
-    [fetchAsyncConsumptionSlice.fulfilled]: (state, { payload }) => {
+    [fetchAsyncConsumption.fulfilled]: (state, { payload }) => {
       console.log("fetched successfully!");
       return { ...state, status: 200, consumption: payload  };
     },
-    [fetchAsyncConsumptionSlice.rejected]: () => {
+    [fetchAsyncConsumption.rejected]: () => {
       console.log("rejected :( ");
     },
   },

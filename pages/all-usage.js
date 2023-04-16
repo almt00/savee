@@ -4,7 +4,7 @@ import Card from "../components/elements/Card";
 import Header from "../components/elements/Header";
 import Background from "../components/elements/Background";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchAsyncConsumptionSlice, getConsumption } from "../store/ConsumptionSlice";
+import { fetchAsyncConsumption, getConsumption } from "../store/ConsumptionSlice";
 import { useEffect } from "react";
 import { setPage } from "../store/PageSlice";
 
@@ -28,7 +28,7 @@ const AllUsage = () => {
 
   useEffect(() => {
     if (consumptionData.status !== 200) {
-      dispatch(fetchAsyncConsumptionSlice(userId)); // fazer o fetch com redux caso ainda n esteja o estado (ex.: reloads de pagina)
+      dispatch(fetchAsyncConsumption(userId)); // fazer o fetch com redux caso ainda n esteja o estado (ex.: reloads de pagina)
     }
   }, [dispatch]);
 
