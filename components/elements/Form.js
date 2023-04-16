@@ -79,20 +79,43 @@ const Form = (props) => {
   }, []);
   */
 
+  const clickedInput = (e) => {
+    e.preventDefault();
+  };
+
   return (
     <Container>
-      <LabelRoot as="form">{props.name}</LabelRoot>
-      <Input
-        type={props.type}
-        id={props.id}
-        placeholder={placeholderValue}
-        style={{ background: `url(/img/${icon}) no-repeat 98%` }}
-        pattern={props.pattern}
-        title={props.title}
-        required={props.required}
-        min={props.min}
-        max={props.max}
-      />
+      <LabelRoot>{props.name}</LabelRoot>
+      {props.type === "date" ? (
+        <Input
+          type={props.type}
+          id={props.id}
+          placeholder={placeholderValue}
+          style={{
+            background: `url(/img/${icon}) no-repeat 98%`,
+            paddingTop: "9px",
+          }}
+          pattern={props.pattern}
+          title={props.title}
+          required={props.required}
+          min={props.min}
+          max={props.max}
+          //onClick={clickedInput}
+        />
+      ) : (
+        <Input
+          type={props.type}
+          id={props.id}
+          placeholder={placeholderValue}
+          style={{ background: `url(/img/${icon}) no-repeat 98%` }}
+          pattern={props.pattern}
+          title={props.title}
+          required={props.required}
+          min={props.min}
+          max={props.max}
+          //onClick={clickedInput}
+        />
+      )}
       <div id={`${props.id}_error`} className="hidden">
         <Image src="/img/x-circle.svg" alt="Erro" width="20" height="20" />
         <p>Isto é um erro</p>
@@ -109,13 +132,14 @@ const LabelRoot = styled(Label.Root, {
 });
 
 const Input = styled("input", {
-  all: "unset",
+  all: "inherit",
   //make width fill to parent
   boxSizing: "border-box",
   width: "100%",
   borderRadius: 12,
   border: "1px solid $border",
   padding: "0 10px",
+  marginTop: "0.6rem",
   height: 44,
   fontSize: "$normal",
   color: "$black",
