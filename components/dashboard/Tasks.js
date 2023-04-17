@@ -17,7 +17,7 @@ const Tasks = () => {
           <TaskContainer key={task.name}>
             <Link href={`/task?id=${task.id}`}>
               <TaskImage src={task.image} alt={task.name} />
-              <TaskTitle>{task.name}</TaskTitle>
+              <TaskTitle aria-hidden="true">{task.name}</TaskTitle>
             </Link>
           </TaskContainer>
         );
