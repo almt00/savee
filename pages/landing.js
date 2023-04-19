@@ -61,7 +61,7 @@ export default function Landing() {
               </Card>
             </SlideItem>
             <SlideItem>
-              <Card id="first-card" className="flex flex-col p-6 gap-4">
+              <Card id="second-card" className="flex flex-col p-6 gap-4">
                 <CardNumber>#2</CardNumber>
                 <Image src="/img/onboardingTwo.svg" className="z-10" alt="Onboarding 2" width="260" height="190"></Image>
                 <div>
@@ -75,7 +75,7 @@ export default function Landing() {
               </Card>
             </SlideItem>
             <SlideItem>
-              <Card id="first-card" className="flex flex-col p-6 gap-4">
+              <Card id="third-card" className="flex flex-col p-6 gap-4">
                 <CardNumber>#3</CardNumber>
                 <Image src="/img/onboardingThree.svg" className="z-10" alt="onboarding 3" width="266" height="190"></Image>
                 <div>
