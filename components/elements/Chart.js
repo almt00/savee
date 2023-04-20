@@ -3,39 +3,43 @@ import Chart from "chart.js/auto";
 import { Doughnut } from "react-chartjs-2";
 import { styled } from "@stitches/react";
 import ChartDataLabels from "chartjs-plugin-datalabels";
-import { fetchAsyncPaymentSlice, getPayment } from "../../store/PaymentSlice";
 import {
-  fetchAsyncPaymentGroupSlice,
-  getPaymentGroup,
-} from "../../store/PaymentGroupSlice";
+  fetchAsyncPaymentGroupDetailsSlice,
+  getPaymentGroupDetails,
+} from "../../store/PaymentGroupDetailsSlice";
 import { fetchAsyncUser, getUser } from "../../store/UserSlice";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 const DoughnutChart = (props) => {
   const dispatch = useDispatch();
-  const paymentData = useSelector(getPayment);
-  const paymentGroupData = useSelector(getPaymentGroup);
+  const paymentGroupDetailsData = useSelector(getPaymentGroupDetails);
   const userData = useSelector(getUser);
   const userId = 1;
   const houseId = 1;
+  const paymentId = 1;
 
   useEffect(() => {
-    if (paymentData.status !== 200 && paymentGroupData.status !== 200 && userData.status !== 200) {
-      dispatch(fetchAsyncPaymentSlice(userId));
-      dispatch(fetchAsyncPaymentGroupSlice(houseId));
+    if (paymentGroupDetailsData.status !== 200 && userData.status !== 200) {
+      dispatch(fetchAsyncPaymentGroupDetailsSlice(houseId, paymentId));
       dispatch(fetchAsyncUser(houseId));
     }
   }, [dispatch]);
 
-  if (paymentData.status === 200 && paymentGroupData.status === 200 && userData.status === 200) {
+  if (paymentGroupDetailsData.status === 200 && userData.status === 200) {
     const latestGroupPayment =
-      paymentGroupData.paymentGroup[paymentGroupData.paymentGroup.length - 1];
+      paymentGroupDetailsData.paymentGroup[
+        paymentGroupData.paymentGroup.length - 1
+      ];
     const groupValue = latestGroupPayment.value_payment;
-    const latestPayment = paymentData.payment[paymentData.payment.length - 1]; // need to change logic to get selected id payment
-    const userValue = latestPayment.payment_percentage;
+    // find user with id and output payment_percentage
+    const userValue = userData.user.find(
+      (user) => user.id === userId
+    ).payment_percentage;
 
     const finalUserValue = groupValue * userValue;
+
+    console.log(finalUserValue);
 
     let border = "";
     let background = "";

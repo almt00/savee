@@ -3,64 +3,49 @@ import Chart from "../elements/Chart";
 import Button from "../elements/Button";
 import Card from "../elements/Card";
 import Image from "next/image";
-import { fetchAsyncPaymentSlice, getPayment } from "../../store/PaymentSlice";
 import {
-  fetchAsyncPaymentGroupSlice,
-  getPaymentGroup,
-} from "../../store/PaymentGroupSlice";
+  fetchAsyncPaymentGroupDetailsSlice,
+  getPaymentGroupDetails,
+} from "../../store/PaymentGroupDetailsSlice";
 import { fetchAsyncUser, getUser } from "../../store/UserSlice";
-import { fetchAsyncUsers, getUsers } from "../../store/UsersSlice";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 const PaymentCard = (props) => {
   const dispatch = useDispatch();
-  const paymentData = useSelector(getPayment);
-  const paymentGroupData = useSelector(getPaymentGroup);
+  const paymentGroupDetailsData = useSelector(getPaymentGroupDetails);
   const userData = useSelector(getUser);
-  const usersData = useSelector(getUsers);
   const userId = 1;
   const houseId = 1;
+  const paymentId = 1;
 
   useEffect(() => {
-    if (
-      paymentData.status !== 200 &&
-      paymentGroupData.status !== 200 &&
-      userData.status !== 200 &&
-      usersData.status !== 200
-    ) {
-      dispatch(fetchAsyncPaymentSlice(userId));
-      dispatch(fetchAsyncPaymentGroupSlice(houseId));
+    if (paymentGroupDetailsData.status === 200 && userData.status !== 200) {
+      dispatch(fetchAsyncPaymentGroupDetailsSlice(houseId, paymentId));
       dispatch(fetchAsyncUser(houseId));
-      dispatch(fetchAsyncUsers(houseId));
     }
   }, [dispatch]);
 
-  if (
-    paymentData.status === 200 &&
-    paymentGroupData.status === 200 &&
-    userData.status === 200 &&
-    usersData.status === 200
-  ) {
-    const latestPayment = paymentData.payment[paymentData.payment.length - 1]; // need to change logic to get selected id payment
-    const userValue = latestPayment.payment_percentage;
-    const percentageOurUser = userValue * 100;
+  if (paymentGroupDetailsData.status === 200 && userData.status === 200) {
+    const latestGroupPayment =
+      paymentGroupDetailsData.paymentGroup[
+        paymentGroupData.paymentGroup.length - 1
+      ];
 
-    // filter userData to get colleagues living in the same house_id
-    const houseColleagues = usersData.users.filter(
-      (colleague) => colleague.house_id === houseId
-    );
+    // map through UserPayment object and output payment_percentage
 
-    console.log(houseColleagues);
+    const obj = latestGroupPayment.UserPayment;
 
-    // map houseColleague to get the percentage of each one
-    const percentageColleagues = houseColleagues.map((colleague) => {
-      // transform object into array
-      const obj = Object.values(colleague);
-      // get the percentage of each colleague
-      const percentageColleague = obj[4] * 100; // não temos o payment_percentage na tabela users
-      // get the name of each colleague
-      const nameColleague = obj[1];
+    console.log(obj);
+
+    const percentageColleagues = latestGroupPayment.UserPayment.map((user) => {
+      const percentageColleague = user.payment_percentage;
+      const idColleague = user.user_id;
+      // map id to name
+      const nameColleague = userData.user.find(
+        (user) => user.id === idColleague
+      ).name;
+
       return (
         <>
           <User>
