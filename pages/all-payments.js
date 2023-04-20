@@ -12,47 +12,58 @@ import {
   fetchAsyncPaymentGroupSlice,
   getPaymentGroup,
 } from "../store/PaymentGroupSlice";
+import {
+  fetchAsyncPaymentGroupDetailsSlice,
+  getPaymentGroupDetails,
+} from "../store/PaymentGroupDetailsSlice";
 
 const AllPayments = () => {
   const dispatch = useDispatch();
   const paymentData = useSelector(getPayment);
   const paymentGroupData = useSelector(getPaymentGroup);
+  const paymentGroupDetailsData = useSelector(getPaymentGroupDetails);
   dispatch(setPage("payments"));
 
   const userId = 1;
   const houseId = 1;
-  let totalValue = [];
+  const paymentId = 1;
   let date = "";
   let cleanDate = "";
   let userValue = "";
   let obj = "";
   let objGroup = "";
   let PayHisto = "";
+  let objDetails = "";
 
   useEffect(() => {
-    if (paymentData.status !== 200 && paymentGroupData.status !== 200) {
+    if (
+      paymentData.status !== 200 &&
+      paymentGroupData.status !== 200 &&
+      paymentGroupDetailsData.status !== 200
+    ) {
       dispatch(fetchAsyncPaymentSlice(userId)); // fazer o fetch com redux caso ainda n esteja o estado (ex.: reloads de pagina)
       dispatch(fetchAsyncPaymentGroupSlice(houseId));
+      dispatch(fetchAsyncPaymentGroupDetailsSlice(houseId, paymentId));
     }
   }, [dispatch]);
 
-  if (paymentData.status === 200 && paymentGroupData.status === 200) {
-    obj = paymentData.payment;
-    objGroup = paymentGroupData.paymentGroup;
+  if (
+    paymentData.status === 200 &&
+    paymentGroupData.status === 200 &&
+    paymentGroupDetailsData.status === 200
+  ) {
+    obj = paymentGroupData.paymentGroup;
 
-    PayHisto = obj?.map((payment, index) => {
-      date = payment.date_payment;
-      const options = { month: "short", day: "numeric" };
-      cleanDate = new Date(date).toLocaleDateString("pt-PT", options);
-      userValue = payment.value_payment;
+    console.log(paymentGroupData.paymentGroup);
 
-      // accumulate the total value of all the group.value_payment corresponding to the same payment
-      const totalValue = objGroup.reduce((acc, group) => {
-        if (group.payment_id === payment.id) {
-          return acc + group.value_payment;
-        }
-        return acc;
-      }, 0);
+    objDetails = paymentGroupDetailsData.paymentGroupDetails;
+
+    console.log(paymentGroupDetailsData.paymentGroupDetails);
+
+    PayHistory = objDetails.map((item, index) => {
+      date = item.date;
+      cleanDate = date.slice(0, 10);
+      userValue = item.value;
 
       return (
         <Link href="/payment" key={index}>
@@ -60,9 +71,7 @@ const AllPayments = () => {
             <CardItem className="flex justify-between items-center">
               <PaymentInfo>
                 <h4>{userValue}€</h4>
-                {totalValue > 0 && (
-                  <p className="mt-1">de {totalValue}€ totais</p>
-                )}
+                <p className="mt-1">de {totalValue}€ totais</p>
               </PaymentInfo>
               <p className="text-muted">{cleanDate}</p>
             </CardItem>

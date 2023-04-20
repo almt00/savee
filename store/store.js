@@ -8,6 +8,7 @@ import ConsumptionSlice from "./ConsumptionSlice";
 import PaymentSlice from "./PaymentSlice";
 import PaymentGroupSlice from "./PaymentGroupSlice";
 import RoutineSlice from "./RoutineSlice";
+import paymentGropDetailsSlice from "./PaymentGroupDetailsSlice";
 
 export const store = configureStore({
   reducer: {
@@ -20,5 +21,6 @@ export const store = configureStore({
     payment: PaymentSlice,
     routine: RoutineSlice,
     paymentGroup: PaymentGroupSlice,
+    paymentGroupDetails: paymentGropDetailsSlice,
   },
 });
