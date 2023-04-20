@@ -157,7 +157,7 @@ export default function Menu() {
   );
 }
 
-const MenuList = styled("ul", {
+const MenuList = styled("menu", {
   marginTop: "1.5rem",
   li: {
     display: "flex",
