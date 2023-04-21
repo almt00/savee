@@ -38,7 +38,7 @@ const Task = (props) => {
   return (
     <TaskContainer size={props.size}>
       <TaskImage src={imagePath} alt={taskTitle} size={props.size} />
-      <TaskTitle size={props.size}>{taskTitle}</TaskTitle>
+      <TaskTitle size={props.size} aria-hidden="true">{taskTitle}</TaskTitle>
     </TaskContainer>
   );
 };

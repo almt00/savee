@@ -76,7 +76,7 @@ const AllPayments = () => {
 
 const ThisMonth = styled("div", {
   color: "$black",
-  fontSize: "$f0",
+  fontSize: "$",
   fontWeight: "$bolder",
   lineHeight: "3rem",
   flex: "1",

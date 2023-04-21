@@ -79,9 +79,14 @@ const Form = (props) => {
   }, []);
   */
 
+  const clickedInput = (e) => {
+    e.preventDefault();
+  };
+
   return (
     <Container>
       <LabelRoot as="form">{props.name}</LabelRoot>
+      <label></label>
       <Input
         type={props.type}
         id={props.id}
@@ -109,13 +114,14 @@ const LabelRoot = styled(Label.Root, {
 });
 
 const Input = styled("input", {
-  all: "unset",
+  all: "inherit",
   //make width fill to parent
   boxSizing: "border-box",
   width: "100%",
   borderRadius: 12,
   border: "1px solid $border",
   padding: "0 10px",
+  marginTop: "0.6rem",
   height: 44,
   fontSize: "$normal",
   color: "$black",

@@ -66,7 +66,7 @@ export default function Menu() {
                   width="38"
                   height="38"
                 />
-                <h2>Homepage</h2>
+                <h2 aria-hidden="true">Homepage</h2>
               </li>
             </Link>
             <Link
@@ -81,7 +81,7 @@ export default function Menu() {
                   width="38"
                   height="38"
                 />
-                <h2>Histórico uso</h2>
+                <h2 aria-hidden="true">Histórico uso</h2>
               </li>
             </Link>
             <Link
@@ -96,7 +96,7 @@ export default function Menu() {
                   width="38"
                   height="38"
                 />
-                <h2>Rotinas</h2>
+                <h2 aria-hidden="true">Rotinas</h2>
               </li>
             </Link>
             <Link
@@ -111,7 +111,7 @@ export default function Menu() {
                   width="38"
                   height="38"
                 />
-                <h2>Pagamentos</h2>
+                <h2 aria-hidden="true">Pagamentos</h2>
               </li>
             </Link>
           </MenuList>
@@ -157,7 +157,7 @@ export default function Menu() {
   );
 }
 
-const MenuList = styled("ul", {
+const MenuList = styled("menu", {
   marginTop: "1.5rem",
   li: {
     display: "flex",

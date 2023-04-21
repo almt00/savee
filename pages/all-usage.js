@@ -86,7 +86,7 @@ const AllUsage = () => {
 
 const ThisMonth = styled("div", {
   color: "$black",
-  fontSize: "$f0",
+  fontSize: "$xxlargeheading",
   fontWeight: "$bolder",
   lineHeight: "3rem",
 });

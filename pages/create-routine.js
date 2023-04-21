@@ -20,7 +20,7 @@ export default function Routine() {
   const [step, setStep] = useState(0);
 
   // Grouping forms by section in a component
-  const TaskFields = () => (
+  const taskFields = () => (
     <>
       <p className="black ml-6">Escolhe a tarefa para criares uma rotina:</p>
       <TaskList
@@ -31,33 +31,29 @@ export default function Routine() {
     </>
   );
 
-  const DayFields = () => (
+  const dayFields = () => (
     <>
       <p className="black">Escolhe os dias da semana</p>
       <DaySelector />
     </>
   );
 
-  const PeriodFields = () => (
+  const periodFields = () => (
     <>
       <p className="black">Escolhe a altura do dia</p>
       <TimePeriodSelector />
     </>
   );
 
-  const TimeFields = () => <TimeSelector />;
+  const timeFields = () => <TimeSelector />;
 
   // array of components to be rendered
-  const fieldGroups = [
-    <TaskFields key={""} />,
-    <DayFields key={""} />,
-    <PeriodFields key={""} />,
-    <TimeFields key={""} />,
-  ];
+  const fieldGroups = [taskFields(), dayFields(), periodFields(), timeFields()];
 
   // logic to navigate between steps
-  const Navigation = () => (
+  const navigation = () => (
     <>
+      {fieldGroups[step]}
       <div className="flex justify-center">
         {step === fieldGroups.length - 1 && (
           <>
@@ -119,10 +115,7 @@ export default function Routine() {
       <Header page="Rotinas" />
       <div className="relative pt-20 px-6 flex flex-col gap-3 pb-6">
         <Breadcrumb />
-        <Card>
-          {fieldGroups[step]}
-          <Navigation />
-        </Card>
+        <Card>{navigation()}</Card>
       </div>
     </Layout>
   );

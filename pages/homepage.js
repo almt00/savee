@@ -27,7 +27,7 @@ export default function Homepage() {
   const toDay = Number(date.split(" ")[0]);
 
   return (
-    <Layout title="Dashboard" description="Homepage for Savee">
+    <Layout title="Página principal da plataforma onde podes ver os consumos mensais e realizar tarefas para poupares a tua carteira o ambiente" description="Homepage for Savee">
       <Background color="mint" />
       <Header page="Homepage" />
       <div className="relative pt-20 px-6 flex flex-col gap-3 pb-6">
