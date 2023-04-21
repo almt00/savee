@@ -8,9 +8,9 @@ export default function TimeSelector() {
 
       <form className={`flex gap-6 justify-center text-center p-3 mt-4`}>
         <div className="border-b-2 border-purple">
-          <p className="text-muted" id="hr">hr</p>
+          <p className="text-muted" id="h">h</p>
           <Input
-            aria-describedby="hr"
+            aria-describedby="h"
             type="number"
             placeholder="00"
             maxLength="2"
@@ -30,9 +30,9 @@ export default function TimeSelector() {
           />
         </div>
         <div className="border-b-2 border-purple">
-          <p className="text-muted" id="sec">sec</p>
+          <p className="text-muted" id="seg">seg</p>
           <Input
-            aria-describedby="sec"
+            aria-describedby="seg"
             type="number"
             placeholder="00"
             maxLength="2"
