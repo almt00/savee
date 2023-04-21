@@ -114,7 +114,7 @@ export default function Routine() {
   );
 
   return (
-    <Layout title="Criar rotina" description="Criar rotina">
+    <Layout title="Página para visualizar rotinas feitas e criar novas rotinas com tarefas para que ser repetidas de forma automática" description="Criar rotina">
       <Background color="purple" />
       <Header page="Rotinas" />
       <div className="relative pt-20 px-6 flex flex-col gap-3 pb-6">
