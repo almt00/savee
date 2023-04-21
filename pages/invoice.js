@@ -5,10 +5,12 @@ import Form from '../components/elements/Form';
 import Card from '../components/elements/Card';
 import Link from 'next/link';
 import Button from '../components/elements/Button';
+import Layout from '../components/elements/Layout';
 
 const Invoice = () => {
   return (
     <>
+    <Layout title="Página para inserir valor faturado no mês atual que será dividido pelos consumos do grupo" description="Pagamento inserir valor fatura">
       <Background color='skyblue' />
       <Header page='Pagamento' />
       <div className='relative pt-20 px-6 flex flex-col gap-3 pb-6'>
@@ -34,6 +36,7 @@ const Invoice = () => {
           </div>
         </Card>
       </div>
+      </Layout>
     </>
   );
 };
