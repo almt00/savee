@@ -39,8 +39,11 @@ export default function Timer() {
           <h1 className={`xlargeheading`}>{('0' + Math.floor((time / 1000) % 60)).slice(-2)}</h1>
         </div>
       </div>
+      <label hidden id="label">Botão para iniciar e parar tempo</label>
       {running ? (
+        
         <Button
+          aria-describedby='label'
           bg='danger'
           className='p-4 mt-6'
           onClick={() => setRunning(false)}

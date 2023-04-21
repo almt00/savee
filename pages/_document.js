@@ -3,7 +3,7 @@ import { getCssText } from '../stitches.config';
 
 export default function Document() {
   return (
-    <Html lang="pt">
+    <Html lang="pt-PT">
       <Head>
       <style id="stitches" dangerouslySetInnerHTML={{ __html: getCssText() }} />
       </Head>
