@@ -28,15 +28,15 @@ export default function Timer() {
       >
         <div>
           <p>hr</p>
-          <h1>{('0' + Math.floor((time / 3600000) % 60)).slice(-2)}</h1>
+          <h1 className={`xlargeheading`}>{('0' + Math.floor((time / 3600000) % 60)).slice(-2)}</h1>
         </div>
         <div>
           <p>min</p>
-          <h1>{('0' + Math.floor((time / 60000) % 60)).slice(-2)}</h1>
+          <h1 className={`xlargeheading`}>{('0' + Math.floor((time / 60000) % 60)).slice(-2)}</h1>
         </div>
         <div>
           <p>sec</p>
-          <h1>{('0' + Math.floor((time / 1000) % 60)).slice(-2)}</h1>
+          <h1 className={`xlargeheading`}>{('0' + Math.floor((time / 1000) % 60)).slice(-2)}</h1>
         </div>
       </div>
       {running ? (
