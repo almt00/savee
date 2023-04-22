@@ -21,7 +21,7 @@ export default function DisplayName() {
   if (userData.status === 200) {
     name = userData.user.name.split(" ")[0];
   }
-  return <H2 className="!font-extrabold">Olá {name}!</H2>;
+  return <H2>Olá {name}!</H2>;
 }
 
 const H2 = styled("h2", {
