@@ -19,7 +19,7 @@ export default function DisplayName() {
   }, [dispatch]);
 
   if (userData.status === 200) {
-    name = userData.user.name.split(" ")[0];
+    name = userData.user.first_name;
   }
   return <H2>Olá {name}!</H2>;
 }

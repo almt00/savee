@@ -1,5 +1,4 @@
 import Layout from "../components/elements/Layout";
-import { Inter } from "@next/font/google";
 import { styled } from "../stitches.config";
 import Card from "../components/elements/Card";
 import Header from "../components/elements/Header";
@@ -7,14 +6,14 @@ import Background from "../components/elements/Background";
 import Link from "next/link";
 import Button from "../components/elements/Button";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchAsyncUser, getUser } from "../store/UserSlice";
 import { fetchAsyncTasks, getTasks } from "../store/TasksSlice";
+import { fetchAsyncRoutineSlice, getRoutine } from "../store/RoutineSlice";
 import { useEffect } from "react";
 import { setPage } from "../store/PageSlice";
 
 const AllRoutines = () => {
   const dispatch = useDispatch();
-  const userData = useSelector(getUser);
+  const routineData = useSelector(getRoutine);
   const tasksData = useSelector(getTasks);
   dispatch(setPage("routines"));
 
@@ -27,20 +26,23 @@ const AllRoutines = () => {
   let name = "";
 
   useEffect(() => {
-    if (userData.status !== 200 && tasksData.status !== 200) {
-      dispatch(fetchAsyncUser(userId)); // fazer o fetch com redux caso ainda n esteja o estado (ex.: reloads de pagina)
+    if (routineData.status !== 200 && tasksData.status !== 200) {
+      dispatch(fetchAsyncRoutineSlice(userId)); // fazer o fetch com redux caso ainda n esteja o estado (ex.: reloads de pagina)
       dispatch(fetchAsyncTasks());
     }
   }, [dispatch]);
 
-  if (userData.status === 200 && tasksData.status === 200) {
-    obj = userData.user.routines;
+  if (routineData.status === 200 && tasksData.status === 200) {
+    obj = routineData.routine;
     Routines = obj?.map((routine, index) => {
-      type = routine.task_id;
+      type = routine.task;
       weekdays = routine.weekdays;
-      duration = routine.duration;
+      duration = routine.duration_routine;
 
-      name = tasksData.tasks?.find((task) => task.id === type).name;
+      // convert duration from seconds to minutes and round it
+      duration = Math.round(duration / 60);
+
+      name = tasksData.tasks?.find((task) => task.id === type)?.name || "";
 
       weekdays = weekdays.map((day) => {
         switch (day) {
