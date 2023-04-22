@@ -49,7 +49,7 @@ const AllPayments = () => {
         let cleanDate = new Date(date).toLocaleDateString("pt-PT", options);
 
         return (
-          <li key={index}>
+          <li key={index} className="mb-3">
             <Link href={`/payment?id=${payment.payment_id}`}>
               <Card type="stroke">
                 <CardItem
