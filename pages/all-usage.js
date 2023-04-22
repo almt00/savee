@@ -56,7 +56,7 @@ const AllUsage = () => {
           <Card type="stroke" key={index}>
             <CardItem className="flex justify-between items-center" key={index}>
               <UsageInfo key={index}>
-                <h4>{cleantaskDuration} min</h4>
+                <H4>{cleantaskDuration} min</H4>
                 <p> {taskName}</p>
               </UsageInfo>
               <p className="text-muted">{cleanDate}</p>
@@ -77,12 +77,22 @@ const AllUsage = () => {
           <ThisMonth>{todaySum} min</ThisMonth>
           <p className="mt-2">Hoje</p>
         </Card>
-        <h3 className="mt-6">Histórico de uso</h3>
+        <H2 className="mt-6">Histórico de uso</H2>
         <div className="flex flex-col-reverse gap-3">{UseHisto}</div>
       </div>
     </Layout>
   );
 };
+const H4 = styled("h3", {
+  fontSize: "$smallheading",
+  fontWeight: "$bolder",
+});
+
+const H2 = styled("h2", {
+  fontSize: "$largeheading",
+  fontWeight: "$bolder",
+});
+
 
 const ThisMonth = styled("div", {
   color: "$black",
