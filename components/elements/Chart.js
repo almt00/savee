@@ -24,18 +24,12 @@ const DoughnutChart = props => {
     let obj = paymentGroupDetails.paymentGroupDetails;
     let totalValue = obj.value_payment;
 
-    // select the userId object from the array
-    let ourUserValue = 0;
-    if (Array.isArray(obj)) {
-      const user = obj.UserPayment.find(user => user.user_id === userId); // this doesn't work lol
-      ourUserValue = user?.payment_percentage * totalValue || 0;
-    }
-
     // map objGroup and return all colleagues
     let objGroup = paymentGroupDetails.paymentGroupDetails.UserPayment;
     const PaymentGroup = objGroup.map((user) => {
       let percentage = user.payment_percentage * totalValue;
       let name = user.user_id;
+
       return { percentage, name };
     });
 
@@ -46,6 +40,10 @@ const DoughnutChart = props => {
       percentageArray.push(user.percentage);
       nameArray.push(user.name);
     });
+
+    // get our user value
+    let ourUserValue = PaymentGroup.find((user) => user.name === userId).percentage;
+
 
     let border = '';
     let background = '';
