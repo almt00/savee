@@ -124,7 +124,7 @@ export default function Menu() {
               height='38'
             />
             <div>
-              <h4 className='font-extrabold'>Pedro</h4>
+              <H4>Pedro</H4>
               <p>Editar perfil</p>
             </div>
           </li>
@@ -136,7 +136,7 @@ export default function Menu() {
               width='38'
               height='38'
             />
-            <h4 className='font-extrabold'>Definições</h4>
+            <H4>Definições</H4>
           </li>
           <li className='h-8'>
             <Image
@@ -146,7 +146,7 @@ export default function Menu() {
               width='38'
               height='38'
             />
-            <h4 className='font-extrabold'>Ajuda</h4>
+            <H4>Ajuda</H4>
           </li>
         </MenuList>
       </div>
@@ -156,6 +156,11 @@ export default function Menu() {
 
 const H2 = styled('h2', {
   fontSize: '$largeheading',
+  fontWeight: '$bolder',
+});
+
+const H4 = styled('h4', {
+  fontSize: '$smallheading',
   fontWeight: '$bolder',
 });
 
