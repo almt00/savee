@@ -1,17 +1,21 @@
-import React from 'react';
-import Chart from 'chart.js/auto';
-import { Doughnut } from 'react-chartjs-2';
-import ChartDataLabels from 'chartjs-plugin-datalabels';
-import { useEffect } from 'react';
-import { fetchAsyncPaymentGroupDetailsSlice, getPaymentGroupDetails } from '../../store/PaymentGroupDetailsSlice';
-import { useDispatch, useSelector } from 'react-redux';
+import React from "react";
+import Chart from "chart.js/auto";
+import { Doughnut } from "react-chartjs-2";
+import ChartDataLabels from "chartjs-plugin-datalabels";
+import { useEffect } from "react";
+import {
+  fetchAsyncPaymentGroupDetailsSlice,
+  getPaymentGroupDetails,
+} from "../../store/PaymentGroupDetailsSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { useRouter } from "next/router";
 
-const DoughnutChart = props => {
+const DoughnutChart = (props) => {
   const dispatch = useDispatch();
   const paymentGroupDetails = useSelector(getPaymentGroupDetails);
+  const router = useRouter();
+  const selectedPaymentId = router.query.id;
 
-  const houseid = 1;
-  const paymentid = 1;
   const userId = 1;
 
   useEffect(() => {
@@ -42,23 +46,24 @@ const DoughnutChart = props => {
     });
 
     // get our user value
-    let ourUserValue = PaymentGroup.find((user) => user.name === userId).percentage;
+    let ourUserValue = PaymentGroup.find(
+      (user) => user.name === userId
+    ).percentage;
 
-
-    let border = '';
-    let background = '';
-    let cutoutPercentage = '';
-    if (props.environment === 'payment') {
-      background = ['#FFFFFF', '#FFFFFF', '#C5E1F2'];
-      border = '#081B33';
+    let border = "";
+    let background = "";
+    let cutoutPercentage = "";
+    if (props.environment === "payment") {
+      background = ["#FFFFFF", "#FFFFFF", "#C5E1F2"];
+      border = "#081B33";
       cutoutPercentage = 80;
     } else {
-      background = ['#B0B0B050', '#B0B0B050', '#081B33'];
-      border = '#FFFFFF';
+      background = ["#B0B0B050", "#B0B0B050", "#081B33"];
+      border = "#FFFFFF";
       cutoutPercentage = 30;
     }
 
-    let message = ourUserValue + '€';
+    let message = ourUserValue + "€";
     const data = {
       labels: nameArray,
       datasets: [
@@ -79,9 +84,9 @@ const DoughnutChart = props => {
         },
         datalabels: {
           display: true,
-          color: 'white',
-          backgroundColor: 'grey',
-          borderRadius: '100',
+          color: "white",
+          backgroundColor: "grey",
+          borderRadius: "100",
         },
       },
     };
@@ -94,8 +99,8 @@ const DoughnutChart = props => {
             ctx = chart.ctx;
           ctx.restore();
           let fontSize = (height / 120).toFixed(2);
-          ctx.font = fontSize + 'em Verdana, sans-serif';
-          ctx.textBaseline = 'middle';
+          ctx.font = fontSize + "em Verdana, sans-serif";
+          ctx.textBaseline = "middle";
           let text = message,
             textX = Math.round((width - ctx.measureText(text).width) / 2),
             textY = height / 2;
@@ -108,9 +113,9 @@ const DoughnutChart = props => {
       <Doughnut
         data={data}
         options={options}
-        plugins={props.environment === 'payment' ? plugins : [ChartDataLabels]}
+        plugins={props.environment === "payment" ? plugins : [ChartDataLabels]}
       />
     );
-  };
+  }
 };
 export default DoughnutChart;

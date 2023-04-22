@@ -10,12 +10,12 @@ import {
 } from "../../store/PaymentGroupDetailsSlice";
 import { useDispatch, useSelector } from "react-redux";
 
-const PaymentCard = () => {
+const PaymentCard = ({ id }) => {
   const dispatch = useDispatch();
   const paymentGroupDetails = useSelector(getPaymentGroupDetails);
 
   const houseid = 1;
-  const paymentid = 1;
+  const paymentid = id;
 
   useEffect(() => {
     if (paymentGroupDetails.status !== 200) {
