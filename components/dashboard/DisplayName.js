@@ -24,7 +24,8 @@ export default function DisplayName() {
   return <H2>Olá {name}!</H2>;
 }
 
-const H2 = styled("h2", {
-  fontSize: "$largeheading",
-  fontWeight: "$bolder",
+
+const H2 = styled('h2', {
+  fontSize: '$largeheading',
+  fontWeight: '$bolder',
 });
