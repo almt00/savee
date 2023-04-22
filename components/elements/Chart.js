@@ -1,79 +1,102 @@
 import React from 'react';
 import Chart from 'chart.js/auto';
 import { Doughnut } from 'react-chartjs-2';
-import { styled } from '@stitches/react';
 import ChartDataLabels from 'chartjs-plugin-datalabels';
+import { useEffect } from 'react';
+import { fetchAsyncPaymentGroupDetailsSlice, getPaymentGroupDetails } from '../../store/PaymentGroupDetailsSlice';
+import { useDispatch, useSelector } from 'react-redux';
 
 const DoughnutChart = props => {
-  let border = '';
-  let background = '';
-  let cutoutPercentage = '';
-  if (props.environment === 'payment') {
-    background = ['#FFFFFF', '#FFFFFF', '#C5E1F2'];
-    border = '#081B33';
-    cutoutPercentage = 80;
-  } else {
-    background = ['#B0B0B050', '#B0B0B050', '#081B33'];
-    border = '#FFFFFF';
-    cutoutPercentage = 30;
-  }
+  const dispatch = useDispatch();
+  const paymentGroupDetails = useSelector(getPaymentGroupDetails);
 
-  let totalValue = 55; //não consegui colocar o 55 na linha inferior
-  let ourUserValue = 22.5;
-  let message = ourUserValue + '€';
+  const houseid = 1;
+  const paymentid = 1;
+  const userId = 1;
 
-  const data = {
-    labels: ['User3', 'User2', 'User1'],
-    datasets: [
+  useEffect(() => {
+    if (paymentGroupDetails.status !== 200) {
+      dispatch(fetchAsyncPaymentGroupDetailsSlice({ houseid, paymentid }));
+    }
+  }, [dispatch]);
+
+  if (paymentGroupDetails.status === 200) {
+    let obj = paymentGroupDetails.paymentGroupDetails;
+    let totalValue = obj.value_payment;
+
+    // select the userId object from the array
+    let ourUserValue = 0;
+    if (Array.isArray(obj)) {
+      const user = obj.UserPayment.find(user => user.user_id === userId); // this doesn't work lol
+      ourUserValue = user?.payment_percentage * totalValue || 0;
+    }
+
+    let border = '';
+    let background = '';
+    let cutoutPercentage = '';
+    if (props.environment === 'payment') {
+      background = ['#FFFFFF', '#FFFFFF', '#C5E1F2'];
+      border = '#081B33';
+      cutoutPercentage = 80;
+    } else {
+      background = ['#B0B0B050', '#B0B0B050', '#081B33'];
+      border = '#FFFFFF';
+      cutoutPercentage = 30;
+    }
+
+    let message = ourUserValue + '€';
+    const data = {
+      labels: ['User3', 'User2', 'User1'],
+      datasets: [
+        {
+          data: [20, 25, 55],
+          backgroundColor: background,
+          borderColor: border,
+          borderWidth: 1.5,
+        },
+      ],
+    };
+
+    const options = {
+      cutout: cutoutPercentage,
+      plugins: {
+        legend: {
+          display: false,
+        },
+        datalabels: {
+          display: true,
+          color: 'white',
+          backgroundColor: 'grey',
+          borderRadius: '100',
+        },
+      },
+    };
+
+    const plugins = [
       {
-        data: [20, 25, 55],
-        backgroundColor: background,
-        borderColor: border,
-        borderWidth: 1.5,
+        beforeDraw: function (chart) {
+          let width = chart.width,
+            height = chart.height,
+            ctx = chart.ctx;
+          ctx.restore();
+          let fontSize = (height / 120).toFixed(2);
+          ctx.font = fontSize + 'em Verdana, sans-serif';
+          ctx.textBaseline = 'middle';
+          let text = message,
+            textX = Math.round((width - ctx.measureText(text).width) / 2),
+            textY = height / 2;
+          ctx.fillText(text, textX, textY);
+          ctx.save();
+        },
       },
-    ],
+    ];
+    return (
+      <Doughnut
+        data={data}
+        options={options}
+        plugins={props.environment === 'payment' ? plugins : [ChartDataLabels]}
+      />
+    );
   };
-
-  const options = {
-    cutout: cutoutPercentage,
-    plugins: {
-      legend: {
-        display: false,
-      },
-      datalabels: {
-        display: true,
-        color: 'white',
-        backgroundColor: 'grey',
-        borderRadius: '100',
-      },
-    },
-  };
-
-  const plugins = [
-    {
-      beforeDraw: function (chart) {
-        let width = chart.width,
-          height = chart.height,
-          ctx = chart.ctx;
-        ctx.restore();
-        let fontSize = (height / 120).toFixed(2);
-        ctx.font = fontSize + 'em Verdana, sans-serif';
-        ctx.textBaseline = 'middle';
-        let text = message,
-          textX = Math.round((width - ctx.measureText(text).width) / 2),
-          textY = height / 2;
-        ctx.fillText(text, textX, textY);
-        ctx.save();
-      },
-    },
-  ];
-  return (
-    <Doughnut
-      data={data}
-      options={options}
-      plugins={props.environment === 'payment' ? plugins : [ChartDataLabels]}
-    />
-  );
 };
-
 export default DoughnutChart;
