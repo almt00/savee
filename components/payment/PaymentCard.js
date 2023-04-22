@@ -1,14 +1,16 @@
-import { styled } from '@stitches/react';
-import Chart from '../elements/Chart';
-import Button from '../elements/Button';
-import Card from '../elements/Card';
-import Image from 'next/image';
-import { useEffect } from 'react';
-import { fetchAsyncPaymentGroupDetailsSlice, getPaymentGroupDetails } from '../../store/PaymentGroupDetailsSlice';
-import { useDispatch, useSelector } from 'react-redux';
+import { styled } from "@stitches/react";
+import Chart from "../elements/Chart";
+import Button from "../elements/Button";
+import Card from "../elements/Card";
+import Image from "next/image";
+import { useEffect } from "react";
+import {
+  fetchAsyncPaymentGroupDetailsSlice,
+  getPaymentGroupDetails,
+} from "../../store/PaymentGroupDetailsSlice";
+import { useDispatch, useSelector } from "react-redux";
 
 const PaymentCard = () => {
-
   const dispatch = useDispatch();
   const paymentGroupDetails = useSelector(getPaymentGroupDetails);
 
@@ -26,13 +28,12 @@ const PaymentCard = () => {
     let obj = paymentGroupDetails.paymentGroupDetails.UserPayment;
 
     // map obj and return all colleagues
-    const PaymentGroup = obj.map((user) => {
-
+    const PaymentGroup = obj.map((user, key) => {
       let percentage = user.payment_percentage * totalValue;
       let name = user.user_id;
 
       return (
-        <User>
+        <User key={key}>
           <Image
             src="/img/user_bird_profile_icon.svg"
             alt="Avatar"
@@ -49,22 +50,20 @@ const PaymentCard = () => {
     return (
       <>
         <Card>
-          <Text className='mb-5'>
-            Com base nos teus comportamentos deste mês, este é o valor aproximado
-            a pagares:
+          <Text className="mb-5">
+            Com base nos teus comportamentos deste mês, este é o valor
+            aproximado a pagares:
           </Text>
-          <div className='w-56 m-auto'>
-            <Chart className='mt-5' environment='payment'></Chart>
+          <div className="w-56 m-auto">
+            <Chart className="mt-5" environment="payment"></Chart>
           </div>
-          <div className='text-center my-4'>
-            <Link href=''>Como calculamos este valor?</Link>
+          <div className="text-center my-4">
+            <Link href="">Como calculamos este valor?</Link>
           </div>
-          <UsersContainer>
-            {PaymentGroup}
-          </UsersContainer>
-          <div className='text-center'>
+          <UsersContainer>{PaymentGroup}</UsersContainer>
+          <div className="text-center">
             <Link href={`/homepage?toast=success`}>
-              <Button className='mt-6' bg='solid' size='lg'>
+              <Button className="mt-6" bg="solid" size="lg">
                 Confirmar
               </Button>
             </Link>
@@ -72,45 +71,45 @@ const PaymentCard = () => {
         </Card>
       </>
     );
-  };
+  }
 };
-const UsersContainer = styled('div', {
-  display: 'flex',
-  flexDirection: 'row',
-  justifyContent: 'center',
-  gap: '8px',
-  margin: 'auto',
+const UsersContainer = styled("div", {
+  display: "flex",
+  flexDirection: "row",
+  justifyContent: "center",
+  gap: "8px",
+  margin: "auto",
 });
 
-const User = styled('div', {
-  width: '5rem',
-  textAlign: 'center',
+const User = styled("div", {
+  width: "5rem",
+  textAlign: "center",
 });
 
-const Img = styled('img', {
-  margin: 'auto',
+const Img = styled("img", {
+  margin: "auto",
 });
 
-const Link = styled('a', {
-  fontSize: '$small',
-  fontWeight: '$bold',
-  color: '$links',
+const Link = styled("a", {
+  fontSize: "$small",
+  fontWeight: "$bold",
+  color: "$links",
 });
 
-const Text = styled('p', {
-  color: '$black',
+const Text = styled("p", {
+  color: "$black",
 });
 
-const SubTitle = styled('p', {
-  color: '$black',
-  fontSize: '$small',
-  fontWeight: '$bold',
-  marginTop: '0.2rem',
+const SubTitle = styled("p", {
+  color: "$black",
+  fontSize: "$small",
+  fontWeight: "$bold",
+  marginTop: "0.2rem",
 });
 
-const Percentage = styled('p', {
-  color: '$black',
-  fontSize: '$small',
+const Percentage = styled("p", {
+  color: "$black",
+  fontSize: "$small",
 });
 
 export default PaymentCard;
