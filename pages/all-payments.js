@@ -22,7 +22,8 @@ const AllPayments = () => {
   let percetoeuro = "";
   let obj = "";
   let PayHisto = "";
-
+  let lastPayment = "";
+  let lastDate;
   useEffect(() => {
     if (paymentData.status !== 200) {
       dispatch(fetchAsyncPaymentSlice(userId)); // fazer o fetch com redux caso ainda n esteja o estado (ex.: reloads de pagina)
@@ -31,21 +32,39 @@ const AllPayments = () => {
 
   if (paymentData.status === 200) {
     obj = paymentData.payment;
+
+    lastPayment = () => {
+      let lastPaymentData = obj[0]?.payment;
+      const options = { month: "long", day: "numeric" };
+      lastDate = new Date(lastPaymentData.date_payment).toLocaleDateString(
+        "pt-PT",
+        options
+      );
+      return (
+        <Card>
+          <ThisMonth>{lastPaymentData.value_payment}€</ThisMonth>
+          <p className="mt-2">Pagos a {lastDate}</p>
+        </Card>
+      );
+    };
+    
     PayHisto = obj?.map((payment, index) => {
-      value = payment.percentage;
-      totalValue = payment.total_value;
-      date = payment.date;
+      totalValue = payment.payment.value_payment;
+      value = payment.payment_percentage * totalValue;
+      date = payment.payment.date_payment;
       const options = { month: "short", day: "numeric" };
       cleanDate = new Date(date).toLocaleDateString("pt-PT", options);
-      percetoeuro = ((totalValue / 100) * value).toFixed(2);
 
       return (
         <>
-          <Link href="/payment">
+          <Link href={`/payment?id=${payment.payment_id}`}>
             <Card type="stroke" key={index}>
-              <CardItem className="flex justify-between items-center" key={index}>
+              <CardItem
+                className="flex justify-between items-center"
+                key={index}
+              >
                 <PaymentInfo key={index}>
-                  <h4>{percetoeuro}€</h4>
+                  <h4>{value}€</h4>
                   <p className="mt-1">de {totalValue}€ totais</p>
                 </PaymentInfo>
                 <p className="text-muted">{cleanDate}</p>
@@ -62,10 +81,7 @@ const AllPayments = () => {
       <Background color="skyblue" size="small" />
       <Header page="Pagamentos" />
       <div className="relative pt-20 px-6 flex flex-col gap-3 pb-6">
-        <Card>
-          <ThisMonth>55€</ThisMonth>
-          <p className="mt-2">Pagos a 24 de dezembro</p>
-        </Card>
+        {lastPayment()}
         <h3 className="mt-6">Histórico de pagamento</h3>
         {PayHisto}
       </div>
