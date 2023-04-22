@@ -10,7 +10,7 @@ module.exports = {
         mint: "#C4F4D4",
         links: "#4C79EC",
         border: "#EBEBEB",
-        muted: "#00000",
+        muted: "#757576",
         success: "#35A361",
         danger: "#D63535",
         skyblue: "#C5E1F2",

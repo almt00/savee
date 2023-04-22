@@ -20,7 +20,7 @@ export const {
       white: '#FFFFFF',
       links: '#4C79EC',
       border: '#EBEBEB',
-      muted: '#0000',
+      muted: '#757576',
       success: '#35A361',
       danger: '#D63535',
       mint: '#C4F4D4',
