@@ -66,7 +66,7 @@ export default function Menu() {
                   width="38"
                   height="38"
                 />
-                <h2 aria-hidden="true">Homepage</h2>
+                <H2 aria-hidden="true">Homepage</H2>
               </li>
             </Link>
             <Link
@@ -81,7 +81,7 @@ export default function Menu() {
                   width="38"
                   height="38"
                 />
-                <h2 aria-hidden="true">Histórico uso</h2>
+                <H2 aria-hidden="true">Histórico uso</H2>
               </li>
             </Link>
             <Link
@@ -96,7 +96,7 @@ export default function Menu() {
                   width="38"
                   height="38"
                 />
-                <h2 aria-hidden="true">Rotinas</h2>
+                <H2 aria-hidden="true">Rotinas</H2>
               </li>
             </Link>
             <Link
@@ -111,7 +111,7 @@ export default function Menu() {
                   width="38"
                   height="38"
                 />
-                <h2 aria-hidden="true">Pagamentos</h2>
+                <H2 aria-hidden="true">Pagamentos</H2>
               </li>
             </Link>
           </MenuList>
@@ -127,7 +127,7 @@ export default function Menu() {
               height="38"
             />
             <div>
-              <h4>Pedro</h4>
+              <h4 className="font-extrabold">Pedro</h4>
               <p>Editar perfil</p>
             </div>
           </li>
@@ -139,7 +139,7 @@ export default function Menu() {
               width="38"
               height="38"
             />
-            <h4>Definições</h4>
+            <h4 className="font-extrabold">Definições</h4>
           </li>
           <li className="h-8">
             <Image
@@ -149,7 +149,7 @@ export default function Menu() {
               width="38"
               height="38"
             />
-            <h4>Ajuda</h4>
+            <h4 className="font-extrabold">Ajuda</h4>
           </li>
         </MenuList>
       </div>
@@ -157,7 +157,12 @@ export default function Menu() {
   );
 }
 
-const MenuList = styled("ul", {
+const H2 = styled("h2", {
+  fontSize: "$largeheading",
+  fontWeight: "$bolder",
+});
+
+const MenuList = styled("menu", {
   marginTop: "1.5rem",
   li: {
     display: "flex",

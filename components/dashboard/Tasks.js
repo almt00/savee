@@ -8,7 +8,10 @@ const Tasks = () => {
   const dispatch = useDispatch();
   const tasksData = useSelector(getTasks);
 
-
+  const H4 = styled("h4", {
+    fontSize: "$mediumheading",
+    fontWeight: "$bolder",
+  });
 
   const renderTasks = () => {
     if (tasksData.status === 200) {
@@ -28,7 +31,7 @@ const Tasks = () => {
   return (
     // todo map tasks
     <div className="mt-6">
-      <h3>Tarefas</h3>
+      <H4>Tarefas</H4>
       <TasksContainer>{renderTasks()}</TasksContainer>
     </div>
   );

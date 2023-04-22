@@ -8,6 +8,10 @@ const HeaderSection = styled("div", {
   position: "absolute",
   width: "100vw",
 });
+const H1 = styled("h1",{
+  fontSize: "$smallheading",
+  fontWeight: "$bolder",
+})
 
 
 export default function Header(props) {
@@ -41,7 +45,7 @@ export default function Header(props) {
             />
           </svg>
         </div>
-        <h4>{props.page}</h4>
+        <H1>{props.page}</H1>
         <div></div>
       </HeaderSection>
       <Menu></Menu>

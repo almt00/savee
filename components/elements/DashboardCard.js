@@ -82,7 +82,7 @@ const DashboardCard = () => {
     <Card>
       <Container>
         <NumberKw>
-          {kwTotalUser} kW
+          <H3>{kwTotalUser} kW
           {consDif >= 0 ? (
             <TrendIcon
               src="/img/tendencia_down.svg"
@@ -96,6 +96,7 @@ const DashboardCard = () => {
               alt="Pagamentos"
             />
           )}
+          </H3>
           <SubTitle>
             de <span className="font-bold">{kwTotalGroup} kW </span>consumidos
             este mês
@@ -138,19 +139,26 @@ const Container = styled("div", {
 
 const Stats = styled("p", {
   color: "$black",
+  fontSize: "$normal",
 });
 
 const SubTitle = styled("p", {
   color: "$black",
   fontSize: "$small",
+  fontWeight: "normal"
 });
 
 const NumberKw = styled("div", {
   color: "$black",
-  fontSize: "$h1",
+  fontSize: "$xlargeheading",
   fontWeight: "$bolder",
   lineHeight: "3rem",
   flex: "1",
+});
+
+const H3 = styled("h3", {
+  fontSize: "$xlargeheading",
+  fontWeight: "$bolder",
 });
 
 const TrendIcon = styled("img", {
