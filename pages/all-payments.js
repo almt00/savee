@@ -12,62 +12,72 @@ import { fetchAsyncPaymentSlice, getPayment } from "../store/PaymentSlice";
 const AllPayments = () => {
   const dispatch = useDispatch();
   const paymentData = useSelector(getPayment);
-  dispatch(setPage("payments"));
 
   const userId = 1;
-  let value = "";
-  let totalValue = "";
-  let date = "";
-  let cleanDate = "";
-  let percetoeuro = "";
-  let obj = "";
-  let PayHisto = "";
+  const obj = paymentData.payment;
 
   useEffect(() => {
+    dispatch(setPage("payments"));
     if (paymentData.status !== 200) {
       dispatch(fetchAsyncPaymentSlice(userId)); // fazer o fetch com redux caso ainda n esteja o estado (ex.: reloads de pagina)
     }
   }, [dispatch]);
 
-  if (paymentData.status === 200) {
-    obj = paymentData.payment;
-    PayHisto = obj?.map((payment, index) => {
-      value = payment.percentage;
-      totalValue = payment.total_value;
-      date = payment.date;
-      const options = { month: "short", day: "numeric" };
-      cleanDate = new Date(date).toLocaleDateString("pt-PT", options);
-      percetoeuro = ((totalValue / 100) * value).toFixed(2);
-
-      return (
-        <>
-          <Link href="/payment">
-            <Card type="stroke" key={index}>
-              <CardItem className="flex justify-between items-center" key={index}>
-                <PaymentInfo key={index}>
-                  <h4>{percetoeuro}€</h4>
-                  <p className="mt-1">de {totalValue}€ totais</p>
-                </PaymentInfo>
-                <p className="text-muted">{cleanDate}</p>
-              </CardItem>
-            </Card>
-          </Link>
-        </>
+  const lastPayment = () => {
+    if (paymentData.status === 200) {
+      let lastPaymentData = obj[0]?.payment;
+      const options = { month: "long", day: "numeric" };
+      let lastDate = new Date(lastPaymentData.date_payment).toLocaleDateString(
+        "pt-PT",
+        options
       );
-    });
-  }
+      return (
+        <Card>
+          <ThisMonth>{lastPaymentData.value_payment}€</ThisMonth>
+          <p className="mt-2">Pagos a {lastDate}</p>
+        </Card>
+      );
+    }
+  };
+  let PayHisto = () => {
+    if (paymentData.status === 200) {
+      return obj?.map((payment, index) => {
+        let totalValue = payment.payment.value_payment;
+        let value = payment.payment_percentage * totalValue;
+        let date = payment.payment.date_payment;
+        const options = { month: "short", day: "numeric" };
+        let cleanDate = new Date(date).toLocaleDateString("pt-PT", options);
+
+        return (
+          <li key={index} className="mb-3">
+            <Link href={`/payment?id=${payment.payment_id}`}>
+              <Card type="stroke">
+                <CardItem
+                  className="flex justify-between items-center"
+                  key={index}
+                >
+                  <PaymentInfo>
+                    <h4>{value}€</h4>
+                    <p className="mt-1">de {totalValue}€ totais</p>
+                  </PaymentInfo>
+                  <p className="text-muted">{cleanDate}</p>
+                </CardItem>
+              </Card>
+            </Link>
+          </li>
+        );
+      });
+    }
+  };
 
   return (
     <Layout title="Histórico pagamentos" description="Histórico pagamentos">
       <Background color="skyblue" size="small" />
       <Header page="Pagamentos" />
       <div className="relative pt-20 px-6 flex flex-col gap-3 pb-6">
-        <Card>
-          <ThisMonth>55€</ThisMonth>
-          <p className="mt-2">Pagos a 24 de dezembro</p>
-        </Card>
+        {lastPayment()}
         <h3 className="mt-6">Histórico de pagamento</h3>
-        {PayHisto}
+        <ul>{PayHisto()}</ul>
       </div>
     </Layout>
   );
