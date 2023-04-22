@@ -159,7 +159,7 @@ const H2 = styled('h2', {
   fontWeight: '$bolder',
 });
 
-const H4 = styled('h4', {
+const H4 = styled('p', {
   fontSize: '$smallheading',
   fontWeight: '$bolder',
 });
