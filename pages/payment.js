@@ -1,11 +1,20 @@
 import Layout from "../components/elements/Layout";
-import Background from '../components/elements/Background';
-import PaymentCard from '../components/payment/PaymentCard';
-import Header from '../components/elements/Header';
-import Breadcrumb from '../components/elements/Breadcrumb';
-import Insight from '../components/elements/Insight';
+import Background from "../components/elements/Background";
+import PaymentCard from "../components/payment/PaymentCard";
+import Header from "../components/elements/Header";
+import Breadcrumb from "../components/elements/Breadcrumb";
+import Insight from "../components/elements/Insight";
+import { useDispatch } from "react-redux";
+import { setPage } from "../store/PageSlice";
+import { useRouter } from "next/router";
 
 const Payment = () => {
+  const dispatch = useDispatch();
+  const router = useRouter();
+  dispatch(setPage("payment"));
+  const {id} = router.query;
+  console.log(id)
+
   return (
     <Layout title="Pagamento" description="Pagamento">
       <Background color='skyblue' />

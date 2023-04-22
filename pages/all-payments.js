@@ -33,8 +33,8 @@ const AllPayments = () => {
   let obj = "";
   let objGroup = "";
   let PayHisto = "";
-  let objDetails = "";
-
+  let lastPayment = "";
+  let lastDate;
   useEffect(() => {
     if (
       paymentData.status !== 200 &&
@@ -47,36 +47,48 @@ const AllPayments = () => {
     }
   }, [dispatch]);
 
-  if (
-    paymentData.status === 200 &&
-    paymentGroupData.status === 200 &&
-    paymentGroupDetailsData.status === 200
-  ) {
-    obj = paymentGroupData.paymentGroup;
+  if (paymentData.status === 200) {
+    obj = paymentData.payment;
 
-    console.log(paymentGroupData.paymentGroup);
-
-    objDetails = paymentGroupDetailsData.paymentGroupDetails;
-
-    console.log(paymentGroupDetailsData.paymentGroupDetails);
-
-    PayHistory = objDetails.map((item, index) => {
-      date = item.date;
-      cleanDate = date.slice(0, 10);
-      userValue = item.value;
+    lastPayment = () => {
+      let lastPaymentData = obj[0]?.payment;
+      const options = { month: "long", day: "numeric" };
+      lastDate = new Date(lastPaymentData.date_payment).toLocaleDateString(
+        "pt-PT",
+        options
+      );
+      return (
+        <Card>
+          <ThisMonth>{lastPaymentData.value_payment}€</ThisMonth>
+          <p className="mt-2">Pagos a {lastDate}</p>
+        </Card>
+      );
+    };
+    
+    PayHisto = obj?.map((payment, index) => {
+      totalValue = payment.payment.value_payment;
+      value = payment.payment_percentage * totalValue;
+      date = payment.payment.date_payment;
+      const options = { month: "short", day: "numeric" };
+      cleanDate = new Date(date).toLocaleDateString("pt-PT", options);
 
       return (
-        <Link href="/payment" key={index}>
-          <Card type="stroke">
-            <CardItem className="flex justify-between items-center">
-              <PaymentInfo>
-                <h4>{userValue}€</h4>
-                <p className="mt-1">de {totalValue}€ totais</p>
-              </PaymentInfo>
-              <p className="text-muted">{cleanDate}</p>
-            </CardItem>
-          </Card>
-        </Link>
+        <>
+          <Link href={`/payment?id=${payment.payment_id}`}>
+            <Card type="stroke" key={index}>
+              <CardItem
+                className="flex justify-between items-center"
+                key={index}
+              >
+                <PaymentInfo key={index}>
+                  <h4>{value}€</h4>
+                  <p className="mt-1">de {totalValue}€ totais</p>
+                </PaymentInfo>
+                <p className="text-muted">{cleanDate}</p>
+              </CardItem>
+            </Card>
+          </Link>
+        </>
       );
     });
   }
@@ -86,10 +98,7 @@ const AllPayments = () => {
       <Background color="skyblue" size="small" />
       <Header page="Pagamentos" />
       <div className="relative pt-20 px-6 flex flex-col gap-3 pb-6">
-        <Card>
-          <ThisMonth>55€</ThisMonth>
-          <p className="mt-2">Pagos a 24 de dezembro</p>
-        </Card>
+        {lastPayment()}
         <h3 className="mt-6">Histórico de pagamento</h3>
         {PayHisto}
       </div>
