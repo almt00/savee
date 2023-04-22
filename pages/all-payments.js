@@ -57,7 +57,7 @@ const AllPayments = () => {
                   key={index}
                 >
                   <PaymentInfo>
-                    <h4>{value}€</h4>
+                    <H4>{value}€</H4>
                     <p className="mt-1">de {totalValue}€ totais</p>
                   </PaymentInfo>
                   <p className="text-muted">{cleanDate}</p>
@@ -76,16 +76,25 @@ const AllPayments = () => {
       <Header page="Pagamentos" />
       <div className="relative pt-20 px-6 flex flex-col gap-3 pb-6">
         {lastPayment()}
-        <h3 className="mt-6">Histórico de pagamento</h3>
+        <H3 className="mt-6">Histórico de pagamento</H3>
         <ul>{PayHisto()}</ul>
       </div>
     </Layout>
   );
 };
 
+const H3 = styled("h2", {
+  fontSize: "$mediumheading",
+  fontWeight: "$bolder",
+});
+const H4 = styled("h3", {
+  fontSize: "$smallheading",
+  fontWeight: "$bolder",
+});
+
 const ThisMonth = styled("div", {
   color: "$black",
-  fontSize: "$",
+  fontSize: "$largeheading",
   fontWeight: "$bolder",
   lineHeight: "3rem",
   flex: "1",
