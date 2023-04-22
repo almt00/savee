@@ -8,13 +8,10 @@ import {
   getPaymentGroupDetails,
 } from "../../store/PaymentGroupDetailsSlice";
 import { useDispatch, useSelector } from "react-redux";
-import { useRouter } from "next/router";
 
 const DoughnutChart = (props) => {
   const dispatch = useDispatch();
   const paymentGroupDetails = useSelector(getPaymentGroupDetails);
-  const router = useRouter();
-  const selectedPaymentId = router.query.id;
 
   const userId = 1;
 
