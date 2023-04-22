@@ -59,7 +59,7 @@ const AllPayments = () => {
   }
 
   return (
-    <Layout title="Histórico pagamentos" description="Histórico pagamentos">
+    <Layout title="Página com histórico dos valores totais das faturas mensais pagas e o valor que foi atribuído ao utilizador em cada pagamento." description="Histórico pagamentos">
       <Background color="skyblue" size="small" />
       <Header page="Pagamentos" />
       <div className="relative pt-20 px-6 flex flex-col gap-3 pb-6">

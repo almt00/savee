@@ -12,7 +12,7 @@ const inter = Inter({ subsets: ["latin"] });
 
 export default function Login() {
   return (
-    <Layout title="Iniciar sessão" description="Iniciar sessão">
+    <Layout title="Página de login para entrar na plataforma, inserir email e password." description="Iniciar sessão">
       <Background color="mint" />
 
       <div className="py-4 px-6">
