@@ -31,6 +31,22 @@ const DoughnutChart = props => {
       ourUserValue = user?.payment_percentage * totalValue || 0;
     }
 
+    // map objGroup and return all colleagues
+    let objGroup = paymentGroupDetails.paymentGroupDetails.UserPayment;
+    const PaymentGroup = objGroup.map((user) => {
+      let percentage = user.payment_percentage * totalValue;
+      let name = user.user_id;
+      return { percentage, name };
+    });
+
+    // for each user, save percentage and name in an array
+    let percentageArray = [];
+    let nameArray = [];
+    PaymentGroup.forEach((user) => {
+      percentageArray.push(user.percentage);
+      nameArray.push(user.name);
+    });
+
     let border = '';
     let background = '';
     let cutoutPercentage = '';
@@ -46,10 +62,10 @@ const DoughnutChart = props => {
 
     let message = ourUserValue + '€';
     const data = {
-      labels: ['User3', 'User2', 'User1'],
+      labels: nameArray,
       datasets: [
         {
-          data: [20, 25, 55],
+          data: percentageArray,
           backgroundColor: background,
           borderColor: border,
           borderWidth: 1.5,
