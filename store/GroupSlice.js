@@ -3,10 +3,10 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 export const fetchAsyncGroup = createAsyncThunk(
   "group/fetchAsyncGroup",
   async (id) => {
-    let group_url = `../api/group_${id}`;
+    let group_url = `https://savee-api.vercel.app/house/${id}`;
     const response = await fetch(group_url);
     let actualData = await response.json();
-    let actualDataObject = await JSON.parse(actualData);
+    let actualDataObject = await actualData;
     return actualDataObject;
   }
 );
@@ -23,7 +23,7 @@ const groupSlice = createSlice({
     },
     [fetchAsyncGroup.fulfilled]: (state, { payload }) => {
       console.log("fetched successfully!");
-      return { ...state, group: payload };
+      return { ...state, status: 200, group: payload };
     },
     [fetchAsyncGroup.rejected]: () => {
       console.log("rejected :( ");
@@ -31,7 +31,7 @@ const groupSlice = createSlice({
   },
 });
 
-export const getGroup = (state) => state.group.group; 
+export const getGroup = (state) => state.group; 
 
 
 export default groupSlice.reducer;

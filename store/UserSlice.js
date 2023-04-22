@@ -3,10 +3,10 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 export const fetchAsyncUser = createAsyncThunk(
   "user/fetchAsyncUser",
   async (id) => {
-    let user_url = `../api/user_${id}`;
+    let user_url = `https://savee-api.vercel.app/user/${id}`;
     const response = await fetch(user_url);
     let actualData = await response.json();
-    let actualDataObject = await JSON.parse(actualData);
+    let actualDataObject = await actualData;
     return actualDataObject;
   }
 );
@@ -24,7 +24,7 @@ const userSlice = createSlice({
     },
     [fetchAsyncUser.fulfilled]: (state, { payload }) => {
       console.log("fetched successfully!");
-      return { ...state, user: payload };
+      return { ...state, status: 200, user: payload };
     },
     [fetchAsyncUser.rejected]: () => {
       console.log("rejected :( ");
@@ -32,9 +32,6 @@ const userSlice = createSlice({
   },
 });
 
-
-
-export const getUser = (state) => state.user.user; // nome da slice (user) e nome da propriedade (user)
-
+export const getUser = (state) => state.user; // nome da slice (user) e nome da propriedade (user)
 
 export default userSlice.reducer;

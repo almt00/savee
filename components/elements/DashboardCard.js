@@ -2,22 +2,31 @@ import { styled } from "@stitches/react";
 import Chart from "./Chart";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchAsyncTasks, getTasks } from "../../store/TasksSlice";
-import { fetchAsyncUser, getUser } from "../../store/UserSlice";
 import { fetchAsyncGroup, getGroup } from "../../store/GroupSlice";
 import {
   fetchAsyncGroupDetails,
-  getgroupDetails,
+  getGroupDetails,
 } from "../../store/GroupDetailsSlice";
+
+import {
+  fetchAsyncConsumption,
+  getConsumption,
+} from "../../store/ConsumptionSlice";
 import { useEffect } from "react";
 import Card from "./Card";
 
 const DashboardCard = () => {
   const dispatch = useDispatch();
-  const userData = useSelector(getUser);
   const tasksData = useSelector(getTasks);
   const groupData = useSelector(getGroup);
+  const groupDetailsData = useSelector(getGroupDetails);
+  const consumptionData = useSelector(getConsumption);
   const groupId = 1; // ver grupo do user
   const userId = 1;
+  let taskId;
+  let startTime;
+  let endTime;
+  let duration;
   let sumConsumption = 0;
   let lastMonthCons = 0;
   let consDif = 0;
@@ -29,30 +38,34 @@ const DashboardCard = () => {
   useEffect(() => {
     if (groupData.status !== 200) {
       dispatch(fetchAsyncGroup(groupId)); // fazer o fetch com redux do grupo
-      /* .then((res) => {
-          members = res.payload.group.members;
-          members.forEach((element) => {
-            dispatch(fetchAsyncGroupDetails(element)); // fazer o fetch com redux do grupo
-          });
-        }); */
-      //dispatch(fetchAsyncGroupDetails(1)); // fazer o fetch com redux do grupo
+    }
+    if (groupDetailsData.status !== 200) {
+      dispatch(fetchAsyncGroupDetails(groupId)); // fazer o fetch com redux do grupo
     }
 
-    if (userData.status !== 200) {
-      dispatch(fetchAsyncUser(userId)); // fazer o fetch com redux
-    }
     if (tasksData.status !== 200) {
       dispatch(fetchAsyncTasks()); // fazer o fetch com redux~
     }
-  }, [dispatch]);
 
-  if (userData.status === 200 && tasksData.status === 200) {
-    let userConsumeHist = userData.user.hist_use;
+    if (consumptionData.status !== 200) {
+      dispatch(fetchAsyncConsumption(userId)); // fazer o fetch com redux~
+    }
+  }, []);
+
+  if (consumptionData.status === 200 && tasksData.status === 200) {
+    let userConsumeHist = consumptionData.consumption;
     userConsumeHist.forEach((element) => {
-      let taskId = element.task_id;
-      let startTime = new Date(element.start_date);
-      let endTime = new Date(element.end_date);
-      let duration = (endTime.getTime() - startTime.getTime()) / 1000 / 60 / 60;
+      if (element.type === 1) {
+        taskId = element.task.task;
+        startTime = new Date(element.task?.start_time);
+        endTime = new Date(element.task?.end_time);
+        duration = (endTime.getTime() - startTime.getTime()) / 1000 / 60 / 60;
+      } else if (element.type === 0) {
+        taskId = element.routine.task;
+        startTime = new Date(element.consumption_date);
+        /*  let endTime = new Date(element.task?.end_time); */
+        duration = element.routine.duration_routine / 60 / 60;
+      }
       let chosenTask = tasksData.tasks.find((task) => task.id === taskId);
       let consumption = chosenTask.kw_hour * duration;
       if (startTime >= lastMonth) {
