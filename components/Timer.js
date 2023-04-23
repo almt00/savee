@@ -39,11 +39,9 @@ export default function Timer() {
           <h1 className={`xlargeheading`}>{('0' + Math.floor((time / 1000) % 60)).slice(-2)}</h1>
         </div>
       </div>
-      <label hidden id="label">Botão para iniciar e parar tempo</label>
-      {running ? (
-        
+      {running ? (  
         <Button
-          aria-describedby='label'
+          aria-label="click para parar o contador de tempo"
           bg='danger'
           className='p-4 mt-6'
           onClick={() => setRunning(false)}
@@ -64,6 +62,7 @@ export default function Timer() {
       ) : (
         <>
           <Button
+            aria-label="click para começar o contador de tempo"
             bg='solid'
             className='p-4 mt-6'
             onClick={() => setRunning(true)}
