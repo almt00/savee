@@ -3,6 +3,7 @@ import { styled } from "../stitches.config";
 import Card from "../components/elements/Card";
 import Header from "../components/elements/Header";
 import Background from "../components/elements/Background";
+import Breadcrumb from "../components/elements/Breadcrumb";
 import Link from "next/link";
 import Button from "../components/elements/Button";
 import { useDispatch, useSelector } from "react-redux";
@@ -93,11 +94,14 @@ const AllRoutines = () => {
       <Background color="purple" size="small" />
       <Header page="Rotinas" />
       <div className="relative pt-20 px-6 flex flex-col gap-3 pb-6">
-        <Link href="/create-routine">
-          <Button bg="solid" size="lg">
-            + nova rotina
-          </Button>
-        </Link>
+        <div className="flex justify-between">
+          <Breadcrumb />
+          <Link href="/create-routine">
+            <Button bg="solid" size="lg">
+              + nova rotina
+            </Button>
+          </Link>
+        </div>
         {Routines}
       </div>
     </Layout>

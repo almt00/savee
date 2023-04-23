@@ -215,7 +215,7 @@ export default function Register() {
           </div>
 
           <div className="mx-6 mb-8">
-            <h1 className="black">Criar conta</h1>
+            <H1 className="black">Criar conta</H1>
             <p className="black">
               Cria a tua conta no Savee e começa a poupar.
             </p>
@@ -230,3 +230,8 @@ export default function Register() {
     </>
   );
 }
+
+const H1 = styled("h1", {
+  fontSize: "$xlargeheading",
+  fontWeight: "$bolder",
+});
