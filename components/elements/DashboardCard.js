@@ -115,7 +115,9 @@ const DashboardCard = () => {
           </SubTitle>
         </NumberKw>
         <div className="w-24">
+          {/*
           <Chart></Chart>
+          */}
         </div>
       </Container>
       {dayDif != 0 ? (
