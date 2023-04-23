@@ -30,7 +30,7 @@ const PaymentCard = ({ id }) => {
     // map obj and return all colleagues
     const PaymentGroup = obj.map((user, key) => {
       let percentage = user.payment_percentage * totalValue;
-      let name = user.user_id;
+      let name = user.user.first_name;
 
       return (
         <User key={key}>

@@ -29,22 +29,25 @@ const DoughnutChart = (props) => {
     let objGroup = paymentGroupDetails.paymentGroupDetails.UserPayment;
     const PaymentGroup = objGroup.map((user) => {
       let percentage = user.payment_percentage * totalValue;
-      let name = user.user_id;
+      let userid = user.user_id;
+      let name = user.user.first_name;
 
-      return { percentage, name };
+      return { percentage, name, userid };
     });
 
     // for each user, save percentage and name in an array
     let percentageArray = [];
     let nameArray = [];
+    let idArray = [];
     PaymentGroup.forEach((user) => {
       percentageArray.push(user.percentage);
       nameArray.push(user.name);
+      idArray.push(user.userid);
     });
 
     // get our user value
     let ourUserValue = PaymentGroup.find(
-      (user) => user.name === userId
+      (user) => user.userid === userId
     ).percentage;
 
     let border = "";
