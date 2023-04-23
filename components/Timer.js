@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import Button from './elements/Button';
 import Tip from './elements/Tip';
+import { styled } from "@stitches/react";
 
 export default function Timer() {
   const [time, setTime] = useState(0);
@@ -28,15 +29,15 @@ export default function Timer() {
       >
         <div>
           <p>hr</p>
-          <h1 className={`xlargeheading`}>{('0' + Math.floor((time / 3600000) % 60)).slice(-2)}</h1>
+          <H4 className={`xlargeheading`}>{('0' + Math.floor((time / 3600000) % 60)).slice(-2)}</H4>
         </div>
         <div>
           <p>min</p>
-          <h1 className={`xlargeheading`}>{('0' + Math.floor((time / 60000) % 60)).slice(-2)}</h1>
+          <H4 className={`xlargeheading`}>{('0' + Math.floor((time / 60000) % 60)).slice(-2)}</H4>
         </div>
         <div>
           <p>sec</p>
-          <h1 className={`xlargeheading`}>{('0' + Math.floor((time / 1000) % 60)).slice(-2)}</h1>
+          <H4 className={`xlargeheading`}>{('0' + Math.floor((time / 1000) % 60)).slice(-2)}</H4>
         </div>
       </div>
       {running ? (  
@@ -82,3 +83,8 @@ export default function Timer() {
     </>
   );
 }
+
+const H4 = styled('h4', {
+  fontSize: '$xxlargeheading',
+  fontWeight: '$bolder',
+});
