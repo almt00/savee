@@ -12,7 +12,7 @@ const inter = Inter({ subsets: ["latin"] });
 
 export default function Login() {
   return (
-    <Layout title="Iniciar sessão" description="Iniciar sessão">
+    <Layout title="Página de login para entrar na plataforma, inserir email e password." description="Iniciar sessão">
       <Background color="mint" />
 
       <div className="py-4 px-6">
@@ -22,7 +22,7 @@ export default function Login() {
       </div>
 
       <div className="mx-6 mb-8">
-        <h1 className="black">Iniciar sessão</h1>
+        <H1 className="black">Iniciar sessão</H1>
         <p className="black">Inicia a tua sessão no Savee e começa a poupar.</p>
       </div>
       <div className="relative px-6 flex flex-col gap-3 pb-6">
@@ -58,3 +58,8 @@ export default function Login() {
     </Layout>
   );
 }
+
+const H1 = styled("h1", {
+  fontSize: "$xlargeheading",
+  fontWeight: "$bolder",
+});

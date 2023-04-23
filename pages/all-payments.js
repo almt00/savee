@@ -4,6 +4,7 @@ import { styled } from "../stitches.config";
 import Card from "../components/elements/Card";
 import Header from "../components/elements/Header";
 import Background from "../components/elements/Background";
+import Breadcrumb from "../components/elements/Breadcrumb";
 import Link from "next/link";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchAsyncUser, getUser } from "../store/UserSlice";
@@ -46,7 +47,7 @@ const AllPayments = () => {
             <Card type="stroke" key={index}>
               <CardItem className="flex justify-between items-center" key={index}>
                 <PaymentInfo key={index}>
-                  <h4>{percetoeuro}€</h4>
+                  <H4>{percetoeuro}€</H4>
                   <p className="mt-1">de {totalValue}€ totais</p>
                 </PaymentInfo>
                 <p className="text-muted">{cleanDate}</p>
@@ -59,24 +60,34 @@ const AllPayments = () => {
   }
 
   return (
-    <Layout title="Histórico pagamentos" description="Histórico pagamentos">
+    <Layout title="Página com histórico dos valores totais das faturas mensais pagas e o valor que foi atribuído ao utilizador em cada pagamento." description="Histórico pagamentos">
       <Background color="skyblue" size="small" />
       <Header page="Pagamentos" />
       <div className="relative pt-20 px-6 flex flex-col gap-3 pb-6">
+      <Breadcrumb />
         <Card>
           <ThisMonth>55€</ThisMonth>
           <p className="mt-2">Pagos a 24 de dezembro</p>
         </Card>
-        <h3 className="mt-6">Histórico de pagamento</h3>
+        <H3 className="mt-6">Histórico de pagamento</H3>
         {PayHisto}
       </div>
     </Layout>
   );
 };
 
+const H3 = styled("h2", {
+  fontSize: "$mediumheading",
+  fontWeight: "$bolder",
+});
+const H4 = styled("h3", {
+  fontSize: "$smallheading",
+  fontWeight: "$bolder",
+});
+
 const ThisMonth = styled("div", {
   color: "$black",
-  fontSize: "$",
+  fontSize: "$xxlargeheading",
   fontWeight: "$bolder",
   lineHeight: "3rem",
   flex: "1",

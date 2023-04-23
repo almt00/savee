@@ -7,7 +7,7 @@ import Insight from '../components/elements/Insight';
 
 const Payment = () => {
   return (
-    <Layout title="Pagamento" description="Pagamento">
+    <Layout title="Página que permite visualizar e confirmar a sua parte da fatura a pagar, valor atribuido ao utilizador em função da sua porcentagem de consumo dentro do grupo. Também apresenta porcentagems dos outros elementos." description="Pagamento">
       <Background color='skyblue' />
       <Header page='Pagamento' />
       <div className='relative pt-20 px-6 flex flex-col gap-3 pb-6'>
