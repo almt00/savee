@@ -75,7 +75,7 @@ const AllRoutines = () => {
                 key={index}
               >
                 <RoutineInfo key={index}>
-                  <h4>{name}</h4>
+                  <H4>{name}</H4>
                   <p className="mt-1">{weekdays}</p>
                 </RoutineInfo>
                 <p className="text-muted">{duration} min</p>
@@ -116,6 +116,11 @@ const CardItem = styled("div", {
   p: {
     fontSize: "$small",
   },
+});
+
+const H4 = styled("h4", {
+  fontSize: "$smallheading",
+  fontWeight: "$bolder",
 });
 
 export default AllRoutines;

@@ -102,7 +102,7 @@ const TaskTitle = styled("p", {
         marginTop: "0",
       },
       lg: {
-        fontSize: "$h3",
+        fontSize: "$mediumheading",
         fontWeight: "$bolder",
         marginTop: "0",
       },
