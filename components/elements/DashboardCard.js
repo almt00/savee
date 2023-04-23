@@ -50,7 +50,7 @@ const DashboardCard = () => {
     if (consumptionData.status !== 200) {
       dispatch(fetchAsyncConsumption(userId)); // fazer o fetch com redux~
     }
-  }, []);
+  }, [dispatch]);
 
   if (consumptionData.status === 200 && tasksData.status === 200) {
     let userConsumeHist = consumptionData.consumption;

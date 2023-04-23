@@ -7,12 +7,16 @@ import Insight from "../components/elements/Insight";
 import { useDispatch } from "react-redux";
 import { setPage } from "../store/PageSlice";
 import { useRouter } from "next/router";
+import { useEffect } from "react";
 
 const Payment = () => {
   const dispatch = useDispatch();
   const router = useRouter();
-  dispatch(setPage("payment"));
   const { id } = router.query;
+
+  useEffect(() => {
+    dispatch(setPage("payment"));
+  }, []);
 
   return (
     <Layout title="Pagamento" description="Pagamento">
