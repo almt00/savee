@@ -24,12 +24,11 @@ const PaymentCard = ({ id }) => {
   }, [dispatch]);
 
   if (paymentGroupDetails.status === 200) {
-    let totalValue = paymentGroupDetails.paymentGroupDetails.value_payment;
     let obj = paymentGroupDetails.paymentGroupDetails.UserPayment;
 
     // map obj and return all colleagues
     const PaymentGroup = obj.map((user, key) => {
-      let percentage = user.payment_percentage * totalValue;
+      let percentage = user.payment_percentage * 100;
       let name = user.user.first_name;
 
       return (
@@ -42,7 +41,7 @@ const PaymentCard = ({ id }) => {
             height="38"
           />
           <SubTitle>{name}</SubTitle>
-          <Percentage>{percentage}</Percentage>
+          <Percentage>{percentage}%</Percentage>
         </User>
       );
     });

@@ -23,12 +23,11 @@ const DoughnutChart = (props) => {
 
   if (paymentGroupDetails.status === 200) {
     let obj = paymentGroupDetails.paymentGroupDetails;
-    let totalValue = obj.value_payment;
 
     // map objGroup and return all colleagues
     let objGroup = paymentGroupDetails.paymentGroupDetails.UserPayment;
     const PaymentGroup = objGroup.map((user) => {
-      let percentage = user.payment_percentage * totalValue;
+      let percentage = user.payment_percentage * 100;
       let userid = user.user_id;
       let name = user.user.first_name;
 
