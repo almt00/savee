@@ -16,7 +16,6 @@ const AllUsage = () => {
   const dispatch = useDispatch();
   const consumptionData = useSelector(getConsumption);
   const tasksData = useSelector(getTasks);
-  dispatch(setPage("usage"));
   const userId = 1;
   let UseHisto = "";
   let obj = "";
@@ -33,8 +32,14 @@ const AllUsage = () => {
   let todaySum = 0;
 
   useEffect(() => {
-    if (consumptionData.status !== 200 && tasksData.status !== 200) {
+    dispatch(setPage("usage"));
+  }, []);
+
+  useEffect(() => {
+    if (consumptionData.status !== 200) {
       dispatch(fetchAsyncConsumption(userId)); // fazer o fetch com redux caso ainda n esteja o estado (ex.: reloads de pagina)
+    }
+    if (tasksData.status !== 200) {
       dispatch(fetchAsyncTasks());
     }
   }, [dispatch]);
