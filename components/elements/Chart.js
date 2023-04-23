@@ -55,7 +55,11 @@ const DoughnutChart = (props) => {
     let background = "";
     let cutoutPercentage = "";
     if (props.environment === "payment") {
-      background = ["#FFFFFF", "#FFFFFF", "#C5E1F2"];
+      // create an array with the same length as the percentage array
+      let colorArray = new Array(percentageArray.length).fill("#FFFFFF");
+      // change the color of the user
+      colorArray[idArray.indexOf(userId)] = "#C5E1F2";
+      background = colorArray;
       border = "#081B33";
       cutoutPercentage = 80;
     } else {
