@@ -18,17 +18,8 @@ const collapseMenu = function (e) {
 };
 
 export default function Menu() {
-  let page = useSelector(getPage);
-  useEffect(() => {
-    if (document.getElementById(page) !== null) {
-      document.getElementById(page).className = "";
-      document.getElementById(page).className = "selected";
-      document.getElementById(page).style.backgroundColor = "$yellow";
-    }
-  }, [page]);
-
+  const page = useSelector(getPage);
   const router = useRouter();
-  const { asPath } = useRouter();
   const handleClick = (event, path) => {
     event.preventDefault();
     router.push(path);
@@ -58,61 +49,113 @@ export default function Menu() {
           </Link>
           <MenuList>
             <Link href="/homepage" onClick={(e) => handleClick(e, "/homepage")}>
-              <li className="" id="homepage">
-                <Image
-                  src="/img/home-icon.svg"
-                  className="ml-6"
-                  alt="Home"
-                  width="38"
-                  height="38"
-                />
-                <h2>Homepage</h2>
-              </li>
+              {page === "homepage" && page ? (
+                <li className="selected" id="homepage">
+                  <Image
+                    src="/img/home-icon.svg"
+                    className="ml-6"
+                    alt="Home"
+                    width="38"
+                    height="38"
+                  />
+                  <h2>Homepage</h2>
+                </li>
+              ) : (
+                <li id="homepage">
+                  <Image
+                    src="/img/home-icon.svg"
+                    className="ml-6"
+                    alt="Home"
+                    width="38"
+                    height="38"
+                  />
+                  <h2>Homepage</h2>
+                </li>
+              )}
             </Link>
             <Link
               href="/all-usage"
               onClick={(e) => handleClick(e, "/all-usage")}
             >
-              <li className="" id="usage">
-                <Image
-                  src="/img/chart-pie-icon.svg"
-                  className="ml-6"
-                  alt="Histórico uso"
-                  width="38"
-                  height="38"
-                />
-                <h2>Histórico uso</h2>
-              </li>
+              {page === "usage" ? (
+                <li className="selected" id="usage">
+                  <Image
+                    src="/img/chart-pie-icon.svg"
+                    className="ml-6"
+                    alt="Histórico uso"
+                    width="38"
+                    height="38"
+                  />
+                  <h2>Histórico uso</h2>
+                </li>
+              ) : (
+                <li id="usage">
+                  <Image
+                    src="/img/chart-pie-icon.svg"
+                    className="ml-6"
+                    alt="Histórico uso"
+                    width="38"
+                    height="38"
+                  />
+                  <h2>Histórico uso</h2>
+                </li>
+              )}
             </Link>
             <Link
               href="/all-routines"
               onClick={(e) => handleClick(e, "/all-routines")}
             >
-              <li className="" id="routines">
-                <Image
-                  src="/img/sun-icon.svg"
-                  className="ml-6"
-                  alt="Rotinas"
-                  width="38"
-                  height="38"
-                />
-                <h2>Rotinas</h2>
-              </li>
+              {page === "routines" ? (
+                <li className="selected" id="routines">
+                  <Image
+                    src="/img/sun-icon.svg"
+                    className="ml-6"
+                    alt="Rotinas"
+                    width="38"
+                    height="38"
+                  />
+                  <h2>Rotinas</h2>
+                </li>
+              ) : (
+                <li id="routines">
+                  <Image
+                    src="/img/sun-icon.svg"
+                    className="ml-6"
+                    alt="Rotinas"
+                    width="38"
+                    height="38"
+                  />
+                  <h2>Rotinas</h2>
+                </li>
+              )}
             </Link>
             <Link
               href="/all-payments"
               onClick={(e) => handleClick(e, "/all-payments")}
             >
-              <li className="" id="payments">
-                <Image
-                  src="/img/currency-dollar-icon.svg"
-                  className="ml-6"
-                  alt="Pagamentos"
-                  width="38"
-                  height="38"
-                />
-                <h2>Pagamentos</h2>
-              </li>
+              {page === "payments" ? (
+                <li className="selected" id="payments">
+                  <Image
+                    src="/img/currency-dollar-icon.svg"
+                    className="ml-6"
+                    alt="Pagamentos"
+                    width="38"
+                    height="38"
+                  />
+                  <h2>Pagamentos</h2>
+                </li>
+              ) : (
+                <li id="payments">
+                  <Image
+                    src="/img/currency-dollar-icon.svg"
+                    className="ml-6"
+                    alt="Pagamentos"
+                    width="38"
+                    height="38"
+                  />
+                  <h2>Pagamentos</h2>
+                </li>
+              )}
             </Link>
           </MenuList>
         </div>

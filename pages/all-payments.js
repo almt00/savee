@@ -17,11 +17,14 @@ const AllPayments = () => {
   const obj = paymentData.payment;
 
   useEffect(() => {
-    dispatch(setPage("payments"));
     if (paymentData.status !== 200) {
       dispatch(fetchAsyncPaymentSlice(userId)); // fazer o fetch com redux caso ainda n esteja o estado (ex.: reloads de pagina)
     }
   }, [dispatch]);
+
+  useEffect(() => {
+    dispatch(setPage("payments"));
+  }, []);
 
   const lastPayment = () => {
     if (paymentData.status === 200) {
