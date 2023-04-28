@@ -26,7 +26,7 @@ export default function Menu() {
   };
   return (
     <>
-    <a href="http://localhost:3001/homepage#main" class="skip-to-main-content-link">Skip to main content</a>
+    <a href="http://localhost:3001/homepage#main" className="skip-to-main-content-link">Skip to main content</a>
       <div
         id="menu_overlay"
         onClick={collapseMenu}
