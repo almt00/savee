@@ -2,6 +2,7 @@ import Layout from "../components/elements/Layout";
 import { styled } from "../stitches.config";
 import Card from "../components/elements/Card";
 import Header from "../components/elements/Header";
+import Breadcrumb from "../components/elements/Breadcrumb";
 import Background from "../components/elements/Background";
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -70,7 +71,7 @@ const AllUsage = () => {
           <Card type="stroke" key={index}>
             <CardItem className="flex justify-between items-center" key={index}>
               <UsageInfo key={index}>
-                <h4>{cleantaskDuration} min</h4>
+              <H4>{cleantaskDuration} min</H4>
                 <p> {taskName}</p>
               </UsageInfo>
               <p className="text-muted">{cleanDate}</p>
@@ -82,15 +83,16 @@ const AllUsage = () => {
   }
 
   return (
-    <Layout title="Histórico de uso" description="Histórico de uso">
-      <Background color="orange" size="small" />
+    <Layout title="Página que permite visualizar o histórico de tarefas realizadas cronologicamente da mais recente para a mais antiga." description="Histórico de uso">
+      <Background color="orange" size="extrasmall" />
       <Header page="Histórico uso" />
       <div className="relative pt-20 px-6 flex flex-col gap-3 pb-6">
+        <Breadcrumb />
         <Card>
           <ThisMonth>{todaySum} min</ThisMonth>
           <p className="mt-2">Hoje</p>
         </Card>
-        <h3 className="mt-6">Histórico de uso</h3>
+        <H3 className="mt-6">Histórico de uso</H3>
         <div className="flex flex-col-reverse gap-3">{UseHisto}</div>
       </div>
     </Layout>
@@ -99,7 +101,7 @@ const AllUsage = () => {
 
 const ThisMonth = styled("div", {
   color: "$black",
-  fontSize: "$f0",
+  fontSize: "$xxlargeheading",
   fontWeight: "$bolder",
   lineHeight: "3rem",
 });
@@ -113,5 +115,15 @@ const CardItem = styled("div", {
   p: {
     fontSize: "$small",
   },
+});
+
+const H3 = styled("h3", {
+  fontSize: "$mediumheading",
+  fontWeight: "$bolder",
+});
+
+const H4 = styled("h4", {
+  fontSize: "$smallheading",
+  fontWeight: "$bolder",
 });
 export default AllUsage;

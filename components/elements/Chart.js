@@ -116,11 +116,13 @@ const DoughnutChart = (props) => {
     ];
     return (
       <Doughnut
+        alt="grafico"
         data={data}
         options={options}
         plugins={props.environment === "payment" ? plugins : [ChartDataLabels]}
       />
     );
   }
+
 };
 export default DoughnutChart;

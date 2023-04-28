@@ -86,6 +86,7 @@ const Form = (props) => {
   return (
     <Container>
       <LabelRoot>{props.name}</LabelRoot>
+       <label></label>
       {props.type === "date" ? (
         <Input
           type={props.type}

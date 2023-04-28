@@ -3,26 +3,6 @@
 @tailwind utilities;
 
 @layer base {
-  h1 {
-    font-size: 2rem;
-    font-weight: 800;
-  }
-  h2 {
-    font-size: 1.5rem;
-    font-weight: 800;
-  }
-  h3 {
-    font-size: 1.25rem;
-    font-weight: 800;
-  }
-  h4 {
-    font-size: 1rem;
-    font-weight: 800;
-  }
-  h5 {
-    font-size: 0.875rem;
-    font-weight: 800;
-  }
   p {
     font-size: 0.9rem;
     font-weight: 400;
@@ -58,4 +38,19 @@ a {
   to {
     bottom: 0px;
   }
+}
+
+.skip-to-main-content-link {
+  position: absolute;
+  left: -9999px;
+  z-index: 999;
+  padding: 1em;
+  background-color: black;
+  color: white;
+  opacity: 0;
+}
+.skip-to-main-content-link:focus {
+  left: 50%;
+  transform: translateX(-50%);
+  opacity: 1;
 }

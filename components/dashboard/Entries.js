@@ -78,8 +78,8 @@ const Entries = (props) => {
           if (index === userConsumeHist.length - 1) {
             return (
               <EntryContainer key={element.id} className="border-b-0 mb-0">
-                <EntryImage src={`${chosenTask.image}`}></EntryImage>
-                <EntryTitle>{element.name}</EntryTitle>
+                <EntryImage src={`${chosenTask.image}`} alt={`${element.name}`}></EntryImage>
+                <EntryTitle aria-hidden="true">{element.name}</EntryTitle>
                 <Minute>
                   {duration > 60 ? (
                     <>
@@ -100,8 +100,8 @@ const Entries = (props) => {
           } else {
             return (
               <EntryContainer key={element.id}>
-                <EntryImage src={`${chosenTask.image}`}></EntryImage>
-                <EntryTitle>{element.name}</EntryTitle>
+                <EntryImage src={`${chosenTask.image}`} alt={`${element.name}`}></EntryImage>
+                <EntryTitle aria-hidden="true">{element.name}</EntryTitle>
                 <Minute>
                   {duration > 60 ? (
                     <>

@@ -1,5 +1,6 @@
 import React from 'react';
 import Link from 'next/link';
+import { styled } from "../../stitches.config";
 
 export default function Breadcrumb() {
   return (
@@ -16,7 +17,13 @@ export default function Breadcrumb() {
             clipRule='evenodd'
           />
         </svg>
-      <h2 className='ml-4'>Homepage</h2>
+      <H2 className='ml-4'>Homepage</H2>
     </Link>
   );
 }
+
+const H2 = styled("h2", {
+  fontSize: "$largeheading",
+  fontWeight: "$bolder",
+});
+

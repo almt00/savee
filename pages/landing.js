@@ -24,7 +24,7 @@ export default function Landing() {
   });
 
   return (
-    <Layout title="Savee" description="Savee">
+    <Layout title="Página inicial Savee com breve descrição da aplicação, também permite iniciar sessão ou criar uma nova conta na plataforma" description="Savee">
       <Navbar className="flex justify-end items-center gap-4 p-4"> 
         <Link href="/login"><Button size="lg">Iniciar Sessão</Button></Link>
       </Navbar>
@@ -32,9 +32,9 @@ export default function Landing() {
         <div className="flex flex-col items-center gap-6">
           <Image src="/img/logo.svg" width={150} height={150} alt="Savee Logo" />
           <div>
-          <h2 className="text-center mb-2">
+          <H2 className="text-center mb-2">
             A forma inteligente de partilhares a tua conta de eletricidade.
-          </h2>
+          </H2>
           <p className="text-center mx-2">
             O Savee ajuda-te a dividir as faturas conforme os teus consumos. Os
             teus consumos, o teu preço!
@@ -52,7 +52,7 @@ export default function Landing() {
                 <CardNumber>#1</CardNumber>
                 <Image src="/img/onboardingOne.svg" className="z-10" alt="onboarding 1 "width="276" height="190"/>
                 <div>
-                  <h3>Inscreve a tua casa</h3>
+                  <H3>Inscreve a tua casa</H3>
                   <p>
                     Convida os teus colegas de casa a usarem o Savee. Adicionem
                     os vossos equipamentos para perceberem os vossos consumos.
@@ -61,11 +61,11 @@ export default function Landing() {
               </Card>
             </SlideItem>
             <SlideItem>
-              <Card id="first-card" className="flex flex-col p-6 gap-4">
+              <Card id="second-card" className="flex flex-col p-6 gap-4">
                 <CardNumber>#2</CardNumber>
                 <Image src="/img/onboardingTwo.svg" className="z-10" alt="Onboarding 2" width="260" height="190"></Image>
                 <div>
-                  <h3>Cria as tuas rotinas</h3>
+                  <H3>Cria as tuas rotinas</H3>
                   <p>
                     Depois de adicionares equipamentos, cria rotinas de uso para
                     os mesmos. O Savee faz o trabalho por ti e calcula os teus
@@ -75,11 +75,11 @@ export default function Landing() {
               </Card>
             </SlideItem>
             <SlideItem>
-              <Card id="first-card" className="flex flex-col p-6 gap-4">
+              <Card id="third-card" className="flex flex-col p-6 gap-4">
                 <CardNumber>#3</CardNumber>
                 <Image src="/img/onboardingThree.svg" className="z-10" alt="onboarding 3" width="266" height="190"></Image>
                 <div>
-                  <h3>Começa a poupar</h3>
+                  <H3>Começa a poupar</H3>
                   <p>
                     Quando for a hora de pagar, cada um paga o que consome! O
                     Savee distribui o total da fatura pelos colegas de casa
@@ -169,3 +169,13 @@ const Footer = styled("footer", {
   color: "$white",
   padding: "1.5rem 2rem"
 })
+
+const H2 = styled('h2', {
+  fontSize: '$largeheading',
+  fontWeight: '$bolder',
+});
+
+const H3 = styled('h3', {
+  fontSize: '$mediumheading',
+  fontWeight: '$bolder',
+});

@@ -1,3 +1,4 @@
+//estilos
 import { createStitches } from "@stitches/react";
 
 export const {
@@ -19,7 +20,7 @@ export const {
       white: "#FFFFFF",
       links: "#4C79EC",
       border: "#EBEBEB",
-      muted: "#B0B0B0",
+      muted: "#8F8F8F",
       success: "#35A361",
       danger: "#D63535",
       mint: "#C4F4D4",
@@ -33,11 +34,16 @@ export const {
       deeppurple: "#BEB9FC",
     },
     fontSizes: {
-      f0: "2.5rem",
-      h1: "2rem",
-      h2: "1.5rem",
-      h3: "1.25rem",
-      h4: "1rem",
+      // f0: "2.5rem",
+      // h1: "2rem",
+      // h2: "1.5rem",
+      // h3: "1.25rem",
+      // h4: "1rem",
+      xxlargeheading: "2.5rem",
+      xlargeheading: "2rem",
+      largeheading: "1.5rem",
+      mediumheading: "1.25rem",
+      smallheading: "1rem",
       normal: "0.9rem",
       small: "0.75rem",
     },

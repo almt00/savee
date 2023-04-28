@@ -5,6 +5,7 @@ import Tip from "./Tip";
 import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { fetchAsyncTasks, getTasks } from "../../store/TasksSlice";
+import { styled } from "../../stitches.config";
 
 const Insight = (props) => {
   const dispatch = useDispatch();
@@ -46,7 +47,7 @@ const Insight = (props) => {
         <div className="flex justify-between gap-2">
           <Task taskId={props.taskId} size="sm" />
           <div className="flex gap-1 items-center">
-            <h4>{props.value}</h4>
+            <H4>{props.value}</H4>
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
@@ -72,4 +73,10 @@ const Insight = (props) => {
   );
 };
 
+const H4 = styled("h4", {
+  fontSize: "$smallheading",
+  fontWeight: "$bolder",
+});
+
 export default Insight;
+

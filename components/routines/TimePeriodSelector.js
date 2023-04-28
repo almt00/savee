@@ -26,7 +26,7 @@ const TimePeriodSelector = () => {
       {periods.map((period) => (
         <ToggleRoot key={period.value} className="mx-2">
           <Image src={period.img} width={84} height={93} alt={period.name} />
-          <p className="mt-2">{period.name}</p>
+          <p className="mt-2" aria-hidden="true">{period.name}</p>
         </ToggleRoot>
       ))}
     </div>

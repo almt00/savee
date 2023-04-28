@@ -3,6 +3,7 @@ import { styled } from "../stitches.config";
 import Card from "../components/elements/Card";
 import Header from "../components/elements/Header";
 import Background from "../components/elements/Background";
+import Breadcrumb from "../components/elements/Breadcrumb";
 import Link from "next/link";
 import Button from "../components/elements/Button";
 import { useDispatch, useSelector } from "react-redux";
@@ -82,7 +83,7 @@ const AllRoutines = () => {
                 key={index}
               >
                 <RoutineInfo key={index}>
-                  <h4>{name}</h4>
+                  <H4>{name}</H4>
                   <p className="mt-1">{weekdays}</p>
                 </RoutineInfo>
                 <p className="text-muted">{duration} min</p>
@@ -95,15 +96,18 @@ const AllRoutines = () => {
   }
 
   return (
-    <Layout title="Rotinas" description="Rotinas">
-      <Background color="purple" size="small" />
+    <Layout title="Página para visualizar rotinas feitas e link para criar nova rotina" description="Rotinas">
+      <Background color="purple" size="extrasmall" />
       <Header page="Rotinas" />
       <div className="relative pt-20 px-6 flex flex-col gap-3 pb-6">
-        <Link href="/create-routine">
-          <Button bg="solid" size="lg">
-            + nova rotina
-          </Button>
-        </Link>
+        <div className="flex justify-between">
+          <Breadcrumb />
+          <Link href="/create-routine">
+            <Button bg="solid" size="lg">
+              + nova rotina
+            </Button>
+          </Link>
+        </div>
         {Routines}
       </div>
     </Layout>
@@ -120,6 +124,11 @@ const CardItem = styled("div", {
   p: {
     fontSize: "$small",
   },
+});
+
+const H4 = styled("h4", {
+  fontSize: "$smallheading",
+  fontWeight: "$bolder",
 });
 
 export default AllRoutines;
