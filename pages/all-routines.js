@@ -97,7 +97,7 @@ const AllRoutines = () => {
 
   return (
     <Layout title="Página para visualizar rotinas feitas e link para criar nova rotina" description="Rotinas">
-      <Background color="purple" size="small" />
+      <Background color="purple" size="extrasmall" />
       <Header page="Rotinas" />
       <div className="relative pt-20 px-6 flex flex-col gap-3 pb-6">
         <div className="flex justify-between">

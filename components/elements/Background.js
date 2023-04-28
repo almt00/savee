@@ -39,6 +39,9 @@ const Background = styled("div", {
       small: {
         height: "30%",
       },
+      extrasmall: {
+        height: "25%",
+      }
     }
   },
 });
