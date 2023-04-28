@@ -16,7 +16,6 @@ const AllRoutines = () => {
   const dispatch = useDispatch();
   const routineData = useSelector(getRoutine);
   const tasksData = useSelector(getTasks);
-  dispatch(setPage("routines"));
 
   const userId = 1;
   let obj = "";
@@ -27,11 +26,18 @@ const AllRoutines = () => {
   let name = "";
 
   useEffect(() => {
-    if (routineData.status !== 200 && tasksData.status !== 200) {
+    if (routineData.status !== 200) {
       dispatch(fetchAsyncRoutineSlice(userId)); // fazer o fetch com redux caso ainda n esteja o estado (ex.: reloads de pagina)
+    }
+
+    if (tasksData.status !== 200) {
       dispatch(fetchAsyncTasks());
     }
   }, [dispatch]);
+
+  useEffect(() => {
+    dispatch(setPage("routines"));
+  }, []);
 
   if (routineData.status === 200 && tasksData.status === 200) {
     obj = routineData.routine;

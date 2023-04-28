@@ -50,7 +50,7 @@ const DashboardCard = () => {
     if (consumptionData.status !== 200) {
       dispatch(fetchAsyncConsumption(userId)); // fazer o fetch com redux~
     }
-  }, []);
+  }, [dispatch]);
 
   if (consumptionData.status === 200 && tasksData.status === 200) {
     let userConsumeHist = consumptionData.consumption;
@@ -116,7 +116,9 @@ const DashboardCard = () => {
           </SubTitle>
         </NumberKw>
         <div className="w-24">
+          {/*
           <Chart></Chart>
+          */}
         </div>
       </Container>
       {dayDif != 0 ? (
