@@ -85,19 +85,38 @@ const Form = (props) => {
 
   return (
     <Container>
-      <LabelRoot as="form">{props.name}</LabelRoot>
-      <label></label>
-      <Input
-        type={props.type}
-        id={props.id}
-        placeholder={placeholderValue}
-        style={{ background: `url(/img/${icon}) no-repeat 98%` }}
-        pattern={props.pattern}
-        title={props.title}
-        required={props.required}
-        min={props.min}
-        max={props.max}
-      />
+      <LabelRoot>{props.name}</LabelRoot>
+       <label></label>
+      {props.type === "date" ? (
+        <Input
+          type={props.type}
+          id={props.id}
+          placeholder={placeholderValue}
+          style={{
+            background: `url(/img/${icon}) no-repeat 98%`,
+            paddingTop: "9px",
+          }}
+          pattern={props.pattern}
+          title={props.title}
+          required={props.required}
+          min={props.min}
+          max={props.max}
+          //onClick={clickedInput}
+        />
+      ) : (
+        <Input
+          type={props.type}
+          id={props.id}
+          placeholder={placeholderValue}
+          style={{ background: `url(/img/${icon}) no-repeat 98%` }}
+          pattern={props.pattern}
+          title={props.title}
+          required={props.required}
+          min={props.min}
+          max={props.max}
+          //onClick={clickedInput}
+        />
+      )}
       <div id={`${props.id}_error`} className="hidden">
         <Image src="/img/x-circle.svg" alt="Erro" width="20" height="20" />
         <p>Isto é um erro</p>

@@ -1,5 +1,4 @@
 import Layout from "../components/elements/Layout";
-import { Inter } from "@next/font/google";
 import { styled } from "../stitches.config";
 import Card from "../components/elements/Card";
 import Header from "../components/elements/Header";
@@ -7,57 +6,73 @@ import Background from "../components/elements/Background";
 import Breadcrumb from "../components/elements/Breadcrumb";
 import Link from "next/link";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchAsyncUser, getUser } from "../store/UserSlice";
 import { useEffect } from "react";
 import { setPage } from "../store/PageSlice";
+import { fetchAsyncPaymentSlice, getPayment } from "../store/PaymentSlice";
 
 const AllPayments = () => {
   const dispatch = useDispatch();
-  const userData = useSelector(getUser);
-  dispatch(setPage("payments"));
+  const paymentData = useSelector(getPayment);
 
   const userId = 1;
-  let value = "";
-  let totalValue = "";
-  let date = "";
-  let cleanDate = "";
-  let percetoeuro = "";
-  let obj = "";
-  let PayHisto = "";
+  const obj = paymentData.payment;
 
   useEffect(() => {
-    if (userData.status !== 200) {
-      dispatch(fetchAsyncUser(userId)); // fazer o fetch com redux caso ainda n esteja o estado (ex.: reloads de pagina)
+    if (paymentData.status !== 200) {
+      dispatch(fetchAsyncPaymentSlice(userId)); // fazer o fetch com redux caso ainda n esteja o estado (ex.: reloads de pagina)
     }
   }, [dispatch]);
 
-  if (userData.status === 200) {
-    obj = userData.hist_payment;
-    PayHisto = obj?.map((payment, index) => {
-      value = payment.percentage;
-      totalValue = payment.total_value;
-      date = payment.date;
-      const options = { month: "short", day: "numeric" };
-      cleanDate = new Date(date).toLocaleDateString("pt-PT", options);
-      percetoeuro = ((totalValue / 100) * value).toFixed(2);
+  useEffect(() => {
+    dispatch(setPage("payments"));
+  }, []);
 
-      return (
-        <>
-          <Link href="/payment">
-            <Card type="stroke" key={index}>
-              <CardItem className="flex justify-between items-center" key={index}>
-                <PaymentInfo key={index}>
-                  <H4>{percetoeuro}€</H4>
-                  <p className="mt-1">de {totalValue}€ totais</p>
-                </PaymentInfo>
-                <p className="text-muted">{cleanDate}</p>
-              </CardItem>
-            </Card>
-          </Link>
-        </>
+  const lastPayment = () => {
+    if (paymentData.status === 200) {
+      let lastPaymentData = obj[0]?.payment;
+      const options = { month: "long", day: "numeric" };
+      let lastDate = new Date(lastPaymentData.date_payment).toLocaleDateString(
+        "pt-PT",
+        options
       );
-    });
-  }
+      return (
+        <Card>
+          <ThisMonth>{lastPaymentData.value_payment}€</ThisMonth>
+          <p className="mt-2">Pagos a {lastDate}</p>
+        </Card>
+      );
+    }
+  };
+  let PayHisto = () => {
+    if (paymentData.status === 200) {
+      return obj?.map((payment, index) => {
+        let totalValue = payment.payment.value_payment;
+        let value = payment.payment_percentage * totalValue;
+        let date = payment.payment.date_payment;
+        const options = { month: "short", day: "numeric" };
+        let cleanDate = new Date(date).toLocaleDateString("pt-PT", options);
+
+        return (
+          <li key={index} className="mb-3">
+            <Link href={`/payment?id=${payment.payment_id}`}>
+              <Card type="stroke">
+                <CardItem
+                  className="flex justify-between items-center"
+                  key={index}
+                >
+                  <PaymentInfo>
+                    <H4>{value}€</H4>
+                    <p className="mt-1">de {totalValue}€ totais</p>
+                  </PaymentInfo>
+                  <p className="text-muted">{cleanDate}</p>
+                </CardItem>
+              </Card>
+            </Link>
+          </li>
+        );
+      });
+    }
+  };
 
   return (
     <Layout title="Página com histórico dos valores totais das faturas mensais pagas e o valor que foi atribuído ao utilizador em cada pagamento." description="Histórico pagamentos">
@@ -65,12 +80,9 @@ const AllPayments = () => {
       <Header page="Pagamentos" />
       <div className="relative pt-20 px-6 flex flex-col gap-3 pb-6">
       <Breadcrumb />
-        <Card>
-          <ThisMonth>55€</ThisMonth>
-          <p className="mt-2">Pagos a 24 de dezembro</p>
-        </Card>
+        {lastPayment()}
         <H3 className="mt-6">Histórico de pagamento</H3>
-        {PayHisto}
+        <ul>{PayHisto()}</ul>
       </div>
     </Layout>
   );
