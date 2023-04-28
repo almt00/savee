@@ -69,7 +69,7 @@ export default function Menu() {
                     width="38"
                     height="38"
                   />
-                  <h2 aria-hidden='true'>Homepage</h2>
+                  <H2 aria-hidden='true'>Homepage</H2>
                 </li>
               )}
             </Link>
@@ -97,7 +97,7 @@ export default function Menu() {
                     width="38"
                     height="38"
                   />
-                  <h2 aria-hidden='true'>Histórico uso</h2>
+                  <H2 aria-hidden='true'>Histórico uso</H2>
                 </li>
               )}
             </Link>
@@ -114,7 +114,7 @@ export default function Menu() {
                     width="38"
                     height="38"
                   />
-                  <h2 aria-hidden='true'>Rotinas</h2>
+                  <H2 aria-hidden='true'>Rotinas</H2>
                 </li>
               ) : (
                 <li id="routines">
@@ -125,7 +125,7 @@ export default function Menu() {
                     width="38"
                     height="38"
                   />
-                  <h2 aria-hidden='true'>Rotinas</h2>
+                  <H2 aria-hidden='true'>Rotinas</H2>
                 </li>
               )}
             </Link>
@@ -142,7 +142,7 @@ export default function Menu() {
                     width="38"
                     height="38"
                   />
-                  <h2 aria-hidden='true'>Pagamentos</h2>
+                  <H2 aria-hidden='true'>Pagamentos</H2>
                 </li>
               ) : (
                 <li id="payments">
@@ -153,7 +153,7 @@ export default function Menu() {
                     width="38"
                     height="38"
                   />
-                  <h2 aria-hidden='true'>Pagamentos</h2>
+                  <H2 aria-hidden='true'>Pagamentos</H2>
                 </li>
               )}
             </Link>
@@ -200,9 +200,9 @@ export default function Menu() {
   );
 }
 
-const H2 = styled('h2', {
-  fontSize: '$largeheading',
-  fontWeight: '$bolder',
+const H2 = styled("h2", {
+  fontSize: "$largeheading",
+  fontWeight: "$bolder",
 });
 
 const H4 = styled('p', {
