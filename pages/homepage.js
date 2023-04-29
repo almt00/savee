@@ -1,14 +1,14 @@
 import { styled } from "@stitches/react";
-import Layout from '../components/elements/Layout';
-import Header from '../components/elements/Header';
-import Background from '../components/elements/Background';
-import Banner from '../components/elements/Banner';
-import DashboardCard from '../components/elements/DashboardCard';
-import Tasks from '../components/dashboard/Tasks';
-import RoutinesList from '../components/dashboard/RoutinesList';
-import DisplayName from '../components/dashboard/DisplayName';
-import Toaster from '../components/elements/Toaster';
-import { useRouter } from 'next/router';
+import Layout from "../components/elements/Layout";
+import Header from "../components/elements/Header";
+import Background from "../components/elements/Background";
+import Banner from "../components/elements/Banner";
+import DashboardCard from "../components/elements/DashboardCard";
+import Tasks from "../components/dashboard/Tasks";
+import RoutinesList from "../components/dashboard/RoutinesList";
+import DisplayName from "../components/dashboard/DisplayName";
+import Toaster from "../components/elements/Toaster";
+import { useRouter } from "next/router";
 import { useDispatch } from "react-redux";
 import { setPage } from "../store/PageSlice";
 import { useEffect } from "react";
@@ -34,9 +34,11 @@ export default function Homepage() {
     fontWeight: "$bolder",
   });
 
-
   return (
-    <Layout title="Página principal da plataforma onde podes ver os consumos mensais e realizar tarefas para poupares a tua carteira o ambiente" description="Homepage for Savee">
+    <Layout
+      title="Página principal da plataforma onde podes ver os consumos mensais e realizar tarefas para poupares a tua carteira o ambiente"
+      description="Homepage for Savee"
+    >
       <Background color="mint" />
       <Header page="Homepage" />
       <div className="relative pt-20 px-6 flex flex-col gap-3 pb-6">
