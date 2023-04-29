@@ -166,6 +166,10 @@ const Minute = styled("div", {
   justifyContent: "center",
   alignItems: "center",
   marginLeft: "auto",
+  h3: {
+    fontSize: "$normal",
+    fontWeight: "$bold",
+  },
   p: {
     fontSize: "$normal",
     fontWeight: "$bold",
