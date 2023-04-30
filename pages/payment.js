@@ -64,7 +64,34 @@ const Payment = () => {
       return acc;
     }, {});
 
-    console.log(Insights);
+    //console.log(Insights);
+
+    // map each Insights array and sum all consumption in each array
+
+    const consumptionValues = Object.values(Insights).map((insight) => {
+      let sum = 0;
+      insight.forEach((consumption) => {
+        // check if element is a task or a routine
+        if (consumption.task) {
+          const start_time_str = "2023-04-16T11:10:36.000Z";
+          const end_time_str = "2023-04-16T11:40:27.000Z";
+
+          const start_time = new Date(start_time_str);
+          const end_time = new Date(end_time_str);
+
+          const time_diff_ms = end_time.getTime() - start_time.getTime();
+          const time_diff_seconds = Math.floor(time_diff_ms / 1000);
+
+          let duration = time_diff_seconds;
+
+          sum += duration;
+        } else if (consumption.routine) {
+          sum += consumption.routine.duration_routine;
+        }
+      });
+      return sum;
+    });
+    console.log(consumptionValues);
 
     return (
       <Layout
