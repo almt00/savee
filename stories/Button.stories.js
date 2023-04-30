@@ -12,6 +12,7 @@ const Template = args => <Butao {...args}/>
 export const Red = Template.bind({})
 Red.args= {
     backgroundColor: "red",
+    color: "white",
     label: "Press Me",
     size: "md"
 }

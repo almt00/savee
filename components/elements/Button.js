@@ -107,13 +107,20 @@ export const Button = styled("button", {
   },
 });
 
-export function Butao({label, backgroundColor="red", size="md", handleClick}){
+export function Butao({
+  label, 
+  backgroundColor="red", 
+  color="white",
+  size="md", 
+  handleClick
+}){
   let scale = 1
   if (size === "sm") scale = 0.75
   if (size === "md") scale = 1.5
   if (size === "lg") scale = 3
   const style = {
     backgroundColor,
+    color,
     padding: `${scale * 0.5}rem ${scale * 1}rem`,
     border: "none",
   }
