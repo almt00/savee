@@ -107,7 +107,7 @@ export const Button = styled("button", {
   },
 });
 
-export function Butao({
+export function Botao({
   label, 
   backgroundColor="red", 
   color="white",
@@ -131,11 +131,11 @@ export function Butao({
   )
 }
 
-Butao.PropTypes = {
+Botao.PropTypes = {
   label: PropTypes.string,
   backgroundColor: PropTypes.string,
   size: PropTypes.oneOf(["sm", "md", "lg"]),
   handleClick: PropTypes.func,
 }
 
-//export default Button;
+export default Button;

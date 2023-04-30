@@ -1,12 +1,12 @@
-import { Butao } from "../components/elements/Button"
+import { Botao } from "../components/elements/Button"
 
 export default {
     title: "Button",
-    component: Butao,
+    component: Botao,
     argTypes: {handleClick: {action: "handleClick"}}
 }
 
-const Template = args => <Butao {...args}/>
+const Template = args => <Botao {...args}/>
 
 
 export const Red = Template.bind({})
