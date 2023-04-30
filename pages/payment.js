@@ -49,7 +49,7 @@ const Payment = () => {
       <Header page="Pagamento" />
       <div className="relative pt-20 px-6 flex flex-col gap-3 pb-6">
         <Breadcrumb />
-        {id && <PaymentCard id={id} />}
+        {id && <PaymentCard id={id}/>}
 
         <H3 className="mt-6">Resumos do mês</H3>
         <Insight taskId={0} type="Aquecimento" value="11,3€" />

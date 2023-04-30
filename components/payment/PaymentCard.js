@@ -17,6 +17,10 @@ const PaymentCard = ({ id }) => {
   const houseid = 1;
   const paymentid = id;
 
+  const ourUserValue = (value) => {
+    console.log(value)
+  };
+
   useEffect(() => {
     if (paymentGroupDetails.status !== 200) {
       dispatch(fetchAsyncPaymentGroupDetailsSlice({ houseid, paymentid }));
@@ -54,7 +58,11 @@ const PaymentCard = ({ id }) => {
             aproximado a pagares:
           </Text>
           <div className="w-56 m-auto">
-            <Chart className="mt-5" environment="payment"></Chart>
+            <Chart
+              className="mt-5"
+              environment="payment"
+              ourUserValue={ourUserValue}
+            ></Chart>
           </div>
           <div className="text-center my-4">
             <Link href="">Como calculamos este valor?</Link>

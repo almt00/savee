@@ -51,6 +51,9 @@ const DoughnutChart = (props) => {
     ).percentage;
     let ourUserValue = (totalValue * UserValue) / 100;
 
+    // lift ourUserValue state to parent
+    props.ourUserValue(ourUserValue);
+
     let border = "";
     let background = "";
     let cutoutPercentage = "";
@@ -123,6 +126,5 @@ const DoughnutChart = (props) => {
       />
     );
   }
-
 };
 export default DoughnutChart;
