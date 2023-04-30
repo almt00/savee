@@ -61,28 +61,6 @@ const Payment = () => {
       });
 
       acc[task_id] = filtered;
-
-      // map filtered and return all consumption
-      const filteredInsights = filtered.map((consumption, key) => {
-        // if task exists add start_time and end_time, otherwise add duration_routine from routine
-        let start_time = "";
-        let end_time = "";
-        let duration_routine = "";
-        let task_name = "";
-
-        if (consumption.task) {
-          start_time = consumption.task.start_time;
-          end_time = consumption.task.end_time;
-          task_name = consumption.task.task;
-        } else {
-          duration_routine = consumption.routine.duration_routine;
-          task_name = consumption.routine.task;
-        }
-
-        return { start_time, end_time, duration_routine, task_name };
-      });
-
-      //console.log(filteredInsights);
       return acc;
     }, {});
 
