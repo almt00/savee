@@ -93,6 +93,33 @@ const Payment = () => {
     });
     console.log(consumptionValues);
 
+    // return Insight component for each consumptionValue in array
+    const insightsComponent = consumptionValues.map((value, key) => {
+      // only return if value is greater than 0
+      if (value > 0) {
+        // match key from consumptionValues array with task_id from task_list array
+        const task_id = task_list[key];
+
+        // filter tasks by task_id
+        const task = tasks.tasks.filter((task) => {
+          return task.id === task_id;
+        });
+
+        //console.log(task);
+
+        // for each task, return id
+        const taskIds = task.map((task) => {
+          return task.id;
+        });
+
+        console.log(taskIds[0]);
+
+        // return Insight component
+
+        return <Insight key={key} taskId={taskIds[0]} value={value} />;
+      }
+    });
+
     return (
       <Layout
         title="Página que permite visualizar e confirmar a sua parte da fatura a pagar, valor atribuido ao utilizador em função da sua porcentagem de consumo dentro do grupo. Também apresenta porcentagems dos outros elementos."
@@ -105,9 +132,7 @@ const Payment = () => {
           {id && <PaymentCard id={id} />}
 
           <H3 className="mt-6">Resumos do mês</H3>
-          <Insight taskId={0} type="Aquecimento" value="11,3€" />
-          <Insight taskId={2} type="Duche" value="20,4€" />
-          <Insight taskId={3} type="Cozinhar" value="13,1€" />
+          {insightsComponent}
         </div>
       </Layout>
     );

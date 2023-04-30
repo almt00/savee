@@ -25,21 +25,6 @@ const Insight = (props) => {
   const hairdryerMessage = "Secaste o cabelo durante 36h este mês. Isto corresponde a 50% do teu valor a pagar.";
 
   let usageMessage = "";
-  let tips = tasksData.tasks?.filter((task) => task.name === props.type)[0].tips[0];
-
-  if (props.type === "Aquecimento") {
-    usageMessage = heatingMessage;
-  } else if (props.type === "Duche") {
-    usageMessage = showerMessage;
-  } else if (props.type === "Cozinhar") {
-    usageMessage = cookingMessage;
-  } else if (props.type === "Banho imersão") {
-    usageMessage = bathMessage;
-  } else if (props.type === "Lavar roupa") {
-    usageMessage = laundryMessage;
-  } else if (props.type === "Secar cabelo") {
-    usageMessage = hairdryerMessage;
-  }
 
   return (
     <>
@@ -67,7 +52,7 @@ const Insight = (props) => {
         <div className="text-xs">
           <p className="text-xs">{usageMessage}</p>
         </div>
-        <Tip classes="mt-2" content={tips}></Tip>
+        {/*<Tip classes="mt-2" content={tips}></Tip>*/}
       </Card>
     </>
   );
