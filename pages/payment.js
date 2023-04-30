@@ -73,8 +73,8 @@ const Payment = () => {
       insight.forEach((consumption) => {
         // check if element is a task or a routine
         if (consumption.task) {
-          const start_time_str = "2023-04-16T11:10:36.000Z";
-          const end_time_str = "2023-04-16T11:40:27.000Z";
+          const start_time_str = consumption.task.start_time;
+          const end_time_str = consumption.task.end_time;
 
           const start_time = new Date(start_time_str);
           const end_time = new Date(end_time_str);
