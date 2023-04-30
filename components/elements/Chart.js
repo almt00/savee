@@ -8,6 +8,7 @@ import {
   getPaymentGroupDetails,
 } from "../../store/PaymentGroupDetailsSlice";
 import { useDispatch, useSelector } from "react-redux";
+import { useState } from "react";
 
 const DoughnutChart = (props) => {
   const dispatch = useDispatch();
@@ -50,10 +51,7 @@ const DoughnutChart = (props) => {
       (user) => user.userid === userId
     ).percentage;
     let ourUserValue = (totalValue * UserValue) / 100;
-
-    // lift ourUserValue state to parent
-    props.ourUserValue(ourUserValue);
-
+    
     let border = "";
     let background = "";
     let cutoutPercentage = "";
