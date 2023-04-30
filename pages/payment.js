@@ -45,14 +45,19 @@ const Payment = () => {
     const Insights = task_list.reduce((acc, task_id) => {
       let obj = insights.insights.consumption;
 
+      //console.log(obj)
+
       // filter obj by task_id
       let filtered = obj.filter((consumption) => {
-        // if task_id is null, filter by routine task
-        if (task_id === null) {
-          return consumption.routine.task === task_id;
-        } else {
-          return consumption.task_id === task_id;
+        // check whether task or routine exists and return id
+        let id = "";
+        if (consumption.task) {
+          id = consumption.task.task;
+        } else if (consumption.routine) {
+          id = consumption.routine.task;
         }
+
+        return id === task_id;
       });
 
       acc[task_id] = filtered;
