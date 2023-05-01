@@ -107,22 +107,20 @@ export const Button = styled("button", {
   },
 });
 
-export function Botao({
+export function Button_storybook({
   label, 
-  backgroundColor="red", 
+  backgroundColor="white", 
   color="white",
   size="md", 
+  border,
   handleClick
 }){
-  let scale = 1
-  if (size === "sm") scale = 0.75
-  if (size === "md") scale = 1.5
-  if (size === "lg") scale = 3
+
   const style = {
     backgroundColor,
     color,
-    padding: `${scale * 0.5}rem ${scale * 1}rem`,
-    border: "none",
+    size,
+    border,
   }
   return(
     <Button onClick={handleClick} style={style}>
@@ -131,7 +129,7 @@ export function Botao({
   )
 }
 
-Botao.PropTypes = {
+Button_storybook.PropTypes = {
   label: PropTypes.string,
   backgroundColor: PropTypes.string,
   size: PropTypes.oneOf(["sm", "md", "lg"]),

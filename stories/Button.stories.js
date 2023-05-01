@@ -1,29 +1,23 @@
-import { Botao } from '../components/elements/Button';
+import { Button_storybook } from '../components/elements/Button';
 
 export default {
   title: 'Button',
-  component: Botao,
+  component: Button_storybook,
   argTypes: {
-    size: { control: 'select', options: ['sm', 'md', 'lg'] },
+    size: { control: 'radio', options: ['sm', 'md', 'lg'] },
     handleClick: { action: 'handleClick' },
   },
 };
 
-const Template = args => <Botao {...args} />;
+const Template = args => <Button_storybook {...args} />;
 
-export const Red = Template.bind({});
-Red.args = {
-  backgroundColor: 'red',
-  color: 'white',
-  label: 'Press Me',
-  size: 'md',
-};
-
-export const Green = Template.bind({});
-Green.args = {
-  backgroundColor: 'green',
+export const Primary = Template.bind({});
+Primary.args = {
+  backgroundColor: 'white',
+  color: "black",
   label: "I'am Success",
-  size: 'lg',
+  border: "1px solid",
+  size: 'md',
 };
 
 export const Small = Template.bind({});
