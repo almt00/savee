@@ -2,8 +2,8 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
 export const fetchAsyncInsightsSlice = createAsyncThunk(
   "insights/fetchAsyncInsights",
-  async ({ userid, paymentid, taskid }) => {
-    let insights_url = `https://savee-api.vercel.app/user/${userid}/payment/${paymentid}/insights/${taskid}`;
+  async ({ userid, paymentid }) => {
+    let insights_url = `https://savee-api.vercel.app/user/${userid}/payment/${paymentid}/insights`;
     const response = await fetch(insights_url);
     let actualData = await response.json();
     let actualDataObject = await actualData;

@@ -15,25 +15,32 @@ const Insight = (props) => {
     if (tasksData.status !== 200) {
       dispatch(fetchAsyncTasks()); // fazer o fetch com redux caso ainda n esteja o estado (ex.: reloads de pagina)
     }
+    console.log("props: ", props);
   }, [dispatch]);
 
-  const heatingMessage = "Aqueceste o teu compartimento durante 35h este mês. Isto corresponde a 50% do teu valor a pagar.";
-  const showerMessage = "Tomaste duche durante 36h este mês. Isto corresponde a 50% do teu valor a pagar.";
-  const cookingMessage = "Cozinhaste durante 36h este mês. Isto corresponde a 50% do teu valor a pagar.";
-  const bathMessage = "Tomaste banho de imersão durante 36h este mês. Isto corresponde a 50% do teu valor a pagar.";
-  const laundryMessage = "Lavaste roupa durante 36h este mês. Isto corresponde a 50% do teu valor a pagar.";
-  const hairdryerMessage = "Secaste o cabelo durante 36h este mês. Isto corresponde a 50% do teu valor a pagar.";
+  const heatingMessage =
+    "Aqueceste o teu compartimento durante 35h este mês. Isto corresponde a 50% do teu valor a pagar.";
+  const showerMessage =
+    "Tomaste duche durante 36h este mês. Isto corresponde a 50% do teu valor a pagar.";
+  const cookingMessage =
+    "Cozinhaste durante 36h este mês. Isto corresponde a 50% do teu valor a pagar.";
+  const bathMessage =
+    "Tomaste banho de imersão durante 36h este mês. Isto corresponde a 50% do teu valor a pagar.";
+  const laundryMessage =
+    "Lavaste roupa durante 36h este mês. Isto corresponde a 50% do teu valor a pagar.";
+  const hairdryerMessage =
+    "Secaste o cabelo durante 36h este mês. Isto corresponde a 50% do teu valor a pagar.";
 
   let usageMessage = "";
 
   return (
     <>
-      <Card size="sm" type="stroke">
+      <Card size="sm" type="stroke" id={props.taskId}>
         <div className="flex justify-between gap-2">
           <Task taskId={props.taskId} size="sm" />
           <div className="flex gap-1 items-center">
-            <H4>{props.value}</H4>
-            <svg
+            <H4>{props.value} €</H4>
+            {/* <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
               viewBox="0 0 24 24"
@@ -46,7 +53,7 @@ const Insight = (props) => {
                 strokeLinejoin="round"
                 d="M4.5 10.5L12 3m0 0l7.5 7.5M12 3v18"
               />
-            </svg>
+            </svg> */}
           </div>
         </div>
         <div className="text-xs">
@@ -64,4 +71,3 @@ const H4 = styled("h4", {
 });
 
 export default Insight;
-

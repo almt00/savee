@@ -11,6 +11,8 @@ import { useRouter } from "next/router";
 import { useEffect } from "react";
 import { fetchAsyncInsightsSlice, getInsights } from "../store/InsightsSlice";
 import { fetchAsyncTasks, getTasks } from "../store/TasksSlice";
+import { getPaymentGroupDetails } from "../store/PaymentGroupDetailsSlice";
+import { fetchAsyncPaymentGroupDetailsSlice } from "../store/PaymentGroupDetailsSlice";
 
 const Payment = () => {
   const dispatch = useDispatch();
@@ -18,9 +20,15 @@ const Payment = () => {
   const { id } = router.query;
   const insights = useSelector(getInsights);
   const tasks = useSelector(getTasks);
+  const payment = useSelector(getPaymentGroupDetails);
   const paymentid = id ? id : null;
+  const houseid = 1;
   const userid = 1;
   const taskid = "";
+  let chosenTask = null;
+  let totalConsumption = 0;
+  let userPercentage = 0;
+  let payment_value = 0;
 
   useEffect(() => {
     dispatch(setPage("payment"));
@@ -29,7 +37,11 @@ const Payment = () => {
       dispatch(fetchAsyncInsightsSlice({ paymentid, taskid, userid }));
       dispatch(fetchAsyncTasks());
     }
-  }, [dispatch, paymentid]);
+
+    if (paymentid && payment.status !== 200) {
+      dispatch(fetchAsyncPaymentGroupDetailsSlice({ houseid, paymentid }));
+    }
+  }, [dispatch, paymentid, payment]);
 
   // map tasks and save all task_id in array
   let task_list = [];
@@ -40,12 +52,18 @@ const Payment = () => {
     });
   }
 
-  if (paymentid && insights.status === 200 && tasks.status === 200) {
+  if (
+    paymentid &&
+    insights.status === 200 &&
+    tasks.status === 200 &&
+    payment.status === 200
+  ) {
+    userPercentage = insights?.insights.payment.payment_percentage;
+    payment_value = userPercentage * payment?.paymentGroupDetails.value_payment;
+
     // for each task_id, map obj and return all consumption in an array
     const Insights = task_list.reduce((acc, task_id) => {
       let obj = insights.insights.consumption;
-
-      //console.log(obj)
 
       // filter obj by task_id
       let filtered = obj.filter((consumption) => {
@@ -56,42 +74,28 @@ const Payment = () => {
         } else if (consumption.routine) {
           id = consumption.routine.task;
         }
-
         return id === task_id;
       });
-
       acc[task_id] = filtered;
       return acc;
     }, {});
 
-    //console.log(Insights);
+    insights.insights.consumption.forEach((element) => {
+      totalConsumption += element.consumption;
+    });
 
     // map each Insights array and sum all consumption in each array
-
     const consumptionValues = Object.values(Insights).map((insight) => {
       let sum = 0;
+      let percentage = 0;
+      let consumptionPrice = 0;
       insight.forEach((consumption) => {
-        // check if element is a task or a routine
-        if (consumption.task) {
-          const start_time_str = consumption.task.start_time;
-          const end_time_str = consumption.task.end_time;
-
-          const start_time = new Date(start_time_str);
-          const end_time = new Date(end_time_str);
-
-          const time_diff_ms = end_time.getTime() - start_time.getTime();
-          const time_diff_seconds = Math.floor(time_diff_ms / 1000);
-
-          let duration = time_diff_seconds;
-
-          sum += duration;
-        } else if (consumption.routine) {
-          sum += consumption.routine.duration_routine;
-        }
+        sum += consumption.consumption;
+        percentage = sum / totalConsumption;
+        consumptionPrice = percentage * payment_value;
       });
-      return sum;
+      return consumptionPrice.toFixed(2);
     });
-    console.log(consumptionValues);
 
     // return Insight component for each consumptionValue in array
     const insightsComponent = consumptionValues.map((value, key) => {
@@ -99,24 +103,14 @@ const Payment = () => {
       if (value > 0) {
         // match key from consumptionValues array with task_id from task_list array
         const task_id = task_list[key];
-
         // filter tasks by task_id
-        const task = tasks.tasks.filter((task) => {
-          return task.id === task_id;
+        tasks.tasks.filter((task) => {
+          if (task.id === task_id) {
+            return (chosenTask = task.id);
+          }
         });
 
-        //console.log(task);
-
-        // for each task, return id
-        const taskIds = task.map((task) => {
-          return task.id;
-        });
-
-        console.log(taskIds[0]);
-
-        // return Insight component
-
-        return <Insight key={key} taskId={taskIds[0]} value={value} />;
+        return <Insight key={key} taskId={chosenTask} value={value} />;
       }
     });
 
