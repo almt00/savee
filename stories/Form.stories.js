@@ -9,7 +9,7 @@ export default {
 };
 
 const Template = args => <Input_storybook {...args} />;
-
+/**This Input appears as the default one presented to the user, both in the register and the login of the app.*/
 export const Default = Template.bind({});
 Default.args = {
   backgroundColor: 'white',
@@ -18,7 +18,7 @@ Default.args = {
   label: 'Simple field',
   placeholder: 'Placeholder',
 };
-
+/**This Input is presented once the user has selected it to insert info.*/
 export const Disabled = Template.bind({});
 Disabled.args = {
   backgroundColor: 'lightgrey',
@@ -27,7 +27,7 @@ Disabled.args = {
   label: 'Simple field',
   placeholder: 'Placeholder',
 };
-
+/**This Input is presented to the user if the info doesn´t comply whit the required parameters of the field.*/
 export const Error = Template.bind({});
 Error.args = {
   backgroundColor: 'pink',
