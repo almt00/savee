@@ -11,7 +11,7 @@ export default {
 };
 
 const Template = args => <Button_storybook {...args} />;
-
+/** This Primary button is important because is the first button users will see once they reach de landing page */
 export const Primary = Template.bind({});
 Primary.args = {
   backgroundColor: '#FFFFFF',
