@@ -23,10 +23,20 @@ Primary.args = {
 
 export const Secondary = Template.bind({});
 Secondary.args = {
+  backgroundColor: '#EBEBEB',
+  color: "royalblue",
+  label: "Button",
+  border: "none",
+  size: 'md',
+};
+
+export const Transparent = Template.bind({});
+Transparent.args = {
   backgroundColor: 'none',
   color: "royalblue",
   label: "Button",
   border: "none",
   size: 'md',
 };
+
 
