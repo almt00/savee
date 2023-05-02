@@ -5,6 +5,7 @@ export default {
   component: Button_storybook,
   argTypes: {
     size: { control: 'radio', options: ['sm', 'md', 'lg'] },
+    border: {control: 'select', options: ['solid', 'none']},
     handleClick: { action: 'handleClick' },
   },
 };
@@ -15,7 +16,7 @@ export const Primary = Template.bind({});
 Primary.args = {
   backgroundColor: 'white',
   color: "black",
-  label: "Primary",
+  label: "Button",
   border: "1px solid",
   size: 'md',
 };
@@ -24,14 +25,8 @@ export const Secondary = Template.bind({});
 Secondary.args = {
   backgroundColor: 'none',
   color: "royalblue",
-  label: "Secondary",
+  label: "Button",
   border: "none",
   size: 'md',
 };
 
-export const Long_label = Template.bind({});
-Long_label.args = {
-  backgroundColor: 'red',
-  label: 'this is a bottun for a long label text',
-  size: 'md',
-};
