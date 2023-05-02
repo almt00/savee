@@ -123,9 +123,9 @@ export function Button_storybook({
   let height;
   let width;
 
-  if (size==="sm") scaleX = 0.3, scaleY = 0.5, height = 1.57, width = 3.4375, fontSize=0.75;
-  if (size==="md") scaleX = 0.4, scaleY = 0.75, height = 1.875, width = 3.9375, fontSize=0.75 ;
-  if (size==="lg") scaleX = 0.6, scaleY = 1, height = 2.5, width = 4.875, fontSize=0.875, fontWeight=700 ;
+  if (size==="sm") scaleX = 0.3, scaleY = 0.5, height = 1.57, width = 3.4375, fontSize=0.75, fontWeight=600;
+  if (size==="md") scaleX = 0.4, scaleY = 0.75, height = 1.875, width = 3.9375, fontSize=0.75, fontWeight=600 ;
+  if (size==="lg") scaleX = 0.6, scaleY = 1, height = 2.5, width = 4.875, fontSize=0.875, fontWeight=700;
 
   const style = {
     backgroundColor,

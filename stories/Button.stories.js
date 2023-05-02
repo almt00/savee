@@ -14,13 +14,12 @@ const Template = args => <Button_storybook {...args} />;
 
 export const Primary = Template.bind({});
 Primary.args = {
-  backgroundColor: 'white',
+  backgroundColor: '#FFFFFF',
   color: "black",
   label: "Button",
   border: "1px solid",
   size: 'md',
 };
-
 export const Secondary = Template.bind({});
 Secondary.args = {
   backgroundColor: '#EBEBEB',
@@ -29,7 +28,6 @@ Secondary.args = {
   border: "none",
   size: 'md',
 };
-
 export const Transparent = Template.bind({});
 Transparent.args = {
   backgroundColor: 'none',
@@ -38,5 +36,22 @@ Transparent.args = {
   border: "none",
   size: 'md',
 };
+export const Solid = Template.bind({});
+Solid.args = {
+  backgroundColor: '#35A361',
+  color: "#FFFFFF",
+  label: "Button",
+  border: "none",
+  size: 'md',
+};
+export const Danger = Template.bind({});
+Danger.args = {
+  backgroundColor: '#D63535',
+  color: "White",
+  label: "Button",
+  border: "none",
+  size: 'md',
+};
+
 
 
