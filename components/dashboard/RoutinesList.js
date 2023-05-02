@@ -1,12 +1,28 @@
 import { styled, keyframes } from "@stitches/react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import React from "react";
 import * as Accordion from "@radix-ui/react-accordion";
 import classNames from "classnames";
 import { ChevronDownIcon } from "@radix-ui/react-icons";
 import Entries from "./Entries";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  fetchAsyncConsumptionToday,
+  getConsumptionToday,
+} from "../../store/ConsumptionTodaySlice";
 
-const RoutinesList = () => (
+const RoutinesList = () => {
+  const id = 1;
+  const dispatch = useDispatch();
+  const consumptionTodayData = useSelector(getConsumptionToday);
+
+  useEffect(() => {
+    if (consumptionTodayData.status !== 200) {
+      dispatch(fetchAsyncConsumptionToday(id)); // fazer o fetch com redux
+    }
+  }, [dispatch]);
+
+  return (
     <AccordionRoot type="single" defaultValue="item-1" collapsible>
       <AccordionItem
         value="item-1"
@@ -16,7 +32,10 @@ const RoutinesList = () => (
           Manhã
         </AccordionTrigger>
         <AccordionContent>
-          <Entries time="morning"/>
+          <ul>
+            {" "}
+            <Entries time="morning" />
+          </ul>
         </AccordionContent>
       </AccordionItem>
 
@@ -28,7 +47,9 @@ const RoutinesList = () => (
           Tarde
         </AccordionTrigger>
         <AccordionContent>
-          <Entries time="afternoon"/>
+          <ul>
+            <Entries time="afternoon" />
+          </ul>
         </AccordionContent>
       </AccordionItem>
 
@@ -40,11 +61,14 @@ const RoutinesList = () => (
           Noite
         </AccordionTrigger>
         <Accordion.Content>
-          <Entries time="night"/>
+          <ul>
+            <Entries time="night" />
+          </ul>
         </Accordion.Content>
       </AccordionItem>
     </AccordionRoot>
-);
+  );
+};
 
 const AccordionTrigger = React.forwardRef(
   ({ children, className, ...props }, forwardedRef) => (

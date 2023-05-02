@@ -34,4 +34,5 @@ const consumptionTodaySlice = createSlice({
 
 export const getConsumptionToday = (state) => state.consumptionToday; // nome da slice (user) e nome da propriedade (user)
 
+
 export default consumptionTodaySlice.reducer;

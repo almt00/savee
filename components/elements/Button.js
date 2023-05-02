@@ -113,14 +113,30 @@ export function Button_storybook({
   color="white",
   size="md", 
   border,
+  fontSize,
+  fontWeight,
   handleClick
 }){
+
+  let scaleX;
+  let scaleY;
+  let height;
+  let width;
+
+  if (size==="sm") scaleX = 0.3, scaleY = 0.5, height = 1.57, width = 3.4375, fontSize=0.75, fontWeight=600;
+  if (size==="md") scaleX = 0.4, scaleY = 0.75, height = 1.875, width = 3.9375, fontSize=0.75, fontWeight=600 ;
+  if (size==="lg") scaleX = 0.6, scaleY = 1, height = 2.5, width = 4.875, fontSize=0.875, fontWeight=700;
 
   const style = {
     backgroundColor,
     color,
-    size,
+    padding: `${scaleX}rem ${scaleY}rem` ,
     border,
+    height:`${height}rem`,
+    width:`${width}rem`,
+    fontSize: `${fontSize}rem`,
+    fontWeight: `${fontWeight}`,
+    handleClick
   }
   return(
     <Button onClick={handleClick} style={style}>
