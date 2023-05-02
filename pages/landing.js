@@ -44,7 +44,7 @@ export default function Landing() {
         </div>
       </FirstSection>
       <SecondSection className="flex flex-col items-center justify-center gap-12" id="about">
-        <h2>Como funciona?</h2>
+        <H2>Como funciona?</H2>
         <Carousel {...handlers}>
           <Slides style={{ transform: `translateX(-${activeIndex * 100}%)` }}>
             <SlideItem>
