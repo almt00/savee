@@ -1,6 +1,8 @@
 import { styled } from "@stitches/react";
+import PropTypes from "prop-types";
 
-const Button = styled("button", {
+
+export const Button = styled("button", {
   // default: medium primary
   borderRadius: "12px",
   backgroundColor: "$white",
@@ -104,5 +106,50 @@ const Button = styled("button", {
     },
   },
 });
+
+export function Button_storybook({
+  label, 
+  backgroundColor="white", 
+  color="white",
+  size="md", 
+  border,
+  fontSize,
+  fontWeight,
+  handleClick
+}){
+
+  let scaleX;
+  let scaleY;
+  let height;
+  let width;
+
+  if (size==="sm") scaleX = 0.3, scaleY = 0.5, height = 1.57, width = 3.4375, fontSize=0.75, fontWeight=600;
+  if (size==="md") scaleX = 0.4, scaleY = 0.75, height = 1.875, width = 3.9375, fontSize=0.75, fontWeight=600 ;
+  if (size==="lg") scaleX = 0.6, scaleY = 1, height = 2.5, width = 4.875, fontSize=0.875, fontWeight=700;
+
+  const style = {
+    backgroundColor,
+    color,
+    padding: `${scaleX}rem ${scaleY}rem` ,
+    border,
+    height:`${height}rem`,
+    width:`${width}rem`,
+    fontSize: `${fontSize}rem`,
+    fontWeight: `${fontWeight}`,
+    handleClick
+  }
+  return(
+    <Button onClick={handleClick} style={style}>
+      {label}
+    </Button>
+  )
+}
+
+Button_storybook.PropTypes = {
+  label: PropTypes.string,
+  backgroundColor: PropTypes.string,
+  size: PropTypes.oneOf(["sm", "md", "lg"]),
+  handleClick: PropTypes.func,
+}
 
 export default Button;
