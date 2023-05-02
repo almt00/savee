@@ -15,16 +15,18 @@ export const Primary = Template.bind({});
 Primary.args = {
   backgroundColor: 'white',
   color: "black",
-  label: "I'am Success",
+  label: "Primary",
   border: "1px solid",
   size: 'md',
 };
 
-export const Small = Template.bind({});
-Small.args = {
-  backgroundColor: 'blue',
-  label: "I'am Small",
-  size: 'sm',
+export const Secondary = Template.bind({});
+Secondary.args = {
+  backgroundColor: 'none',
+  color: "royalblue",
+  label: "Secondary",
+  border: "none",
+  size: 'md',
 };
 
 export const Long_label = Template.bind({});
