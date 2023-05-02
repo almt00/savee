@@ -11,7 +11,7 @@ export default {
 };
 
 const Template = args => <Button_storybook {...args} />;
-/** This Primary button is important because is the first button users will see once they reach de landing page */
+/** This Primary button is important because is the first button users will see once they reach de landing page. */
 export const Primary = Template.bind({});
 Primary.args = {
   backgroundColor: '#FFFFFF',
@@ -20,6 +20,7 @@ Primary.args = {
   border: "1px solid",
   size: 'md',
 };
+/**The Secondary button has a gray background for contrast, and has no border. */
 export const Secondary = Template.bind({});
 Secondary.args = {
   backgroundColor: '#EBEBEB',
@@ -28,6 +29,7 @@ Secondary.args = {
   border: "none",
   size: 'md',
 };
+/**The Transparent button is a third version of the Primary button. */
 export const Transparent = Template.bind({});
 Transparent.args = {
   backgroundColor: 'none',
@@ -36,6 +38,7 @@ Transparent.args = {
   border: "none",
   size: 'md',
 };
+/**The Solid button is important to validate user choices, an navegate in the app.  */
 export const Solid = Template.bind({});
 Solid.args = {
   backgroundColor: '#35A361',
@@ -44,6 +47,7 @@ Solid.args = {
   border: "none",
   size: 'md',
 };
+/**As usual, the Danger button has the purpose of alert the user of a irreversible action he can perform inside the app, such as delete a record of a task ou a pre-programed routine.*/
 export const Danger = Template.bind({});
 Danger.args = {
   backgroundColor: '#D63535',
