@@ -1,7 +1,7 @@
 import { styled } from "@stitches/react";
 import { useEffect } from "react";
-import { useSelector,useDispatch } from "react-redux";
-import { fetchAsyncTasks,getTasks } from "../../store/TasksSlice";
+import { useSelector, useDispatch } from "react-redux";
+import { fetchAsyncTasks, getTasks } from "../../store/TasksSlice";
 import { useRouter } from "next/router";
 
 //Write a fetcher function to wrap the native fetch function and return the result of a call to url in json format
@@ -9,11 +9,11 @@ const Task = (props) => {
   let taskId;
   const router = useRouter();
   const query = router.query; // ir buscar query string ao URL
-  if (query === {} || query.id === undefined) { // ver se esta task vem com info de props ou da query string
-     taskId = props.taskId; // passar para inteiro para comparar com id da API
+  if (query === {} || query.id === undefined || props.taskId) {
+    // ver se esta task vem com info de props ou da query string
+    taskId = props.taskId; // passar para inteiro para comparar com id da API
   } else {
-     taskId = parseInt(query.id); // passar para inteiro para comparar com id da API
-
+    taskId = parseInt(query.id); // passar para inteiro para comparar com id da API
   }
   const dispatch = useDispatch();
   const tasksData = useSelector(getTasks);
@@ -26,7 +26,6 @@ const Task = (props) => {
     }
   }, [dispatch]);
 
-
   if (tasksData.status === 200) {
     tasksData.tasks.forEach((task) => {
       if (task.id === taskId) {
@@ -38,7 +37,9 @@ const Task = (props) => {
   return (
     <TaskContainer size={props.size}>
       <TaskImage src={imagePath} alt={taskTitle} size={props.size} />
-      <TaskTitle size={props.size} aria-hidden="true">{taskTitle}</TaskTitle>
+      <TaskTitle size={props.size} aria-hidden="true">
+        {taskTitle}
+      </TaskTitle>
     </TaskContainer>
   );
 };

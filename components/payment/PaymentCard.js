@@ -54,7 +54,10 @@ const PaymentCard = ({ id }) => {
             aproximado a pagares:
           </Text>
           <div className="w-56 m-auto">
-            <Chart className="mt-5" environment="payment"></Chart>
+            <Chart
+              className="mt-5"
+              environment="payment"
+            ></Chart>
           </div>
           <div className="text-center my-4">
             <Link href="">Como calculamos este valor?</Link>
