@@ -50,6 +50,7 @@ const Input = styled("input", {
   maxWidth: "4rem",
   textAlign: "center",
   height: "3rem",
-  fontSize: "$h1",
+  fontSize: "$xxlargeheading",
   fontWeight: "$bolder",
 });
+

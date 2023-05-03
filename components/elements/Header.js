@@ -45,7 +45,7 @@ export default function Header(props) {
             />
           </svg>
         </div>
-        <H1>{props.page}</H1>
+        <H1 id="main">{props.page}</H1>
         <div></div>
       </HeaderSection>
       <Menu></Menu>

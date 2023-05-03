@@ -9,15 +9,18 @@ import DaySelector from "../components/routines/DaySelector";
 import TimePeriodSelector from "../components/routines/TimePeriodSelector";
 import TimeSelector from "../components/routines/TimeSelector";
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { setPage } from "../store/PageSlice";
 
 export default function Routine() {
   const dispatch = useDispatch();
-  dispatch(setPage("routines"));
   // state to keep track of the current step
   const [step, setStep] = useState(0);
+
+  useEffect(() => {
+    dispatch(setPage("routines"));
+  }, []);
 
   // Grouping forms by section in a component
   const taskFields = () => (
@@ -110,7 +113,7 @@ export default function Routine() {
   );
 
   return (
-    <Layout title="Página para criar novas rotinas com tarefas para que ser repetidas de forma automática" description="Criar rotina">
+    <Layout title="Página para criar novas rotinas com tarefas que virão a ser repetidas de forma automática nos dias e horas seleccionados." description="Criar rotina">
       <Background color="purple" />
       <Header page="Rotinas" />
       <div className="relative pt-20 px-6 flex flex-col gap-3 pb-6">

@@ -18,23 +18,15 @@ const collapseMenu = function (e) {
 };
 
 export default function Menu() {
-  let page = useSelector(getPage);
-  useEffect(() => {
-    if (document.getElementById(page) !== null) {
-      document.getElementById(page).className = "";
-      document.getElementById(page).className = "selected";
-      document.getElementById(page).style.backgroundColor = "$yellow";
-    }
-  }, [page]);
-
+  const page = useSelector(getPage);
   const router = useRouter();
-  const { asPath } = useRouter();
   const handleClick = (event, path) => {
     event.preventDefault();
     router.push(path);
   };
   return (
     <>
+    <a href="http://localhost:3001/homepage#main" className="skip-to-main-content-link">Skip to main content</a>
       <div
         id="menu_overlay"
         onClick={collapseMenu}
@@ -58,61 +50,113 @@ export default function Menu() {
           </Link>
           <MenuList>
             <Link href="/homepage" onClick={(e) => handleClick(e, "/homepage")}>
-              <li className="" id="homepage">
-                <Image
-                  src="/img/home-icon.svg"
-                  className="ml-6"
-                  alt="Home"
-                  width="38"
-                  height="38"
-                />
-                <H2 aria-hidden="true">Homepage</H2>
-              </li>
+              {page === "homepage" && page ? (
+                <li className="selected" id="homepage">
+                  <Image
+                    src="/img/home-icon.svg"
+                    className="ml-6"
+                    alt="Home"
+                    width="38"
+                    height="38"
+                  />
+                   <H2 aria-hidden="true">Homepage</H2>
+                </li>
+              ) : (
+                <li id="homepage">
+                  <Image
+                    src="/img/home-icon.svg"
+                    className="ml-6"
+                    alt="Home"
+                    width="38"
+                    height="38"
+                  />
+                   <H2 aria-hidden="true">Homepage</H2>
+                </li>
+              )}
             </Link>
             <Link
               href="/all-usage"
               onClick={(e) => handleClick(e, "/all-usage")}
             >
-              <li className="" id="usage">
-                <Image
-                  src="/img/chart-pie-icon.svg"
-                  className="ml-6"
-                  alt="Histórico uso"
-                  width="38"
-                  height="38"
-                />
-                <H2 aria-hidden="true">Histórico uso</H2>
-              </li>
+              {page === "usage" ? (
+                <li className="selected" id="usage">
+                  <Image
+                    src="/img/chart-pie-icon.svg"
+                    className="ml-6"
+                    alt="Histórico uso"
+                    width="38"
+                    height="38"
+                  />
+                   <H2 aria-hidden="true">Histórico uso</H2>
+                </li>
+              ) : (
+                <li id="usage">
+                  <Image
+                    src="/img/chart-pie-icon.svg"
+                    className="ml-6"
+                    alt="Histórico uso"
+                    width="38"
+                    height="38"
+                  />
+                    <H2 aria-hidden="true">Histórico uso</H2>
+                </li>
+              )}
             </Link>
             <Link
               href="/all-routines"
               onClick={(e) => handleClick(e, "/all-routines")}
             >
-              <li className="" id="routines">
-                <Image
-                  src="/img/sun-icon.svg"
-                  className="ml-6"
-                  alt="Rotinas"
-                  width="38"
-                  height="38"
-                />
-                <H2 aria-hidden="true">Rotinas</H2>
-              </li>
+              {page === "routines" ? (
+                <li className="selected" id="routines">
+                  <Image
+                    src="/img/sun-icon.svg"
+                    className="ml-6"
+                    alt="Rotinas"
+                    width="38"
+                    height="38"
+                  />
+                  <H2 aria-hidden="true">Rotinas</H2>
+                </li>
+              ) : (
+                <li id="routines">
+                  <Image
+                    src="/img/sun-icon.svg"
+                    className="ml-6"
+                    alt="Rotinas"
+                    width="38"
+                    height="38"
+                  />
+                  <H2 aria-hidden="true">Rotinas</H2>
+                </li>
+              )}
             </Link>
             <Link
               href="/all-payments"
               onClick={(e) => handleClick(e, "/all-payments")}
             >
-              <li className="" id="payments">
-                <Image
-                  src="/img/currency-dollar-icon.svg"
-                  className="ml-6"
-                  alt="Pagamentos"
-                  width="38"
-                  height="38"
-                />
-                <H2 aria-hidden="true">Pagamentos</H2>
-              </li>
+              {page === "payments" ? (
+                <li className="selected" id="payments">
+                  <Image
+                    src="/img/currency-dollar-icon.svg"
+                    className="ml-6"
+                    alt="Pagamentos"
+                    width="38"
+                    height="38"
+                  />
+                   <H2 aria-hidden="true">Pagamentos</H2>
+                </li>
+              ) : (
+                <li id="payments">
+                  <Image
+                    src="/img/currency-dollar-icon.svg"
+                    className="ml-6"
+                    alt="Pagamentos"
+                    width="38"
+                    height="38"
+                  />
+                   <H2 aria-hidden="true">Pagamentos</H2>
+                </li>
+              )}
             </Link>
           </MenuList>
         </div>
@@ -127,7 +171,7 @@ export default function Menu() {
               height="38"
             />
             <div>
-              <h4 className="font-extrabold">Pedro</h4>
+              <H4 className="font-extrabold">Pedro</H4>
               <p>Editar perfil</p>
             </div>
           </li>
@@ -139,7 +183,7 @@ export default function Menu() {
               width="38"
               height="38"
             />
-            <h4 className="font-extrabold">Definições</h4>
+            <H4 className="font-extrabold">Definições</H4>
           </li>
           <li className="h-8">
             <Image
@@ -149,7 +193,7 @@ export default function Menu() {
               width="38"
               height="38"
             />
-            <h4 className="font-extrabold">Ajuda</h4>
+            <H4 className="font-extrabold">Ajuda</H4>
           </li>
         </MenuList>
       </div>
@@ -160,6 +204,11 @@ export default function Menu() {
 const H2 = styled("h2", {
   fontSize: "$largeheading",
   fontWeight: "$bolder",
+});
+
+const H4 = styled('p', {
+  fontSize: '$smallheading',
+  fontWeight: '$bolder',
 });
 
 const MenuList = styled("menu", {
