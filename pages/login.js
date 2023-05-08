@@ -7,12 +7,17 @@ import Form from "../components/elements/Form";
 import Button from "../components/elements/Button";
 import Background from "../components/elements/Background";
 import Link from "next/link";
+import { useSession, signIn, signOut } from "next-auth/react";
 
 const inter = Inter({ subsets: ["latin"] });
 
 export default function Login() {
+  const { data: session, status } = useSession();
   return (
-    <Layout title="Página de login para entrar na plataforma, inserir email e password." description="Iniciar sessão">
+    <Layout
+      title="Página de login para entrar na plataforma, inserir email e password."
+      description="Iniciar sessão"
+    >
       <Background color="mint" />
 
       <div className="py-4 px-6">
@@ -40,6 +45,14 @@ export default function Login() {
             <div className="flex justify-center">
               <Button type="submit" className="mt-6" bg="solid" size="lg">
                 Iniciar sessão
+              </Button>
+              <Button
+                onClick={() => signIn()}
+                className="mt-6"
+                bg="solid"
+                size="lg"
+              >
+                Sign in Auth
               </Button>
             </div>
           </form>
