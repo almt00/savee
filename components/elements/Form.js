@@ -86,7 +86,7 @@ const Form = (props) => {
   return (
     <Container>
       <LabelRoot>{props.name}</LabelRoot>
-       <label></label>
+      <label></label>
       {props.type === "date" ? (
         <Input
           type={props.type}
@@ -114,6 +114,7 @@ const Form = (props) => {
           required={props.required}
           min={props.min}
           max={props.max}
+          name={props.name}
           //onClick={clickedInput}
         />
       )}

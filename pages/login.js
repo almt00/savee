@@ -7,12 +7,68 @@ import Form from "../components/elements/Form";
 import Button from "../components/elements/Button";
 import Background from "../components/elements/Background";
 import Link from "next/link";
+import Cookies from "js-cookie";
+import { useDispatch } from "react-redux";
+import { fetchAsyncUser } from "../store/UserSlice";
+import { useRouter } from "next/router";
 
 const inter = Inter({ subsets: ["latin"] });
 
 export default function Login() {
+  const dispatch = useDispatch();
+  const router = useRouter();
+
+  // Handles the submit event on form submit.
+  const handleSubmit = async (event) => {
+    // Stop the form from submitting and refreshing the page.
+    event.preventDefault();
+    console.log(event.target);
+    // Get data from the form.
+    const data = {
+      email: event.target.Email?.value,
+      password: event.target.Password?.value,
+    };
+
+    console.log(data);
+
+    // Send the data to the server in JSON format.
+    const JSONdata = JSON.stringify(data);
+
+    // API endpoint where we send form data.
+    const endpoint = "https://savee-api.vercel.app/user/login";
+
+    // Form the request for sending data to the server.
+    const options = {
+      // The method is POST because we are sending data.
+      method: "POST",
+      // Tell the server we're sending JSON.
+      headers: {
+        "Content-Type": "application/json",
+      },
+      // Body of the request is the JSON data we created above.
+      body: JSONdata,
+    };
+
+    // Send the form data to our forms API on Vercel and get a response.
+    const response = await fetch(endpoint, options);
+
+    // Get the response data from server as JSON.
+    // If server returns the name submitted, that means the form works.
+    const result = await response.json();
+    if (result.success) {
+      Cookies.set("userToken", result.token);
+      Cookies.set("userId", result.user.user_id);
+      const id = Cookies.get("userId");
+      dispatch(fetchAsyncUser(id)); // fazer o fetch com redux
+      router.push("/homepage");
+    }
+  };
+
   return (
-    <Layout title="Página de login para entrar na plataforma, inserir email e password." description="Iniciar sessão">
+    <Layout
+      title="Página de login para entrar na plataforma, inserir email e password."
+      description="Iniciar sessão"
+    >
       <Background color="mint" />
 
       <div className="py-4 px-6">
@@ -27,7 +83,7 @@ export default function Login() {
       </div>
       <div className="relative px-6 flex flex-col gap-3 pb-6">
         <Card>
-          <form action="/homepage">
+          <form onSubmit={handleSubmit}>
             <Form name="Email" type="email" required />
             <div className="mt-6">
               <Form name="Password" type="password" required />
