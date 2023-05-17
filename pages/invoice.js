@@ -10,7 +10,7 @@ import Layout from '../components/elements/Layout';
 const Invoice = () => {
   return (
     <>
-    <Layout title="Página para inserir valor faturado no mês atual que será dividido pelos consumos do grupo" description="Pagamento inserir valor fatura">
+    <Layout description="Página para inserir valor faturado no mês atual que será dividido pelos consumos do grupo" title="Pagamento inserir valor fatura">
       <Background color='skyblue' />
       <Header page='Pagamento' />
       <div className='relative pt-20 px-6 flex flex-col gap-3 pb-6'>

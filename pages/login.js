@@ -63,8 +63,8 @@ export default function Login() {
 
   return (
     <Layout
-      title="Página de login para entrar na plataforma, inserir email e password."
-      description="Iniciar sessão"
+      description="Página de login para entrar na plataforma, inserir email e password."
+      title="Iniciar sessão"
     >
       <Background color="mint" />
 

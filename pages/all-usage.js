@@ -84,7 +84,7 @@ const AllUsage = () => {
   }
 
   return (
-    <Layout title="Página que permite visualizar o histórico de tarefas realizadas cronologicamente da mais recente para a mais antiga." description="Histórico de uso">
+    <Layout description="Página que permite visualizar o histórico de tarefas realizadas cronologicamente da mais recente para a mais antiga." title="Histórico de uso">
       <Background color="orange" size="extrasmall" />
       <Header page="Histórico uso" />
       <div className="relative pt-20 px-6 flex flex-col gap-3 pb-6">

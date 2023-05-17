@@ -24,7 +24,7 @@ export default function Landing() {
   });
 
   return (
-    <Layout title="Página inicial Savee com breve descrição da aplicação, também permite iniciar sessão ou criar uma nova conta na plataforma" description="Savee">
+    <Layout description="Página inicial Savee com breve descrição da aplicação, também permite iniciar sessão ou criar uma nova conta na plataforma" title="Savee">
       <Navbar className="flex justify-end items-center gap-4 p-4"> 
         <Link href="/login"><Button size="lg">Iniciar Sessão</Button></Link>
       </Navbar>
