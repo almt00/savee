@@ -12,8 +12,6 @@ import { useDispatch } from "react-redux";
 import { fetchAsyncUser } from "../store/UserSlice";
 import { useRouter } from "next/router";
 
-const inter = Inter({ subsets: ["latin"] });
-
 export default function Login() {
   const dispatch = useDispatch();
   const router = useRouter();
@@ -22,14 +20,11 @@ export default function Login() {
   const handleSubmit = async (event) => {
     // Stop the form from submitting and refreshing the page.
     event.preventDefault();
-    console.log(event.target);
     // Get data from the form.
     const data = {
       email: event.target.Email?.value,
       password: event.target.Password?.value,
     };
-
-    console.log(data);
 
     // Send the data to the server in JSON format.
     const JSONdata = JSON.stringify(data);
