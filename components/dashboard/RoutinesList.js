@@ -10,9 +10,10 @@ import {
   fetchAsyncConsumptionToday,
   getConsumptionToday,
 } from "../../store/ConsumptionTodaySlice";
+import Cookies from "js-cookie";
 
 const RoutinesList = () => {
-  const id = 1;
+  const id = Cookies.get("userId");
   const dispatch = useDispatch();
   const consumptionTodayData = useSelector(getConsumptionToday);
 

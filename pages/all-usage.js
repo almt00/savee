@@ -12,12 +12,13 @@ import {
 import { fetchAsyncTasks, getTasks } from "../store/TasksSlice";
 import { useEffect } from "react";
 import { setPage } from "../store/PageSlice";
+import Cookies from "js-cookie";
 
 const AllUsage = () => {
   const dispatch = useDispatch();
   const consumptionData = useSelector(getConsumption);
   const tasksData = useSelector(getTasks);
-  const userId = 1;
+  const userId = Cookies.get("userId");
   let UseHisto = "";
   let obj = "";
   let taskName = "";

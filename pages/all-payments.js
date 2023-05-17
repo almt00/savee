@@ -9,12 +9,13 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { setPage } from "../store/PageSlice";
 import { fetchAsyncPaymentSlice, getPayment } from "../store/PaymentSlice";
+import Cookies from "js-cookie";
 
 const AllPayments = () => {
   const dispatch = useDispatch();
   const paymentData = useSelector(getPayment);
 
-  const userId = 1;
+  const userId = Cookies.get("userId");
   const obj = paymentData.payment;
 
   useEffect(() => {
@@ -28,16 +29,16 @@ const AllPayments = () => {
   }, []);
 
   const lastPayment = () => {
-    if (paymentData.status === 200) {
+    if (paymentData?.status === 200 && paymentData.payment.length > 0) {
       let lastPaymentData = obj[0]?.payment;
       const options = { month: "long", day: "numeric" };
-      let lastDate = new Date(lastPaymentData.date_payment).toLocaleDateString(
+      let lastDate = new Date(lastPaymentData?.date_payment).toLocaleDateString(
         "pt-PT",
         options
       );
       return (
         <Card>
-          <ThisMonth>{lastPaymentData.value_payment}€</ThisMonth>
+          <ThisMonth>{lastPaymentData?.value_payment}€</ThisMonth>
           <p className="mt-2">Pagos a {lastDate}</p>
         </Card>
       );
@@ -75,11 +76,14 @@ const AllPayments = () => {
   };
 
   return (
-    <Layout title="Página com histórico dos valores totais das faturas mensais pagas e o valor que foi atribuído ao utilizador em cada pagamento." description="Histórico pagamentos">
+    <Layout
+      title="Página com histórico dos valores totais das faturas mensais pagas e o valor que foi atribuído ao utilizador em cada pagamento."
+      description="Histórico pagamentos"
+    >
       <Background color="skyblue" size="extrasmall" />
       <Header page="Pagamentos" />
       <div className="relative pt-20 px-6 flex flex-col gap-3 pb-6">
-      <Breadcrumb />
+        <Breadcrumb />
         {lastPayment()}
         <H3 className="mt-6">Histórico de pagamento</H3>
         <ul>{PayHisto()}</ul>

@@ -53,6 +53,8 @@ export default function Login() {
     if (result.success) {
       Cookies.set("userToken", result.token);
       Cookies.set("userId", result.user.user_id);
+      Cookies.set("houseId", result.user.house_id);
+
       const id = Cookies.get("userId");
       dispatch(fetchAsyncUser(id)); // fazer o fetch com redux
       router.push("/homepage");

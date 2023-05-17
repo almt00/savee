@@ -11,13 +11,14 @@ import { fetchAsyncTasks, getTasks } from "../store/TasksSlice";
 import { fetchAsyncRoutineSlice, getRoutine } from "../store/RoutineSlice";
 import { useEffect } from "react";
 import { setPage } from "../store/PageSlice";
+import Cookies from "js-cookie";
 
 const AllRoutines = () => {
   const dispatch = useDispatch();
   const routineData = useSelector(getRoutine);
   const tasksData = useSelector(getTasks);
 
-  const userId = 1;
+  const userId = Cookies.get("userId");
   let obj = "";
   let Routines = "";
   let type = "";
