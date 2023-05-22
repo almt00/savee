@@ -5,6 +5,7 @@ import { useRouter } from "next/router";
 import { useSelector } from "react-redux";
 import { getPage } from "../../store/PageSlice";
 import Image from "next/image";
+import useLogout from "../../utils/logout";
 
 // falta fazer a logica de selecionar a area da app no menu
 const collapseMenu = function (e) {
@@ -24,9 +25,16 @@ export default function Menu() {
     event.preventDefault();
     router.push(path);
   };
+  const handleLogout = useLogout(router);
+
   return (
     <>
-    <a href="http://localhost:3001/homepage#main" className="skip-to-main-content-link">Skip to main content</a>
+      <a
+        href="http://localhost:3001/homepage#main"
+        className="skip-to-main-content-link"
+      >
+        Skip to main content
+      </a>
       <div
         id="menu_overlay"
         onClick={collapseMenu}
@@ -59,7 +67,7 @@ export default function Menu() {
                     width="38"
                     height="38"
                   />
-                   <H2 aria-hidden="true">Homepage</H2>
+                  <H2 aria-hidden="true">Homepage</H2>
                 </li>
               ) : (
                 <li id="homepage">
@@ -70,7 +78,7 @@ export default function Menu() {
                     width="38"
                     height="38"
                   />
-                   <H2 aria-hidden="true">Homepage</H2>
+                  <H2 aria-hidden="true">Homepage</H2>
                 </li>
               )}
             </Link>
@@ -87,7 +95,7 @@ export default function Menu() {
                     width="38"
                     height="38"
                   />
-                   <H2 aria-hidden="true">Histórico uso</H2>
+                  <H2 aria-hidden="true">Histórico uso</H2>
                 </li>
               ) : (
                 <li id="usage">
@@ -98,7 +106,7 @@ export default function Menu() {
                     width="38"
                     height="38"
                   />
-                    <H2 aria-hidden="true">Histórico uso</H2>
+                  <H2 aria-hidden="true">Histórico uso</H2>
                 </li>
               )}
             </Link>
@@ -143,7 +151,7 @@ export default function Menu() {
                     width="38"
                     height="38"
                   />
-                   <H2 aria-hidden="true">Pagamentos</H2>
+                  <H2 aria-hidden="true">Pagamentos</H2>
                 </li>
               ) : (
                 <li id="payments">
@@ -154,7 +162,7 @@ export default function Menu() {
                     width="38"
                     height="38"
                   />
-                   <H2 aria-hidden="true">Pagamentos</H2>
+                  <H2 aria-hidden="true">Pagamentos</H2>
                 </li>
               )}
             </Link>
@@ -185,15 +193,15 @@ export default function Menu() {
             />
             <H4 className="font-extrabold">Definições</H4>
           </li>
-          <li className="h-8">
+          <li className="h-8" onClick={handleLogout} id="logoutButton">
             <Image
-              src="/img/icon-help-circle.svg"
+              src="/img/icon-log-out.svg"
               className="ml-6"
-              alt="Ajuda"
+              alt="Logout"
               width="38"
               height="38"
             />
-            <H4 className="font-extrabold">Ajuda</H4>
+            <H4 className="font-extrabold">Logout</H4>
           </li>
         </MenuList>
       </div>
@@ -206,9 +214,9 @@ const H2 = styled("h2", {
   fontWeight: "$bolder",
 });
 
-const H4 = styled('p', {
-  fontSize: '$smallheading',
-  fontWeight: '$bolder',
+const H4 = styled("p", {
+  fontSize: "$smallheading",
+  fontWeight: "$bolder",
 });
 
 const MenuList = styled("menu", {
