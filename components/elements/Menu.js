@@ -29,12 +29,12 @@ export default function Menu() {
 
   return (
     <>
-      <a
+      <Link
         href="/homepage#main"
         className="skip-to-main-content-link"
       >
         Skip to main content
-      </a>
+      </Link>
       <div
         id="menu_overlay"
         onClick={collapseMenu}
