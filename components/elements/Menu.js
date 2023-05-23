@@ -30,7 +30,7 @@ export default function Menu() {
   return (
     <>
       <a
-        href="http://localhost:3001/homepage#main"
+        href="/homepage#main"
         className="skip-to-main-content-link"
       >
         Skip to main content
