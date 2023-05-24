@@ -1,5 +1,4 @@
 import Layout from "../components/elements/Layout";
-import { Inter } from "@next/font/google";
 import Image from "next/image";
 import { styled } from "../stitches.config";
 import Card from "../components/elements/Card";
@@ -7,12 +6,9 @@ import Form from "../components/elements/Form";
 import Button from "../components/elements/Button";
 import Background from "../components/elements/Background";
 import Link from "next/link";
-import { useState, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-
-const inter = Inter({ subsets: ["latin"] });
-
-const registerEndpoint = 'https://savee-api.vercel.app/user'
+import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { registerAsyncUser } from "../store/UserSlice";
 
 export default function Register() {
   // state to fix hydration issue
@@ -21,8 +17,15 @@ export default function Register() {
   const [step, setStep] = useState(0);
   // var to keep track of the current date
   const maxDate = new Date().toISOString().split("T")[0];
+  // state to keep track of the form user data
+  const [userData, setUserData] = useState({});
 
-  const updateStep = () => {
+  // dispatch to redux
+  const dispatch = useDispatch();
+
+  const updateStep = (formData) => {
+    // save the form data in the state
+    setUserData((prevData) => ({ ...prevData, ...formData }));
     setStep(step + 1);
   };
 
@@ -30,7 +33,12 @@ export default function Register() {
   const authFields = () => (
     <>
       <div>
-        <Form name="Email" type="email" required="required" />
+        <Form
+          name="Email"
+          type="email"
+          required="required"
+          onUpdate={(value) => updateStep({ email: value })}
+        />
       </div>
       <div className="mt-6">
         <Form
@@ -39,6 +47,7 @@ export default function Register() {
           pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
           title="Deve conter pelo menos um número, uma maiúscula e uma minúscula, e conter pelo menos 8 caracteres."
           required="required"
+          onUpdate={(value) => updateStep({ password: value })}
         />
       </div>
       <div className="flex justify-center">
@@ -47,7 +56,7 @@ export default function Register() {
           className="mt-6"
           bg="solid"
           size="lg"
-          onClick={updateStep}
+          onClick={() => updateStep(userData)}
         >
           Próximo
         </Button>
@@ -61,14 +70,19 @@ export default function Register() {
         Vamos customizar a tua experiência. Como te chamas?
       </p>
       <div className="mt-6">
-        <Form name="Nome" type="text" required />
+        <Form
+          name="Nome"
+          type="text"
+          required
+          onUpdate={(value) => updateStep({ first_name: value })}
+        />
         <div className="flex justify-center">
           <Button
             type="submit"
             className="mt-6"
             bg="solid"
             size="lg"
-            onClick={updateStep}
+            onClick={() => updateStep(userData)}
           >
             Próximo
           </Button>
@@ -110,7 +124,7 @@ export default function Register() {
           className="mt-6"
           bg="solid"
           size="lg"
-          onClick={updateStep}
+          onClick={() => updateStep(userData)}
         >
           Próximo
         </Button>
@@ -146,7 +160,7 @@ export default function Register() {
             className="mt-6"
             bg="solid"
             size="lg"
-            onClick={updateStep}
+            onClick={() => dispatch(registerAsyncUser(userData))}
           >
             Criar conta
           </Button>
@@ -157,13 +171,13 @@ export default function Register() {
   const loadContent = () => {
     console.log(step);
     if (step === 0) {
-      return authFields();
+      return authFields(updateStep);
     } else if (step === 1) {
-      return userFields();
+      return userFields(updateStep);
     } else if (step === 2) {
-      return groupFields();
+      return groupFields(updateStep);
     } else if (step === 3) {
-      return invoiceFields();
+      return invoiceFields(updateStep);
     } else {
       return <></>;
     }
@@ -172,8 +186,10 @@ export default function Register() {
   return (
     <>
       {step <= 3 && (
-         <Layout title="Página para criar uma conta e um grupo de partilha em Savee, segue os passos com a informação adequada e poderas usufruir das vantagens de utilizar Savee." description="Criar conta">
-
+        <Layout
+          title="Página para criar uma conta e um grupo de partilha em Savee, segue os passos com a informação adequada e poderas usufruir das vantagens de utilizar Savee."
+          description="Criar conta"
+        >
           <Background color="mint" />
 
           <div className="py-4 px-6">
