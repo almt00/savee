@@ -8,6 +8,7 @@ import Button from "../components/elements/Button";
 import Background from "../components/elements/Background";
 import Link from "next/link";
 import { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -20,65 +21,14 @@ export default function Register() {
   const [step, setStep] = useState(0);
   // var to keep track of the current date
   const maxDate = new Date().toISOString().split("T")[0];
-  // state to keep track of the form data
-  const [formData, setFormData] = useState({
-    first_name: "",
-    last_name: "",
-    username: "",
-    password: "",
-    email: "",
-    house_id: ""
-  });
-
-  // redux state to keep track of the form data
-  const dispatch = useDispatch();
-  const { first_name, last_name, username, password, email, house_id } = useSelector(
-    (state) => state.register
-  );
-
-  // save the form data to state
-  const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-  };
-
-  // submit the form data to the API
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    const res = await fetch(registerEndpoint, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(formData),
-    });
-
-    const data = await res.json();
-    console.log(data);
-  };
-
-
 
   const updateStep = () => {
     setStep(step + 1);
   };
-  // useEffect to fix hydration issue
-  /* useEffect(() => {
-    setHasMounted(true);
-  }, []);
-
-  if (!hasMounted) {
-    return null;
-  } */
 
   //Grouping forms by section in a component
   const authFields = () => (
     <>
-      {/* <form
-        onSubmit={() => {
-          setStep(step + 1);
-          console.log(step);
-        }}
-      > */}
       <div>
         <Form name="Email" type="email" required="required" />
       </div>
@@ -102,17 +52,11 @@ export default function Register() {
           Próximo
         </Button>
       </div>
-      {/* </form> */}
     </>
   );
 
   const userFields = () => (
     <>
-      {/* <form
-        onSubmit={() => {
-          setStep(step + 1);
-        }}
-      > */}
       <p className="black">
         Vamos customizar a tua experiência. Como te chamas?
       </p>
@@ -130,7 +74,6 @@ export default function Register() {
           </Button>
         </div>
       </div>
-      {/* </form> */}
     </>
   );
 
@@ -140,11 +83,6 @@ export default function Register() {
         Não temos nenhum grupo associado ao teu email. Queres criar um novo
         grupo e convidar os teus colegas de casa?
       </p>
-      {/* <form
-        onSubmit={() => {
-          setStep(step + 1);
-        }}
-      > */}
       <div className="mt-6">
         <Form name="Nome grupo" type="text" />
       </div>
@@ -177,7 +115,6 @@ export default function Register() {
           Próximo
         </Button>
       </div>
-      {/* </form> */}
     </>
   );
 
@@ -190,7 +127,6 @@ export default function Register() {
         Consulta a tua fatura de eletricidade e acrescenta os seguintes dados
         para o Savee conseguir calcular quanto poupaste.
       </p>
-      {/* <form action="/homepage"> */}
       <div className="mt-6">
         <Form
           name="Data da última fatura"
@@ -216,7 +152,6 @@ export default function Register() {
           </Button>
         </Link>
       </div>
-      {/* </form> */}
     </>
   );
   const loadContent = () => {
@@ -233,13 +168,6 @@ export default function Register() {
       return <></>;
     }
   };
-  // array of components to be rendered
-  /*   const fieldGroups = [
-    authFields(),
-    userFields(),
-    groupFields(),
-    invoiceFields(),
-  ]; */
 
   return (
     <>
