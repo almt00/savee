@@ -11,6 +11,8 @@ import { useState, useEffect } from "react";
 
 const inter = Inter({ subsets: ["latin"] });
 
+const registerEndpoint = 'https://savee-api.vercel.app/user'
+
 export default function Register() {
   // state to fix hydration issue
   const [hasMounted, setHasMounted] = useState(false);
@@ -18,6 +20,43 @@ export default function Register() {
   const [step, setStep] = useState(0);
   // var to keep track of the current date
   const maxDate = new Date().toISOString().split("T")[0];
+  // state to keep track of the form data
+  const [formData, setFormData] = useState({
+    first_name: "",
+    last_name: "",
+    username: "",
+    password: "",
+    email: "",
+    house_id: ""
+  });
+
+  // redux state to keep track of the form data
+  const dispatch = useDispatch();
+  const { first_name, last_name, username, password, email, house_id } = useSelector(
+    (state) => state.register
+  );
+
+  // save the form data to state
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  // submit the form data to the API
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const res = await fetch(registerEndpoint, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(formData),
+    });
+
+    const data = await res.json();
+    console.log(data);
+  };
+
+
 
   const updateStep = () => {
     setStep(step + 1);
@@ -41,7 +80,7 @@ export default function Register() {
         }}
       > */}
       <div>
-        <Form name="Email" type="email" required="required"/>
+        <Form name="Email" type="email" required="required" />
       </div>
       <div className="mt-6">
         <Form
