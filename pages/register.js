@@ -6,7 +6,7 @@ import Form from "../components/elements/Form";
 import Button from "../components/elements/Button";
 import Background from "../components/elements/Background";
 import Link from "next/link";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { registerAsyncUser } from "../store/UserSlice";
 
@@ -23,13 +23,20 @@ export default function Register() {
   // dispatch to redux
   const dispatch = useDispatch();
 
-  const updateStep = (formData) => {
-    // save the form data in the state
-    setUserData((prevData) => ({ ...prevData, ...formData }));
+  const updateStep = (name, value) => {
+    setUserData((prevUserData) => {
+      const updatedUserData = { ...prevUserData, [name]: value };
+      console.log("Updated User Data:", updatedUserData);
+      return updatedUserData;
+    });
     setStep(step + 1);
   };
 
-  //Grouping forms by section in a component
+  useEffect(() => {
+    console.log("Updated User Data:", userData);
+  }, [userData]);
+
+  // Grouping forms by section in a component
   const authFields = () => (
     <>
       <div>
@@ -37,7 +44,7 @@ export default function Register() {
           name="Email"
           type="email"
           required="required"
-          onUpdate={(value) => updateStep({ email: value })}
+          onUpdate={(value) => updateStep('email', value)}
         />
       </div>
       <div className="mt-6">
@@ -47,7 +54,7 @@ export default function Register() {
           pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
           title="Deve conter pelo menos um número, uma maiúscula e uma minúscula, e conter pelo menos 8 caracteres."
           required="required"
-          onUpdate={(value) => updateStep({ password: value })}
+          onUpdate={(value) => updateStep('password', value)}
         />
       </div>
       <div className="flex justify-center">
@@ -56,7 +63,7 @@ export default function Register() {
           className="mt-6"
           bg="solid"
           size="lg"
-          onClick={() => updateStep(userData)}
+          onClick={() => updateStep('authFields', userData)}
         >
           Próximo
         </Button>
@@ -74,7 +81,7 @@ export default function Register() {
           name="Nome"
           type="text"
           required
-          onUpdate={(value) => updateStep({ first_name: value })}
+          onUpdate={(value) => updateStep('first_name', value)}
         />
         <div className="flex justify-center">
           <Button
@@ -82,7 +89,7 @@ export default function Register() {
             className="mt-6"
             bg="solid"
             size="lg"
-            onClick={() => updateStep(userData)}
+            onClick={() => updateStep('userFields', userData)}
           >
             Próximo
           </Button>
@@ -124,7 +131,7 @@ export default function Register() {
           className="mt-6"
           bg="solid"
           size="lg"
-          onClick={() => updateStep(userData)}
+          onClick={() => updateStep('groupFields', userData)}
         >
           Próximo
         </Button>
@@ -154,13 +161,13 @@ export default function Register() {
         Precisas de ajuda?
       </Link>
       <div className="flex justify-center">
-        <Link href={"/homepage"}>
+        <Link href={"/login"}>
           <Button
             type="submit"
             className="mt-6"
             bg="solid"
             size="lg"
-            onClick={() => dispatch(registerAsyncUser(userData))}
+            onClick={() => dispatch(registerAsyncUser({ ...userData }))}
           >
             Criar conta
           </Button>
@@ -168,16 +175,17 @@ export default function Register() {
       </div>
     </>
   );
+
   const loadContent = () => {
     console.log(step);
     if (step === 0) {
-      return authFields(updateStep);
+      return authFields();
     } else if (step === 1) {
-      return userFields(updateStep);
+      return userFields();
     } else if (step === 2) {
-      return groupFields(updateStep);
+      return groupFields();
     } else if (step === 3) {
-      return invoiceFields(updateStep);
+      return invoiceFields();
     } else {
       return <></>;
     }
@@ -185,7 +193,7 @@ export default function Register() {
 
   return (
     <>
-      {step <= 3 && (
+      {step < 4 && (
         <Layout
           title="Página para criar uma conta e um grupo de partilha em Savee, segue os passos com a informação adequada e poderas usufruir das vantagens de utilizar Savee."
           description="Criar conta"

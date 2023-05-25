@@ -57,6 +57,7 @@ const userSlice = createSlice({
     },
     [registerAsyncUser.fulfilled]: (state, { payload }) => {
       console.log("registered successfully!");
+      console.log("Payload:", payload); // Log the payload data
       return { ...state, status: 200, user: payload };
     },
     [registerAsyncUser.rejected]: () => {
