@@ -8,11 +8,17 @@ import Image from "next/image";
 const Form = (props) => {
   // Pass props to label and default value
   // Pass props to type
+  console.log("render");
 
   const messageList = [
     {
-      name: "Nome",
-      message: "Insere o teu nome",
+      name: "Primeiro nome",
+      message: "Insere o teu primeiro nome",
+      icon: "user.svg",
+    },
+    {
+      name: "Apelido",
+      message: "Insere o teu apelido",
       icon: "user.svg",
     },
     {
@@ -49,6 +55,11 @@ const Form = (props) => {
       name: "Valor fatura",
       message: "Insere o total da fatura deste mês",
       icon: "currency-euro.svg",
+    },
+    {
+      name: "Nome de utilizador",
+      message: "Adiciona um nome de utilizador",
+      icon: "user.svg",
     },
   ];
 
@@ -101,6 +112,7 @@ const Form = (props) => {
           required={props.required}
           min={props.min}
           max={props.max}
+          onChange={props.onChange}
           //onClick={clickedInput}
         />
       ) : (
@@ -115,13 +127,14 @@ const Form = (props) => {
           min={props.min}
           max={props.max}
           name={props.name}
+          onChange={props.onChange}
           //onClick={clickedInput}
         />
       )}
-      <div id={`${props.id}_error`} className="hidden">
+      {/* <div id={`${props.id}_error`} className="hidden">
         <Image src="/img/x-circle.svg" alt="Erro" width="20" height="20" />
         <p>Isto é um erro</p>
-      </div>
+      </div> */}
     </Container>
   );
 };
