@@ -39,7 +39,7 @@ export default function Register() {
     const JSONdata = JSON.stringify(data);
     console.log(JSONdata);
 
-    const endpoint = "https://savee-api.vercel.app/user/";
+    const endpoint = "https://savee-api.vercel.app/user";
 
     const options = {
       method: "POST",
