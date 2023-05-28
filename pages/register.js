@@ -33,7 +33,7 @@ export default function Register() {
       password: userData.password,
       email: userData.email,
       house_id: 1, // mudar
-      ref_avatar: 1, // mudar
+      ref_avatar: null, // mudar
     };
 
     const JSONdata = JSON.stringify(data);
