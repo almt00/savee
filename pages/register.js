@@ -8,6 +8,10 @@ import Button from "../components/elements/Button";
 import Background from "../components/elements/Background";
 import Link from "next/link";
 import { useState, useEffect } from "react";
+import Cookies from "js-cookie";
+import { useDispatch } from "react-redux";
+import { fetchAsyncUser } from "../store/UserSlice";
+import router from "next/router";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -21,6 +25,8 @@ export default function Register() {
   const updateStep = () => {
     setStep(step + 1);
   };
+
+  const dispatch = useDispatch();
 
   const handleSubmit = async (event) => {
     // Stop the form from submitting and refreshing the page.
@@ -51,14 +57,16 @@ export default function Register() {
 
     const response = await fetch(endpoint, options);
 
-    /*  const result = await response.json();
+    const result = await response.json();
     if (result.success) {
       Cookies.set("userToken", result.token);
       Cookies.set("userId", result.user.user_id);
       const id = Cookies.get("userId");
       dispatch(fetchAsyncUser(id)); // fazer o fetch com redux
       router.push("/homepage");
-    } */
+    } else {
+      alert(result.message);
+    }
   };
 
   const updateValue = (e) => {
