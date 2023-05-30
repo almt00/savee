@@ -64,9 +64,12 @@ export default function Register() {
       const id = Cookies.get("userId");
       dispatch(fetchAsyncUser(id)); // fazer o fetch com redux
       router.push("/homepage");
-    } else {
+    }
+    // alert if there is a 500 error
+    if (response.status === 500) {
       alert("Já existe um utilizador com este email.");
     }
+
   };
 
   const updateValue = (e) => {
