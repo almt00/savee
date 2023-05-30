@@ -65,7 +65,7 @@ export default function Register() {
       dispatch(fetchAsyncUser(id)); // fazer o fetch com redux
       router.push("/homepage");
     } else {
-      alert(result.message);
+      alert("Já existe um utilizador com este email.");
     }
   };
 
