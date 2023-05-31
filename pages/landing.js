@@ -24,33 +24,55 @@ export default function Landing() {
   });
 
   return (
-    <Layout description="Página inicial Savee com breve descrição da aplicação, também permite iniciar sessão ou criar uma nova conta na plataforma" title="Savee">
-      <Navbar className="flex justify-end items-center gap-4 p-4"> 
-        <Link href="/login"><Button size="lg">Iniciar Sessão</Button></Link>
+
+    <Layout
+      title="Página inicial Savee com breve descrição da aplicação, também permite iniciar sessão ou criar uma nova conta na plataforma"
+      description="Savee"
+    >
+      <Navbar className="flex justify-end items-center gap-4 p-4">
+        <Button size="lg" disabled>
+          Brevemente disponível
+        </Button>
       </Navbar>
       <FirstSection className="flex items-center justify-cente">
         <div className="flex flex-col items-center gap-6">
-          <Image src="/img/logo.svg" width={150} height={150} alt="Savee Logo" />
+          <Image
+            src="/img/logo.svg"
+            width={150}
+            height={150}
+            alt="Savee Logo"
+          />
           <div>
-          <H2 className="text-center mb-2">
-            A forma inteligente de partilhares a tua conta de eletricidade.
-          </H2>
-          <p className="text-center mx-2">
-            O Savee ajuda-te a dividir as faturas conforme os teus consumos. Os
-            teus consumos, o teu preço!
-          </p>
+            <H2 className="text-center mb-2">
+              A forma inteligente de partilhares a tua conta de eletricidade.
+            </H2>
+            <p className="text-center mx-2">
+              O Savee ajuda-te a dividir as faturas conforme os teus consumos.
+              Os teus consumos, o teu preço!
+            </p>
           </div>
-          <Link href="#about" scroll={false}><Button size="lg">Saber Mais</Button></Link>
+          <Link href="#about" scroll={false}>
+            <Button size="lg">Saber Mais</Button>
+          </Link>
         </div>
       </FirstSection>
-      <SecondSection className="flex flex-col items-center justify-center gap-12" id="about">
-        <h2>Como funciona?</h2>
+      <SecondSection
+        className="flex flex-col items-center justify-center gap-12"
+        id="about"
+      >
+        <H2>Como funciona?</H2>
         <Carousel {...handlers}>
           <Slides style={{ transform: `translateX(-${activeIndex * 100}%)` }}>
             <SlideItem>
               <Card id="first-card" className="flex flex-col p-6 gap-4">
                 <CardNumber>#1</CardNumber>
-                <Image src="/img/onboardingOne.svg" className="z-10" alt="onboarding 1 "width="276" height="190"/>
+                <Image
+                  src="/img/onboardingOne.svg"
+                  className="z-10"
+                  alt="onboarding 1 "
+                  width="276"
+                  height="190"
+                />
                 <div>
                   <H3>Inscreve a tua casa</H3>
                   <p>
@@ -63,7 +85,13 @@ export default function Landing() {
             <SlideItem>
               <Card id="second-card" className="flex flex-col p-6 gap-4">
                 <CardNumber>#2</CardNumber>
-                <Image src="/img/onboardingTwo.svg" className="z-10" alt="Onboarding 2" width="260" height="190"></Image>
+                <Image
+                  src="/img/onboardingTwo.svg"
+                  className="z-10"
+                  alt="Onboarding 2"
+                  width="260"
+                  height="190"
+                ></Image>
                 <div>
                   <H3>Cria as tuas rotinas</H3>
                   <p>
@@ -77,7 +105,13 @@ export default function Landing() {
             <SlideItem>
               <Card id="third-card" className="flex flex-col p-6 gap-4">
                 <CardNumber>#3</CardNumber>
-                <Image src="/img/onboardingThree.svg" className="z-10" alt="onboarding 3" width="266" height="190"></Image>
+                <Image
+                  src="/img/onboardingThree.svg"
+                  className="z-10"
+                  alt="onboarding 3"
+                  width="266"
+                  height="190"
+                ></Image>
                 <div>
                   <H3>Começa a poupar</H3>
                   <p>
@@ -90,7 +124,9 @@ export default function Landing() {
             </SlideItem>
           </Slides>
         </Carousel>
-        <Link href="/register"><Button size="lg">Começar a Usar</Button></Link>
+        <Button size="lg" disabled>
+          Brevemente disponível
+        </Button>
       </SecondSection>
       <Footer className="flex text-center justify-between items-center">
         <Image src="/img/logo.svg" width={74} height={74} alt="Savee Logo" />
@@ -163,19 +199,18 @@ const CardNumber = styled("h1", {
   marginLeft: "auto",
 });
 
-
 const Footer = styled("footer", {
   backgroundColor: "$black",
   color: "$white",
-  padding: "1.5rem 2rem"
-})
-
-const H2 = styled('h2', {
-  fontSize: '$largeheading',
-  fontWeight: '$bolder',
+  padding: "1.5rem 2rem",
 });
 
-const H3 = styled('h3', {
-  fontSize: '$mediumheading',
-  fontWeight: '$bolder',
+const H2 = styled("h2", {
+  fontSize: "$largeheading",
+  fontWeight: "$bolder",
+});
+
+const H3 = styled("h3", {
+  fontSize: "$mediumheading",
+  fontWeight: "$bolder",
 });
