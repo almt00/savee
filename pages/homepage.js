@@ -36,8 +36,8 @@ export default function Homepage() {
 
   return (
     <Layout
-      title="Página principal da plataforma onde podes ver os consumos mensais e realizar tarefas para poupares a tua carteira o ambiente"
-      description="Homepage for Savee"
+      description="Página principal da plataforma onde podes ver os consumos mensais e realizar tarefas para poupares a tua carteira o ambiente"
+      title="Homepage SAVEE"
     >
       <Background color="mint" />
       <Header page="Homepage" />

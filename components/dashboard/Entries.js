@@ -10,13 +10,14 @@ import {
   fetchAsyncConsumptionToday,
   getConsumptionToday,
 } from "../../store/ConsumptionTodaySlice";
+import Cookies from "js-cookie";
 
 const Entries = (props) => {
   const dispatch = useDispatch();
   const tasksData = useSelector(getTasks);
   const consumptionTodayData = useSelector(getConsumptionToday);
 
-  const id = 1; // variavel de sessao ou algo assim no login
+  const id = Cookies.get("userId");
   let showEntrylist;
   let timeUnit = "min";
   let duration = 0;

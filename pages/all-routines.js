@@ -11,13 +11,14 @@ import { fetchAsyncTasks, getTasks } from "../store/TasksSlice";
 import { fetchAsyncRoutineSlice, getRoutine } from "../store/RoutineSlice";
 import { useEffect } from "react";
 import { setPage } from "../store/PageSlice";
+import Cookies from "js-cookie";
 
 const AllRoutines = () => {
   const dispatch = useDispatch();
   const routineData = useSelector(getRoutine);
   const tasksData = useSelector(getTasks);
 
-  const userId = 1;
+  const userId = Cookies.get("userId");
   let obj = "";
   let Routines = "";
   let type = "";
@@ -96,7 +97,7 @@ const AllRoutines = () => {
   }
 
   return (
-    <Layout title="Página para visualizar rotinas feitas e link para criar nova rotina" description="Rotinas">
+    <Layout description="Página para visualizar rotinas feitas e link para criar nova rotina" title="Rotinas">
       <Background color="purple" size="extrasmall" />
       <Header page="Rotinas" />
       <div className="relative pt-20 px-6 flex flex-col gap-3 pb-6">

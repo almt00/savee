@@ -1,10 +1,16 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import Cookies from "js-cookie";
 
 export const fetchAsyncTasks = createAsyncThunk(
   "tasks/fetchAsyncTasks",
   async () => {
     let tasks_url = `../api/tasks`;
-    const response = await fetch(tasks_url);
+    const response = await fetch(tasks_url,{
+      method: "GET",
+      headers: {
+        Authorization: `Bearer ${Cookies.get("userToken")}`,
+      },
+    });
     let actualData = await response.json();
     let actualDataObject = await JSON.parse(actualData);
     return actualDataObject;

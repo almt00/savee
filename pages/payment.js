@@ -13,6 +13,7 @@ import { fetchAsyncInsightsSlice, getInsights } from "../store/InsightsSlice";
 import { fetchAsyncTasks, getTasks } from "../store/TasksSlice";
 import { getPaymentGroupDetails } from "../store/PaymentGroupDetailsSlice";
 import { fetchAsyncPaymentGroupDetailsSlice } from "../store/PaymentGroupDetailsSlice";
+import Cookies from "js-cookie";
 
 const Payment = () => {
   const dispatch = useDispatch();
@@ -22,8 +23,7 @@ const Payment = () => {
   const tasks = useSelector(getTasks);
   const payment = useSelector(getPaymentGroupDetails);
   const paymentid = id ? id : null;
-  const houseid = 1;
-  const userid = 1;
+  const houseId = Cookies.get("houseId");
   const taskid = "";
   let chosenTask = null;
   let totalConsumption = 0;
@@ -39,7 +39,9 @@ const Payment = () => {
     }
 
     if (paymentid && payment.status !== 200) {
-      dispatch(fetchAsyncPaymentGroupDetailsSlice({ houseid, paymentid }));
+      dispatch(
+        fetchAsyncPaymentGroupDetailsSlice({ houseid: houseId, paymentid })
+      );
     }
   }, [dispatch, paymentid, payment]);
 
@@ -116,8 +118,8 @@ const Payment = () => {
 
     return (
       <Layout
-        title="Página que permite visualizar e confirmar a sua parte da fatura a pagar, valor atribuido ao utilizador em função da sua porcentagem de consumo dentro do grupo. Também apresenta porcentagems dos outros elementos."
-        description="Pagamento"
+        description="Página que permite visualizar e confirmar a sua parte da fatura a pagar, valor atribuido ao utilizador em função da sua porcentagem de consumo dentro do grupo. Também apresenta porcentagems dos outros elementos."
+        title="Pagamento"
       >
         <Background color="skyblue" />
         <Header page="Pagamento" />

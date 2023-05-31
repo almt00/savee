@@ -6,28 +6,28 @@ import React from "react";
 import { fetchAsyncGroup, getGroup } from "../../store/GroupSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
+import { getUser } from "../../store/UserSlice";
+import Cookies from "js-cookie";
 
 export default function Banner(props) {
   //via props é enviado o dia de hoje
   const [isShown, setIsShown] = useState(true);
   const dispatch = useDispatch();
   const groupData = useSelector(getGroup);
-
+  const houseId = Cookies.get("houseId"); //Id para identificar o grupo a ir buscar dados
+  let toDay = props.toDay; //recolhe do props o valor do dia atual para depois comparar
+  let invoice = ""; //para guardar data do grupo
+  let payDate;
+  let checkDate;
   useEffect(() => {
     if (groupData.status !== 200) {
-      dispatch(fetchAsyncGroup(id)); // fazer o fetch com redux
+      dispatch(fetchAsyncGroup(houseId)); // fazer o fetch com redux
     }
   }, [dispatch]);
 
   function ShownFalse() {
     setIsShown(false);
   }
-
-  let toDay = props.toDay; //recolhe do props o valor do dia atual para depois comparar
-  const id = 1; //Id para identificar o grupo a ir buscar dados
-  let invoice = ""; //para guardar data do grupo
-  let payDate;
-  let checkDate;
 
   if (groupData.status === 200) {
     invoice = groupData.group.invoice_date; //Guarda o dia do invoice do grupo
@@ -36,7 +36,7 @@ export default function Banner(props) {
     checkDate = payDate - 2;
 
     if (toDay >= checkDate && isShown === false) {
-      setIsShown(true); 
+      setIsShown(true);
     } else if (toDay < checkDate && isShown === true) {
       setIsShown(false);
     }

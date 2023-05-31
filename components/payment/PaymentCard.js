@@ -9,17 +9,18 @@ import {
   getPaymentGroupDetails,
 } from "../../store/PaymentGroupDetailsSlice";
 import { useDispatch, useSelector } from "react-redux";
+import { getUser } from "../../store/UserSlice";
+import Cookies from "js-cookie";
 
 const PaymentCard = ({ id }) => {
   const dispatch = useDispatch();
   const paymentGroupDetails = useSelector(getPaymentGroupDetails);
-
-  const houseid = 1;
-  const paymentid = id;
+  const houseId = Cookies.get("houseId"); //Id para identificar o grupo a ir buscar dados
+  const paymentId = id;
 
   useEffect(() => {
     if (paymentGroupDetails.status !== 200) {
-      dispatch(fetchAsyncPaymentGroupDetailsSlice({ houseid, paymentid }));
+      dispatch(fetchAsyncPaymentGroupDetailsSlice({ houseid: houseId, paymentid: paymentId }));
     }
   }, [dispatch]);
 

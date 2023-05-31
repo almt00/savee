@@ -53,6 +53,8 @@ export default function Login() {
     if (result.success) {
       Cookies.set("userToken", result.token);
       Cookies.set("userId", result.user.user_id);
+      Cookies.set("houseId", result.user.house_id);
+
       const id = Cookies.get("userId");
       dispatch(fetchAsyncUser(id)); // fazer o fetch com redux
       router.push("/homepage");
@@ -61,8 +63,8 @@ export default function Login() {
 
   return (
     <Layout
-      title="Página de login para entrar na plataforma, inserir email e password."
-      description="Iniciar sessão"
+      description="Página de login para entrar na plataforma, inserir email e password."
+      title="Iniciar sessão"
     >
       <Background color="mint" />
 
