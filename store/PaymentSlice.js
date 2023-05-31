@@ -1,10 +1,16 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import Cookies from "js-cookie";
 
 export const fetchAsyncPaymentSlice = createAsyncThunk(
   "user/fetchAsyncPayment",
   async (id) => {
     let payment_url = `https://savee-api.vercel.app/user/${id}/payment`;
-    const response = await fetch(payment_url);
+    const response = await fetch(payment_url,{
+      method: "GET",
+      headers: {
+        Authorization: `Bearer ${Cookies.get("userToken")}`,
+      },
+    });
     let actualData = await response.json();
     let actualDataObject = await actualData;
     return actualDataObject;

@@ -9,12 +9,13 @@ import {
 } from "../../store/PaymentGroupDetailsSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { useState } from "react";
+import Cookies from "js-cookie";
 
 const DoughnutChart = (props) => {
   const dispatch = useDispatch();
   const paymentGroupDetails = useSelector(getPaymentGroupDetails);
+  const userId = Cookies.get("userId");
 
-  const userId = 1;
 
   useEffect(() => {
     if (paymentGroupDetails.status !== 200) {

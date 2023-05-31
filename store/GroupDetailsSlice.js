@@ -1,10 +1,16 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import Cookies from "js-cookie";
 
 export const fetchAsyncGroupDetails = createAsyncThunk(
   "groupDetails/fetchAsyncGroupDetails",
   async (id) => {
     let groupDetails_url = `https://savee-api.vercel.app/consumption/house/${id}`;
-    const response = await fetch(groupDetails_url);
+    const response = await fetch(groupDetails_url,{
+      method: "GET",
+      headers: {
+        Authorization: `Bearer ${Cookies.get("userToken")}`,
+      },
+    });
     let actualData = await response.json();
     let actualDataObject = await actualData;
     return actualDataObject;

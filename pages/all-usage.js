@@ -12,12 +12,13 @@ import {
 import { fetchAsyncTasks, getTasks } from "../store/TasksSlice";
 import { useEffect } from "react";
 import { setPage } from "../store/PageSlice";
+import Cookies from "js-cookie";
 
 const AllUsage = () => {
   const dispatch = useDispatch();
   const consumptionData = useSelector(getConsumption);
   const tasksData = useSelector(getTasks);
-  const userId = 1;
+  const userId = Cookies.get("userId");
   let UseHisto = "";
   let obj = "";
   let taskName = "";
@@ -83,7 +84,7 @@ const AllUsage = () => {
   }
 
   return (
-    <Layout title="Página que permite visualizar o histórico de tarefas realizadas cronologicamente da mais recente para a mais antiga." description="Histórico de uso">
+    <Layout description="Página que permite visualizar o histórico de tarefas realizadas cronologicamente da mais recente para a mais antiga." title="Histórico de uso">
       <Background color="orange" size="extrasmall" />
       <Header page="Histórico uso" />
       <div className="relative pt-20 px-6 flex flex-col gap-3 pb-6">

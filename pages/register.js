@@ -288,10 +288,9 @@ export default function Register() {
   return (
     <>
       {step <= 3 && (
-        <Layout
-          description="Página para criar uma conta e um grupo de partilha em Savee, segue os passos com a informação adequada e poderas usufruir das vantagens de utilizar Savee."
-          title="Criar conta"
-        >
+
+         <Layout description="Página para criar uma conta e um grupo de partilha em Savee, segue os passos com a informação adequada e poderas usufruir das vantagens de utilizar Savee." title="Criar conta">
+
           <Background color="mint" />
 
           <div className="py-4 px-6">

@@ -14,6 +14,8 @@ import {
 } from "../../store/ConsumptionSlice";
 import { useEffect } from "react";
 import Card from "./Card";
+import Cookies from "js-cookie";
+import { getUser } from "../../store/UserSlice";
 
 const DashboardCard = () => {
   const dispatch = useDispatch();
@@ -21,8 +23,8 @@ const DashboardCard = () => {
   const groupData = useSelector(getGroup);
   const groupDetailsData = useSelector(getGroupDetails);
   const consumptionData = useSelector(getConsumption);
-  const groupId = 1; // ver grupo do user
-  const userId = 1;
+  const houseId = Cookies.get("houseId");
+  const userId = Cookies.get("userId");
   let taskId;
   let startTime;
   let endTime;
@@ -37,10 +39,10 @@ const DashboardCard = () => {
 
   useEffect(() => {
     if (groupData.status !== 200) {
-      dispatch(fetchAsyncGroup(groupId)); // fazer o fetch com redux do grupo
+      dispatch(fetchAsyncGroup(houseId)); // fazer o fetch com redux do grupo
     }
     if (groupDetailsData.status !== 200) {
-      dispatch(fetchAsyncGroupDetails(groupId)); // fazer o fetch com redux do grupo
+      dispatch(fetchAsyncGroupDetails(houseId)); // fazer o fetch com redux do grupo
     }
 
     if (tasksData.status !== 200) {
@@ -95,20 +97,21 @@ const DashboardCard = () => {
     <Card>
       <Container>
         <NumberKw>
-          <H3>{kwTotalUser} kW
-          {consDif >= 0 ? (
-            <TrendIcon
-              src="/img/tendencia_down.svg"
-              className="ml-4"
-              alt="Pagamentos"
-            />
-          ) : (
-            <TrendIcon
-              src="/img/tendencia_up.svg"
-              className="ml-4"
-              alt="Pagamentos"
-            />
-          )}
+          <H3>
+            {kwTotalUser} kW
+            {consDif >= 0 ? (
+              <TrendIcon
+                src="/img/tendencia_down.svg"
+                className="ml-4"
+                alt="Pagamentos"
+              />
+            ) : (
+              <TrendIcon
+                src="/img/tendencia_up.svg"
+                className="ml-4"
+                alt="Pagamentos"
+              />
+            )}
           </H3>
           <SubTitle>
             de <span className="font-bold">{kwTotalGroup} kW </span>consumidos
@@ -160,7 +163,7 @@ const Stats = styled("p", {
 const SubTitle = styled("p", {
   color: "$black",
   fontSize: "$small",
-  fontWeight: "normal"
+  fontWeight: "normal",
 });
 
 const NumberKw = styled("div", {

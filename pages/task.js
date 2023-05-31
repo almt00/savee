@@ -9,7 +9,7 @@ import Breadcrumb from "../components/elements/Breadcrumb";
 
 export default function task() {
   return (
-    <Layout title="Página para registar tarefas individuais que não fazem parte das rotinas" description="Tarefa">
+    <Layout description="Página para registar tarefas individuais que não fazem parte das rotinas" title="Tarefa">
       <Background color="yellow" />
       <Header page="Tarefa" />
       <div className="relative pt-20 px-6 flex flex-col gap-3 pb-6">

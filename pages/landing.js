@@ -24,6 +24,7 @@ export default function Landing() {
   });
 
   return (
+
     <Layout
       title="Página inicial Savee com breve descrição da aplicação, também permite iniciar sessão ou criar uma nova conta na plataforma"
       description="Savee"
