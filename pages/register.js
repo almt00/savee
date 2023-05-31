@@ -8,48 +8,101 @@ import Button from "../components/elements/Button";
 import Background from "../components/elements/Background";
 import Link from "next/link";
 import { useState, useEffect } from "react";
+import Cookies from "js-cookie";
+import { useDispatch } from "react-redux";
+import { fetchAsyncUser } from "../store/UserSlice";
+import router from "next/router";
 
 const inter = Inter({ subsets: ["latin"] });
 
 export default function Register() {
-  // state to fix hydration issue
-  const [hasMounted, setHasMounted] = useState(false);
   // state to keep track of the current step
   const [step, setStep] = useState(0);
   // var to keep track of the current date
   const maxDate = new Date().toISOString().split("T")[0];
+  const [userData, setUserData] = useState({});
 
   const updateStep = () => {
     setStep(step + 1);
   };
-  // useEffect to fix hydration issue
-  /* useEffect(() => {
-    setHasMounted(true);
-  }, []);
 
-  if (!hasMounted) {
-    return null;
-  } */
+  const dispatch = useDispatch();
+
+  const handleSubmit = async (event) => {
+    // Stop the form from submitting and refreshing the page.
+    event.preventDefault();
+    // Get data from the form.
+    const data = {
+      first_name: userData.primeiro_nome,
+      last_name: userData.segundo_nome,
+      username: userData.username,
+      password: userData.password,
+      email: userData.email,
+      house_id: 1, // mudar
+      ref_avatar: null, // mudar
+    };
+
+    const JSONdata = JSON.stringify(data);
+    console.log(JSONdata);
+
+    const endpoint = "https://savee-api.vercel.app/user";
+
+    const options = {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSONdata,
+    };
+
+    const response = await fetch(endpoint, options);
+
+    const result = await response.json();
+    if (result.success) {
+      Cookies.set("userToken", result.token);
+      Cookies.set("userId", result.user.user_id);
+      const id = Cookies.get("userId");
+      dispatch(fetchAsyncUser(id)); // fazer o fetch com redux
+      router.push("/homepage");
+    }
+    // alert if there is a 500 error
+    if (response.status === 500) {
+      alert("Já existe um utilizador com este email.");
+    }
+
+  };
+
+  const updateValue = (e) => {
+    const name = e?.target.id;
+    const value = e?.target.value;
+    setUserData({ ...userData, [name]: value });
+  };
 
   //Grouping forms by section in a component
   const authFields = () => (
     <>
-      {/* <form
-        onSubmit={() => {
-          setStep(step + 1);
-          console.log(step);
-        }}
-      > */}
       <div>
-        <Form name="Email" type="email" required="required"/>
+        <Form
+          id="email"
+          name="Email"
+          type="email"
+          required="required"
+          onChange={(e) => {
+            updateValue(e);
+          }}
+        />
       </div>
       <div className="mt-6">
         <Form
+          id="password"
           name="Password"
           type="password"
           pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
           title="Deve conter pelo menos um número, uma maiúscula e uma minúscula, e conter pelo menos 8 caracteres."
           required="required"
+          onChange={(e) => {
+            updateValue(e);
+          }}
         />
       </div>
       <div className="flex justify-center">
@@ -63,35 +116,59 @@ export default function Register() {
           Próximo
         </Button>
       </div>
-      {/* </form> */}
     </>
   );
 
   const userFields = () => (
     <>
-      {/* <form
-        onSubmit={() => {
-          setStep(step + 1);
-        }}
-      > */}
       <p className="black">
         Vamos customizar a tua experiência. Como te chamas?
       </p>
-      <div className="mt-6">
-        <Form name="Nome" type="text" required />
-        <div className="flex justify-center">
-          <Button
-            type="submit"
-            className="mt-6"
-            bg="solid"
-            size="lg"
-            onClick={updateStep}
-          >
-            Próximo
-          </Button>
-        </div>
+      <div div className="mt-6">
+        <Form
+          id="primeiro_nome"
+          name="Primeiro nome"
+          type="text"
+          required
+          onChange={(e) => {
+            updateValue(e);
+          }}
+        />
       </div>
-      {/* </form> */}
+      <div div className="mt-6">
+        <Form
+          id="segundo_nome"
+          name="Apelido"
+          type="text"
+          value=""
+          required
+          onChange={(e) => {
+            updateValue(e);
+          }}
+        />
+      </div>
+      <div className="mt-6">
+        <Form
+          id="username"
+          name="Nome de utilizador"
+          type="text"
+          required="required"
+          onChange={(e) => {
+            updateValue(e);
+          }}
+        />
+      </div>
+      <div className="flex justify-center">
+        <Button
+          type="submit"
+          className="mt-6"
+          bg="solid"
+          size="lg"
+          onClick={updateStep}
+        >
+          Próximo
+        </Button>
+      </div>
     </>
   );
 
@@ -101,13 +178,16 @@ export default function Register() {
         Não temos nenhum grupo associado ao teu email. Queres criar um novo
         grupo e convidar os teus colegas de casa?
       </p>
-      {/* <form
-        onSubmit={() => {
-          setStep(step + 1);
-        }}
-      > */}
+
       <div className="mt-6">
-        <Form name="Nome grupo" type="text" />
+        <Form
+          id="nome_grupo"
+          name="Nome grupo"
+          type="text"
+          onChange={(e) => {
+            updateValue(e);
+          }}
+        />
       </div>
       <hr className="my-6" />
       <p className="black">
@@ -115,7 +195,14 @@ export default function Register() {
         casa e começa a poupar.
       </p>
       <div className="mt-6">
-        <Form name="Emails colegas" type="email" />
+        <Form
+          id="email_colega"
+          name="Emails colegas"
+          type="email"
+          onChange={(e) => {
+            updateValue(e);
+          }}
+        />
       </div>
       <div className="flex justify-center">
         <Link href="/homepage">
@@ -124,6 +211,7 @@ export default function Register() {
             className="mt-6 mr-4"
             bg="transparent"
             size="lg"
+            onClick={handleSubmit}
           >
             Mais tarde
           </Button>
@@ -138,7 +226,6 @@ export default function Register() {
           Próximo
         </Button>
       </div>
-      {/* </form> */}
     </>
   );
 
@@ -151,13 +238,16 @@ export default function Register() {
         Consulta a tua fatura de eletricidade e acrescenta os seguintes dados
         para o Savee conseguir calcular quanto poupaste.
       </p>
-      {/* <form action="/homepage"> */}
       <div className="mt-6">
         <Form
+          id="data_fatura"
           name="Data da última fatura"
           type="date"
           min="2022-01-01"
           max={maxDate}
+          onChange={(e) => {
+            updateValue(e);
+          }}
           required
         />
       </div>
@@ -171,7 +261,7 @@ export default function Register() {
             className="mt-6"
             bg="solid"
             size="lg"
-            onClick={updateStep}
+            onClick={handleSubmit}
           >
             Criar conta
           </Button>
@@ -194,17 +284,11 @@ export default function Register() {
       return <></>;
     }
   };
-  // array of components to be rendered
-  /*   const fieldGroups = [
-    authFields(),
-    userFields(),
-    groupFields(),
-    invoiceFields(),
-  ]; */
 
   return (
     <>
       {step <= 3 && (
+
          <Layout description="Página para criar uma conta e um grupo de partilha em Savee, segue os passos com a informação adequada e poderas usufruir das vantagens de utilizar Savee." title="Criar conta">
 
           <Background color="mint" />
