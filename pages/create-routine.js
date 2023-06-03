@@ -8,28 +8,75 @@ import TaskList from "../components/routines/TaskList";
 import DaySelector from "../components/routines/DaySelector";
 import TimePeriodSelector from "../components/routines/TimePeriodSelector";
 import TimeSelector from "../components/routines/TimeSelector";
-import Link from "next/link";
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { setPage } from "../store/PageSlice";
+import router from "next/router";
+import { fetchAsyncUser } from "../store/UserSlice";
+import Cookies from "js-cookie";
 
 export default function Routine() {
   const dispatch = useDispatch();
   // state to keep track of the current step
   const [step, setStep] = useState(0);
+  const [userData, setUserData] = useState({});
 
   useEffect(() => {
     dispatch(setPage("routines"));
   }, []);
+
+  const handleSubmit = async (event) => {
+    // Stop the form from submitting and refreshing the page.
+    event.preventDefault();
+    // Get data from the form.
+    const data = {
+      duration_routine: userData.duracao,
+      task: userData.tarefa,
+      weekdays: userData.dias,
+      period_time: userData.periodo,
+    };
+
+    const JSONdata = JSON.stringify(data);
+    console.log(JSONdata);
+
+    const id = Cookies.get("userId"); // Get the id value
+
+    const endpoint = `https://savee-api.vercel.app/user/${id}/routine`; // Concatenate the id into the endpoint
+
+    const options = {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSONdata,
+    };
+
+    const response = await fetch(endpoint, options);
+
+    const result = await response.json();
+
+    if (result.success) {
+      dispatch(fetchAsyncUser(id)); // não sei se precisamos disto
+      router.push("/all-routines");
+    }
+  };
+
+  const updateValue = (e) => {
+    const name = e?.target.id;
+    const value = e?.target.value;
+    setUserData({ ...userData, [name]: value });
+  };
 
   // Grouping forms by section in a component
   const taskFields = () => (
     <>
       <p className="black ml-6">Escolhe a tarefa para criares uma rotina:</p>
       <TaskList
+        id="tarefa"
         onClickEvent={() => {
           setStep(step + 1);
         }}
+        updateValue={updateValue} // Pass the updateValue function as a prop
       />
     </>
   );
@@ -37,18 +84,20 @@ export default function Routine() {
   const dayFields = () => (
     <>
       <p className="black">Escolhe os dias da semana</p>
-      <DaySelector />
+      <DaySelector id="dias" updateValue={updateValue} />
     </>
   );
 
   const periodFields = () => (
     <>
       <p className="black">Escolhe a altura do dia</p>
-      <TimePeriodSelector />
+      <TimePeriodSelector id="periodo" updateValue={updateValue} />
     </>
   );
 
-  const timeFields = () => <TimeSelector />;
+  const timeFields = () => (
+    <TimeSelector id="duracao" updateValue={updateValue} />
+  );
 
   // array of components to be rendered
   const fieldGroups = [taskFields(), dayFields(), periodFields(), timeFields()];
@@ -70,11 +119,15 @@ export default function Routine() {
             >
               Anterior
             </Button>
-            <Link href="/homepage">
-              <Button className="mt-6" bg="solid" size="lg">
-                Feito
-              </Button>
-            </Link>
+            <Button
+              type="submit"
+              onClick={handleSubmit}
+              className="mt-6"
+              bg="solid"
+              size="lg"
+            >
+              Feito
+            </Button>
           </>
         )}
         {step < fieldGroups.length - 1 &&
@@ -113,7 +166,10 @@ export default function Routine() {
   );
 
   return (
-    <Layout description="Página para criar novas rotinas com tarefas que virão a ser repetidas de forma automática nos dias e horas seleccionados." title="Criar rotina">
+    <Layout
+      description="Página para criar novas rotinas com tarefas que virão a ser repetidas de forma automática nos dias e horas seleccionados."
+      title="Criar rotina"
+    >
       <Background color="purple" />
       <Header page="Rotinas" />
       <div className="relative pt-20 px-6 flex flex-col gap-3 pb-6">

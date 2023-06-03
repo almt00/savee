@@ -1,35 +1,39 @@
 import { styled } from "@stitches/react";
 import { useEffect } from "react";
-import { useSelector,useDispatch } from "react-redux";
-import { fetchAsyncTasks,getTasks } from "../../store/TasksSlice";
+import { useSelector, useDispatch } from "react-redux";
+import { fetchAsyncTasks, getTasks } from "../../store/TasksSlice";
 
-const Tasks = ({ onClickEvent }) => {
-
+const Tasks = ({ onClickEvent, updateValue }) => {
   const dispatch = useDispatch();
   const tasksData = useSelector(getTasks);
-  
+
   useEffect(() => {
     if (tasksData.status !== 200) {
       dispatch(fetchAsyncTasks()); // fazer o fetch com redux caso ainda n esteja o estado (ex.: reloads de pagina)
     }
   }, [dispatch]);
 
-  if(tasksData.status === 200){
+  if (tasksData.status === 200) {
     return (
-    // todo map tasks
-    <TasksContainer>
-      {tasksData.tasks.map((task) => {
-        return (
-          <TaskContainer key={task.name} onClick={onClickEvent}>
-            <TaskImage src={task.image} alt={task.name} />
-            <TaskTitle>{task.name}</TaskTitle>
-          </TaskContainer>
-        );
-      })}
-    </TasksContainer>
-  ); 
+      // todo map tasks
+      <TasksContainer>
+        {tasksData.tasks.map((task) => {
+          return (
+            <TaskContainer
+              key={task.name}
+              onClick={onClickEvent}
+              onChange={(e) => {
+                updateValue(e);
+              }}
+            >
+              <TaskImage src={task.image} alt={task.name} />
+              <TaskTitle>{task.name}</TaskTitle>
+            </TaskContainer>
+          );
+        })}
+      </TasksContainer>
+    );
   }
-  
 };
 
 const TasksContainer = styled("div", {

@@ -2,7 +2,7 @@ import * as Toggle from "@radix-ui/react-toggle";
 import { styled } from "@stitches/react";
 import Image from "next/image";
 
-const TimePeriodSelector = () => {
+const TimePeriodSelector = ({ updateValue }) => {
   const periods = [
     {
       name: "Manhã",
@@ -24,9 +24,17 @@ const TimePeriodSelector = () => {
   return (
     <div className="flex flex-row items-center justify-center">
       {periods.map((period) => (
-        <ToggleRoot key={period.value} className="mx-2">
+        <ToggleRoot
+          key={period.value}
+          onChange={(e) => {
+            updateValue(e);
+          }}
+          className="mx-2"
+        >
           <Image src={period.img} width={84} height={93} alt={period.name} />
-          <p className="mt-2" aria-hidden="true">{period.name}</p>
+          <p className="mt-2" aria-hidden="true">
+            {period.name}
+          </p>
         </ToggleRoot>
       ))}
     </div>

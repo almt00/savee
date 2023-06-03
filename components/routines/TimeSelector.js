@@ -1,14 +1,21 @@
 import { styled } from "@stitches/react";
 import React from "react";
 
-export default function TimeSelector() {
+export default function TimeSelector({ updateValue }) {
   return (
     <>
       <p>Quanto tempo demoras em média?</p>
 
-      <form className={`flex gap-6 justify-center text-center p-3 mt-4`}>
+      <form
+        className={`flex gap-6 justify-center text-center p-3 mt-4`}
+        onChange={(e) => {
+          updateValue(e);
+        }}
+      >
         <div className="border-b-2 border-purple">
-          <p className="text-muted" id="h">h</p>
+          <p className="text-muted" id="h">
+            h
+          </p>
           <Input
             aria-describedby="h"
             type="number"
@@ -19,7 +26,9 @@ export default function TimeSelector() {
           />
         </div>
         <div className="border-b-2 border-purple">
-          <p className="text-muted" id="min">min</p>
+          <p className="text-muted" id="min">
+            min
+          </p>
           <Input
             aria-describedby="min"
             type="number"
@@ -30,7 +39,9 @@ export default function TimeSelector() {
           />
         </div>
         <div className="border-b-2 border-purple">
-          <p className="text-muted" id="seg">seg</p>
+          <p className="text-muted" id="seg">
+            seg
+          </p>
           <Input
             aria-describedby="seg"
             type="number"
@@ -53,4 +64,3 @@ const Input = styled("input", {
   fontSize: "$xxlargeheading",
   fontWeight: "$bolder",
 });
-

@@ -1,7 +1,7 @@
 import * as Toggle from "@radix-ui/react-toggle";
 import { styled } from "@stitches/react";
 
-const DaySelector = () => {
+const DaySelector = ({ updateValue }) => {
   const days = [
     {
       name: "Segunda",
@@ -36,7 +36,14 @@ const DaySelector = () => {
   return (
     <div>
       {days.map((day) => (
-        <ToggleRoot key={day.value}>{day.name}</ToggleRoot>
+        <ToggleRoot
+          key={day.value}
+          onChange={(e) => {
+            updateValue(e);
+          }}
+        >
+          {day.name}
+        </ToggleRoot>
       ))}
     </div>
   );
@@ -55,9 +62,9 @@ const ToggleRoot = styled(Toggle.Root, {
   fontSize: "$normal",
   alignItems: "center",
   justifyContent: "center",
-  '&:hover': { color: "$black" },
+  "&:hover": { color: "$black" },
   "&[data-state=on]": { color: "$black", backgroundColor: "$purple" },
-  '&:focus-visible': { border: "2px solid $links", },
+  "&:focus-visible": { border: "2px solid $links" },
 });
 
 export default DaySelector;
