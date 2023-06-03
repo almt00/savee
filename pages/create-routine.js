@@ -64,7 +64,13 @@ export default function Routine() {
   const updateValue = (e) => {
     const name = e?.target.id;
     const value = e?.target.value;
-    setUserData({ ...userData, [name]: value });
+
+    // Concatenate the existing value with the new value, separated by a comma
+    const concatenatedValue = userData[name]
+      ? `${userData[name]},${value}`
+      : value;
+
+    setUserData({ ...userData, [name]: concatenatedValue });
   };
 
   // Grouping forms by section in a component
