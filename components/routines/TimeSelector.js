@@ -24,7 +24,7 @@ export default function TimeSelector({ updateValue, isButtonClicked }) {
     const minutesToSeconds = minuteValue * 60;
     // add all seconds
     const totalSeconds = hoursToSeconds + minutesToSeconds + secondValue;
-    updateValue("duracao", totalSeconds);
+    updateValue("duration_routine", totalSeconds);
   };
 
   useEffect(() => {
