@@ -61,12 +61,22 @@ export default function Routine() {
   };
 
   const updateValue = (name, value) => {
-    // Concatenate the existing value with the new value, separated by a comma
-    const concatenatedValue = userData[name]
-      ? `${userData[name]},${value}`
-      : value;
-
-    setUserData({ ...userData, [name]: concatenatedValue });
+    const currentValue = userData[name];
+  
+    // Create an array if the current value exists and it's not already an array
+    if (currentValue && !Array.isArray(currentValue)) {
+      const updatedValue = [currentValue, value];
+      setUserData({ ...userData, [name]: updatedValue });
+    }
+    // Append the new value to the existing array
+    else if (Array.isArray(currentValue)) {
+      const updatedValue = [...currentValue, value];
+      setUserData({ ...userData, [name]: updatedValue });
+    }
+    // Set the value directly if it doesn't exist or already an array
+    else {
+      setUserData({ ...userData, [name]: value });
+    }
   };
 
   // debugging
