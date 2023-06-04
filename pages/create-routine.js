@@ -25,6 +25,7 @@ export default function Routine() {
   // Function to handle the button submit to calculate time
   const handleButtonClick = () => {
     setIsButtonClicked(true);
+    handleSubmit();
   };
 
   useEffect(() => {
@@ -135,7 +136,7 @@ export default function Routine() {
               onClick={(e) => {
                 e.preventDefault();
                 handleButtonClick();
-                handleSubmit();
+                handleSubmit(); // só pode correr depois da função handleButtonClick terminar
               }}
               className="mt-6"
               bg="solid"
