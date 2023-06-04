@@ -27,7 +27,7 @@ const TimePeriodSelector = ({ updateValue }) => {
         <ToggleRoot
           key={period.value}
           onClick={() => {
-            updateValue("period_time", period.name);
+            updateValue("period_time", period.value);
           }}
           className="mx-2"
         >

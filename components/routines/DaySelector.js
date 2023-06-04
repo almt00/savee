@@ -6,30 +6,37 @@ const DaySelector = ({ updateValue }) => {
     {
       name: "Segunda",
       value: "monday",
+      id: 1,
     },
     {
       name: "Terça",
       value: "tuesday",
+      id: 2,
     },
     {
       name: "Quarta",
       value: "wednesday",
+      id: 3,
     },
     {
       name: "Quinta",
       value: "thursday",
+      id: 4,
     },
     {
       name: "Sexta",
       value: "friday",
+      id: 5,
     },
     {
       name: "Sábado",
       value: "saturday",
+      id: 6,
     },
     {
       name: "Domingo",
       value: "sunday",
+      id: 0,
     },
   ];
 
@@ -39,7 +46,7 @@ const DaySelector = ({ updateValue }) => {
         <ToggleRoot
           key={day.value}
           onClick={() => {
-            updateValue("weekdays", day.name);
+            updateValue("weekdays", day.id);
           }}
         >
           {day.name}
