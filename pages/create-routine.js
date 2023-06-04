@@ -25,7 +25,6 @@ export default function Routine() {
   // Function to handle the button submit to calculate time
   const handleButtonClick = () => {
     setIsButtonClicked(true);
-    handleSubmit();
   };
 
   useEffect(() => {

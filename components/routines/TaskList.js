@@ -23,7 +23,7 @@ const Tasks = ({ onClickEvent, updateValue }) => {
               key={task.name}
               onClick={() => {
                 onClickEvent(task.name);
-                updateValue("task", task.name);
+                updateValue("task", task.id);
               }}
             >
               <TaskImage src={task.image} alt={task.name} />
