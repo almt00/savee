@@ -38,8 +38,8 @@ const DaySelector = ({ updateValue }) => {
       {days.map((day) => (
         <ToggleRoot
           key={day.value}
-          onChange={(e) => {
-            updateValue(e);
+          onClick={() => {
+            updateValue("weekdays", day.name);
           }}
         >
           {day.name}

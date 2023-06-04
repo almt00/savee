@@ -21,9 +21,9 @@ const Tasks = ({ onClickEvent, updateValue }) => {
           return (
             <TaskContainer
               key={task.name}
-              onClick={onClickEvent}
-              onChange={(e) => {
-                updateValue(e);
+              onClick={() => {
+                onClickEvent(task.name);
+                updateValue("task", task.name);
               }}
             >
               <TaskImage src={task.image} alt={task.name} />

@@ -20,23 +20,20 @@ export default function Routine() {
   // state to keep track of the current step
   const [step, setStep] = useState(0);
   const [userData, setUserData] = useState({});
+  const [isButtonClicked, setIsButtonClicked] = useState(false);
+
+  // Function to handle the button submit to calculate time
+  const handleButtonClick = () => {
+    setIsButtonClicked(true);
+  };
 
   useEffect(() => {
     dispatch(setPage("routines"));
   }, []);
 
-  const handleSubmit = async (event) => {
-    // Stop the form from submitting and refreshing the page.
-    event.preventDefault();
-    // Get data from the form.
-    const data = {
-      duration_routine: userData.duracao,
-      task: userData.tarefa,
-      weekdays: userData.dias,
-      period_time: userData.periodo,
-    };
+  const handleSubmit = async () => {
 
-    const JSONdata = JSON.stringify(data);
+    const JSONdata = JSON.stringify(userData);
     console.log(JSONdata);
 
     const id = Cookies.get("userId"); // Get the id value
@@ -47,6 +44,9 @@ export default function Routine() {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
+
+        // Pass the token in the header
+        Authorization: `Bearer ${Cookies.get("token")}`,
       },
       body: JSONdata,
     };
@@ -61,10 +61,7 @@ export default function Routine() {
     }
   };
 
-  const updateValue = (e) => {
-    const name = e?.target.id;
-    const value = e?.target.value;
-
+  const updateValue = (name, value) => {
     // Concatenate the existing value with the new value, separated by a comma
     const concatenatedValue = userData[name]
       ? `${userData[name]},${value}`
@@ -72,6 +69,11 @@ export default function Routine() {
 
     setUserData({ ...userData, [name]: concatenatedValue });
   };
+
+  // debugging
+  useEffect(() => {
+    console.log(userData);
+  }, [userData]);
 
   // Grouping forms by section in a component
   const taskFields = () => (
@@ -102,7 +104,11 @@ export default function Routine() {
   );
 
   const timeFields = () => (
-    <TimeSelector id="duracao" updateValue={updateValue} />
+    <TimeSelector
+      id="duracao"
+      updateValue={updateValue}
+      isButtonClicked={isButtonClicked}
+    />
   );
 
   // array of components to be rendered
@@ -127,7 +133,11 @@ export default function Routine() {
             </Button>
             <Button
               type="submit"
-              onClick={handleSubmit}
+              onClick={(e) => {
+                e.preventDefault();
+                handleButtonClick();
+                handleSubmit();
+              }}
               className="mt-6"
               bg="solid"
               size="lg"
