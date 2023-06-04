@@ -32,7 +32,6 @@ export default function Routine() {
   }, []);
 
   const handleSubmit = async () => {
-
     const JSONdata = JSON.stringify(userData);
     console.log(JSONdata);
 
@@ -46,7 +45,7 @@ export default function Routine() {
         "Content-Type": "application/json",
 
         // Pass the token in the header
-        Authorization: `Bearer ${Cookies.get("token")}`,
+        Authorization: `Bearer ${Cookies.get("userToken")}`,
       },
       body: JSONdata,
     };
