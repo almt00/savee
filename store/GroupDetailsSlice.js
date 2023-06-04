@@ -5,7 +5,7 @@ export const fetchAsyncGroupDetails = createAsyncThunk(
   "groupDetails/fetchAsyncGroupDetails",
   async (id) => {
     let groupDetails_url = `https://savee-api.vercel.app/consumption/house/${id}`;
-    const response = await fetch(groupDetails_url,{
+    const response = await fetch(groupDetails_url, {
       method: "GET",
       headers: {
         Authorization: `Bearer ${Cookies.get("userToken")}`,
@@ -33,7 +33,7 @@ const groupDetailsSlice = createSlice({
       return {
         ...state,
         status: 200,
-        groupDetails: [state.groupDetails, payload],
+        groupDetails: payload,
       };
     },
     [fetchAsyncGroupDetails.rejected]: () => {
