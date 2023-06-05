@@ -24,6 +24,8 @@ const AllRoutines = () => {
   let type = "";
   let weekdays = "";
   let duration = "";
+  let periods = "";
+  let image = "";
   let name = "";
 
   useEffect(() => {
@@ -41,18 +43,24 @@ const AllRoutines = () => {
   }, []);
 
   if (routineData.status === 200 && tasksData.status === 200) {
+
     obj = routineData.routine;
     Routines = obj?.map((routine, index) => {
       type = routine.task;
       weekdays = routine.weekdays;
+      console.log(routine);
+      periods = routine.period_time;
       duration = routine.duration_routine;
 
       // convert duration from seconds to minutes and round it
       duration = Math.round(duration / 60);
 
-      name = tasksData.tasks?.find((task) => task.id === type)?.name || "";
-
-      weekdays = weekdays.map((day) => {
+      name = tasksData.tasks?.find(task => task.id === type)?.name || "";
+      console.log(tasksData);
+      console.log(routineData);
+      image = tasksData.tasks?.find(task => task.id === type)?.image || "";
+      //console.log(image);
+      weekdays = weekdays.map(day => {
         switch (day) {
           case 0:
             return "Dom";
@@ -75,6 +83,17 @@ const AllRoutines = () => {
 
       weekdays = weekdays.join(", ");
 
+      periods = periods.map(period => {
+        switch (period) {
+          case "morning":
+            return "Manhã";
+          case "afternoon":
+            return "Tarde";
+          case "night":
+            return "Noite";
+        }
+      });
+
       return (
         <>
           <Link href="">
@@ -85,9 +104,16 @@ const AllRoutines = () => {
               >
                 <RoutineInfo key={index}>
                   <H4>{name}</H4>
+                 
+                  {/* <TaskImage src={task.image} alt={task.name} /> */}
                   <p className="mt-1">{weekdays}</p>
+                  <p className="mt-1">{periods}</p>
+                  <p className="mt-1">{duration} min</p>
                 </RoutineInfo>
-                <p className="text-muted">{duration} min</p>
+
+                <Button bg="danger" size="md">
+                  Apagar
+                </Button>
               </CardItem>
             </Card>
           </Link>
@@ -97,7 +123,10 @@ const AllRoutines = () => {
   }
 
   return (
-    <Layout description="Página para visualizar rotinas feitas e link para criar nova rotina" title="Rotinas">
+    <Layout
+      description="Página para visualizar rotinas feitas e link para criar nova rotina"
+      title="Rotinas"
+    >
       <Background color="purple" size="extrasmall" />
       <Header page="Rotinas" />
       <div className="relative pt-20 px-6 flex flex-col gap-3 pb-6">
@@ -130,6 +159,11 @@ const CardItem = styled("div", {
 const H4 = styled("h4", {
   fontSize: "$smallheading",
   fontWeight: "$bolder",
+});
+
+
+const TaskImage = styled("img", {
+  width: "2.5rem",
 });
 
 export default AllRoutines;
