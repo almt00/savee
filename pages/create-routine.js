@@ -32,6 +32,8 @@ export default function Routine() {
   }, []);
 
   const handleSubmit = async () => {
+    handleButtonClick(); // Call handleButtonClick function before handleSubmit
+
     const JSONdata = JSON.stringify(userData);
     console.log(JSONdata);
 
@@ -62,7 +64,7 @@ export default function Routine() {
 
   const updateValue = (name, value) => {
     const currentValue = userData[name];
-  
+
     // Create an array if the current value exists and it's not already an array
     if (currentValue && !Array.isArray(currentValue)) {
       const updatedValue = [currentValue, value];
@@ -144,8 +146,7 @@ export default function Routine() {
               type="submit"
               onClick={(e) => {
                 e.preventDefault();
-                handleButtonClick();
-                handleSubmit(); // só pode correr depois da função handleButtonClick terminar
+                handleSubmit();
               }}
               className="mt-6"
               bg="solid"
