@@ -102,15 +102,13 @@ const AllRoutines = () => {
                 className="flex justify-between items-center"
                 key={index}
               >
-                <RoutineInfo key={index}>
+                <TaskImage src={image} alt={name} />
+                <RoutineInfo key={index}>   
                   <H4>{name}</H4>
-                 
-                  {/* <TaskImage src={task.image} alt={task.name} /> */}
                   <p className="mt-1">{weekdays}</p>
                   <p className="mt-1">{periods}</p>
                   <p className="mt-1">{duration} min</p>
                 </RoutineInfo>
-
                 <Button bg="danger" size="md">
                   Apagar
                 </Button>
@@ -154,6 +152,7 @@ const CardItem = styled("div", {
   p: {
     fontSize: "$small",
   },
+  padding: "1.2rem",
 });
 
 const H4 = styled("h4", {
@@ -163,7 +162,7 @@ const H4 = styled("h4", {
 
 
 const TaskImage = styled("img", {
-  width: "2.5rem",
+  width: "64px",
 });
 
 export default AllRoutines;
