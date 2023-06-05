@@ -20,24 +20,20 @@ export default function Routine() {
   // state to keep track of the current step
   const [step, setStep] = useState(0);
   const [userData, setUserData] = useState({});
-  const [isButtonClicked, setIsButtonClicked] = useState(false);
-
-  // Function to handle the button submit to calculate time
-  const handleButtonClick = () => {
-    setIsButtonClicked(true);
-  };
-
+  const id = Cookies.get("userId"); // Get the id value
   useEffect(() => {
     dispatch(setPage("routines"));
   }, []);
 
   const handleSubmit = async () => {
-    handleButtonClick(); // Call handleButtonClick function before handleSubmit
+    const data = {
+      task: userData.task,
+      weekdays: userData.weekdays,
+      period_time: userData.period_time,
+      duration_routine: userData.duration_routine, // em segundos
+    };
 
-    const JSONdata = JSON.stringify(userData);
-    console.log(JSONdata);
-
-    const id = Cookies.get("userId"); // Get the id value
+    const JSONdata = JSON.stringify(data);
 
     const endpoint = `https://savee-api.vercel.app/user/${id}/routine`; // Concatenate the id into the endpoint
 
@@ -45,8 +41,6 @@ export default function Routine() {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-
-        // Pass the token in the header
         Authorization: `Bearer ${Cookies.get("userToken")}`,
       },
       body: JSONdata,
@@ -65,26 +59,32 @@ export default function Routine() {
   const updateValue = (name, value) => {
     const currentValue = userData[name];
 
-    // Create an array if the current value exists and it's not already an array
-    if (currentValue && !Array.isArray(currentValue)) {
-      const updatedValue = [currentValue, value];
-      setUserData({ ...userData, [name]: updatedValue });
-    }
-    // Append the new value to the existing array
-    else if (Array.isArray(currentValue)) {
-      const updatedValue = [...currentValue, value];
-      setUserData({ ...userData, [name]: updatedValue });
-    }
-    // Set the value directly if it doesn't exist or already an array
-    else {
+    if (name === "weekdays" || name === "period_time") {
+      let found = currentValue?.includes(value);
+
+      if (found) {
+        let foundIndex = currentValue.indexOf(value);
+        const updatedValue = currentValue.toSpliced(foundIndex, 1);
+        setUserData({ ...userData, [name]: updatedValue });
+      }
+
+      // Create an array if the current value exists and it's not already an array
+      else if (currentValue && !Array.isArray(currentValue)) {
+        const updatedValue = [currentValue, value];
+        setUserData({ ...userData, [name]: updatedValue });
+      }
+
+      // Append the new value to the existing array
+      else if (Array.isArray(currentValue)) {
+        const updatedValue = [...currentValue, value];
+        setUserData({ ...userData, [name]: updatedValue });
+      } else {
+        setUserData({ ...userData, [name]: [value] });
+      }
+    } else {
       setUserData({ ...userData, [name]: value });
     }
   };
-
-  // debugging
-  useEffect(() => {
-    console.log(userData);
-  }, [userData]);
 
   // Grouping forms by section in a component
   const taskFields = () => (
@@ -115,11 +115,7 @@ export default function Routine() {
   );
 
   const timeFields = () => (
-    <TimeSelector
-      id="duracao"
-      updateValue={updateValue}
-      isButtonClicked={isButtonClicked}
-    />
+    <TimeSelector id="duracao" updateValue={updateValue} />
   );
 
   // array of components to be rendered

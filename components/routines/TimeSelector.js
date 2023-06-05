@@ -1,12 +1,7 @@
 import { styled } from "@stitches/react";
 import React from "react";
-import { useEffect, useState } from "react";
 
-export default function TimeSelector({ updateValue, isButtonClicked }) {
-  const [hours, setHours] = useState(0);
-  const [minutes, setMinutes] = useState(0);
-  const [seconds, setSeconds] = useState(0);
-
+export default function TimeSelector({ updateValue }) {
   const handleCalculateClick = () => {
     const hourValue =
       parseInt(document.getElementById("hourInput").value, 10) || 0;
@@ -14,9 +9,6 @@ export default function TimeSelector({ updateValue, isButtonClicked }) {
       parseInt(document.getElementById("minuteInput").value, 10) || 0;
     const secondValue =
       parseInt(document.getElementById("secondInput").value, 10) || 0;
-    setHours(hourValue);
-    setMinutes(minuteValue);
-    setSeconds(secondValue);
 
     // convert hours to seconds
     const hoursToSeconds = hourValue * 3600;
@@ -26,12 +18,6 @@ export default function TimeSelector({ updateValue, isButtonClicked }) {
     const totalSeconds = hoursToSeconds + minutesToSeconds + secondValue;
     updateValue("duration_routine", totalSeconds);
   };
-
-  useEffect(() => {
-    if (isButtonClicked) {
-      handleCalculateClick();
-    }
-  }, [isButtonClicked]);
 
   return (
     <>
@@ -50,6 +36,7 @@ export default function TimeSelector({ updateValue, isButtonClicked }) {
             maxLength="2"
             min={0}
             max={24}
+            onChange={handleCalculateClick}
           />
         </div>
         <div className="border-b-2 border-purple">
@@ -64,6 +51,7 @@ export default function TimeSelector({ updateValue, isButtonClicked }) {
             maxLength="2"
             min={0}
             max={60}
+            onChange={handleCalculateClick}
           />
         </div>
         <div className="border-b-2 border-purple">
@@ -78,10 +66,10 @@ export default function TimeSelector({ updateValue, isButtonClicked }) {
             maxLength="2"
             min={0}
             max={60}
+            onChange={handleCalculateClick}
           />
         </div>
       </form>
-
     </>
   );
 }
