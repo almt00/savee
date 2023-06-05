@@ -7,11 +7,12 @@ import Link from "next/link";
 import Button from "../components/elements/Button";
 import Layout from "../components/elements/Layout";
 import Cookies from "js-cookie";
-import router from "next/router";
+import { useRouter } from "next/router";
 import { useDispatch } from "react-redux";
 
 const Invoice = () => {
   const dispatch = useDispatch();
+  const router = useRouter();
 
   const handleSubmit = async (event) => {
     // Stop the form from submitting and refreshing the page.
