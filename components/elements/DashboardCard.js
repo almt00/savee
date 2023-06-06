@@ -16,11 +16,20 @@ import { useEffect } from "react";
 import Card from "./Card";
 import Cookies from "js-cookie";
 import { getUser } from "../../store/UserSlice";
+import {
+  fetchAsyncPaymentGroupDetailsSlice,
+  getPaymentGroupDetails,
+} from "../../store/PaymentGroupDetailsSlice";
+import {
+  fetchAsyncPaymentGroupSlice,
+  getPaymentGroup,
+} from "../../store/PaymentGroupSlice";
 
 const DashboardCard = () => {
   const dispatch = useDispatch();
   const tasksData = useSelector(getTasks);
   const groupData = useSelector(getGroup);
+  const groupPayment = useSelector(getPaymentGroup);
   const groupDetailsData = useSelector(getGroupDetails);
   const consumptionData = useSelector(getConsumption);
   const houseId = Cookies.get("houseId");
@@ -36,10 +45,11 @@ const DashboardCard = () => {
   lastMonth.setMonth(lastMonth.getMonth() - 1); // data de há um mes atras, ver data fatura
   let members;
   let dayDif;
+  let sumConsumptionGroup = 0;
 
   useEffect(() => {
-    if (groupData.status !== 200) {
-      dispatch(fetchAsyncGroup(houseId)); // fazer o fetch com redux do grupo
+    if (groupPayment.status !== 200) {
+      dispatch(fetchAsyncPaymentGroupSlice(houseId)); // fazer o fetch com redux do grupo
     }
     if (groupDetailsData.status !== 200) {
       dispatch(fetchAsyncGroupDetails(houseId)); // fazer o fetch com redux do grupo
@@ -79,16 +89,42 @@ const DashboardCard = () => {
     consDif = (Math.round(lastMonthCons - sumConsumption) / 100).toFixed(1);
   }
 
-  if (groupData.status === 200) {
-    let invoice = groupData.group.invoice_date; //Guarda o dia do invoice do grupo
-    const groupFullDate = new Date(invoice);
+  if (
+    consumptionData.status === 200 &&
+    tasksData.status === 200 &&
+    groupDetailsData.status === 200
+  ) {
+    let groupConsumeHist = groupDetailsData.groupDetails;
+    groupConsumeHist.forEach((element) => {
+      if (element.type === 1) {
+        taskId = element.task.task;
+        startTime = new Date(element.task?.start_time);
+        endTime = new Date(element.task?.end_time);
+        duration = (endTime.getTime() - startTime.getTime()) / 1000 / 60 / 60;
+      } else if (element.type === 0) {
+        taskId = element.routine.task;
+        startTime = new Date(element.consumption_date);
+        /*  let endTime = new Date(element.task?.end_time); */
+        duration = element.routine.duration_routine / 60 / 60;
+      }
+      let chosenTask = tasksData.tasks.find((task) => task.id === taskId);
+      let consumption = chosenTask.kw_hour * duration;
+      if (startTime >= lastMonth) {
+        sumConsumptionGroup += consumption;
+      }
+    });
+  }
+
+  if (groupPayment.status === 200) {
+    let payment_date = groupPayment.paymentGroup[0].date_payment; //Guarda o dia do invoice do grupo
+    const groupFullDate = new Date(payment_date);
     let payDate = new Date(
       groupFullDate.setMonth(groupFullDate.getMonth() + 1)
-    );
+    ); //adicionar msg caso o mes n seja o certo aka pagamento em atraso
     let today = new Date();
     dayDif = new Date(payDate - today).getDate();
   }
-  let kwTotalGroup = 3210;
+  let kwTotalGroup = Math.round(sumConsumptionGroup);
   let kwTotalUser = Math.round(sumConsumption);
   let numberDays = dayDif;
   let percentage = consDif.toString().replace(/-/g, "");
