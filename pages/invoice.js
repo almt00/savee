@@ -16,21 +16,46 @@ const Invoice = () => {
   const router = useRouter();
 
   const handleSubmit = async (event) => {
-    // Stop the form from submitting and refreshing the page.
     event.preventDefault();
-    // Get data from the form.
-    const data = {
-      value_payment: parseInt(document.getElementById("valorfatura").value),
+    const valuePayment = parseInt(document.getElementById("valorfatura").value);
+
+    // Check if there's already an entry in the last 28 days
+    const currentDate = new Date();
+    const last28Days = new Date();
+    last28Days.setDate(currentDate.getDate() - 28);
+    const id = Cookies.get("houseId");
+    const endpoint = `https://savee-api.vercel.app/house/${id}/payment`;
+    const options = {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${Cookies.get("userToken")}`,
+      },
     };
 
+    const response = await fetch(endpoint, options);
+    const result = await response.json();
+
+    if (result.status === 200) {
+      const paymentEntries = Object.values(result);
+      const existingEntry = paymentEntries.some((entry) => {
+        const entryDate = new Date(entry.date_payment);
+        return entryDate >= last28Days && entryDate <= currentDate;
+      });
+      if (existingEntry) {
+        // An entry already exists in the last 28 days, show an error
+        alert("An entry in the last 28 days already exists.");
+        return;
+      }
+    }
+
+    const data = {
+      value_payment: valuePayment,
+    };
     const JSONdata = JSON.stringify(data);
-    console.log(JSONdata);
 
-    const id = Cookies.get("houseId"); // Get the id from the cookie
-
-    const endpoint = `https://savee-api.vercel.app/house/${id}/payment`; // Concatenate the id into the endpoint
-
-    const options = {
+    const createEndpoint = `https://savee-api.vercel.app/house/${id}/payment`;
+    const createOptions = {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -39,11 +64,10 @@ const Invoice = () => {
       body: JSONdata,
     };
 
-    const response = await fetch(endpoint, options);
+    const createResponse = await fetch(createEndpoint, createOptions);
+    const createResult = await createResponse.json();
 
-    const result = await response.json();
-
-    if (result.success) {
+    if (createResult.success) {
       dispatch(fetchAsyncUser());
       router.push("/payment");
     }
