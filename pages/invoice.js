@@ -10,10 +10,13 @@ import Cookies from "js-cookie";
 import { useRouter } from "next/router";
 import { useDispatch } from "react-redux";
 import { fetchAsyncUser } from "../store/UserSlice";
+import { styled } from "@stitches/react";
+import { useState } from "react";
 
 const Invoice = () => {
   const dispatch = useDispatch();
   const router = useRouter();
+  const [existingEntry, setExistingEntry] = useState(false); // Declare the existingEntry state
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -40,13 +43,12 @@ const Invoice = () => {
 
     if (result.length > 0) {
       // check if there's an entry in the last 28 days
-      const existingEntry = result.some((entry) => {
+      const hasExistingEntry = result.some((entry) => {
         const entryDate = new Date(entry.date_payment);
         return entryDate >= last28Days && entryDate <= currentDate;
       });
-      if (existingEntry) {
-        // An entry already exists in the last 28 days, show an error
-        alert("An entry in the last 28 days already exists.");
+      if (hasExistingEntry) {
+        setExistingEntry(true);
         return;
       }
     }
@@ -96,6 +98,9 @@ const Invoice = () => {
             </p>
             <div className="mt-6">
               <Form id="valorfatura" name="Valor fatura" type="number" />
+              {existingEntry && (
+                <ErrorMessage>Já existe uma fatura para este mês.</ErrorMessage>
+              )}
             </div>
             <div className="text-center">
               <Button
@@ -114,4 +119,10 @@ const Invoice = () => {
     </>
   );
 };
+
+const ErrorMessage = styled("p", {
+  color: "$danger",
+  fontSize: "small",
+});
+
 export default Invoice;
