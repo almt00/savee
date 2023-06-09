@@ -36,9 +36,11 @@ const Invoice = () => {
     const response = await fetch(endpoint, options);
     const result = await response.json();
 
-    if (result.status === 200) {
-      const paymentEntries = Object.values(result);
-      const existingEntry = paymentEntries.some((entry) => {
+    console.log(result);
+
+    if (result.length > 0) {
+      // check if there's an entry in the last 28 days
+      const existingEntry = result.some((entry) => {
         const entryDate = new Date(entry.date_payment);
         return entryDate >= last28Days && entryDate <= currentDate;
       });
