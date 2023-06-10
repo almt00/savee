@@ -97,7 +97,7 @@ const Invoice = () => {
               com os vossos consumos.
             </p>
             <div className="mt-6">
-              <Form id="valorfatura" name="Valor fatura" type="number" />
+              <Form id="valorfatura" name="Valor fatura" type="number" min="1" required />
               {existingEntry && (
                 <ErrorMessage>Já existe uma fatura para este mês.</ErrorMessage>
               )}
