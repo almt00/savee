@@ -69,13 +69,20 @@ export default function Register() {
     if (response.status === 500) {
       alert("Já existe um utilizador com este email.");
     }
-
   };
 
   const updateValue = (e) => {
     const name = e?.target.id;
     const value = e?.target.value;
     setUserData({ ...userData, [name]: value });
+  };
+
+  // save multiple email_colega emails in an array when separated by a comma
+  const updateEmailsValue = (e) => {
+    const name = e?.target.id;
+    const value = e?.target.value;
+    const emails = value.split(",");
+    setUserData({ ...userData, [name]: emails });
   };
 
   //Grouping forms by section in a component
@@ -200,7 +207,7 @@ export default function Register() {
           name="Emails colegas"
           type="email"
           onChange={(e) => {
-            updateValue(e);
+            updateEmailsValue(e);
           }}
         />
       </div>
@@ -288,9 +295,10 @@ export default function Register() {
   return (
     <>
       {step <= 3 && (
-
-         <Layout description="Página para criar uma conta e um grupo de partilha em Savee, segue os passos com a informação adequada e poderas usufruir das vantagens de utilizar Savee." title="Criar conta">
-
+        <Layout
+          description="Página para criar uma conta e um grupo de partilha em Savee, segue os passos com a informação adequada e poderas usufruir das vantagens de utilizar Savee."
+          title="Criar conta"
+        >
           <Background color="mint" />
 
           <div className="py-4 px-6">
