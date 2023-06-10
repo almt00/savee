@@ -94,6 +94,8 @@ const AllRoutines = () => {
         }
       });
 
+      periods = periods.join(", ");
+
       return (
         <>
           <Link href="">
@@ -152,7 +154,8 @@ const CardItem = styled("div", {
   p: {
     fontSize: "$small",
   },
-  padding: "1.2rem",
+  paddingLeft: "1.2rem",
+  paddingRight: "1.2rem",
 });
 
 const H4 = styled("h4", {
