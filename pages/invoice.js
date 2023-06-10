@@ -11,22 +11,26 @@ import { useRouter } from "next/router";
 import { useDispatch } from "react-redux";
 import { fetchAsyncUser } from "../store/UserSlice";
 import { styled } from "@stitches/react";
-import { useState } from "react";
+import { useRef, useState } from "react";
 
 const Invoice = () => {
   const dispatch = useDispatch();
   const router = useRouter();
   const [existingEntry, setExistingEntry] = useState(false); // Declare the existingEntry state
+  const [errorValue, setErrorValue] = useState(false); // Declare the existingEntry state
 
   const handleSubmit = async (event) => {
     event.preventDefault();
     const valuePayment = parseInt(document.getElementById("valorfatura").value);
+    console.log(valuePayment);
 
     // Check if valuePayment is empty
     if (isNaN(valuePayment) || valuePayment <= 0) {
       // Show error message
-      setExistingEntry(true);
+      setErrorValue(true);
       return;
+    } else {
+      setErrorValue(false);
     }
 
     // Check if there's already an entry in the last 28 days
@@ -111,8 +115,11 @@ const Invoice = () => {
                 min="1"
                 required
               />
-              {existingEntry && (
+              {existingEntry && errorValue === false && (
                 <ErrorMessage>Não foi possível submeter a fatura.</ErrorMessage>
+              )}
+              {errorValue === true && (
+                <ErrorMessage>Por favor insere o valor da fatura.</ErrorMessage>
               )}
             </div>
             <div className="text-center">
