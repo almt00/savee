@@ -22,6 +22,13 @@ const Invoice = () => {
     event.preventDefault();
     const valuePayment = parseInt(document.getElementById("valorfatura").value);
 
+    // Check if valuePayment is empty
+    if (isNaN(valuePayment) || valuePayment <= 0) {
+      // Show error message
+      setExistingEntry(true);
+      return;
+    }
+
     // Check if there's already an entry in the last 28 days
     const currentDate = new Date();
     const last28Days = new Date();
@@ -97,9 +104,15 @@ const Invoice = () => {
               com os vossos consumos.
             </p>
             <div className="mt-6">
-              <Form id="valorfatura" name="Valor fatura" type="number" min="1" required />
+              <Form
+                id="valorfatura"
+                name="Valor fatura"
+                type="number"
+                min="1"
+                required
+              />
               {existingEntry && (
-                <ErrorMessage>Já existe uma fatura para este mês.</ErrorMessage>
+                <ErrorMessage>Não foi possível submeter a fatura.</ErrorMessage>
               )}
             </div>
             <div className="text-center">
