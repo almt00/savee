@@ -10,27 +10,67 @@ import Cookies from "js-cookie";
 import { useRouter } from "next/router";
 import { useDispatch } from "react-redux";
 import { fetchAsyncUser } from "../store/UserSlice";
+import { styled } from "@stitches/react";
+import { useRef, useState } from "react";
 
 const Invoice = () => {
   const dispatch = useDispatch();
   const router = useRouter();
+  const [existingEntry, setExistingEntry] = useState(false); // Declare the existingEntry state
+  const [errorValue, setErrorValue] = useState(false); // Declare the existingEntry state
 
   const handleSubmit = async (event) => {
-    // Stop the form from submitting and refreshing the page.
     event.preventDefault();
-    // Get data from the form.
-    const data = {
-      value_payment: parseInt(document.getElementById("valorfatura").value),
+    const valuePayment = parseInt(document.getElementById("valorfatura").value);
+    console.log(valuePayment);
+
+    // Check if valuePayment is empty
+    if (isNaN(valuePayment) || valuePayment <= 0) {
+      // Show error message
+      setErrorValue(true);
+      return;
+    } else {
+      setErrorValue(false);
+    }
+
+    // Check if there's already an entry in the last 28 days
+    const currentDate = new Date();
+    const last28Days = new Date();
+    last28Days.setDate(currentDate.getDate() - 28);
+    const id = Cookies.get("houseId");
+    const endpoint = `https://savee-api.vercel.app/house/${id}/payment`;
+    const options = {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${Cookies.get("userToken")}`,
+      },
     };
 
+    const response = await fetch(endpoint, options);
+    const result = await response.json();
+
+    console.log(result);
+
+    if (result.length > 0) {
+      // check if there's an entry in the last 28 days
+      const hasExistingEntry = result.some((entry) => {
+        const entryDate = new Date(entry.date_payment);
+        return entryDate >= last28Days && entryDate <= currentDate;
+      });
+      if (hasExistingEntry) {
+        setExistingEntry(true);
+        return;
+      }
+    }
+
+    const data = {
+      value_payment: valuePayment,
+    };
     const JSONdata = JSON.stringify(data);
-    console.log(JSONdata);
 
-    const id = Cookies.get("houseId"); // Get the id from the cookie
-
-    const endpoint = `https://savee-api.vercel.app/house/${id}/payment`; // Concatenate the id into the endpoint
-
-    const options = {
+    const createEndpoint = `https://savee-api.vercel.app/house/${id}/payment`;
+    const createOptions = {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -39,11 +79,10 @@ const Invoice = () => {
       body: JSONdata,
     };
 
-    const response = await fetch(endpoint, options);
+    const createResponse = await fetch(createEndpoint, createOptions);
+    const createResult = await createResponse.json();
 
-    const result = await response.json();
-
-    if (result.success) {
+    if (createResult.success) {
       dispatch(fetchAsyncUser());
       router.push("/payment");
     }
@@ -69,7 +108,19 @@ const Invoice = () => {
               com os vossos consumos.
             </p>
             <div className="mt-6">
-              <Form id="valorfatura" name="Valor fatura" type="number" />
+              <Form
+                id="valorfatura"
+                name="Valor fatura"
+                type="number"
+                min="1"
+                required
+              />
+              {existingEntry && errorValue === false && (
+                <ErrorMessage>Não foi possível submeter a fatura.</ErrorMessage>
+              )}
+              {errorValue === true && (
+                <ErrorMessage>Por favor insere o valor da fatura.</ErrorMessage>
+              )}
             </div>
             <div className="text-center">
               <Button
@@ -88,4 +139,10 @@ const Invoice = () => {
     </>
   );
 };
+
+const ErrorMessage = styled("p", {
+  color: "$danger",
+  fontSize: "small",
+});
+
 export default Invoice;
