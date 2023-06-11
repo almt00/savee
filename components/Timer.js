@@ -2,36 +2,64 @@ import React, { useEffect, useState } from "react";
 import Button from "./elements/Button";
 import Tip from "./elements/Tip";
 import { styled } from "@stitches/react";
+import Cookies from "js-cookie";
+import { useRouter } from "next/router";
 
-export default function Timer() {
+export default function Timer(props) {
   const [time, setTime] = useState(0);
   const [running, setRunning] = useState(false);
   const [color, setColor] = useState("text-muted");
-  let start_time = null;
-  let end_time = null;
+  const [startTime, setStartTime] = useState(null);
+  const userId = Cookies.get("userId");
+
+  let taskId;
+  const router = useRouter();
+  const query = router.query; // ir buscar query string ao URL
+  if (query === {} || query.id === undefined || props.taskId) {
+    // ver se esta task vem com info de props ou da query string
+    taskId = props.taskId; // passar para inteiro para comparar com id da API
+  } else {
+    taskId = parseInt(query.id); // passar para inteiro para comparar com id da API
+  }
+
+  const handleSubmit = async (event) => {
+    const data = {
+      start_time: startTime,
+      end_time: new Date(),
+      duration: parseInt(time / 1000),
+      task: taskId,
+    };
+
+    console.log(data);
+
+    const JSONdata = JSON.stringify(data);
+
+    const endpoint = `https://savee-api.vercel.app/user/${userId}/task`;
+
+    const options = {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${Cookies.get("userToken")}`,
+      },
+      body: JSONdata,
+    };
+
+    const response = await fetch(endpoint, options);
+
+    const result = await response.json();
+    if (result.success) {
+      //router.push("/homepage");
+    }
+  };
 
   useEffect(() => {
     let interval;
 
-    if (running === true && start_time === null) {
-      setTime(0);
-      start_time = new Date();
-      console.log("start");
-      console.log(start_time);
-    }
-
-    if (running === false && end_time === null) {
-      console.log(start_time);
-
-      end_time = new Date();
-      console.log("end");
-      console.log(end_time);
-      let duration =
-        (end_time?.getTime() - start_time?.getTime()) / 1000 / 60 / 60;
-      console.log(start_time, end_time, duration);
-    }
-
     if (running) {
+      setTime(0);
+      let start_time = new Date();
+      setStartTime(start_time);
       setColor("text-black");
       interval = setInterval(() => {
         setTime((prevTime) => prevTime + 1000);
@@ -73,7 +101,10 @@ export default function Timer() {
           aria-label="click para parar o contador de tempo"
           bg="danger"
           className="p-4 mt-6"
-          onClick={() => setRunning(false)}
+          onClick={() => {
+            setRunning(false);
+            handleSubmit();
+          }}
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
