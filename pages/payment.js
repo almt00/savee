@@ -24,6 +24,7 @@ const Payment = () => {
   const payment = useSelector(getPaymentGroupDetails);
   const paymentid = id ? id : null;
   const houseId = Cookies.get("houseId");
+  const userid = Cookies.get("userId");
   const taskid = "";
   let chosenTask = null;
   let totalConsumption = 0;
@@ -32,18 +33,20 @@ const Payment = () => {
 
   useEffect(() => {
     dispatch(setPage("payment"));
+  }, [dispatch]);
 
+  useEffect(() => {
     if (paymentid && insights.status !== 200 && tasks.status !== 200) {
       dispatch(fetchAsyncInsightsSlice({ paymentid, taskid, userid }));
       dispatch(fetchAsyncTasks());
     }
+  }, [dispatch, paymentid, insights.status, tasks.status, userid]);
 
-    if (paymentid && payment.status !== 200) {
-      dispatch(
-        fetchAsyncPaymentGroupDetailsSlice({ houseid: houseId, paymentid })
-      );
+  useEffect(() => {
+    if (paymentid && insights.status === 200 && tasks.status === 200) {
+      dispatch(fetchAsyncPaymentGroupDetailsSlice({ houseid: houseId, paymentid }));
     }
-  }, [dispatch, paymentid, payment]);
+  }, [dispatch, paymentid, insights.status, tasks.status, houseId]);
 
   // map tasks and save all task_id in array
   let task_list = [];
