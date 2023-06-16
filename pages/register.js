@@ -7,7 +7,7 @@ import Form from "../components/elements/Form";
 import Button from "../components/elements/Button";
 import Background from "../components/elements/Background";
 import Link from "next/link";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import Cookies from "js-cookie";
 import { useDispatch } from "react-redux";
 import { fetchAsyncUser } from "../store/UserSlice";
@@ -22,9 +22,35 @@ export default function Register() {
   const maxDate = new Date().toISOString().split("T")[0];
   const [userData, setUserData] = useState({});
 
+  const primeiroNomeRef = useRef(null);
+  const nomeGrupoRef = useRef(null);
+  const dataFaturaRef = useRef(null);
+
   const updateStep = () => {
     setStep(step + 1);
   };
+
+  useEffect(() => {
+    // Clear the value of the first form input in each step
+    if (step === 1 && primeiroNomeRef.current) {
+      primeiroNomeRef.current.value = "";
+    } else if (step === 2 && nomeGrupoRef.current) {
+      nomeGrupoRef.current.value = "";
+    } else if (step === 3 && dataFaturaRef.current) {
+      dataFaturaRef.current.value = "";
+    }
+
+    // Reset the form inputs by setting defaultValue
+    if (primeiroNomeRef.current) {
+      primeiroNomeRef.current.defaultValue = "";
+    }
+    if (nomeGrupoRef.current) {
+      nomeGrupoRef.current.defaultValue = "";
+    }
+    if (dataFaturaRef.current) {
+      dataFaturaRef.current.defaultValue = "";
+    }
+  }, [step]);
 
   const dispatch = useDispatch();
 
@@ -69,7 +95,6 @@ export default function Register() {
     if (response.status === 500) {
       alert("Já existe um utilizador com este email.");
     }
-
   };
 
   const updateValue = (e) => {
@@ -130,6 +155,7 @@ export default function Register() {
           name="Primeiro nome"
           type="text"
           required
+          ref={primeiroNomeRef}
           onChange={(e) => {
             updateValue(e);
           }}
@@ -140,7 +166,6 @@ export default function Register() {
           id="segundo_nome"
           name="Apelido"
           type="text"
-          value=""
           required
           onChange={(e) => {
             updateValue(e);
@@ -184,6 +209,7 @@ export default function Register() {
           id="nome_grupo"
           name="Nome grupo"
           type="text"
+          ref={nomeGrupoRef}
           onChange={(e) => {
             updateValue(e);
           }}
@@ -244,6 +270,7 @@ export default function Register() {
           name="Data da última fatura"
           type="date"
           min="2022-01-01"
+          ref={dataFaturaRef}
           max={maxDate}
           onChange={(e) => {
             updateValue(e);
@@ -288,9 +315,10 @@ export default function Register() {
   return (
     <>
       {step <= 3 && (
-
-         <Layout description="Página para criar uma conta e um grupo de partilha em Savee, segue os passos com a informação adequada e poderas usufruir das vantagens de utilizar Savee." title="Criar conta">
-
+        <Layout
+          description="Página para criar uma conta e um grupo de partilha em Savee, segue os passos com a informação adequada e poderas usufruir das vantagens de utilizar Savee."
+          title="Criar conta"
+        >
           <Background color="mint" />
 
           <div className="py-4 px-6">
