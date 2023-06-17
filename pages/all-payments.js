@@ -1,4 +1,5 @@
 import Layout from "../components/elements/Layout";
+import withAuth from "../components/withAuth";
 import { styled } from "../stitches.config";
 import Card from "../components/elements/Card";
 import Header from "../components/elements/Header";
@@ -121,4 +122,4 @@ const CardItem = styled("div", {
   },
 });
 
-export default AllPayments;
+export default withAuth(AllPayments);
