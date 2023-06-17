@@ -5,7 +5,7 @@ export const fetchAsyncRoutineSlice = createAsyncThunk(
   "user/fetchAsyncRoutine",
   async (id) => {
     let routine_url = `https://savee-api.vercel.app/user/${id}/routine`;
-    const response = await fetch(routine_url,{
+    const response = await fetch(routine_url, {
       method: "GET",
       headers: {
         Authorization: `Bearer ${Cookies.get("userToken")}`,
@@ -30,7 +30,7 @@ const routineSlice = createSlice({
     },
     [fetchAsyncRoutineSlice.fulfilled]: (state, { payload }) => {
       console.log("fetched successfully!");
-      return { ...state, status: 200, routine: payload  };
+      return { ...state, status: 200, routine: payload };
     },
     [fetchAsyncRoutineSlice.rejected]: () => {
       console.log("rejected :( ");

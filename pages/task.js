@@ -1,4 +1,5 @@
 import { React, useState } from "react";
+import withAuth from "../components/withAuth";
 import Layout from "../components/elements/Layout";
 import Background from "../components/elements/Background";
 import Card from "../components/elements/Card";
@@ -7,13 +8,16 @@ import Task from "../components/elements/Task";
 import Timer from "../components/Timer";
 import Breadcrumb from "../components/elements/Breadcrumb";
 
-export default function task() {
+function task() {
   return (
-    <Layout description="Página para registar tarefas individuais que não fazem parte das rotinas" title="Tarefa">
+    <Layout
+      description="Página para registar tarefas individuais que não fazem parte das rotinas"
+      title="Tarefa"
+    >
       <Background color="yellow" />
       <Header page="Tarefa" />
       <div className="relative pt-20 px-6 flex flex-col gap-3 pb-6">
-        <Breadcrumb/>
+        <Breadcrumb />
         <Card classes="flex flex-col justify-center items-center">
           <Task size="lg"></Task>
           <Timer />
@@ -22,3 +26,5 @@ export default function task() {
     </Layout>
   );
 }
+
+export default withAuth(task);

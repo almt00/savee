@@ -1,4 +1,5 @@
 import Layout from "../components/elements/Layout";
+import withAuth from "../components/withAuth";
 import { styled } from "../stitches.config";
 import Card from "../components/elements/Card";
 import Header from "../components/elements/Header";
@@ -160,6 +161,7 @@ const H4 = styled("h4", {
   fontSize: "$smallheading",
   fontWeight: "$bolder",
 });
+
 
 const TaskImage = styled("img", {
   width: "64px",

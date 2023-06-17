@@ -1,4 +1,5 @@
 import Layout from "../components/elements/Layout";
+import withAuth from "../components/withAuth";
 import { styled } from "../stitches.config";
 import Card from "../components/elements/Card";
 import Header from "../components/elements/Header";
@@ -72,7 +73,7 @@ const AllUsage = () => {
           <Card type="stroke" key={index}>
             <CardItem className="flex justify-between items-center" key={index}>
               <UsageInfo key={index}>
-              <H4>{cleantaskDuration} min</H4>
+                <H4>{cleantaskDuration} min</H4>
                 <p> {taskName}</p>
               </UsageInfo>
               <p className="text-muted">{cleanDate}</p>
@@ -84,7 +85,10 @@ const AllUsage = () => {
   }
 
   return (
-    <Layout description="Página que permite visualizar o histórico de tarefas realizadas cronologicamente da mais recente para a mais antiga." title="Histórico de uso">
+    <Layout
+      description="Página que permite visualizar o histórico de tarefas realizadas cronologicamente da mais recente para a mais antiga."
+      title="Histórico de uso"
+    >
       <Background color="orange" size="extrasmall" />
       <Header page="Histórico uso" />
       <div className="relative pt-20 px-6 flex flex-col gap-3 pb-6">
@@ -127,4 +131,4 @@ const H4 = styled("h4", {
   fontSize: "$smallheading",
   fontWeight: "$bolder",
 });
-export default AllUsage;
+export default withAuth(AllUsage);

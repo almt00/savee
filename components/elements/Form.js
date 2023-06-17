@@ -1,14 +1,16 @@
 import * as Label from "@radix-ui/react-label";
 import { styled } from "@stitches/react";
-import { useEffect } from "react";
-import Image from "next/image";
-// to do form validation
-// to do error message
+import { useEffect, useRef, forwardRef } from "react";
 
-const Form = (props) => {
-  // Pass props to label and default value
-  // Pass props to type
+const Form = forwardRef((props, ref) => {
   console.log("render");
+  const inputRef = useRef(null);
+
+  useEffect(() => {
+    if (inputRef.current) {
+      inputRef.current.value = "";
+    }
+  }, [props.name]);
 
   const messageList = [
     {
@@ -73,23 +75,6 @@ const Form = (props) => {
     }
   });
 
-  //dummy verify so pra testar umas coisas, n esta a ser usado atm
-  /*
-  useEffect(() => {
-    const verify = () => {
-      if (document.getElementById(props.name)) {
-        let inputValue = document.getElementById(props.name).value;
-        if (inputValue === "Pedro") {
-          console.log("cool");
-        } else {
-          console.log("sad");
-        }
-        console.log(inputValue);
-      }
-    };
-  }, []);
-  */
-
   const clickedInput = (e) => {
     e.preventDefault();
   };
@@ -113,7 +98,7 @@ const Form = (props) => {
           min={props.min}
           max={props.max}
           onChange={props.onChange}
-          //onClick={clickedInput}
+          ref={ref || inputRef}
         />
       ) : (
         <Input
@@ -128,16 +113,14 @@ const Form = (props) => {
           max={props.max}
           name={props.name}
           onChange={props.onChange}
-          //onClick={clickedInput}
+          ref={ref || inputRef}
         />
       )}
-      {/* <div id={`${props.id}_error`} className="hidden">
-        <Image src="/img/x-circle.svg" alt="Erro" width="20" height="20" />
-        <p>Isto é um erro</p>
-      </div> */}
     </Container>
   );
-};
+});
+
+Form.displayName = "Form"; // Add this line to set the display name
 
 const LabelRoot = styled(Label.Root, {
   fontSize: "$normal",
