@@ -1,4 +1,5 @@
 import Layout from "../components/elements/Layout";
+import withAuth from "../components/withAuth";
 import { styled } from "../stitches.config";
 import Card from "../components/elements/Card";
 import Header from "../components/elements/Header";
@@ -97,7 +98,10 @@ const AllRoutines = () => {
   }
 
   return (
-    <Layout description="Página para visualizar rotinas feitas e link para criar nova rotina" title="Rotinas">
+    <Layout
+      description="Página para visualizar rotinas feitas e link para criar nova rotina"
+      title="Rotinas"
+    >
       <Background color="purple" size="extrasmall" />
       <Header page="Rotinas" />
       <div className="relative pt-20 px-6 flex flex-col gap-3 pb-6">
@@ -132,4 +136,4 @@ const H4 = styled("h4", {
   fontWeight: "$bolder",
 });
 
-export default AllRoutines;
+export default withAuth(AllRoutines);

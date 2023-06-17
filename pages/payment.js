@@ -1,4 +1,5 @@
 import { styled } from "../stitches.config";
+import withAuth from "../components/withAuth";
 import Layout from "../components/elements/Layout";
 import Background from "../components/elements/Background";
 import PaymentCard from "../components/payment/PaymentCard";
@@ -135,7 +136,7 @@ const Payment = () => {
   }
 };
 
-export default Payment;
+export default withAuth(Payment);
 
 const H3 = styled("h3", {
   fontSize: "$mediumheading",

@@ -12,8 +12,9 @@ import { useRouter } from "next/router";
 import { useDispatch } from "react-redux";
 import { setPage } from "../store/PageSlice";
 import { useEffect } from "react";
+import withAuth from "../components/withAuth";
 
-export default function Homepage() {
+function Homepage() {
   const dispatch = useDispatch();
   const router = useRouter();
   const query = router.query; // ir buscar query string ao URL
@@ -35,26 +36,30 @@ export default function Homepage() {
   });
 
   return (
-    <Layout
-      description="Página principal da plataforma onde podes ver os consumos mensais e realizar tarefas para poupares a tua carteira o ambiente"
-      title="Homepage SAVEE"
-    >
-      <Background color="mint" />
-      <Header page="Homepage" />
-      <div className="relative pt-20 px-6 flex flex-col gap-3 pb-6">
-        <DisplayName />
-        <Banner toDay={toDay} />
-        <DashboardCard />
-        <Tasks />
-        <div>
-          <div className="flex justify-between items-center">
-            <H5>Hoje</H5>
-            <p className="text-muted">{date}</p>
+    <>
+      <Layout
+        description="Página principal da plataforma onde podes ver os consumos mensais e realizar tarefas para poupares a tua carteira o ambiente"
+        title="Homepage SAVEE"
+      >
+        <Background color="mint" />
+        <Header page="Homepage" />
+        <div className="relative pt-20 px-6 flex flex-col gap-3 pb-6">
+          <DisplayName />
+          <Banner toDay={toDay} />
+          <DashboardCard />
+          <Tasks />
+          <div>
+            <div className="flex justify-between items-center">
+              <H5>Hoje</H5>
+              <p className="text-muted">{date}</p>
+            </div>
           </div>
+          <RoutinesList />
+          {toastStatus === "success" ? <Toaster className="show" /> : ""}
         </div>
-        <RoutinesList />
-        {toastStatus === "success" ? <Toaster className="show" /> : ""}
-      </div>
-    </Layout>
+      </Layout>
+    </>
   );
 }
+
+export default withAuth(Homepage);
