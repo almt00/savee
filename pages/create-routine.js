@@ -130,16 +130,6 @@ function Routine() {
         {step === fieldGroups.length - 1 && (
           <>
             <Button
-              className="mt-6 mr-4"
-              bg="transparent"
-              size="lg"
-              onClick={() => {
-                setStep(step - 1);
-              }}
-            >
-              Anterior
-            </Button>
-            <Button
               type="submit"
               onClick={(e) => {
                 e.preventDefault();
@@ -156,22 +146,6 @@ function Routine() {
         {step < fieldGroups.length - 1 &&
           step > 0 && ( // mudar este condicional depois de termos os estados a funcionar
             <>
-              {step < fieldGroups.length - 1 &&
-                step > 0 && ( // tirar este condicional depois de termos os estados a funcionar
-                  <Button
-                    className="mt-6 mr-4"
-                    bg="transparent"
-                    size="lg"
-                    onClick={() => {
-                      if (step > 0) {
-                        setStep(step - 1);
-                      }
-                    }}
-                  >
-                    Anterior
-                  </Button>
-                )}
-
               <Button
                 className="mt-6"
                 bg="solid"
