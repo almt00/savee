@@ -26,7 +26,7 @@
       "id": 2,
       "name": "Duche",
       "image": "/img/shower@2x.png",
-      "kw_hour": 3,
+      "kw_hour": 5,
       "default_time": 600,
       "tips": [
         "Considera a temperatura da água. Quanto mais quente, mais energia é consumida."
