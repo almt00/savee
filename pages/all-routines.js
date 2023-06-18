@@ -13,19 +13,36 @@ import { fetchAsyncRoutineSlice, getRoutine } from "../store/RoutineSlice";
 import { useEffect } from "react";
 import { setPage } from "../store/PageSlice";
 import Cookies from "js-cookie";
+import { useRouter } from "next/router";
 
 const AllRoutines = () => {
   const dispatch = useDispatch();
   const routineData = useSelector(getRoutine);
   const tasksData = useSelector(getTasks);
-
   const userId = Cookies.get("userId");
-  let obj = "";
-  let Routines = "";
-  let type = "";
-  let weekdays = "";
-  let duration = "";
-  let name = "";
+  const router = useRouter();
+
+  const handleDelete = async (routineId) => {
+    const deleteEndpoint = `https://savee-api.vercel.app/user/${userId}/routine/${routineId}`;
+
+    const options = {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${Cookies.get("userToken")}`,
+      },
+    };
+
+    const response = await fetch(deleteEndpoint, options);
+    const result = await response.json();
+
+    if (result.success) {
+      dispatch(fetchAsyncRoutineSlice(userId));
+      router.push("/all-routines");
+    }
+
+    console.log(result);
+  };
 
   useEffect(() => {
     if (routineData.status !== 200) {
@@ -40,62 +57,6 @@ const AllRoutines = () => {
   useEffect(() => {
     dispatch(setPage("routines"));
   }, []);
-
-  if (routineData.status === 200 && tasksData.status === 200) {
-    obj = routineData.routine;
-    Routines = obj?.map((routine, index) => {
-      type = routine.task;
-      weekdays = routine.weekdays;
-      duration = routine.duration_routine;
-
-      // convert duration from seconds to minutes and round it
-      duration = Math.round(duration / 60);
-
-      name = tasksData.tasks?.find((task) => task.id === type)?.name || "";
-
-      weekdays = weekdays.map((day) => {
-        switch (day) {
-          case 0:
-            return "Dom";
-          case 1:
-            return "Seg";
-          case 2:
-            return "Ter";
-          case 3:
-            return "Qua";
-          case 4:
-            return "Qui";
-          case 5:
-            return "Sex";
-          case 6:
-            return "Sab";
-          default:
-            return "";
-        }
-      });
-
-      weekdays = weekdays.join(", ");
-
-      return (
-        <>
-          <Link href="">
-            <Card type="stroke" key={index}>
-              <CardItem
-                className="flex justify-between items-center"
-                key={index}
-              >
-                <RoutineInfo key={index}>
-                  <H4>{name}</H4>
-                  <p className="mt-1">{weekdays}</p>
-                </RoutineInfo>
-                <p className="text-muted">{duration} min</p>
-              </CardItem>
-            </Card>
-          </Link>
-        </>
-      );
-    });
-  }
 
   return (
     <Layout
@@ -113,7 +74,70 @@ const AllRoutines = () => {
             </Button>
           </Link>
         </div>
-        {Routines}
+        {routineData.status === 200 &&
+          tasksData.status === 200 &&
+          routineData.routine?.map((routine, index) => {
+            const type = routine.task;
+            const weekdays = routine.weekdays;
+            const periods = routine.period_time;
+            const duration = Math.round(routine.duration_routine / 60);
+            const routineId = routine.routine_id;
+            const name =
+              tasksData.tasks?.find((task) => task.id === type)?.name || "";
+            const image =
+              tasksData.tasks?.find((task) => task.id === type)?.image || "";
+
+            const weekdayNames = [
+              "Dom",
+              "Seg",
+              "Ter",
+              "Qua",
+              "Qui",
+              "Sex",
+              "Sab",
+            ];
+            const formattedWeekdays = weekdays
+              .map((day) => weekdayNames[day])
+              .join(", ");
+            const formattedPeriods = periods
+              .map((period) => {
+                switch (period) {
+                  case "morning":
+                    return "Manhã";
+                  case "afternoon":
+                    return "Tarde";
+                  case "night":
+                    return "Noite";
+                  default:
+                    return "";
+                }
+              })
+              .join(", ");
+
+            return (
+              <Card type="stroke" key={index}>
+                <CardItem
+                  className="flex justify-between items-center"
+                  key={index}
+                >
+                  <TaskImage src={image} alt={name} />
+                  <RoutineInfo key={index}>
+                    <H4>{name}</H4>
+                    <p className="mt-1">{formattedWeekdays}</p>
+                    <p className="mt-1">{formattedPeriods}</p>
+                    <p className="mt-1">{duration} min</p>
+                  </RoutineInfo>
+                  <Button
+                    bg="danger"
+                    size="md"
+                    onClick={() => handleDelete(routineId)}
+                  >
+                    Apagar
+                  </Button>
+                </CardItem>
+              </Card>
+            );
+          })}
       </div>
     </Layout>
   );
@@ -129,6 +153,8 @@ const CardItem = styled("div", {
   p: {
     fontSize: "$small",
   },
+  paddingLeft: "1rem",
+  paddingRight: "1rem",
 });
 
 const H4 = styled("h4", {
@@ -136,4 +162,9 @@ const H4 = styled("h4", {
   fontWeight: "$bolder",
 });
 
-export default withAuth(AllRoutines);
+
+const TaskImage = styled("img", {
+  width: "64px",
+});
+
+export default AllRoutines;
