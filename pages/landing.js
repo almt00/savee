@@ -23,8 +23,6 @@ export default function Landing() {
     onSwipedRight: () => updateIndex(activeIndex - 1),
   });
 
-  const router = useRouter();
-
   return (
     <Layout
       title="Página inicial Savee com breve descrição da aplicação, também permite iniciar sessão ou criar uma nova conta na plataforma"
