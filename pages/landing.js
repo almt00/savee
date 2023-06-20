@@ -1,4 +1,4 @@
-import React, { use } from "react";
+import React, { use, useEffect } from "react";
 import Layout from "../components/elements/Layout";
 import Button from "../components/elements/Button";
 import { styled } from "@stitches/react";
@@ -6,8 +6,13 @@ import { useState } from "react";
 import { useSwipeable } from "react-swipeable";
 import Image from "next/image";
 import Link from "next/link";
+import Cookies from "js-cookie";
+import { useRouter } from "next/router";
 
 export default function Landing() {
+  const router = useRouter();
+  const user = Cookies.get("userToken");
+  const userIsAuthenticated = user !== undefined;
   const [activeIndex, setActiveIndex] = useState(0);
   const updateIndex = (newIndex) => {
     if (newIndex < 0) {
@@ -17,6 +22,12 @@ export default function Landing() {
     }
     setActiveIndex(newIndex);
   };
+
+  useEffect(() => {
+    if (userIsAuthenticated) {
+      router.push("/homepage");
+    }
+  }, [userIsAuthenticated, router]);
 
   const handlers = useSwipeable({
     onSwipedLeft: () => updateIndex(activeIndex + 1),
