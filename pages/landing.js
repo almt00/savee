@@ -6,7 +6,6 @@ import { useState } from "react";
 import { useSwipeable } from "react-swipeable";
 import Image from "next/image";
 import Link from "next/link";
-import { useRouter } from "next/router";
 
 export default function Landing() {
   const [activeIndex, setActiveIndex] = useState(0);
