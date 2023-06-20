@@ -31,5 +31,5 @@ jobs:
 
       - name: Make POST request
         run: |
-          echo "Authorization: Bearer ${{ steps.jwt.outputs.jwt_token }}"
-          curl -X POST -H "Authorization: Bearer ${{ steps.jwt.outputs.jwt_token }}" https://savee-api.vercel.app/consumption/user/all
+         echo "Authorization: Bearer ${{ steps.jwt.outputs.jwt_token }}"
+         curl -X POST -H "Authorization: Bearer ${{ steps.jwt.outputs.jwt_token }}" https://savee-api.vercel.app/consumption/user/all
