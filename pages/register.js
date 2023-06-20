@@ -78,56 +78,6 @@ export default function Register() {
 
   const dispatch = useDispatch();
 
-  const handleSubmit = async (event) => {
-    // Stop the form from submitting and refreshing the page.
-    event.preventDefault();
-    if (inviteVerification) {
-      setUserData({ ...userData, house_id: inviteVerification.house_id });
-    }
-    // Get data from the form.
-    const data = {
-      first_name: userData.primeiro_nome,
-      last_name: userData.segundo_nome,
-      username: userData.username,
-      password: userData.password,
-      email: userData.email,
-      house_id: inviteVerification?.house_id || 2, // mudar
-      email_colleagues: userData.email_colega,
-      ref_avatar: null, // mudar
-    };
-    if (inviteVerification) {
-    }
-
-    const JSONdata = JSON.stringify(data);
-    console.log(JSONdata);
-
-    const endpoint = "https://savee-api.vercel.app/user";
-
-    const options = {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSONdata,
-    };
-
-    const response = await fetch(endpoint, options);
-
-    const result = await response.json();
-    if (result.success) {
-      Cookies.set("userToken", result.token);
-      Cookies.set("userId", result.user.user_id);
-      Cookies.set("houseId", result.user.house_id);
-      const id = Cookies.get("userId");
-      dispatch(fetchAsyncUser(id)); // fazer o fetch com redux
-      router.push("/homepage");
-    }
-    // alert if there is a 500 error
-    if (response.status === 500) {
-      alert("Já existe um utilizador com este email.");
-    }
-  };
-
   const updateValue = (e) => {
     const name = e?.target.id;
     const value = e?.target.value;
@@ -140,6 +90,71 @@ export default function Register() {
     const value = e?.target.value;
     const emails = value.split(",");
     setUserData({ ...userData, [name]: emails });
+  };
+
+  const handleSubmit = async (event) => {
+    // Stop the form from submitting and refreshing the page.
+    event.preventDefault();
+
+    // Get data from the form.
+    const data = {
+      first_name: userData.primeiro_nome,
+      last_name: userData.segundo_nome,
+      username: userData.username,
+      password: userData.password,
+      email: userData.email,
+      house_id: inviteVerification?.house_id, // mudar
+      email_colleagues: userData.email_colega,
+      ref_avatar: null, // mudar
+      date_payment: userData.data_fatura || null,
+    };
+
+    const JSONdata = JSON.stringify(data);
+    console.log(JSONdata);
+
+    const endpoint_user = "https://savee-api.vercel.app/user";
+
+    const options_user = {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSONdata,
+    };
+
+    const response_user = await fetch(endpoint_user, options_user);
+
+    const result_user = await response_user.json();
+
+    if (result_user.success && inviteVerification === null) {
+      const endpoint_house = "https://savee-api.vercel.app/house";
+      const JSONdata = JSON.stringify(userData.nome_grupo);
+      console.log(JSONdata);
+      const options_house = {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSONdata,
+      };
+
+      const response_house = await fetch(endpoint_house, options_house);
+      const result_house = await response_house.json();
+
+      if (result_user.success && result_house.success) {
+        Cookies.set("userToken", result_user.token);
+        Cookies.set("userId", result_user.user.user_id);
+        Cookies.set("houseId", result_user.user.house_id);
+        const id = Cookies.get("userId");
+        dispatch(fetchAsyncUser(id)); // fazer o fetch com redux
+        router.push("/homepage");
+      }
+    }
+
+    // alert if there is a 500 error
+    if (response_user.status === 500) {
+      alert("Já existe um utilizador com este email.");
+    }
   };
 
   //Grouping forms by section in a component
