@@ -50,7 +50,11 @@ const AllUsage = () => {
   if (consumptionData.status === 200 && tasksData.status === 200) {
     obj = consumptionData.consumption;
     UseHisto = obj.map((use, index) => {
-      taskId = use.task?.task || use.routine?.task;
+      if (use.task) {
+        taskId = use.task.task;
+      } else {
+        taskId = use.routine.task;
+      }
       // assign task name to taskId
       taskName = tasksData.tasks.find((task) => task.id === taskId).name;
       taskInit = new Date(use.task?.start_time);
