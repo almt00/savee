@@ -22,12 +22,14 @@ jobs:
         run: npm install
 
       - name: Generate JWT token
+        id: jwt
         env:
-          JWT_SECRET: ${{ secrets.TOKEN_SECRET }}
+          TOKEN_SECRET: ${{ secrets.TOKEN_SECRET }}
         run: |
           npm install jsonwebtoken
           echo "::set-output name=jwt_token::$(node -e "const jwt = require('jsonwebtoken'); const token = jwt.sign({}, process.env.TOKEN_SECRET); console.log(token);")"
 
       - name: Make POST request
         run: |
-          curl -X POST -H "Authorization: Bearer ${{ secrets.TOKEN_SECRET }}" https://savee-api.vercel.app/consumption/user/all
+          echo "Authorization: Bearer ${{ steps.jwt.outputs.jwt_token }}"
+          curl -X POST -H "Authorization: Bearer ${{ steps.jwt.outputs.jwt_token }}" https://savee-api.vercel.app/consumption/user/all
