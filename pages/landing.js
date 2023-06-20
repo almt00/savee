@@ -1,4 +1,4 @@
-import React, { use } from "react";
+import React, { use, useEffect } from "react";
 import Layout from "../components/elements/Layout";
 import Button from "../components/elements/Button";
 import { styled } from "@stitches/react";
@@ -6,8 +6,13 @@ import { useState } from "react";
 import { useSwipeable } from "react-swipeable";
 import Image from "next/image";
 import Link from "next/link";
+import Cookies from "js-cookie";
+import { useRouter } from "next/router";
 
 export default function Landing() {
+  const router = useRouter();
+  const user = Cookies.get("userToken");
+  const userIsAuthenticated = user !== undefined;
   const [activeIndex, setActiveIndex] = useState(0);
   const updateIndex = (newIndex) => {
     if (newIndex < 0) {
@@ -18,21 +23,26 @@ export default function Landing() {
     setActiveIndex(newIndex);
   };
 
+  useEffect(() => {
+    if (userIsAuthenticated) {
+      router.push("/homepage");
+    }
+  }, [userIsAuthenticated, router]);
+
   const handlers = useSwipeable({
     onSwipedLeft: () => updateIndex(activeIndex + 1),
     onSwipedRight: () => updateIndex(activeIndex - 1),
   });
 
   return (
-
     <Layout
       title="Página inicial Savee com breve descrição da aplicação, também permite iniciar sessão ou criar uma nova conta na plataforma"
       description="Savee"
     >
       <Navbar className="flex justify-end items-center gap-4 p-4">
-        <Button size="lg" disabled>
-          Brevemente disponível
-        </Button>
+        <Link href="/login">
+          <Button size="lg">Iniciar Sessão</Button>
+        </Link>
       </Navbar>
       <FirstSection className="flex items-center justify-cente">
         <div className="flex flex-col items-center gap-6">
@@ -124,9 +134,9 @@ export default function Landing() {
             </SlideItem>
           </Slides>
         </Carousel>
-        <Button size="lg" disabled>
-          Brevemente disponível
-        </Button>
+        <Link href="/register">
+          <Button size="lg">Começar a Usar</Button>
+        </Link>
       </SecondSection>
       <Footer className="flex text-center justify-between items-center">
         <Image src="/img/logo.svg" width={74} height={74} alt="Savee Logo" />
