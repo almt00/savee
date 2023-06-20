@@ -27,15 +27,14 @@ export default function Landing() {
   const router = useRouter();
 
   return (
-
     <Layout
       title="Página inicial Savee com breve descrição da aplicação, também permite iniciar sessão ou criar uma nova conta na plataforma"
       description="Savee"
     >
       <Navbar className="flex justify-end items-center gap-4 p-4">
-        <Button size="lg" onClick={() => router.push('/login')}>
-          Iniciar Sessão
-        </Button>
+        <Link href="/login">
+          <Button size="lg">Iniciar Sessão</Button>
+        </Link>
       </Navbar>
       <FirstSection className="flex items-center justify-cente">
         <div className="flex flex-col items-center gap-6">
@@ -127,9 +126,9 @@ export default function Landing() {
             </SlideItem>
           </Slides>
         </Carousel>
-        <Button size="lg" disabled>
-          Brevemente disponível
-        </Button>
+        <Link href="/register">
+          <Button size="lg">Começar a Usar</Button>
+        </Link>
       </SecondSection>
       <Footer className="flex text-center justify-between items-center">
         <Image src="/img/logo.svg" width={74} height={74} alt="Savee Logo" />
