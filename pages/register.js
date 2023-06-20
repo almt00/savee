@@ -65,6 +65,7 @@ export default function Register() {
       password: userData.password,
       email: userData.email,
       house_id: 1, // mudar
+      email_colleagues: userData.email_colega,
       ref_avatar: null, // mudar
     };
 
