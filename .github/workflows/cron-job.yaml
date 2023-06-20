@@ -22,6 +22,7 @@ jobs:
         run: npm install
 
       - name: Generate JWT token
+        id: jwt
         env:
           TOKEN_SECRET: ${{ secrets.TOKEN_SECRET }}
         run: |
