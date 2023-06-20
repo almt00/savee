@@ -11,11 +11,30 @@ import { useState, useEffect, useRef } from "react";
 import Cookies from "js-cookie";
 import { useDispatch } from "react-redux";
 import { fetchAsyncUser } from "../store/UserSlice";
-import router from "next/router";
+import { useRouter } from "next/router";
 
 const inter = Inter({ subsets: ["latin"] });
 
 export default function Register() {
+  const router = useRouter();
+  const inviteToken = router.query.t;
+  const [inviteVerification, setInviteVerification] = useState(null);
+
+  const verifyToken = async (req, res) => {
+    if (inviteToken) {
+      const endpoint = `https://savee-api.vercel.app/user/invite/${inviteToken}`;
+      const response = await fetch(endpoint, {
+        method: "GET",
+      });
+      let actualData = await response.json();
+      let actualDataObject = await actualData;
+      if (actualDataObject) {
+        setInviteVerification(actualDataObject);
+        console.log(actualDataObject, "data obj response");
+      }
+    }
+  };
+
   // state to keep track of the current step
   const [step, setStep] = useState(0);
   // var to keep track of the current date
@@ -27,10 +46,15 @@ export default function Register() {
   const dataFaturaRef = useRef(null);
 
   const updateStep = () => {
-    setStep(step + 1);
+    if (inviteVerification && step === 1) {
+      setStep(step + 3);
+    } else {
+      setStep(step + 1);
+    }
   };
 
   useEffect(() => {
+    verifyToken();
     // Clear the value of the first form input in each step
     if (step === 1 && primeiroNomeRef.current) {
       primeiroNomeRef.current.value = "";
@@ -57,6 +81,9 @@ export default function Register() {
   const handleSubmit = async (event) => {
     // Stop the form from submitting and refreshing the page.
     event.preventDefault();
+    if (inviteVerification) {
+      setUserData({ ...userData, house_id: inviteVerification.house_id });
+    }
     // Get data from the form.
     const data = {
       first_name: userData.primeiro_nome,
@@ -64,10 +91,12 @@ export default function Register() {
       username: userData.username,
       password: userData.password,
       email: userData.email,
-      house_id: 1, // mudar
+      house_id: inviteVerification?.house_id || 2, // mudar
       email_colleagues: userData.email_colega,
       ref_avatar: null, // mudar
     };
+    if (inviteVerification) {
+    }
 
     const JSONdata = JSON.stringify(data);
     console.log(JSONdata);
@@ -194,15 +223,27 @@ export default function Register() {
         />
       </div>
       <div className="flex justify-center">
-        <Button
-          type="submit"
-          className="mt-6"
-          bg="solid"
-          size="lg"
-          onClick={updateStep}
-        >
-          Próximo
-        </Button>
+        {inviteVerification ? (
+          <Button
+            type="submit"
+            className="mt-6"
+            bg="solid"
+            size="lg"
+            onClick={handleSubmit}
+          >
+            Criar conta
+          </Button>
+        ) : (
+          <Button
+            type="submit"
+            className="mt-6"
+            bg="solid"
+            size="lg"
+            onClick={updateStep}
+          >
+            Próximo
+          </Button>
+        )}
       </div>
     </>
   );
@@ -313,9 +354,9 @@ export default function Register() {
       return authFields();
     } else if (step === 1) {
       return userFields();
-    } else if (step === 2) {
+    } else if (step === 2 && inviteVerification == null) {
       return groupFields();
-    } else if (step === 3) {
+    } else if (step === 3 && inviteVerification == null) {
       return invoiceFields();
     } else {
       return <></>;
