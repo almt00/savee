@@ -104,6 +104,14 @@ export default function Register() {
     setUserData({ ...userData, [name]: value });
   };
 
+  // save multiple email_colega emails in an array when separated by a comma
+  const updateEmailsValue = (e) => {
+    const name = e?.target.id;
+    const value = e?.target.value;
+    const emails = value.split(",");
+    setUserData({ ...userData, [name]: emails });
+  };
+
   //Grouping forms by section in a component
   const authFields = () => (
     <>
@@ -227,7 +235,7 @@ export default function Register() {
           name="Emails colegas"
           type="email"
           onChange={(e) => {
-            updateValue(e);
+            updateEmailsValue(e);
           }}
         />
       </div>
