@@ -6,6 +6,7 @@ import { useState } from "react";
 import { useSwipeable } from "react-swipeable";
 import Image from "next/image";
 import Link from "next/link";
+import { useRouter } from "next/router";
 
 export default function Landing() {
   const [activeIndex, setActiveIndex] = useState(0);
@@ -23,6 +24,8 @@ export default function Landing() {
     onSwipedRight: () => updateIndex(activeIndex - 1),
   });
 
+  const router = useRouter();
+
   return (
 
     <Layout
@@ -30,8 +33,8 @@ export default function Landing() {
       description="Savee"
     >
       <Navbar className="flex justify-end items-center gap-4 p-4">
-        <Button size="lg" disabled>
-          Brevemente disponível
+        <Button size="lg" onClick={() => router.push('/login')}>
+          Iniciar Sessão
         </Button>
       </Navbar>
       <FirstSection className="flex items-center justify-cente">
