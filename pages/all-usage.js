@@ -58,16 +58,6 @@ const AllUsage = () => {
         console.log(use.routine);
       }
 
-      if (consumptionData.consumption.length === 0) {
-        return (
-          <>
-            <Card type="stroke">
-              <p>Sem consumos disponíveis</p>
-            </Card>
-          </>
-        );
-      }
-
       // assign task name to taskId
       taskName = tasksData.tasks.find((task) => task.id === taskId).name;
       taskInit = new Date(use.task?.start_time);
@@ -86,19 +76,32 @@ const AllUsage = () => {
         todaySum += cleantaskDuration;
       }
 
-      return (
-        <>
-          <Card type="stroke" key={index}>
-            <CardItem className="flex justify-between items-center" key={index}>
-              <UsageInfo key={index}>
-                <H4>{cleantaskDuration} min</H4>
-                <p> {taskName}</p>
-              </UsageInfo>
-              <p className="text-muted">{cleanDate}</p>
-            </CardItem>
-          </Card>
-        </>
-      );
+      if (consumptionData.consumption.length === 0) {
+        return (
+          <>
+            <Card type="stroke">
+              <p>Sem consumos disponíveis</p>
+            </Card>
+          </>
+        );
+      } else {
+        return (
+          <>
+            <Card type="stroke" key={index}>
+              <CardItem
+                className="flex justify-between items-center"
+                key={index}
+              >
+                <UsageInfo key={index}>
+                  <H4>{cleantaskDuration} min</H4>
+                  <p> {taskName}</p>
+                </UsageInfo>
+                <p className="text-muted">{cleanDate}</p>
+              </CardItem>
+            </Card>
+          </>
+        );
+      }
     });
   }
 
@@ -114,10 +117,12 @@ const AllUsage = () => {
       <Header page="Histórico uso" />
       <div className="relative pt-20 px-6 flex flex-col gap-3 pb-6">
         <Breadcrumb />
-        <Card>
-          <ThisMonth>{todaySum} min</ThisMonth>
-          <p className="mt-2">Hoje</p>
-        </Card>
+        {hasConsumptionData && (
+          <Card>
+            <ThisMonth>{todaySum} min</ThisMonth>
+            <p className="mt-2">Hoje</p>
+          </Card>
+        )}
         {hasConsumptionData && <H3 className="mt-6">Histórico de uso</H3>}
         <div className="flex flex-col-reverse gap-3">{UseHisto}</div>
       </div>
