@@ -170,29 +170,6 @@ export default function Menu() {
         </div>
 
         <MenuList size="sm" className="mb-6">
-          <li className="h-8">
-            <Image
-              src="/img/user-bird.svg"
-              className="ml-6"
-              alt="Avatar"
-              width="38"
-              height="38"
-            />
-            <div>
-              <H4 className="font-extrabold">Pedro</H4>
-              <p>Editar perfil</p>
-            </div>
-          </li>
-          <li className="h-8">
-            <Image
-              src="/img/icon-settings.svg"
-              className="ml-6"
-              alt="Settings"
-              width="38"
-              height="38"
-            />
-            <H4 className="font-extrabold">Definições</H4>
-          </li>
           <li className="h-8" onClick={handleLogout} id="logoutButton">
             <Image
               src="/img/icon-log-out.svg"

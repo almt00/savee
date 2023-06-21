@@ -180,7 +180,7 @@ export default function Timer(props) {
         </>
       )}
       {running === false && time > 0 ? (
-        <Tip content="Foste super rápido! 21% das pessoas demoram mais tempo que tu."></Tip>
+        <Tip content="Acabaste a tua tarefa!"></Tip>
       ) : (
         ""
       )}
