@@ -50,10 +50,10 @@ const AllUsage = () => {
   if (consumptionData.status === 200 && tasksData.status === 200) {
     obj = consumptionData.consumption;
     UseHisto = obj.map((use, index) => {
-      if (use.task) {
+      if (use.task && use.type === 1) {
         taskId = use.task.task;
         console.log(use.task);
-      } else {
+      } else if (use.routine && use.type === 0) {
         taskId = use.routine.task;
         console.log(use.routine);
       }
@@ -89,7 +89,17 @@ const AllUsage = () => {
         </>
       );
     });
+  } else {
+    // Render the empty state when there is no data
+    UseHisto = (
+      <Card type="stroke">
+        <p>Sem consumos disponíveis</p>
+      </Card>
+    );
   }
+
+  const hasConsumptionData =
+    consumptionData?.status === 200 && consumptionData?.consumption.length > 0;
 
   return (
     <Layout
@@ -104,7 +114,7 @@ const AllUsage = () => {
           <ThisMonth>{todaySum} min</ThisMonth>
           <p className="mt-2">Hoje</p>
         </Card>
-        <H3 className="mt-6">Histórico de uso</H3>
+        {hasConsumptionData && <H3 className="mt-6">Histórico de uso</H3>}
         <div className="flex flex-col-reverse gap-3">{UseHisto}</div>
       </div>
     </Layout>
