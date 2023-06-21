@@ -52,9 +52,12 @@ const AllUsage = () => {
     UseHisto = obj.map((use, index) => {
       if (use.task) {
         taskId = use.task.task;
+        console.log(use.task);
       } else {
         taskId = use.routine.task;
+        console.log(use.routine);
       }
+
       // assign task name to taskId
       taskName = tasksData.tasks.find((task) => task.id === taskId).name;
       taskInit = new Date(use.task?.start_time);

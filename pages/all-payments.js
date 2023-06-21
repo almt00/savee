@@ -43,6 +43,12 @@ const AllPayments = () => {
           <p className="mt-2">Pagos a {lastDate}</p>
         </Card>
       );
+    } else {
+      return (
+        <Card>
+          <p className="mt-2">Sem pagamentos disponíveis</p>
+        </Card>
+      );
     }
   };
   let PayHisto = () => {
@@ -76,6 +82,9 @@ const AllPayments = () => {
     }
   };
 
+  const hasPaymentData =
+    paymentData?.status === 200 && paymentData.payment.length > 0;
+
   return (
     <Layout
       description="Página com histórico dos valores totais das faturas mensais pagas e o valor que foi atribuído ao utilizador em cada pagamento."
@@ -86,7 +95,7 @@ const AllPayments = () => {
       <div className="relative pt-20 px-6 flex flex-col gap-3 pb-6">
         <Breadcrumb />
         {lastPayment()}
-        <H3 className="mt-6">Histórico de pagamento</H3>
+        {hasPaymentData && <H3 className="mt-6">Histórico de pagamento</H3>}
         <ul>{PayHisto()}</ul>
       </div>
     </Layout>

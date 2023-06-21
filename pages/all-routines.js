@@ -58,6 +58,71 @@ const AllRoutines = () => {
     dispatch(setPage("routines"));
   }, []);
 
+  const renderRoutineCards = () => {
+    if (routineData.status !== 200 || tasksData.status !== 200) {
+      return null; // Show loading state or handle error
+    }
+
+    if (routineData.routine.length === 0) {
+      return (
+        <Card type="stroke">
+          <p>Sem rotinas disponíveis</p>
+        </Card>
+      );
+    }
+
+    return routineData.routine.map((routine, index) => {
+      const type = routine.task;
+      const weekdays = routine.weekdays;
+      const periods = routine.period_time;
+      const duration = Math.round(routine.duration_routine / 60);
+      const routineId = routine.routine_id;
+      const name = tasksData.tasks.find((task) => task.id === type)?.name || "";
+      const image =
+        tasksData.tasks.find((task) => task.id === type)?.image || "";
+
+      const weekdayNames = ["Dom", "Seg", "Ter", "Qua", "Qui", "Sex", "Sab"];
+      const formattedWeekdays = weekdays
+        .map((day) => weekdayNames[day])
+        .join(", ");
+      const formattedPeriods = periods
+        .map((period) => {
+          switch (period) {
+            case "morning":
+              return "Manhã";
+            case "afternoon":
+              return "Tarde";
+            case "night":
+              return "Noite";
+            default:
+              return "";
+          }
+        })
+        .join(", ");
+
+      return (
+        <Card type="stroke" key={index}>
+          <CardItem className="flex justify-between items-center">
+            <TaskImage src={image} alt={name} />
+            <RoutineInfo>
+              <H4>{name}</H4>
+              <p className="mt-1">{formattedWeekdays}</p>
+              <p className="mt-1">{formattedPeriods}</p>
+              <p className="mt-1">{duration} min</p>
+            </RoutineInfo>
+            <Button
+              bg="danger"
+              size="md"
+              onClick={() => handleDelete(routineId)}
+            >
+              Apagar
+            </Button>
+          </CardItem>
+        </Card>
+      );
+    });
+  };
+
   return (
     <Layout
       description="Página para visualizar rotinas feitas e link para criar nova rotina"
@@ -74,70 +139,7 @@ const AllRoutines = () => {
             </Button>
           </Link>
         </div>
-        {routineData.status === 200 &&
-          tasksData.status === 200 &&
-          routineData.routine?.map((routine, index) => {
-            const type = routine.task;
-            const weekdays = routine.weekdays;
-            const periods = routine.period_time;
-            const duration = Math.round(routine.duration_routine / 60);
-            const routineId = routine.routine_id;
-            const name =
-              tasksData.tasks?.find((task) => task.id === type)?.name || "";
-            const image =
-              tasksData.tasks?.find((task) => task.id === type)?.image || "";
-
-            const weekdayNames = [
-              "Dom",
-              "Seg",
-              "Ter",
-              "Qua",
-              "Qui",
-              "Sex",
-              "Sab",
-            ];
-            const formattedWeekdays = weekdays
-              .map((day) => weekdayNames[day])
-              .join(", ");
-            const formattedPeriods = periods
-              .map((period) => {
-                switch (period) {
-                  case "morning":
-                    return "Manhã";
-                  case "afternoon":
-                    return "Tarde";
-                  case "night":
-                    return "Noite";
-                  default:
-                    return "";
-                }
-              })
-              .join(", ");
-
-            return (
-              <Card type="stroke" key={index}>
-                <CardItem
-                  className="flex justify-between items-center"
-                  key={index}
-                >
-                  <TaskImage src={image} alt={name} />
-                  <RoutineInfo key={index}>
-                    <H4>{name}</H4>
-                    <p className="mt-1">{formattedWeekdays}</p>
-                    <p className="mt-1">{formattedPeriods}</p>
-                    <p className="mt-1">{duration} min</p>
-                  </RoutineInfo>
-                  <Button
-                    bg="danger"
-                    size="md"
-                    onClick={() => handleDelete(routineId)}
-                  >
-                    Apagar
-                  </Button>
-                </CardItem>
-              </Card>
-            );
-          })}
+        {renderRoutineCards()}
       </div>
     </Layout>
   );
@@ -161,7 +163,6 @@ const H4 = styled("h4", {
   fontSize: "$smallheading",
   fontWeight: "$bolder",
 });
-
 
 const TaskImage = styled("img", {
   width: "64px",
