@@ -50,14 +50,11 @@ const AllUsage = () => {
   if (consumptionData.status === 200 && tasksData.status === 200) {
     obj = consumptionData.consumption;
     UseHisto = obj.map((use, index) => {
-      if (use.task && use.type === 1) {
+      if (use.task) {
         taskId = use.task.task;
-        console.log(use.task);
-      } else if (use.routine && use.type === 0) {
+      } else {
         taskId = use.routine.task;
-        console.log(use.routine);
       }
-
       // assign task name to taskId
       taskName = tasksData.tasks.find((task) => task.id === taskId).name;
       taskInit = new Date(use.task?.start_time);
@@ -75,38 +72,21 @@ const AllUsage = () => {
       if (cleanToday === cleanDate && cleantaskDuration > 0) {
         todaySum += cleantaskDuration;
       }
-
-      if (consumptionData.consumption.length > 0) {
-        return (
-          <>
-            <Card type="stroke" key={index}>
-              <CardItem
-                className="flex justify-between items-center"
-                key={index}
-              >
-                <UsageInfo key={index}>
-                  <H4>{cleantaskDuration} min</H4>
-                  <p> {taskName}</p>
-                </UsageInfo>
-                <p className="text-muted">{cleanDate}</p>
-              </CardItem>
-            </Card>
-          </>
-        );
-      } else {
-        return (
-          <>
-            <Card type="stroke">
-              <p>Sem consumos disponíveis</p>
-            </Card>
-          </>
-        );
-      }
+      return (
+        <>
+          <Card type="stroke" key={index}>
+            <CardItem className="flex justify-between items-center" key={index}>
+              <UsageInfo key={index}>
+                <H4>{cleantaskDuration} min</H4>
+                <p> {taskName}</p>
+              </UsageInfo>
+              <p className="text-muted">{cleanDate}</p>
+            </CardItem>
+          </Card>
+        </>
+      );
     });
   }
-
-  const hasConsumptionData =
-    consumptionData?.status === 200 && consumptionData?.consumption.length > 0;
 
   return (
     <Layout
@@ -117,13 +97,11 @@ const AllUsage = () => {
       <Header page="Histórico uso" />
       <div className="relative pt-20 px-6 flex flex-col gap-3 pb-6">
         <Breadcrumb />
-        {hasConsumptionData && (
-          <Card>
-            <ThisMonth>{todaySum} min</ThisMonth>
-            <p className="mt-2">Hoje</p>
-          </Card>
-        )}
-        {hasConsumptionData && <H3 className="mt-6">Histórico de uso</H3>}
+        <Card>
+          <ThisMonth>{todaySum} min</ThisMonth>
+          <p className="mt-2">Hoje</p>
+        </Card>
+        <H3 className="mt-6">Histórico de uso</H3>
         <div className="flex flex-col-reverse gap-3">{UseHisto}</div>
       </div>
     </Layout>
