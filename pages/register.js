@@ -330,9 +330,6 @@ export default function Register() {
           required
         />
       </div>
-      <Link href="" className="text-links text-sm">
-        Precisas de ajuda?
-      </Link>
       <div className="flex justify-center">
         <Link href={"/homepage"}>
           <Button

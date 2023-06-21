@@ -91,11 +91,6 @@ export default function Login() {
             <div className="mt-6">
               <Form name="Password" type="password" required />
             </div>
-            <div>
-              <Link href="" className="text-links text-sm">
-                Esqueci-me da password
-              </Link>
-            </div>
             <div className="flex justify-center">
               <Button type="submit" className="mt-6" bg="solid" size="lg">
                 Iniciar sessão
