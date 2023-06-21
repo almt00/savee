@@ -30,6 +30,7 @@ const AllUsage = () => {
   let date = "";
   let cleanDate = "";
   let cleantaskDuration = "";
+  let routineDuration = "";
   let today = new Date();
   let cleanToday = "";
   let todaySum = 0;
@@ -49,29 +50,35 @@ const AllUsage = () => {
 
   if (consumptionData.status === 200 && tasksData.status === 200) {
     obj = consumptionData.consumption;
+
     UseHisto = obj.map((use, index) => {
-      if (use.task) {
+      if (use.task && use.type === 1) {
         taskId = use.task.task;
-      } else {
-        taskId = use.routine.task;
+      } else if (use.routine && use.type === 0) {
+        taskId = use.routine.task_routine;
       }
+
       // assign task name to taskId
       taskName = tasksData.tasks.find((task) => task.id === taskId).name;
       taskInit = new Date(use.task?.start_time);
       taskEnd = new Date(use.task?.end_time);
       taskDuration = new Date(taskEnd - taskInit);
-      // calculate routine duration
-      if (use.routine) {
-        taskDuration = new Date(use.routine.duration_routine * 1000);
-      }
+      routineDuration = use.consumption / 60;
+
       date = use.consumption_date;
       const options = { month: "short", day: "numeric" };
       cleanToday = new Date(today).toLocaleDateString("pt-PT", options);
       cleanDate = new Date(date).toLocaleDateString("pt-PT", options);
       cleantaskDuration = Math.floor(taskDuration / 1000 / 60);
+      if (use.type === 1) {
+        cleantaskDuration = cleantaskDuration;
+      } else if (use.type === 0) {
+        cleantaskDuration = routineDuration;
+      }
       if (cleanToday === cleanDate && cleantaskDuration > 0) {
         todaySum += cleantaskDuration;
       }
+
       return (
         <>
           <Card type="stroke" key={index}>
