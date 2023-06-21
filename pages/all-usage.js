@@ -76,15 +76,7 @@ const AllUsage = () => {
         todaySum += cleantaskDuration;
       }
 
-      if (consumptionData.consumption.length === 0) {
-        return (
-          <>
-            <Card type="stroke">
-              <p>Sem consumos disponíveis</p>
-            </Card>
-          </>
-        );
-      } else {
+      if (consumptionData.consumption.length > 0) {
         return (
           <>
             <Card type="stroke" key={index}>
@@ -98,6 +90,14 @@ const AllUsage = () => {
                 </UsageInfo>
                 <p className="text-muted">{cleanDate}</p>
               </CardItem>
+            </Card>
+          </>
+        );
+      } else {
+        return (
+          <>
+            <Card type="stroke">
+              <p>Sem consumos disponíveis</p>
             </Card>
           </>
         );
