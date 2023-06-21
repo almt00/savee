@@ -58,6 +58,16 @@ const AllUsage = () => {
         console.log(use.routine);
       }
 
+      if (consumptionData.consumption.length === 0) {
+        return (
+          <>
+            <Card type="stroke">
+              <p>Sem consumos disponíveis</p>
+            </Card>
+          </>
+        );
+      }
+
       // assign task name to taskId
       taskName = tasksData.tasks.find((task) => task.id === taskId).name;
       taskInit = new Date(use.task?.start_time);
@@ -75,6 +85,7 @@ const AllUsage = () => {
       if (cleanToday === cleanDate && cleantaskDuration > 0) {
         todaySum += cleantaskDuration;
       }
+
       return (
         <>
           <Card type="stroke" key={index}>
@@ -89,13 +100,6 @@ const AllUsage = () => {
         </>
       );
     });
-  } else {
-    // Render the empty state when there is no data
-    UseHisto = (
-      <Card type="stroke">
-        <p>Sem consumos disponíveis</p>
-      </Card>
-    );
   }
 
   const hasConsumptionData =
