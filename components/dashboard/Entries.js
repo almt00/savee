@@ -96,7 +96,7 @@ const Entries = (props) => {
 
         // caso seja task, aprecido com o anterior com algumas verificações diferentes, deve haver melhor forma de fazer isto
         if (consumption_time >= intMin && consumption_time < intMax) {
-          let taskId = element.task_id;
+          let taskId = element.task.task;
           let chosenTask = tasksData.tasks.find((task) => task.id === taskId);
           duration = Math.round(
             (endTime.getTime() - startTime.getTime()) / 1000 / 60
