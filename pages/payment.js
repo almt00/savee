@@ -36,7 +36,7 @@ const Payment = () => {
   }, [dispatch]);
 
   useEffect(() => {
-    if (paymentid && insights.status !== 200 && tasks.status !== 200) {
+    if (paymentid && (insights.status !== 200 || tasks.status !== 200)) {
       dispatch(fetchAsyncInsightsSlice({ paymentid, taskid, userid }));
       dispatch(fetchAsyncTasks());
     }
@@ -44,10 +44,13 @@ const Payment = () => {
 
   useEffect(() => {
     if (paymentid && insights.status === 200 && tasks.status === 200) {
-      dispatch(fetchAsyncPaymentGroupDetailsSlice({ houseid: houseId, paymentid }));
+      dispatch(
+        fetchAsyncPaymentGroupDetailsSlice({ houseid: houseId, paymentid })
+      );
     }
   }, [dispatch, paymentid, insights.status, tasks.status, houseId]);
 
+  console.log("payment id: ", paymentid);
   // map tasks and save all task_id in array
   let task_list = [];
   if (tasks.status === 200) {
@@ -114,7 +117,6 @@ const Payment = () => {
             return (chosenTask = task.id);
           }
         });
-
         return <Insight key={key} taskId={chosenTask} value={value} />;
       }
     });

@@ -20,16 +20,21 @@ const PaymentCard = ({ id }) => {
 
   useEffect(() => {
     if (paymentGroupDetails.status !== 200) {
-      dispatch(fetchAsyncPaymentGroupDetailsSlice({ houseid: houseId, paymentid: paymentId }));
+      dispatch(
+        fetchAsyncPaymentGroupDetailsSlice({
+          houseid: houseId,
+          paymentid: paymentId,
+        })
+      );
     }
-  }, [dispatch]);
+  }, [dispatch, paymentId]);
 
   if (paymentGroupDetails.status === 200) {
     let obj = paymentGroupDetails.paymentGroupDetails.UserPayment;
 
     // map obj and return all colleagues
     const PaymentGroup = obj.map((user, key) => {
-      let percentage = user.payment_percentage * 100;
+      let percentage = (user.payment_percentage * 100).toFixed(0);
       let name = user.user.first_name;
 
       return (
@@ -55,10 +60,7 @@ const PaymentCard = ({ id }) => {
             aproximado a pagares:
           </Text>
           <div className="w-56 m-auto">
-            <Chart
-              className="mt-5"
-              environment="payment"
-            ></Chart>
+            <Chart className="mt-5" environment="payment"></Chart>
           </div>
           <div className="text-center my-4">
             <Link href="">Como calculamos este valor?</Link>

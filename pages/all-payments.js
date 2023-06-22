@@ -48,7 +48,7 @@ const AllPayments = () => {
     if (paymentData.status === 200) {
       return obj?.map((payment, index) => {
         let totalValue = payment.payment.value_payment;
-        let value = payment.payment_percentage * totalValue;
+        let value = (payment.payment_percentage * totalValue).toFixed(0);
         let date = payment.payment.date_payment;
         const options = { month: "short", day: "numeric" };
         let cleanDate = new Date(date).toLocaleDateString("pt-PT", options);

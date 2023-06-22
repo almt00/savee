@@ -15,7 +15,6 @@ const Insight = (props) => {
     if (tasksData.status !== 200) {
       dispatch(fetchAsyncTasks()); // fazer o fetch com redux caso ainda n esteja o estado (ex.: reloads de pagina)
     }
-    console.log("props: ", props);
   }, [dispatch]);
 
   const heatingMessage =
