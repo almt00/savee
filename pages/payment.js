@@ -51,7 +51,6 @@ const Payment = () => {
     }
   }, [dispatch, paymentid, insights.status, tasks.status, houseId]);
 
-  console.log("payment id: ", paymentid);
   // map tasks and save all task_id in array
   let task_list = [];
   if (tasks.status === 200) {
@@ -73,6 +72,7 @@ const Payment = () => {
     // for each task_id, map obj and return all consumption in an array
     const Insights = task_list.reduce((acc, task_id) => {
       let obj = insights.insights.consumption;
+      console.log(obj);
 
       // filter obj by task_id
       let filtered = obj.filter((consumption) => {
@@ -81,7 +81,7 @@ const Payment = () => {
         if (consumption.task) {
           id = consumption.task.task;
         } else if (consumption.routine) {
-          id = consumption.routine.task_routine;
+          id = consumption.routine.task;
         }
         return id === task_id;
       });

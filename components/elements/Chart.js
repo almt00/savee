@@ -16,10 +16,6 @@ const DoughnutChart = (props) => {
   const paymentGroupDetails = useSelector(getPaymentGroupDetails);
   const userId = Cookies.get("userId");
 
-  useEffect(() => {
-    console.log(props);
-  }, []);
-
   /*  useEffect(() => {
     if (paymentGroupDetails.status !== 200) {
       dispatch(fetchAsyncPaymentGroupDetailsSlice({ houseid, paymentid }));
@@ -103,7 +99,6 @@ const DoughnutChart = (props) => {
     const plugins = [
       {
         afterRender: function (chart) {
-          console.log("before draw");
           let width = chart.width,
             height = chart.height,
             ctx = chart.ctx;
