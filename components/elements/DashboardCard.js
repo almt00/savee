@@ -73,10 +73,10 @@ const DashboardCard = () => {
         endTime = new Date(element.task?.end_time);
         duration = (endTime.getTime() - startTime.getTime()) / 1000 / 60 / 60;
       } else if (element.type === 0) {
-        taskId = element.routine.task;
+        taskId = element.task_routine;
         startTime = new Date(element.consumption_date);
         /*  let endTime = new Date(element.task?.end_time); */
-        duration = element.routine.duration_routine / 60 / 60;
+        duration = element.consumption / 60 / 60;
       }
       let chosenTask = tasksData.tasks.find((task) => task.id === taskId);
       let consumption = chosenTask.kw_hour * duration;
@@ -102,10 +102,10 @@ const DashboardCard = () => {
         endTime = new Date(element.task?.end_time);
         duration = (endTime.getTime() - startTime.getTime()) / 1000 / 60 / 60;
       } else if (element.type === 0) {
-        taskId = element.routine.task;
+        taskId = element.task_routine;
         startTime = new Date(element.consumption_date);
         /*  let endTime = new Date(element.task?.end_time); */
-        duration = element.routine.duration_routine / 60 / 60;
+        duration = element.consumption / 60 / 60;
       }
       let chosenTask = tasksData.tasks.find((task) => task.id === taskId);
       let consumption = chosenTask.kw_hour * duration;

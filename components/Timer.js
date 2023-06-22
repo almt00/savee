@@ -4,14 +4,23 @@ import Tip from "./elements/Tip";
 import { styled } from "@stitches/react";
 import Cookies from "js-cookie";
 import { useRouter } from "next/router";
+import { useDispatch, useSelector } from "react-redux";
+import { getTasks } from "../store/TasksSlice";
+import {
+  fetchAsyncPaymentGroupSlice,
+  getPaymentGroup,
+} from "../store/PaymentGroupSlice";
 
 export default function Timer(props) {
+  const dispatch = useDispatch();
   const [time, setTime] = useState(0);
   const [running, setRunning] = useState(false);
   const [color, setColor] = useState("text-muted");
   const [startTime, setStartTime] = useState(null);
   const userId = Cookies.get("userId");
-
+  const houseId = Cookies.get("houseId");
+  const paymentData = useSelector(getPaymentGroup);
+  const tasksData = useSelector(getTasks);
   let taskId;
   const router = useRouter();
   const query = router.query; // ir buscar query string ao URL
@@ -21,35 +30,67 @@ export default function Timer(props) {
   } else {
     taskId = parseInt(query.id); // passar para inteiro para comparar com id da API
   }
+  useEffect(() => {
+    if (paymentData.status !== 200) {
+      dispatch(fetchAsyncPaymentGroupSlice(houseId)); // fazer o fetch com
+      console.log("fetch");
+    }
+  }, [dispatch]);
 
-  const handleSubmit = async (event) => {
-    const data = {
-      start_time: startTime,
-      end_time: new Date(),
-      duration: parseInt(time / 1000),
-      task: taskId,
-    };
+  const handleSubmit = async () => {
+    if (tasksData.status === 200) {
+      let task_duration = parseInt(time / 1000) / 60 / 60;
+      let chosenTask = tasksData.tasks.find((task) => task.id === taskId);
+      let consumption_value = chosenTask.kw_hour * task_duration;
 
-    console.log(data);
+      const data_task = {
+        start_time: startTime,
+        end_time: new Date(),
+        duration: parseInt(time / 1000),
+        task: taskId,
+      };
 
-    const JSONdata = JSON.stringify(data);
+      const JSONdataTask = JSON.stringify(data_task);
+      const endpoint_task = `https://savee-api.vercel.app/user/${userId}/task`;
+      const options_task = {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${Cookies.get("userToken")}`,
+        },
+        body: JSONdataTask,
+      };
+      const response_task = await fetch(endpoint_task, options_task);
+      const result_task = await response_task.json();
 
-    const endpoint = `https://savee-api.vercel.app/user/${userId}/task`;
-
-    const options = {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${Cookies.get("userToken")}`,
-      },
-      body: JSONdata,
-    };
-
-    const response = await fetch(endpoint, options);
-
-    const result = await response.json();
-    if (result.success) {
-      //router.push("/homepage");
+      if (result_task.success) {
+        const task_id = result_task.task.task_id;
+        console.log("response", result_task);
+        const data_consumption = {
+          house_id: houseId,
+          payment_id: paymentData?.paymentGroup[0].payment_id,
+          routine_id: null,
+          task_id: task_id,
+          consumption: consumption_value,
+          type: 1,
+        };
+        const JSONdataConsumption = JSON.stringify(data_consumption);
+        const endpoint_consumption = `https://savee-api.vercel.app/consumption/user/${userId}`;
+        const options_consumption = {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${Cookies.get("userToken")}`,
+          },
+          body: JSONdataConsumption,
+        };
+        const response_consumption = await fetch(
+          endpoint_consumption,
+          options_consumption
+        );
+        const result_consumption = await response_consumption.json();
+        console.log(result_consumption);
+      }
     }
   };
 
@@ -139,7 +180,7 @@ export default function Timer(props) {
         </>
       )}
       {running === false && time > 0 ? (
-        <Tip content="Foste super rápido! 21% das pessoas demoram mais tempo que tu."></Tip>
+        <Tip content="Acabaste a tua tarefa!"></Tip>
       ) : (
         ""
       )}

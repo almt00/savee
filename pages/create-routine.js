@@ -1,4 +1,5 @@
 import Layout from "../components/elements/Layout";
+import withAuth from "../components/withAuth";
 import Card from "../components/elements/Card";
 import Button from "../components/elements/Button";
 import Header from "../components/elements/Header";
@@ -15,7 +16,7 @@ import router from "next/router";
 import { fetchAsyncUser } from "../store/UserSlice";
 import Cookies from "js-cookie";
 
-export default function Routine() {
+function Routine() {
   const dispatch = useDispatch();
   // state to keep track of the current step
   const [step, setStep] = useState(0);
@@ -129,16 +130,6 @@ export default function Routine() {
         {step === fieldGroups.length - 1 && (
           <>
             <Button
-              className="mt-6 mr-4"
-              bg="transparent"
-              size="lg"
-              onClick={() => {
-                setStep(step - 1);
-              }}
-            >
-              Anterior
-            </Button>
-            <Button
               type="submit"
               onClick={(e) => {
                 e.preventDefault();
@@ -155,22 +146,6 @@ export default function Routine() {
         {step < fieldGroups.length - 1 &&
           step > 0 && ( // mudar este condicional depois de termos os estados a funcionar
             <>
-              {step < fieldGroups.length - 1 &&
-                step > 0 && ( // tirar este condicional depois de termos os estados a funcionar
-                  <Button
-                    className="mt-6 mr-4"
-                    bg="transparent"
-                    size="lg"
-                    onClick={() => {
-                      if (step > 0) {
-                        setStep(step - 1);
-                      }
-                    }}
-                  >
-                    Anterior
-                  </Button>
-                )}
-
               <Button
                 className="mt-6"
                 bg="solid"
@@ -201,3 +176,5 @@ export default function Routine() {
     </Layout>
   );
 }
+
+export default withAuth(Routine);

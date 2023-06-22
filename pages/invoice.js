@@ -1,4 +1,5 @@
 import Background from "../components/elements/Background";
+import withAuth from "../components/withAuth";
 import Header from "../components/elements/Header";
 import Breadcrumb from "../components/elements/Breadcrumb";
 import Form from "../components/elements/Form";
@@ -145,4 +146,4 @@ const ErrorMessage = styled("p", {
   fontSize: "small",
 });
 
-export default Invoice;
+export default withAuth(Invoice);

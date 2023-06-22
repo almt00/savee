@@ -48,9 +48,9 @@ const Entries = (props) => {
 
       if (element.type === 0) {
         if (consumption_time >= intMin && consumption_time < intMax) {
-          let taskId = element.routine.task;
+          let taskId = element.task_routine;
           let chosenTask = tasksData.tasks.find((task) => task.id === taskId);
-          duration = element.routine.duration_routine / 60;
+          duration = element.consumption / 60;
           if (duration > 60) {
             // se for mais que 1h formatar numeros
             min = duration % 60;
@@ -98,6 +98,7 @@ const Entries = (props) => {
         if (consumption_time >= intMin && consumption_time < intMax) {
           let taskId = element.task.task;
           let chosenTask = tasksData.tasks.find((task) => task.id === taskId);
+          console.log("task", chosenTask);
           duration = Math.round(
             (endTime.getTime() - startTime.getTime()) / 1000 / 60
           ); // duraçao em min

@@ -51,9 +51,15 @@ export default function Login() {
     // If server returns the name submitted, that means the form works.
     const result = await response.json();
     if (result.success) {
-      Cookies.set("userToken", result.token);
-      Cookies.set("userId", result.user.user_id);
-      Cookies.set("houseId", result.user.house_id);
+      Cookies.set("userToken", result.token, { expires: 365, secure: true });
+      Cookies.set("userId", result.user.user_id, {
+        expires: 365,
+        secure: true,
+      });
+      Cookies.set("houseId", result.user.house_id, {
+        expires: 365,
+        secure: true,
+      });
 
       const id = Cookies.get("userId");
       dispatch(fetchAsyncUser(id)); // fazer o fetch com redux
@@ -84,11 +90,6 @@ export default function Login() {
             <Form name="Email" type="email" required />
             <div className="mt-6">
               <Form name="Password" type="password" required />
-            </div>
-            <div>
-              <Link href="" className="text-links text-sm">
-                Esqueci-me da password
-              </Link>
             </div>
             <div className="flex justify-center">
               <Button type="submit" className="mt-6" bg="solid" size="lg">
