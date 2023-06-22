@@ -48,7 +48,11 @@ const AllUsage = () => {
     }
   }, [dispatch]);
 
-  if (consumptionData.status === 200 && tasksData.status === 200) {
+  if (
+    consumptionData.status === 200 &&
+    tasksData.status === 200 &&
+    consumptionData.consumption.length > 0
+  ) {
     obj = consumptionData.consumption;
 
     UseHisto = obj.map((use, index) => {
@@ -94,6 +98,13 @@ const AllUsage = () => {
         </>
       );
     });
+  } else if (consumptionData.consumption.length === 0) {
+    // Empty state when there's no usage data
+    UseHisto = (
+      <Card>
+        <p className="mt-2">Sem consumos disponíveis</p>
+      </Card>
+    );
   }
 
   return (
@@ -105,11 +116,15 @@ const AllUsage = () => {
       <Header page="Histórico uso" />
       <div className="relative pt-20 px-6 flex flex-col gap-3 pb-6">
         <Breadcrumb />
-        <Card>
-          <ThisMonth>{todaySum} min</ThisMonth>
-          <p className="mt-2">Hoje</p>
-        </Card>
-        <H3 className="mt-6">Histórico de uso</H3>
+        {consumptionData.consumption.length > 0 && (
+          <>
+            <Card>
+              <ThisMonth>{todaySum} min</ThisMonth>
+              <p className="mt-2">Hoje</p>
+            </Card>
+            <H3 className="mt-6">Histórico de uso</H3>
+          </>
+        )}
         <div className="flex flex-col-reverse gap-3">{UseHisto}</div>
       </div>
     </Layout>
