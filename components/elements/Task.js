@@ -6,13 +6,10 @@ import { useRouter } from "next/router";
 
 //Write a fetcher function to wrap the native fetch function and return the result of a call to url in json format
 const Task = (props) => {
-  let taskId;
   const router = useRouter();
-  const query = router.query; // ir buscar query string ao URL
-  if (query === {} || query.id === undefined || props.taskId) {
-    // ver se esta task vem com info de props ou da query string
-    taskId = props.taskId; // passar para inteiro para comparar com id da API
-  } else {
+  let taskId = props.taskId;
+  if (taskId === undefined) {
+    const query = router.query; // ir buscar query string ao URL
     taskId = parseInt(query.id); // passar para inteiro para comparar com id da API
   }
   const dispatch = useDispatch();

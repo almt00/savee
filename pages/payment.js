@@ -25,6 +25,7 @@ const Payment = () => {
   const payment = useSelector(getPaymentGroupDetails);
   const paymentid = id ? id : null;
   const houseId = Cookies.get("houseId");
+  const userid = Cookies.get("userId");
   const taskid = "";
   let chosenTask = null;
   let totalConsumption = 0;
@@ -33,18 +34,22 @@ const Payment = () => {
 
   useEffect(() => {
     dispatch(setPage("payment"));
+  }, [dispatch]);
 
-    if (paymentid && insights.status !== 200 && tasks.status !== 200) {
+  useEffect(() => {
+    if (paymentid && (insights.status !== 200 || tasks.status !== 200)) {
       dispatch(fetchAsyncInsightsSlice({ paymentid, taskid, userid }));
       dispatch(fetchAsyncTasks());
     }
+  }, [dispatch, paymentid, insights.status, tasks.status, userid]);
 
-    if (paymentid && payment.status !== 200) {
+  useEffect(() => {
+    if (paymentid && insights.status === 200 && tasks.status === 200) {
       dispatch(
         fetchAsyncPaymentGroupDetailsSlice({ houseid: houseId, paymentid })
       );
     }
-  }, [dispatch, paymentid, payment]);
+  }, [dispatch, paymentid, insights.status, tasks.status, houseId]);
 
   // map tasks and save all task_id in array
   let task_list = [];
@@ -67,6 +72,7 @@ const Payment = () => {
     // for each task_id, map obj and return all consumption in an array
     const Insights = task_list.reduce((acc, task_id) => {
       let obj = insights.insights.consumption;
+      console.log(obj);
 
       // filter obj by task_id
       let filtered = obj.filter((consumption) => {
@@ -75,7 +81,7 @@ const Payment = () => {
         if (consumption.task) {
           id = consumption.task.task;
         } else if (consumption.routine) {
-          id = consumption.routine.task_routine;
+          id = consumption.routine.task;
         }
         return id === task_id;
       });
@@ -112,7 +118,6 @@ const Payment = () => {
             return (chosenTask = task.id);
           }
         });
-
         return <Insight key={key} taskId={chosenTask} value={value} />;
       }
     });

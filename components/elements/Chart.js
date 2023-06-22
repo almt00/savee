@@ -16,12 +16,11 @@ const DoughnutChart = (props) => {
   const paymentGroupDetails = useSelector(getPaymentGroupDetails);
   const userId = Cookies.get("userId");
 
-
-  useEffect(() => {
+  /*  useEffect(() => {
     if (paymentGroupDetails.status !== 200) {
       dispatch(fetchAsyncPaymentGroupDetailsSlice({ houseid, paymentid }));
     }
-  }, [dispatch]);
+  }, [dispatch]); */
 
   if (paymentGroupDetails.status === 200) {
     let obj = paymentGroupDetails.paymentGroupDetails;
@@ -52,7 +51,7 @@ const DoughnutChart = (props) => {
       (user) => user.userid === userId
     ).percentage;
     let ourUserValue = (totalValue * UserValue) / 100;
-    
+
     let border = "";
     let background = "";
     let cutoutPercentage = "";
@@ -70,7 +69,6 @@ const DoughnutChart = (props) => {
       cutoutPercentage = 30;
     }
 
-    let message = ourUserValue + "€";
     const data = {
       labels: nameArray,
       datasets: [
@@ -100,7 +98,7 @@ const DoughnutChart = (props) => {
 
     const plugins = [
       {
-        beforeDraw: function (chart) {
+        afterRender: function (chart) {
           let width = chart.width,
             height = chart.height,
             ctx = chart.ctx;
@@ -108,7 +106,7 @@ const DoughnutChart = (props) => {
           let fontSize = (height / 120).toFixed(2);
           ctx.font = fontSize + "em Verdana, sans-serif";
           ctx.textBaseline = "middle";
-          let text = message,
+          let text = `${ourUserValue.toFixed(0)} €`,
             textX = Math.round((width - ctx.measureText(text).width) / 2),
             textY = height / 2;
           ctx.fillText(text, textX, textY);
@@ -117,12 +115,19 @@ const DoughnutChart = (props) => {
       },
     ];
     return (
-      <Doughnut
-        alt="grafico"
-        data={data}
-        options={options}
-        plugins={props.environment === "payment" ? plugins : [ChartDataLabels]}
-      />
+      <>
+        <Doughnut
+          alt="grafico"
+          data={data}
+          options={options} /* plugins={plugins} */
+        />
+        <h1
+          className="absolute font-bold text-3xl"
+          style={{ left: "42%", top: "310px" }}
+        >
+          {ourUserValue.toFixed(0)} €
+        </h1>
+      </>
     );
   }
 };
