@@ -75,7 +75,7 @@ const Payment = () => {
         if (consumption.task) {
           id = consumption.task.task;
         } else if (consumption.routine) {
-          id = consumption.routine.task;
+          id = consumption.routine.task_routine;
         }
         return id === task_id;
       });
