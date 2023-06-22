@@ -52,10 +52,11 @@ const AllUsage = () => {
     obj = consumptionData.consumption;
 
     UseHisto = obj.map((use, index) => {
+      console.log(use);
       if (use.task && use.type === 1) {
         taskId = use.task.task;
       } else if (use.routine && use.type === 0) {
-        taskId = use.routine.task_routine;
+        taskId = use.task_routine;
       }
 
       // assign task name to taskId
