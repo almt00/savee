@@ -283,17 +283,6 @@ export default function Register() {
         />
       </div>
       <div className="flex justify-center">
-        <Link href="/homepage">
-          <Button
-            type="submit"
-            className="mt-6 mr-4"
-            bg="transparent"
-            size="lg"
-            onClick={handleSubmit}
-          >
-            Mais tarde
-          </Button>
-        </Link>
         <Button
           type="submit"
           className="mt-6"
