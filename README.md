@@ -1,5 +1,5 @@
 # savee 
-#### LIVE Demo: [savee.pt](https://savee.pt)
+#### LIVE Demo: [savee.pt](https://savee-two.vercel.app/)
 
 **SAVEE** is a web app created to help **students who share a house splitting their electricity bills** according to their **individual energy consumption**, while also providing insights for this consumption. It aims to be transparent, honest and easygoing. 
 It was developed within the scope of the Communication and Web Technologies Master's Degree at Universidade de Aveiro.
